@@ -1,26 +1,45 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route
+} from "react-router-dom";
+import { Navigate } from 'react-router'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Login from './components/Login';
+import Signup from './components/Signup';
+import LandingPage from './components/LandingPage';
+import { connect } from 'react-redux';
 
-function App() {
+function App(props) {
+
+  const { currentUser } = props;
+
+  const privateRoutes = [
+    // append private routes under this array in the format
+    // { path: endpoint, element: React.Element}
+  ]
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Router>
+      <Routes>
+        <Route path="/" element={<LandingPage />}/>
+        <Route exact path="/login" element={<Login />} />
+        <Route exact path="/signup" element={<Signup />} />
+        {privateRoutes && privateRoutes.map(privateRoute => 
+          <Route key={privateRoute.path} path={privateRoute.path} element={currentUser?.uid ? (privateRoute.element) : (<Navigate to="/login"/>)}/>
+        )}
+      </Routes>
+    </Router>
+  )
 }
 
-export default App;
+const mapStateToProps = ({ user }) => ({
+  user,
+});
+
+const mapDispatchToProps = dispatch => ({
+  dispatch,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

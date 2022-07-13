@@ -1,0 +1,33 @@
+// size variables
+
+$xs: 8px;
+$small: 12px;
+$medium: 16px;
+$large: 24px;
+$xlarge: 32px;
+
+// Responsive utils
+
+$xxl-min-width: 1600px;
+$xxl-max-width: 1599px;
+$xl-min-width: 1200px;
+$xl-max-width: 1199px;
+$md-min-width: 992px;
+$md-max-width: 991px;
+$sm-min-width: 768px;
+$sm-max-width: 767px;
+$xs-min-width: 544px;
+$xs-max-width: 543px;
+
+// Accent colours
+
+$primary: #0090f7;
+$secondary: #6a7a84;
+$success: #46be8a;
+$info: #0887c9;
+$warning: #f39834;
+$danger: #fb434a;
+$white: #fff;
+$black: #000;
+$light: $white;
+$dark: $black;
