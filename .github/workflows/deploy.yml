@@ -1,0 +1,24 @@
+
+name: Deploy New Version!
+
+on:
+  push:
+    branches: 
+    - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '14.1.0'
+      - run: npm ci
+      - run: npm run build
+      - name: Prod build triggered, deploying new version
+        uses: w9jds/firebase-action@v1.5.0
+        with:
+          args: deploy --only hosting
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
