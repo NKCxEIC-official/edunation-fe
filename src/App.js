@@ -8,7 +8,6 @@ import LandingPage from "./components/LandingPage";
 import { useSelector, useDispatch } from "react-redux";
 
 const App = () => {
-  const basename = document.querySelector('base')?.getAttribute('href') ?? '/'
   const { user, appData } = useSelector((state) => {
     return {
       user: state.user,
@@ -16,14 +15,14 @@ const App = () => {
     };
   });
   const dispatch = useDispatch();
-  console.log(basename);
+
   const privateRoutes = [
     // append private routes under this array in the format
     // { path: endpoint, element: React.Element}
   ];
 
   return (
-    <Router basename={basename}>
+    <Router basename={window?.location?.host}>
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route exact path="/login" element={<Login />} />
