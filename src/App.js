@@ -16,7 +16,7 @@ const App = () => {
     };
   });
   const dispatch = useDispatch();
-
+  console.log(basename);
   const privateRoutes = [
     // append private routes under this array in the format
     // { path: endpoint, element: React.Element}
