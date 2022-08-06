@@ -22,7 +22,7 @@ const App = () => {
   ];
 
   return (
-    <Router basename={window?.location?.host}>
+    <Router>
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route exact path="/login" element={<Login />} />
