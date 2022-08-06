@@ -8,6 +8,7 @@ import LandingPage from "./components/LandingPage";
 import { useSelector, useDispatch } from "react-redux";
 
 const App = () => {
+  const basename = document.querySelector('base')?.getAttribute('href') ?? '/'
   const { user, appData } = useSelector((state) => {
     return {
       user: state.user,
@@ -22,7 +23,7 @@ const App = () => {
   ];
 
   return (
-    <Router>
+    <Router basename={basename}>
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route exact path="/login" element={<Login />} />
