@@ -14,6 +14,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '14.1.0'
+      - run: npm@5
       - run: npm ci
       - run: npm run build
       - name: Prod build triggered, deploying new version
