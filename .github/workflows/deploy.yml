@@ -20,6 +20,7 @@ jobs:
       - name: Prod build triggered, deploying new version
         uses: w9jds/firebase-action@v1.5.0
         with:
+          node-version: '14.18.0'
           args: deploy --only hosting
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
