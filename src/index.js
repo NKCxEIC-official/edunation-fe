@@ -2,23 +2,27 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import moment from 'moment-timezone';
-import App from './App';
+import { BrowserRouter } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
+import App from './App2';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
+
 import store from './redux/store';
-import "./global.scss";
+import './global.scss';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-// made Indian timezone as default!
 moment.tz.setDefault('Asia/Kolkata');
 
 root.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </React.StrictMode>
+  <HelmetProvider>
+    <BrowserRouter>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </BrowserRouter>
+  </HelmetProvider>
 );
 
 // If you want your app to work offline and load faster, you can change
