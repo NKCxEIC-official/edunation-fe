@@ -2,10 +2,10 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Navigate } from "react-router";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useSelector, useDispatch } from 'react-redux';
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import LandingPage from "./components/LandingPage";
-import { useSelector, useDispatch } from "react-redux";
 import Dashboard from "./components/Dashboard";
 import applicationConstants, { routeConstants } from "./utils/stringConstants";
 

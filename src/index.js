@@ -1,16 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { Provider } from 'react-redux';
+import moment from 'moment-timezone';
 import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
-import { Provider } from 'react-redux';
 import store from './redux/store';
 import "./global.scss";
-import moment from 'moment-timezone';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-//made Indian timezone as default!
+// made Indian timezone as default!
 moment.tz.setDefault('Asia/Kolkata');
 
 root.render(
