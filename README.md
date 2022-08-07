@@ -1,41 +1,41 @@
-# EduNation
+## Minimal [(Free version)](https://minimal-kit-react.vercel.app/)
 
-### Steps to set up the repository:
+![license](https://img.shields.io/badge/license-MIT-blue.svg)
 
-#### 1. Install Node.js
-#### 2. Run the following list of command in the terminal:
-```
-git clone https://github.com/NKCxEIC-official/edunation-fe.git
+> Free React Admin Dashboard made with Material-UI components and React.
 
-cd edunation-fe
+![preview](public/static/preview.jpg)
 
-npm install
+| [Minimal Free](https://minimal-kit-react.vercel.app/) | [Minimal](https://material-ui.com/store/items/minimal-dashboard/) |
+| ----------------------------------------------------- | :---------------------------------------------------------------- |
+| **7** Demo pages                                      | **50+** demo pages                                                |
+| -                                                     | ✓ Multi-language                                                  |
+| -                                                     | ✓ Dark/Light Mode 🌓                                              |
+| -                                                     | ✓ [More components](https://minimals.cc/components)               |
+| -                                                     | ✓ Next.js version                                                 |
+| -                                                     | ✓ TypeScript version                                              |
+| -                                                     | ✓ Design files (Figma & Sketch)                                   |
 
-npm start
-```
+## Page demo
 
-#### Voila! EduNation-fe is running in http://localhost:3000!
+- [Dashboard](https://minimal-kit-react.vercel.app/dashboard/app)
+- [Users](https://minimal-kit-react.vercel.app/dashboard/user)
+- [Product](https://minimal-kit-react.vercel.app/dashboard/products)
+- [Blog](https://minimal-kit-react.vercel.app/dashboard/blog)
+- [Login](https://minimal-kit-react.vercel.app/login)
+- [Register](https://minimal-kit-react.vercel.app/register)
+- [Not Found](https://minimal-kit-react.vercel.app/404)
 
------------
+## Getting started
 
-### Important points to contribute to the project:
-- Do `not commit or push` directly to the `main` branch.
-- Write meaningful commit messages.
-- Create a branch from the latest `main` branch with the meaningful name.
-- After you are done with development, push your code to `that` branch and raise a `PR` to the `main` branch.
+- Recommended `node js 14.x` and `npm 6+`. (suggestion v14.17.3 / v16.15.0)
+- Install dependencies: `npm install` / `yarn install`
+- Start the project: `npm run start` / `yarn start`
 
-#### Follow these steps for changing branches:
-```
-git pull
+## License
 
-git checkout <branch-name>
-```
+Distributed under the MIT License. See [LICENSE](https://github.com/minimal-ui-kit/minimal.free/blob/main/LICENSE.md) for more information.
 
-#### Follow these steps to commit and push your code:
-```
-git add .
+## Contact us
 
-git commit -m "<your-commit-message-here>"
-
-git push origin <working-branch> 
-```
+Email Us: support@minimals.cc
