@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styles from "./Login.module.scss";
 import applicationConstants from "../../utils/stringConstants";
 import { getPrivateRouteEndpoint } from "../../utils/privateRoutesHelper";
-import { useSelector } from "react-redux";
+
 
 const Login = (props) => {
   const { role } = props;

@@ -1,3 +1,4 @@
+/* eslint-disable */
 import applicationConstants, { routeConstants } from "./stringConstants";
 
 export const getPrivateRouteEndpoint = (role, type) => {
@@ -5,8 +6,8 @@ export const getPrivateRouteEndpoint = (role, type) => {
     return role === applicationConstants.STUDENT
       ? routeConstants.DASHBOARD
       : role === applicationConstants.TEACHER
-      ? routeConstants.TEACHER_DASHBOARD
-      : routeConstants.NGO_DASHBOARD;
+        ? routeConstants.TEACHER_DASHBOARD
+        : routeConstants.NGO_DASHBOARD;
   }
   return routeConstants.DEFAULT_ENDPOINT;
 };
