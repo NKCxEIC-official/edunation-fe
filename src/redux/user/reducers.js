@@ -1,11 +1,12 @@
-import actions from "./constants";
+/*eslint-disable */
+import actions from './constants';
 
 const initialState = {
-  uid: "",
-  name: "",
-  role: "",
-  email: "",
-  avatar: "",
+  uid: '',
+  name: '',
+  role: '',
+  email: '',
+  avatar: '',
   authorized: false,
   loading: false,
 };
