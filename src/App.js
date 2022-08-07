@@ -1,13 +1,13 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Navigate } from "react-router";
-import "bootstrap/dist/css/bootstrap.min.css";
-import Login from "./components/Login";
-import Signup from "./components/Signup";
-import LandingPage from "./components/LandingPage";
-import { useSelector, useDispatch } from "react-redux";
-import Dashboard from "./components/Dashboard";
-import applicationConstants, { routeConstants } from "./utils/stringConstants";
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { Navigate } from 'react-router';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Login from './components/Login';
+import Signup from './components/Signup';
+import LandingPage from './components/LandingPage';
+import Dashboard from './components/Dashboard';
+import applicationConstants, { routeConstants } from './utils/stringConstants';
 
 const App = () => {
   const { user, appData } = useSelector((state) => {
@@ -42,39 +42,15 @@ const App = () => {
   ];
 
   return (
-    <Router basename={""}>
+    <Router basename={''}>
       <Routes>
         <Route path={routeConstants.DEFAULT_ENDPOINT} element={<LandingPage />} />
-        <Route
-          exact
-          path={routeConstants.LOGIN}
-          element={<Login role={applicationConstants.STUDENT} />}
-        />
-        <Route
-          exact
-          path={routeConstants.REGISTER}
-          element={<Signup role={applicationConstants.STUDENT} />}
-        />
-        <Route
-          exact
-          path={routeConstants.NGO_LOGIN}
-          element={<Login role={applicationConstants.NGO} />}
-        />
-        <Route
-          exact
-          path={routeConstants.NGO_REGISTER}
-          element={<Signup role={applicationConstants.NGO} />}
-        />
-        <Route
-          exact
-          path={routeConstants.TEACHER_LOGIN}
-          element={<Login role={applicationConstants.TEACHER} />}
-        />
-        <Route
-          exact
-          path={routeConstants.TEACHER_REGISTER}
-          element={<Signup role={applicationConstants.TEACHER} />}
-        />
+        <Route exact path={routeConstants.LOGIN} element={<Login role={applicationConstants.STUDENT} />} />
+        <Route exact path={routeConstants.REGISTER} element={<Signup role={applicationConstants.STUDENT} />} />
+        <Route exact path={routeConstants.NGO_LOGIN} element={<Login role={applicationConstants.NGO} />} />
+        <Route exact path={routeConstants.NGO_REGISTER} element={<Signup role={applicationConstants.NGO} />} />
+        <Route exact path={routeConstants.TEACHER_LOGIN} element={<Login role={applicationConstants.TEACHER} />} />
+        <Route exact path={routeConstants.TEACHER_REGISTER} element={<Signup role={applicationConstants.TEACHER} />} />
         {privateRoutes &&
           privateRoutes.map((privateRoute) => (
             <Route
