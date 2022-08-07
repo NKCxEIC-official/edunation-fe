@@ -1,4 +1,6 @@
-import actions from "./constants";
+/*eslint-disable */
+
+import actions from './constants';
 
 const initialState = {
   base: {},
