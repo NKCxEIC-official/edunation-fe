@@ -28,18 +28,13 @@ export default function Router() {
         { path: 'products', element: <Products /> },
         { path: 'blog', element: <Blog /> },
         { path: 'classroom/:id', element: <CourseDetails /> },
-      ],
-    },
-    {
-      path: '/dashboard/ngo',
-      element: <DashboardLayout />,
-      children: [
-        { path: '', element: <NgoDashboard /> },
+        { path: 'ngo-overview', element: <NgoDashboard /> },
         { path: 'teachers-list', element: <TeachersList /> },
         { path: 'students-list', element: <StudentsList /> },
         { path: 'red-spots', element: <RedSpots /> },
       ],
     },
+
     {
       path: '/',
       element: <LogoOnlyLayout />,
