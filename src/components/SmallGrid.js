@@ -1,7 +1,7 @@
 import { Box, Card, CardContent, CardHeader, Typography } from '@mui/material';
 import React from 'react';
 
-function SmallGrid({ title, subheader, count, color }) {
+function SmallGrid({ title, subheader, count, totalCount, color }) {
   return (
     <Card>
       <CardContent>
@@ -23,8 +23,11 @@ function SmallGrid({ title, subheader, count, color }) {
           </Typography>
         </Box>
 
-        <Typography variant="h3">{count}</Typography>
-        <Box sx={{ width: '50px', backgroundColor: `${color}.light`, height: '3px', mt: 1 }} />
+        <Typography variant="h3">
+          {count}
+          {totalCount && `/${totalCount}`}
+        </Typography>
+        <Box sx={{ width: '50px', backgroundColor: `${color}.light`, height: '3px' }} />
       </CardContent>
     </Card>
   );
