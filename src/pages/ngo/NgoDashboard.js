@@ -10,6 +10,8 @@ import { AppWebsiteVisits } from '../../sections/@dashboard/app';
 import SmallGrid from '../../components/SmallGrid';
 import LargeActionButton from '../../sections/@ngo/LargeActionButton';
 import CustomModal from '../../components/CustomModal';
+import AddStudent from '../../sections/@ngo/forms/AddStudent';
+import AddTeacher from '../../sections/@ngo/forms/AddTeacher';
 
 // ----------------------------------------------------------------------
 
@@ -42,11 +44,11 @@ export default function NgoDashboard() {
           </Grid>
 
           <Grid item xs={12} sm={6} md={4}>
-            <CustomModal btnText={"Create Teachers's profile"} icon="carbon:user-speaker" largeBtn />
+            <CustomModal component={<AddTeacher />} btnText={"Create Teachers's profile"} icon="carbon:user-speaker" largeBtn />
           </Grid>
 
           <Grid item xs={12} sm={6} md={4}>
-            <CustomModal btnText="Create Student's Profile" icon="akar-icons:people-group" largeBtn color="info" />
+            <CustomModal component={<AddStudent />} btnText="Create Student's Profile" icon="akar-icons:people-group" largeBtn color="info" />
           </Grid>
 
           <Grid item xs={12} md={12} lg={12}>
