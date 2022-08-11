@@ -2,6 +2,8 @@ import { faker } from '@faker-js/faker';
 // @mui
 import { useTheme } from '@mui/material/styles';
 import { Grid, Container, Typography } from '@mui/material';
+import { useEffect, useState } from 'react';
+import { doc, getDoc } from 'firebase/firestore';
 // components
 import Page from '../../components/Page';
 import Iconify from '../../components/Iconify';
@@ -12,12 +14,18 @@ import LargeActionButton from '../../sections/@ngo/LargeActionButton';
 import CustomModal from '../../components/CustomModal';
 import AddStudent from '../../sections/@ngo/forms/AddStudent';
 import AddTeacher from '../../sections/@ngo/forms/AddTeacher';
+import { db } from '../../utils/firebaseConfig';
+
 
 // ----------------------------------------------------------------------
 
 export default function NgoDashboard() {
   const theme = useTheme();
-
+  const [Ngodata,setNgodata]=useState({})
+  useEffect (()=> {
+    const docRef=doc(db, "users/irWv9KyOTepybjcP8UU8")
+    getDoc(docRef).then((docdata)=> {setNgodata(docdata.data())})
+  }, [])
   return (
     <Page title="Dashboard">
       <Container maxWidth="xl">
@@ -27,16 +35,16 @@ export default function NgoDashboard() {
 
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6} md={3}>
-            <SmallGrid subheader="Student Count" count="10" color="info" />
+            <SmallGrid subheader="Student Count" count={Ngodata.studentsCount} color="info" />
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
-            <SmallGrid subheader="Teacher Count" count="10" color="success" />
+            <SmallGrid subheader="Teacher Count" count={Ngodata.teachersCount} color="success" />
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
-            <SmallGrid subheader="Volunteer Count" count="10" color="warning" />
+            <SmallGrid subheader="Volunteer Count" count={Ngodata.VolunteersCount} color="warning" />
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
-            <SmallGrid subheader="Red Spots" count="10" color="error" />
+            <SmallGrid subheader="Red Spots" count={Ngodata.redSpotsCount} color="error" />
           </Grid>
 
           <Grid item xs={12} sm={6} md={4}>

@@ -1,6 +1,7 @@
 import { filter } from 'lodash';
 import { sentenceCase } from 'change-case';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { doc, getDoc } from 'firebase/firestore';
 import { Link as RouterLink } from 'react-router-dom';
 // material
 import {
@@ -28,6 +29,8 @@ import { UserListHead, UserListToolbar, UserMoreMenu } from '../../sections/@ngo
 // mock
 import USERLIST from '../../_mock/user';
 import CustomModal from '../../components/CustomModal';
+import { db } from '../../utils/firebaseConfig';
+import AddTeacher from '../../sections/@ngo/forms/AddTeacher';
 
 // ----------------------------------------------------------------------
 
@@ -69,6 +72,7 @@ function applySortFilter(array, comparator, query) {
       array,
       (_user) =>
         _user.name.toLowerCase().indexOf(query.toLowerCase()) !== -1 ||
+        _user.role.toLowerCase().indexOf(query.toLowerCase()) !== -1 ||
         _user.status.toLowerCase().indexOf(query.toLowerCase()) !== -1
     );
   }
@@ -77,6 +81,10 @@ function applySortFilter(array, comparator, query) {
 
 export default function TeachersList() {
   const [page, setPage] = useState(0);
+
+  const [Ngodata,setNgodata]=useState({})
+
+  const [filteredUsers,setfilteredUsers]=useState([])
 
   const [order, setOrder] = useState('asc');
 
@@ -133,18 +141,19 @@ export default function TeachersList() {
 
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - USERLIST.length) : 0;
 
-  const filteredUsers = applySortFilter(USERLIST, getComparator(order, orderBy), filterName);
-
   const isUserNotFound = filteredUsers.length === 0;
-
+  useEffect (()=> {
+    const docRef=doc(db, "users/irWv9KyOTepybjcP8UU8")
+    getDoc(docRef).then((docdata)=> {setfilteredUsers(docdata.data().Teacherlist)})
+  }, [])
   return (
-    <Page title="Student List">
+    <Page title="Teachers List">
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" gutterBottom>
             Teachers
           </Typography>
-          <CustomModal btnText={'New Teacher'} icon={'eva:plus-fill'} />
+          <CustomModal component={<AddTeacher/>} btnText={'New Teacher'} icon={'eva:plus-fill'} />
         </Stack>
 
         <Card>
@@ -164,7 +173,7 @@ export default function TeachersList() {
                 />
                 <TableBody>
                   {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                    const { id, name, status, courses, avatarUrl, isVerified } = row;
+                    const { id, name, status, courses, dp, isVerified } = row;
                     const isItemSelected = selected.indexOf(name) !== -1;
 
                     return (
@@ -181,18 +190,17 @@ export default function TeachersList() {
                         </TableCell>
                         <TableCell component="th" scope="row" padding="none">
                           <Stack direction="row" alignItems="center" spacing={2}>
-                            <Avatar alt={name} src={avatarUrl} />
+                            <Avatar alt={name} src={dp} />
                             <Typography variant="subtitle2" noWrap>
                               {name}
                             </Typography>
                           </Stack>
                         </TableCell>
-                        <TableCell align="left">{courses.join(' , ')}</TableCell>
-
+                        <TableCell align="left">{courses}</TableCell>
                         <TableCell align="left">{isVerified ? 'Yes' : 'No'}</TableCell>
                         <TableCell align="left">
-                          <Label variant="ghost" color={(status === 'banned' && 'error') || 'success'}>
-                            {sentenceCase(status)}
+                          <Label variant="ghost" color={status === 1?"success" : "error"}>
+                            {status === 1?"active" : "banned"}
                           </Label>
                         </TableCell>
 
