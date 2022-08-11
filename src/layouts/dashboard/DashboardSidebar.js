@@ -13,7 +13,7 @@ import Logo from '../../components/Logo';
 import Scrollbar from '../../components/Scrollbar';
 import NavSection from '../../components/NavSection';
 //
-import navConfig from './NavConfig';
+import { NGONavConfig } from './NavConfig';
 
 // ----------------------------------------------------------------------
 
@@ -80,7 +80,7 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
         </Link>
       </Box>
 
-      <NavSection navConfig={navConfig} />
+      <NavSection navConfig={NGONavConfig} />
 
       <Box sx={{ flexGrow: 1 }} />
 
@@ -101,7 +101,12 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
             </Typography>
           </Box>
 
-          <Button href="https://material-ui.com/store/items/minimal-dashboard/" target="_blank" variant="contained" color="error">
+          <Button
+            href="https://material-ui.com/store/items/minimal-dashboard/"
+            target="_blank"
+            variant="contained"
+            color="error"
+          >
             Add Red Spots
           </Button>
         </Stack>

@@ -7,6 +7,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
+import 'simplebar/src/simplebar.css';
 
 import store from './redux/store';
 

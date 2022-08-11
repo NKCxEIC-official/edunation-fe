@@ -27,6 +27,7 @@ import SearchNotFound from '../../components/SearchNotFound';
 import { UserListHead, UserListToolbar, UserMoreMenu } from '../../sections/@ngo/Student';
 // mock
 import USERLIST from '../../_mock/user';
+import CustomModal from '../../components/CustomModal';
 
 // ----------------------------------------------------------------------
 
@@ -65,13 +66,18 @@ function applySortFilter(array, comparator, query) {
     return a[1] - b[1];
   });
   if (query) {
-    return filter(array, (_user) => _user.name.toLowerCase().indexOf(query.toLowerCase()) !== -1 ||
-    _user.role.toLowerCase().indexOf(query.toLowerCase()) !== -1);
+    return filter(
+      array,
+      (_user) =>
+        _user.name.toLowerCase().indexOf(query.toLowerCase()) !== -1 ||
+        _user.role.toLowerCase().indexOf(query.toLowerCase()) !== -1 ||
+        _user.status.toLowerCase().indexOf(query.toLowerCase()) !== -1
+    );
   }
   return stabilizedThis.map((el) => el[0]);
 }
 
-export default function User() {
+export default function StudentsList() {
   const [page, setPage] = useState(0);
 
   const [order, setOrder] = useState('asc');
@@ -134,15 +140,13 @@ export default function User() {
   const isUserNotFound = filteredUsers.length === 0;
 
   return (
-    <Page title="User">
+    <Page title="Student List">
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" gutterBottom>
-            User
+            Students
           </Typography>
-          <Button variant="contained" component={RouterLink} to="#" startIcon={<Iconify icon="eva:plus-fill" />}>
-            New User
-          </Button>
+          <CustomModal btnText={'New Student'} icon={'eva:plus-fill'} />
         </Stack>
 
         <Card>
@@ -185,7 +189,7 @@ export default function User() {
                             </Typography>
                           </Stack>
                         </TableCell>
-                        <TableCell align="left">{courses}</TableCell>
+                        <TableCell align="left">{courses.join(' , ')}</TableCell>
                         <TableCell align="left">{role}</TableCell>
                         <TableCell align="left">{isVerified ? 'Yes' : 'No'}</TableCell>
                         <TableCell align="left">

@@ -6,19 +6,10 @@ import { Grid, Container, Typography } from '@mui/material';
 import Page from '../../components/Page';
 import Iconify from '../../components/Iconify';
 // sections
-import {
-  AppTasks,
-  AppNewsUpdate,
-  AppOrderTimeline,
-  AppCurrentVisits,
-  AppWebsiteVisits,
-  AppTrafficBySite,
-  AppWidgetSummary,
-  AppCurrentSubject,
-  AppConversionRates,
-} from '../../sections/@dashboard/app';
+import { AppWebsiteVisits } from '../../sections/@dashboard/app';
 import SmallGrid from '../../components/SmallGrid';
 import LargeActionButton from '../../sections/@ngo/LargeActionButton';
+import CustomModal from '../../components/CustomModal';
 
 // ----------------------------------------------------------------------
 
@@ -33,28 +24,28 @@ export default function NgoDashboard() {
         </Typography>
 
         <Grid container spacing={3}>
-        <Grid item xs={12} sm={6} md={3}>
-            <SmallGrid subheader="Student Count" count='10' color="info" />
+          <Grid item xs={12} sm={6} md={3}>
+            <SmallGrid subheader="Student Count" count="10" color="info" />
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
-            <SmallGrid subheader="Teacher Count" count='10' color="success" />
+            <SmallGrid subheader="Teacher Count" count="10" color="success" />
           </Grid>
           <Grid item xs={6} sm={6} md={3}>
-          <SmallGrid subheader="Volunteer Count" count='10' color="warning" />
+            <SmallGrid subheader="Volunteer Count" count="10" color="warning" />
           </Grid>
           <Grid item xs={6} sm={6} md={3}>
-          <SmallGrid subheader="Red Spots" count='10' color="error" />
+            <SmallGrid subheader="Red Spots" count="10" color="error" />
           </Grid>
 
           <Grid item xs={12} sm={6} md={4}>
-            <LargeActionButton title="Create Teacher's Profile" icon={'bi:person-workspace'} />
+            <CustomModal btnText={"Create Teachers's profile"} icon="eva:plus-fill" largeBtn />
           </Grid>
 
           <Grid item xs={6} sm={6} md={4}>
-            <LargeActionButton title="Create Student's Profile" color="info" icon={'akar-icons:people-group'} />
+            <CustomModal btnText="Create Student's Profile" icon="akar-icons:people-group" largeBtn color="info" />
           </Grid>
           <Grid item xs={6} sm={6} md={4}>
-            <LargeActionButton title="Add Red Spots" color="info" icon={'entypo:location'} />
+            <CustomModal btnText="Add Red Spots" icon="entypo:location" largeBtn />
           </Grid>
           <Grid item xs={6} md={6} lg={12}>
             <AppWebsiteVisits
@@ -95,7 +86,6 @@ export default function NgoDashboard() {
               ]}
             />
           </Grid>
-
         </Grid>
       </Container>
     </Page>
