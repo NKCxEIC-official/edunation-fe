@@ -94,10 +94,10 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
 
           <Box sx={{ textAlign: 'center' }}>
             <Typography gutterBottom variant="h6">
-              To know more!
+              Let's Help others !
             </Typography>
             <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-              Lets Start from a penny.
+              It's always better to learn together
             </Typography>
           </Box>
 
@@ -105,7 +105,7 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
             href="https://material-ui.com/store/items/minimal-dashboard/"
             target="_blank"
             variant="contained"
-            color="error"
+            color="danger"
           >
             Add Red Spots
           </Button>

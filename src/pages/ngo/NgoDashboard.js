@@ -30,24 +30,26 @@ export default function NgoDashboard() {
           <Grid item xs={12} sm={6} md={3}>
             <SmallGrid subheader="Teacher Count" count="10" color="success" />
           </Grid>
-          <Grid item xs={6} sm={6} md={3}>
+          <Grid item xs={12} sm={6} md={3}>
             <SmallGrid subheader="Volunteer Count" count="10" color="warning" />
           </Grid>
-          <Grid item xs={6} sm={6} md={3}>
+          <Grid item xs={12} sm={6} md={3}>
             <SmallGrid subheader="Red Spots" count="10" color="error" />
           </Grid>
 
           <Grid item xs={12} sm={6} md={4}>
-            <CustomModal btnText={"Create Teachers's profile"} icon="eva:plus-fill" largeBtn />
+            <CustomModal btnText="Add Red Spots" icon="entypo:location" largeBtn color="danger" />
           </Grid>
 
-          <Grid item xs={6} sm={6} md={4}>
+          <Grid item xs={12} sm={6} md={4}>
+            <CustomModal btnText={"Create Teachers's profile"} icon="carbon:user-speaker" largeBtn />
+          </Grid>
+
+          <Grid item xs={12} sm={6} md={4}>
             <CustomModal btnText="Create Student's Profile" icon="akar-icons:people-group" largeBtn color="info" />
           </Grid>
-          <Grid item xs={6} sm={6} md={4}>
-            <CustomModal btnText="Add Red Spots" icon="entypo:location" largeBtn />
-          </Grid>
-          <Grid item xs={6} md={6} lg={12}>
+
+          <Grid item xs={12} md={12} lg={12}>
             <AppWebsiteVisits
               title="Progress Report"
               subheader="(+43%) than last year"
