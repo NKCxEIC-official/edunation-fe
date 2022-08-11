@@ -9,7 +9,7 @@ import Login from './pages/Login';
 import NotFound from './pages/Page404';
 import Register from './pages/Register';
 import Products from './pages/Products';
-import DashboardApp from './pages/DashboardApp';
+import CourseDetails from './pages/CourseDetails';
 
 // ----------------------------------------------------------------------
 
@@ -19,10 +19,11 @@ export default function Router() {
       path: '/dashboard',
       element: <DashboardLayout />,
       children: [
-        { path: 'app', element: <DashboardApp /> },
+        // { path: 'app', element: <DashboardApp /> },
         { path: 'user', element: <User /> },
         { path: 'products', element: <Products /> },
         { path: 'blog', element: <Blog /> },
+        { path: 'classroom/:id', element: <CourseDetails />}
       ],
     },
     {
