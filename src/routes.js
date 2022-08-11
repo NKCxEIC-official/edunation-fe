@@ -10,7 +10,10 @@ import NotFound from './pages/Page404';
 import Register from './pages/Register';
 import Products from './pages/Products';
 import DashboardApp from './pages/DashboardApp';
-
+import StudentsList from './pages/ngo/StudentsList';
+import RedSpots from './pages/ngo/RedSpots';
+import TeachersList from './pages/ngo/TeachersList';
+import NgoDashboard from './pages/ngo/NgoDashboard';
 // ----------------------------------------------------------------------
 
 export default function Router() {
@@ -23,8 +26,17 @@ export default function Router() {
         { path: 'user', element: <User /> },
         { path: 'products', element: <Products /> },
         { path: 'blog', element: <Blog /> },
+        { path: 'teachers-list', element: <TeachersList />},
+        { path: 'students-list', element: <StudentsList />},
+        { path: 'red-spots', element: <RedSpots />},
       ],
     },
+    { 
+      path: '/dashboard/ngo',
+      element: <DashboardLayout />,
+      children: [
+        { path:'', element: <NgoDashboard /> }
+  ]},
     {
       path: '/',
       element: <LogoOnlyLayout />,
