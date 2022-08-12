@@ -10,7 +10,7 @@ import NotFound from './pages/Page404';
 import Register from './pages/Register';
 import Products from './pages/Products';
 
-import DashboardApp from './pages/DashboardApp';
+// import DashboardApp from './pages/DashboardApp';
 import StudentDashboardLayout from './layouts/student';
 import StudentDashboardApp from './pages/student/DashboardApp';
 import Classroom from './pages/student/Classroom';
