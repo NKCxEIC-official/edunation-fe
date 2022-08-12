@@ -20,6 +20,7 @@ import RedSpots from './pages/ngo/RedSpots';
 import TeachersList from './pages/ngo/TeachersList';
 import NgoDashboard from './pages/ngo/NgoDashboard';
 import CourseDetails from './pages/CourseDetails';
+import Profile from './pages/Profile';
 
 
 // ----------------------------------------------------------------------
@@ -39,6 +40,7 @@ export default function Router() {
         { path: 'teachers-list', element: <TeachersList /> },
         { path: 'students-list', element: <StudentsList /> },
         { path: 'red-spots', element: <RedSpots /> },
+        { path: 'profile', element: <Profile />}
       ],
     },
 
