@@ -4,12 +4,12 @@ import { Provider } from 'react-redux';
 import moment from 'moment-timezone';
 import { BrowserRouter } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
-import App from './App';
+import App from './App2';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
-import 'simplebar/src/simplebar.css';
 
 import store from './redux/store';
+import './global.scss';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
