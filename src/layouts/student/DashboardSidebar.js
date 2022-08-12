@@ -13,7 +13,7 @@ import Logo from '../../components/Logo';
 import Scrollbar from '../../components/Scrollbar';
 import NavSection from '../../components/NavSection';
 //
-import { NGONavConfig } from './NavConfig';
+import {studentNavConfig} from './NavConfig';
 
 // ----------------------------------------------------------------------
 
@@ -80,34 +80,29 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
         </Link>
       </Box>
 
-      <NavSection navConfig={NGONavConfig} />
+      <NavSection navConfig={studentNavConfig} />
 
       <Box sx={{ flexGrow: 1 }} />
 
       <Box sx={{ px: 2.5, pb: 3, mt: 10 }}>
         <Stack alignItems="center" spacing={3} sx={{ pt: 5, borderRadius: 2, position: 'relative' }}>
           <Box
-            component="img"
-            src="/static/illustrations/illustration_avatar.png"
+            // component="img"
+            // src="/static/illustrations/illustration_avatar.png"
             sx={{ width: 100, position: 'absolute', top: -50 }}
           />
 
           <Box sx={{ textAlign: 'center' }}>
-            <Typography gutterBottom variant="h6">
-              Let's Help others !
-            </Typography>
-            <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-              It's always better to learn together
-            </Typography>
+            <Typography gutterBottom variant="h6" />
+            <Typography variant="body2" sx={{ color: 'text.secondary' }} />
           </Box>
 
-          <Button
-            href="https://material-ui.com/store/items/minimal-dashboard/"
-            target="_blank"
-            variant="contained"
-            color="danger"
-          >
-            Add Red Spots
+          <Button href="https://material-ui.com/store/items/minimal-dashboard/" target="_blank" variant="contained">
+            Be A Teacher
+          </Button>
+
+          <Button href="https://material-ui.com/store/items/minimal-dashboard/" target="_blank" variant="contained">
+            View As Teacher
           </Button>
         </Stack>
       </Box>

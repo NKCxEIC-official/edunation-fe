@@ -29,11 +29,11 @@ const GREY = {
 };
 
 const PRIMARY = {
-  lighter: '#D1E9FC',
-  light: '#76B0F1',
-  main: '#2065D1',
-  dark: '#103996',
-  darker: '#061B64',
+  lighter: '#c9c7ff',
+  light: '#2E2B81',
+  main: '#2E2B81',
+  dark: '#2E2B81',
+  darker: '#161459',
   contrastText: '#fff',
 };
 
@@ -82,6 +82,15 @@ const ERROR = {
   contrastText: '#fff',
 };
 
+const DANGER = {
+  lighter: '#FCE5EF',
+  light: '#FCE5EF',
+  main: '#FC187E',
+  dark: '#c91264',
+  darker: '#c91264',
+  contrastText: '#fff',
+};
+
 const GRADIENTS = {
   primary: createGradient(PRIMARY.light, PRIMARY.main),
   info: createGradient(INFO.light, INFO.main),
@@ -106,12 +115,13 @@ const palette = {
   success: { ...SUCCESS },
   warning: { ...WARNING },
   error: { ...ERROR },
+  danger: { ...DANGER },
   grey: GREY,
   gradients: GRADIENTS,
   chart: CHART_COLORS,
   divider: GREY[500_24],
   text: { primary: GREY[800], secondary: GREY[600], disabled: GREY[500] },
-  background: { paper: '#fff', default: GREY[100], neutral: GREY[200] },
+  background: { dark: 'rgb(18, 18, 18)', paper: '#fff', default: GREY[100], neutral: GREY[200] },
   action: {
     active: GREY[600],
     hover: GREY[500_8],
