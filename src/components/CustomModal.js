@@ -3,7 +3,8 @@ import Modal from '@mui/material/Modal';
 import { Box } from '@mui/system';
 import { Button, Typography } from '@mui/material';
 import Iconify from './Iconify';
-// import { OnBoardingButton } from '../sections/@onboarding';
+
+import LargeActionButton from '../sections/@ngo/LargeActionButton';
 
 function CustomModal({ btnText, component, color, icon, largeBtn = false, width = 0 }) {
     const [open, setOpen] = useState(false);
@@ -18,7 +19,7 @@ function CustomModal({ btnText, component, color, icon, largeBtn = false, width 
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
-        width: width ? { width } : 400,
+        width: width ? { width } : 500,
         bgcolor: 'background.paper',
         border: '2px solid #000',
         boxShadow: 24,
@@ -27,13 +28,13 @@ function CustomModal({ btnText, component, color, icon, largeBtn = false, width 
 
     return (
         <div>
-            {/* {largeBtn ? (
-                <OnBoardingButton onClick={handleOpen} title={btnText} icon={icon} />
-            ) : ( */}
-            <Button variant="contained" color={color} startIcon={<Iconify icon={icon} />} onClick={handleOpen}>
-                {btnText}
-            </Button>
-            {/* )} */}
+            {largeBtn ? (
+                <LargeActionButton title={btnText} icon={icon} color={color} onClick={handleOpen} />
+            ) : (
+                <Button variant="contained" color={color} startIcon={<Iconify icon={icon} />} onClick={handleOpen}>
+                    {btnText}
+                </Button>
+            )}
 
             <Modal
                 open={open}
@@ -67,3 +68,4 @@ function CustomModal({ btnText, component, color, icon, largeBtn = false, width 
 }
 
 export default CustomModal;
+

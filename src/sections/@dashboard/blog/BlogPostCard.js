@@ -59,8 +59,8 @@ BlogPostCard.propTypes = {
 
 export default function BlogPostCard({ post, index }) {
   const { cover, title, view, comment, share, author, createdAt } = post;
-  const latestPostLarge = index === 0;
-  const latestPost = index === 1 || index === 2;
+  const latestPostLarge = false;
+  const latestPost = false;
 
   const POST_INFO = [
     { number: comment, icon: 'eva:message-circle-fill' },
