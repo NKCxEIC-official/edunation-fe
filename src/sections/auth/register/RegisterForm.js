@@ -51,12 +51,15 @@ export default function RegisterForm() {
     dispatch(signupAction(payload));
   };
 
-  useEffect(() => {
-    if ('role' in user) {
-      if (user.role === 1) navigate('/dashboard/student-overview', { replace: true });
-      else if (user.role === 2) navigate('/dashboard/ngo-overview', { replace: true });
-    }
-  }, [user]);
+ useEffect(() => {
+   if ('role' in user) {
+     if (user.role === 1) {
+       if (user.isTeacher) navigate('/dashboard/teacher/app', { replace: true });
+       else navigate('/dashboard/student/app', { replace: true });
+     } else if (user.role === 0) navigate('/dashboard/ngo/app', { replace: true });
+   }
+ }, [user]);
+
 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>

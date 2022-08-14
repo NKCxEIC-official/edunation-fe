@@ -35,7 +35,11 @@ export default function Router() {
   return useRoutes([
     {
       path: '/dashboard',
-      element: <DashboardLayout />,
+      element: (
+        <RequireAuth>
+          <DashboardLayout />
+        </RequireAuth>
+      ),
       children: [
         // NGO routs:
         { path: 'ngo/app', element: <NgoDashboard /> },
@@ -63,7 +67,7 @@ export default function Router() {
       path: '/',
       element: <LogoOnlyLayout />,
       children: [
-        { path: '/', element: <Navigate to="/dashboard/app" /> },
+        { path: '/', element: <Navigate to="/login" /> },
         { path: 'login', element: <Login /> },
         { path: 'register', element: <Register /> },
         { path: '404', element: <NotFound /> },

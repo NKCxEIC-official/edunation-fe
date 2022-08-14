@@ -43,17 +43,17 @@ DashboardSidebar.propTypes = {
 
 // eslint-disable-next-line consistent-return
 const getNavByRole = () => {
-  const role = 1;
-  const isTeacher = false;
-  // const role = localStorage.getItem('role');
-  // const isTeacher = localStorage.getItem('isTeacher');
-  if (role === 0) {
+  // const role = 1;
+  // const isTeacher = false;
+  const role = localStorage.getItem('role');
+  const isTeacher = localStorage.getItem('isTeacher');
+  if (role === "0") {
     return NGONavConfig;
   }
-  if (role === 1 && isTeacher) {
+  if (role === "1" && isTeacher === 'true') {
     return TeacherNavConfig;
   }
-  if (role === 1 && !isTeacher) {
+  if (role === "1" && isTeacher === 'false') {
     return StudentNavConfig;
   }
 }

@@ -101,6 +101,8 @@ export function signupAction({ email, password, firstName, lastName, userData })
         }
 
         addUser(payload).then(() => {
+           localStorage.setItem('role', payload.role);
+           localStorage.setItem('isTeacher', payload.isTeacher);
           dispatch(confirmedSignupAction(payload));
         });
       })
@@ -138,6 +140,8 @@ export function loginAction({ email, password }) {
             .then((response) => {
               getUser(response.user.uid).then((docSnap) => {
                 if (docSnap.exists()) {
+                  localStorage.setItem('role', docSnap.data().role);
+                  localStorage.setItem('isTeacher', docSnap.data().isTeacher);
                   dispatch(loginConfirmedAction(docSnap.data()));
                   dispatch(loadingToggleAction(false));
                 }
