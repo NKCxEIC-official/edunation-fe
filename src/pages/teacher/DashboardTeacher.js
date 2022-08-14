@@ -55,20 +55,20 @@ export default function DashboardTeacher() {
 
         <Grid container spacing={3} to="class/1234" component={RouterLink} style={{ textDecoration: 'none' }}>
 
-          <Grid item xs={12} sm={12} md={6}>
-            <LargeGrid title="Courses in Progress" color="primary" alighn="center" subheader="Courses in Progress" icon="logos:discourse-icon" count="10" />
+          <Grid item xs={12} sm={12} md={3}>
+            <LargeGrid title="Courses in Progress" color="primary" alighn="center" subheader="Courses" icon="logos:discourse-icon" count="10" />
           </Grid>
 
-          <Grid item xs={12} sm={12} md={6} >
-            <LargeGrid title="QNA" color="green" subheader="QNA" count="Answer Questions" icon="emojione:exclamation-question-mark" />
+          <Grid item xs={12} sm={12} md={3} >
+            <LargeGrid title="QNA " color="green" subheader="QNA" count="34" icon="emojione:exclamation-question-mark" />
           </Grid>
 
-          <Grid item xs={12} sm={12} md={6} >
-            <LargeGrid title="Request" subheader="Request" count="Request Material" icon="carbon:request-quote" />
+          <Grid item xs={12} sm={12} md={3} >
+            <LargeGrid title="Request" subheader="Request" count="23" icon="carbon:request-quote" />
           </Grid>
 
-          <Grid item xs={12} sm={12} md={6} alignItems="center">
-            <LargeGrid title="Certificate" color="primary" subheader="Certificate" count="Get Certificate" icon="icon-park:certificate" />
+          <Grid item xs={12} sm={12} md={3} alignItems="center">
+            <LargeGrid title="Certificate" color="primary" subheader="Certificate" count="18" icon="icon-park:certificate" />
           </Grid>
 
         </Grid>
@@ -88,7 +88,7 @@ export default function DashboardTeacher() {
             </Grid>
 
             <Grid item xs={3} sm={3} md={3} sx={{ alignItems: "center", justifyContent: "left", display: "flex" }}>
-              <Typography variant='h6'>Percent Student</Typography>
+              <Typography variant='h6'>Complete Percentage</Typography>
             </Grid>
 
             <Grid item xs={3} sm={3} md={3} sx={{ alignItems: "center", justifyContent: "left", display: "flex" }}>
@@ -118,15 +118,51 @@ export default function DashboardTeacher() {
         {/* Completed Courses */}
 
 
-        <Box paddingTop={5} paddingLeft={3}>Completed Courses</Box>
+        {/* <Box paddingTop={5} paddingLeft={3}>Completed Courses</Box>
         <Grid container spacing={3} paddingTop={2}>
-          {POSTS.map((post, index) => (
+          {PGridOSTS.map((post, index) => (
             <BlogPostCard key={post.id} post={post} index={index} />
           ))}
-        </Grid>
+        </> */}
+
+      <Stack spacing={2}>
+      <Box paddingTop={5} paddingLeft={3} spacing={3}>Completed Courses</Box>
+
+          <Grid container height={30} paddingLeft={2} sx={{ backgroundColor: '#ABB8C3', marginLeft: "10px", opacity: "1" }}>
+            <Grid item xs={3} sm={3} md={3} sx={{ alignItems: "center", justifyContent: "left", display: "flex" }}>
+              <Typography variant='h6'>Course Name</Typography>
+            </Grid>
+
+            <Grid item xs={3} sm={3} md={3} sx={{ alignItems: "center", justifyContent: "left", display: "flex" }}>
+              <Typography variant='h6'>Student count</Typography>
+            </Grid>
+
+            <Grid item xs={3} sm={3} md={3} sx={{ alignItems: "center", justifyContent: "left", display: "flex" }}>
+              <Typography variant='h6'>Complete Percentage</Typography>
+            </Grid>
+
+            <Grid item xs={3} sm={3} md={3} sx={{ alignItems: "center", justifyContent: "left", display: "flex" }}>
+              <Typography variant='h6'>Duration</Typography>
+            </Grid>
+          </Grid>
+
+          {/* <Grid item xs={12} sm={12} md={12}>
+            <RectangleGrid title="Course Name" duration="Duration" percent="Percent of Students" color="ABB8C3" alighn="center" subheader="Course Name" count="Number of Students" />
+          </Grid> */}
 
 
+          <Grid item xs={12} sm={12} md={12}>
+            <RectangleGrid title="JavaScript" duration="5 Months" percent="100%" color="primary" alighn="center" subheader="JavaScript" icon="logos:discourse-icon" count="18" />
+          </Grid>
 
+          <Grid item xs={12} sm={12} md={12} >
+            <RectangleGrid title="Flutter" percent="100%" duration="7 Months" count="20" color="green" subheader="Flutter" icon="emojione:exclamation-question-mark" />
+          </Grid>
+
+          <Grid item xs={12} sm={12} md={12} >
+            <RectangleGrid title="Physics" percent="100%" duration="7 Months" count="34" subheader="Physics" icon="carbon:request-quote" />
+          </Grid>
+          </Stack>
 
 
         {/* <Stack spacing={2}>
@@ -185,3 +221,4 @@ export default function DashboardTeacher() {
     </Page >
   );
 }
+
