@@ -1,12 +1,13 @@
+/* eslint-disable */
 // @mui
 import PropTypes from 'prop-types';
 import { alpha, styled } from '@mui/material/styles';
 import { Card, Typography } from '@mui/material';
 // utils
-import { fShortenNumber } from '../../../utils/formatNumber';
-// components
-import Iconify from '../../../components/Iconify';
 
+// import { fShortenNumber } from '../../../utils/formatNumber';
+// components
+import Iconify from 'src/components/Iconify';
 
 // ----------------------------------------------------------------------
 
@@ -23,16 +24,17 @@ const IconWrapperStyle = styled('div')(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-AppWidgetSummary.propTypes = {
+StudentAppWidgetSummary.propTypes = {
   color: PropTypes.string,
   icon: PropTypes.string,
+  course: PropTypes.string,
   title: PropTypes.string.isRequired,
-  total: PropTypes.number,
-  courseName: PropTypes.string,
+  now: PropTypes.number.isRequired,
+  // total: PropTypes.number.isRequired,
   sx: PropTypes.object,
 };
 
-export default function AppWidgetSummary({ title, total, icon, courseName, color = 'primary', sx, ...other }) {
+export default function StudentAppWidgetSummary({ title, course, icon, now, color = 'primary', sx, ...other }) {
   return (
     <Card
       sx={{
@@ -58,12 +60,18 @@ export default function AppWidgetSummary({ title, total, icon, courseName, color
         <Iconify icon={icon} width={24} height={24} />
       </IconWrapperStyle>
 
-      {total && <Typography variant="h3">{fShortenNumber(total)}</Typography>}
-      {courseName && <Typography variant="h3">{(courseName)}</Typography>}
+      {/* <Typography variant="h3">{fShortenNumber(total)}</Typography> */}
+      <Typography variant="h3">
+        {course}
+      </Typography>
 
       <Typography variant="subtitle2" sx={{ opacity: 0.72 }}>
         {title}
       </Typography>
+
+      {/* <Typography>
+        <ProgressBar now={now} label={`${now}%`} />
+      </Typography> */}
     </Card>
   );
 }

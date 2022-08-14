@@ -52,20 +52,22 @@ const CoverImgStyle = styled('img')({
 
 // ----------------------------------------------------------------------
 
-BlogPostCard.propTypes = {
+
+
+CourseCard.propTypes = {
   post: PropTypes.object.isRequired,
   index: PropTypes.number,
 };
 
-export default function BlogPostCard({ post, index }) {
-  const { cover, title, view, comment, share, author, createdAt } = post;
+export default function CourseCard({ post, index }) {
+  const { cover, title, documentCount, userCount, starCount, author, createdAt } = post;
   const latestPostLarge = false;
   const latestPost = false;
 
   const POST_INFO = [
-    { number: comment, icon: 'eva:message-circle-fill' },
-    { number: view, icon: 'eva:eye-fill' },
-    { number: share, icon: 'eva:share-fill' },
+    { number: userCount, icon: 'ph:users-three-bold' },
+    { number: documentCount, icon: 'carbon:document-attachment' },
+    { number: starCount, icon: 'ant-design:star-twotone' },
   ];
 
   return (
