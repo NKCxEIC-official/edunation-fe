@@ -28,6 +28,8 @@ import RedSpots from './pages/ngo/RedSpots';
 import TeachersList from './pages/ngo/TeachersList';
 import NgoDashboard from './pages/ngo/NgoDashboard';
 import CourseDetails from './pages/CourseDetails';
+import Community from './pages/Community';
+import StudentProfile from './pages/student/StudentProfile'
 
 // ----------------------------------------------------------------------
 
@@ -57,10 +59,11 @@ export default function Router() {
 
         // Student:
         { path: 'student/app', element: <StudentDashboardApp /> },
-        { path: 'student/user', element: <User /> },
+        { path: 'student/profile', element: <StudentProfile /> },
         { path: 'student/', element: <StudentDashboardApp /> },
         { path: 'student/classroom', element: <Classroom /> },
         { path: 'student/classroom/:id', element: <CourseDetails /> },
+        { path: 'student/community', element: <Community /> },
       ],
     },
     {
