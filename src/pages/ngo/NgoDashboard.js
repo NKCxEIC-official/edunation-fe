@@ -35,16 +35,16 @@ export default function NgoDashboard() {
 
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6} md={3}>
-            <SmallGrid subheader="Student Count" count={Ngodata.studentsCount} color="info" />
+            <SmallGrid subheader="Student Count" count={Ngodata?.studentsCount} color="info" />
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
-            <SmallGrid subheader="Teacher Count" count={Ngodata.teachersCount} color="success" />
+            <SmallGrid subheader="Teacher Count" count={Ngodata?.teachersCount} color="success" />
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
-            <SmallGrid subheader="Volunteer Count" count={Ngodata.VolunteersCount} color="warning" />
+            <SmallGrid subheader="Volunteer Count" count={Ngodata?.VolunteersCount} color="warning" />
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
-            <SmallGrid subheader="Red Spots" count={Ngodata.redSpotsCount} color="error" />
+            <SmallGrid subheader="Red Spots" count={Ngodata?.redSpotsCount} color="error" />
           </Grid>
 
           <Grid item xs={12} sm={6} md={4}>

@@ -13,7 +13,7 @@ import Logo from '../../components/Logo';
 import Scrollbar from '../../components/Scrollbar';
 import NavSection from '../../components/NavSection';
 //
-import { NGONavConfig } from './NavConfig';
+import { NGONavConfig, StudentNavConfig, TeacherNavConfig } from './NavConfig';
 
 // ----------------------------------------------------------------------
 
@@ -40,6 +40,23 @@ DashboardSidebar.propTypes = {
   isOpenSidebar: PropTypes.bool,
   onCloseSidebar: PropTypes.func,
 };
+
+// eslint-disable-next-line consistent-return
+const getNavByRole = () => {
+  const role = 1;
+  const isTeacher = false;
+  // const role = localStorage.getItem('role');
+  // const isTeacher = localStorage.getItem('isTeacher');
+  if (role === 0) {
+    return NGONavConfig;
+  }
+  if (role === 1 && isTeacher) {
+    return TeacherNavConfig;
+  }
+  if (role === 1 && !isTeacher) {
+    return StudentNavConfig;
+  }
+}
 
 export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
   const { pathname } = useLocation();
@@ -80,7 +97,7 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
         </Link>
       </Box>
 
-      <NavSection navConfig={NGONavConfig} />
+      <NavSection navConfig={getNavByRole()}/>
 
       <Box sx={{ flexGrow: 1 }} />
 
