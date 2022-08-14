@@ -79,9 +79,11 @@ export default function Register() {
         {mdUp && (
           <SectionStyle>
             <Typography variant="h3" sx={{ px: 5, mt: 10, mb: 2 }}>
-             EduNation -
+              EduNation -
             </Typography>
-            <Typography variant="h4" sx={{ px: 5, mb: 5 }}>Educating Nations and Beyond</Typography>
+            <Typography variant="h4" sx={{ px: 5, mb: 5 }}>
+              Educating Nations and Beyond
+            </Typography>
             <img alt="register" src="/static/illustrations/illustration_register.png" />
           </SectionStyle>
         )}

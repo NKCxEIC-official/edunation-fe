@@ -1,21 +1,25 @@
 import * as Yup from 'yup';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 // form
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 // @mui
-import { Link, Stack, IconButton, InputAdornment } from '@mui/material';
+import { Link, Stack, IconButton, InputAdornment, Box } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 // components
 import Iconify from '../../../components/Iconify';
 import { FormProvider, RHFTextField, RHFCheckbox } from '../../../components/hook-form';
+import { loginAction } from '../../../store/actions/AuthActions';
 
 // ----------------------------------------------------------------------
 
 export default function LoginForm() {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.auth.user);
+  const auth = useSelector((state) => state.auth);
   const navigate = useNavigate();
-
   const [showPassword, setShowPassword] = useState(false);
 
   const LoginSchema = Yup.object().shape({
@@ -39,9 +43,16 @@ export default function LoginForm() {
     formState: { isSubmitting },
   } = methods;
 
-  const onSubmit = async () => {
-    navigate('/dashboard', { replace: true });
+  const onSubmit = async (payload) => {
+    dispatch(loginAction(payload));
   };
+
+  useEffect(() => {
+    if ('role' in user) {
+      if (user.role === 1) navigate('/dashboard/student-overview', { replace: true });
+      else if (user.role === 2) navigate('/dashboard/ngo-overview', { replace: true });
+    }
+  }, [user]);
 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
@@ -70,8 +81,10 @@ export default function LoginForm() {
           Forgot password?
         </Link>
       </Stack>
-
-      <LoadingButton fullWidth size="large" type="submit" variant="contained" loading={isSubmitting}>
+      {auth && auth.errorMessage && (
+        <Box sx={{ p: 2, backgroundColor: 'danger.light', mb: 2 }}>{auth.errorMessage}</Box>
+      )}
+      <LoadingButton fullWidth size="large" type="submit" variant="contained" loading={auth.showLoading}>
         Login
       </LoadingButton>
     </FormProvider>

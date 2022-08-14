@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import {
   LOADING_TOGGLE_ACTION,
   LOGIN_CONFIRMED_ACTION,
@@ -5,18 +7,12 @@ import {
   LOGOUT_ACTION,
   SIGNUP_CONFIRMED_ACTION,
   SIGNUP_FAILED_ACTION,
-} from "../actions/AuthActions";
+} from '../constants';
 
 const initialState = {
-  auth: {
-    email: "",
-    idToken: "",
-    localId: "",
-    expiresIn: "",
-    refreshToken: "",
-  },
-  errorMessage: "",
-  successMessage: "",
+  user: {},
+  errorMessage: '',
+  successMessage: '',
   showLoading: false,
 };
 
@@ -24,18 +20,18 @@ export function AuthReducer(state = initialState, action) {
   if (action.type === SIGNUP_CONFIRMED_ACTION) {
     return {
       ...state,
-      auth: action.payload,
-      errorMessage: "",
-      successMessage: "Signup Successfully Completed",
+      user: action.payload,
+      errorMessage: '',
+      successMessage: 'Signup Successfully Completed',
       showLoading: false,
     };
   }
   if (action.type === LOGIN_CONFIRMED_ACTION) {
     return {
       ...state,
-      auth: action.payload,
-      errorMessage: "",
-      successMessage: "Login Successfully Completed",
+      user: action.payload,
+      errorMessage: '',
+      successMessage: 'Login Successfully Completed',
       showLoading: false,
     };
   }
@@ -43,26 +39,17 @@ export function AuthReducer(state = initialState, action) {
   if (action.type === LOGOUT_ACTION) {
     return {
       ...state,
-      errorMessage: "",
-      successMessage: "",
-      auth: {
-        email: "",
-        idToken: "",
-        localId: "",
-        expiresIn: "",
-        refreshToken: "",
-      },
+      errorMessage: '',
+      successMessage: '',
+      user: {},
     };
   }
 
-  if (
-    action.type === SIGNUP_FAILED_ACTION ||
-    action.type === LOGIN_FAILED_ACTION
-  ) {
+  if (action.type === SIGNUP_FAILED_ACTION || action.type === LOGIN_FAILED_ACTION) {
     return {
       ...state,
       errorMessage: action.payload,
-      successMessage: "",
+      successMessage: '',
       showLoading: false,
     };
   }

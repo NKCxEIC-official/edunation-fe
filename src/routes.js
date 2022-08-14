@@ -1,4 +1,7 @@
-import { Navigate, useRoutes } from 'react-router-dom';
+import { Navigate, useNavigate, useRoutes } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+
 // layouts
 import DashboardLayout from './layouts/dashboard';
 import LogoOnlyLayout from './layouts/LogoOnlyLayout';
@@ -25,9 +28,6 @@ import RedSpots from './pages/ngo/RedSpots';
 import TeachersList from './pages/ngo/TeachersList';
 import NgoDashboard from './pages/ngo/NgoDashboard';
 import CourseDetails from './pages/CourseDetails';
-
-
-
 
 // ----------------------------------------------------------------------
 
@@ -73,3 +73,15 @@ export default function Router() {
     { path: '*', element: <Navigate to="/404" replace /> },
   ]);
 }
+
+const RequireAuth = ({ children }) => {
+  const navigate = useNavigate();
+  const user = useSelector((state) => state.auth.user);
+  useEffect(() => {
+    if (!('uid' in user)) {
+      navigate('/login');
+    }
+  }, [user, navigate]);
+
+  return children;
+};

@@ -1,6 +1,7 @@
 import * as Yup from 'yup';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 // form
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -11,10 +12,14 @@ import { LoadingButton } from '@mui/lab';
 import Iconify from '../../../components/Iconify';
 import { FormProvider, RHFTextField } from '../../../components/hook-form';
 
+import { signupAction } from '../../../store/actions/AuthActions';
+
 // ----------------------------------------------------------------------
 
 export default function RegisterForm() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.auth.user);
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -42,9 +47,16 @@ export default function RegisterForm() {
     formState: { isSubmitting },
   } = methods;
 
-  const onSubmit = async () => {
-    navigate('/dashboard', { replace: true });
+  const onSubmit = async (payload) => {
+    dispatch(signupAction(payload));
   };
+
+  useEffect(() => {
+    if ('role' in user) {
+      if (user.role === 1) navigate('/dashboard/student-overview', { replace: true });
+      else if (user.role === 2) navigate('/dashboard/ngo-overview', { replace: true });
+    }
+  }, [user]);
 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
