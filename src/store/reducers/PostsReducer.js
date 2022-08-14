@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import {
   CONFIRMED_CREATE_POST_ACTION,
   CONFIRMED_DELETE_POST_ACTION,
@@ -5,7 +7,7 @@ import {
   CONFIRMED_GET_POSTS,
   CREATE_POST_ACTION,
   CONFIRMED_CLOSE_POST,
-} from "../actions/ActionTypes";
+} from '../actions/ActionTypes';
 
 const initialState = {
   posts: [],
@@ -15,8 +17,8 @@ export default function PostsReducer(state = initialState, actions) {
   if (actions.type === CREATE_POST_ACTION) {
     const post = {
       id: Math.random(),
-      title: "Post Title 2asdasd",
-      description: "Sample Description 2asdasdas",
+      title: 'Post Title 2asdasd',
+      description: 'Sample Description 2asdasdas',
     };
 
     const posts = [...state.posts];

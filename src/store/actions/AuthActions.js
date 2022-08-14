@@ -1,55 +1,170 @@
 import {
-  formatError,
+  addUser,
+  addUserAnonymous,
+  deleteDocument,
+  getUser,
+  getUserAnonymous,
   login,
-  runLogoutTimer,
-  saveTokenInLocalStorage,
   signUp,
-} from "../../services/AuthService";
+} from '../../services/AuthService';
+import {
+  LOADING_TOGGLE_ACTION,
+  LOGIN_CONFIRMED_ACTION,
+  LOGIN_FAILED_ACTION,
+  LOGOUT_ACTION,
+  SIGNUP_CONFIRMED_ACTION,
+  SIGNUP_FAILED_ACTION,
+} from '../constants';
 
-export const SIGNUP_CONFIRMED_ACTION = "[signup action] confirmed signup";
-export const SIGNUP_FAILED_ACTION = "[signup action] failed signup";
-export const LOGIN_CONFIRMED_ACTION = "[login action] confirmed login";
-export const LOGIN_FAILED_ACTION = "[login action] failed login";
-export const LOADING_TOGGLE_ACTION = "[Loading action] toggle loading";
-export const LOGOUT_ACTION = "[Logout action] logout action";
-
-export function signupAction(email, password, history) {
+export function signupAction({ email, password, firstName, lastName, userData }) {
   return (dispatch) => {
+    console.log(userData);
     signUp(email, password)
-      .then((response) => {
-        saveTokenInLocalStorage(response.data);
-        runLogoutTimer(dispatch, response.data.expiresIn * 1000, history);
-        dispatch(confirmedSignupAction(response.data));
-        history.push("/");
+      .then(({ user }) => {
+        // Signed in
+
+        let payload = {};
+        if (userData) {
+          if (!('firstName' in userData)) {
+            payload = {
+              firstName,
+              lastName,
+              uid: user.uid,
+              role: 1,
+              about: '',
+              address: '',
+              age: '',
+              city: '',
+              classes: [],
+              courseInProgressStudent: 0,
+              courseInProgressTeacher: 0,
+              coursesOffered: [],
+              dob: '',
+              dp: '',
+              email,
+              isTeacher: false,
+              occupation: '',
+              pendingQA: 0,
+              phone: '',
+              school: '',
+              specialisation: '',
+              state: '',
+              totalEnrolled: 0,
+              university: '',
+              isVerified: true,
+            };
+          } else {
+            payload = {
+              ...userData,
+              uid: user.uid,
+              about: '',
+              classes: [],
+              courseInProgressStudent: 0,
+              courseInProgressTeacher: 0,
+              pendingQA: 0,
+              coursesOffered: [],
+              dob: '',
+              dp: '',
+              specialisation: '',
+              totalEnrolled: 0,
+              isVerified: true,
+            };
+          }
+        } else {
+          payload = {
+            firstName,
+            lastName,
+            uid: user.uid,
+            role: 1,
+            about: '',
+            address: '',
+            age: '',
+            city: '',
+            classes: [],
+            courseInProgressStudent: 0,
+            courseInProgressTeacher: 0,
+            coursesOffered: [],
+            dob: '',
+            dp: '',
+            email,
+            isTeacher: false,
+            occupation: '',
+            pendingQA: 0,
+            phone: '',
+            school: '',
+            specialisation: '',
+            state: '',
+            totalEnrolled: 0,
+            university: '',
+            isVerified: true,
+          };
+        }
+
+        addUser(payload).then(() => {
+          dispatch(confirmedSignupAction(payload));
+        });
       })
       .catch((error) => {
-        const errorMessage = formatError(error.response.data);
+        console.log(error);
+        const errorMessage = error.message;
         dispatch(signupFailedAction(errorMessage));
       });
   };
 }
 
-export function logout(history) {
-  localStorage.removeItem("userDetails");
-  history.push("/login");
+export function confirmedSignupAction(payload) {
   return {
-    type: LOGOUT_ACTION,
+    type: SIGNUP_CONFIRMED_ACTION,
+    payload,
   };
 }
 
-export function loginAction(email, name) {
+export function signupFailedAction(payload) {
+  return {
+    type: SIGNUP_FAILED_ACTION,
+    payload,
+  };
+}
+
+export function loginAction({ email, password }) {
   return (dispatch) => {
-    login(email, name)
-      .then((response) => {
-        saveTokenInLocalStorage(response.data);
-        // runLogoutTimer(dispatch, response.data.expiresIn * 1000, history);
-        dispatch(loginConfirmedAction(response.data));
-        // history.push("/");
-      })
-      .catch((error) => {
-        const errorMessage = formatError(error.response.data);
-        dispatch(loginFailedAction(errorMessage));
+    dispatch(loadingToggleAction(true));
+    getUserAnonymous(email).then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        const userData = doc.data();
+
+        if (doc.data().isVerified) {
+          login(email, password)
+            .then((response) => {
+              getUser(response.user.uid).then((docSnap) => {
+                if (docSnap.exists()) {
+                  dispatch(loginConfirmedAction(docSnap.data()));
+                  dispatch(loadingToggleAction(false));
+                }
+              });
+            })
+            .catch((error) => {
+              console.log(error);
+              const errorCode = error.code;
+              let errorMessage = 'Login failed';
+              if (errorCode === 'auth/user-not-found') errorMessage = 'User is not present';
+              else errorMessage = "Email Id and password doesn't match";
+              dispatch(loginFailedAction(errorMessage));
+              dispatch(loadingToggleAction(false));
+            });
+        } else {
+          dispatch(
+            signupAction({
+              email,
+              password,
+              userData,
+            })
+          );
+
+          deleteDocument(`users/${doc.id}`);
+        }
       });
+    });
   };
 }
 
@@ -67,23 +182,32 @@ export function loginConfirmedAction(data) {
   };
 }
 
-export function confirmedSignupAction(payload) {
-  return {
-    type: SIGNUP_CONFIRMED_ACTION,
-    payload,
-  };
-}
-
-export function signupFailedAction(message) {
-  return {
-    type: SIGNUP_FAILED_ACTION,
-    payload: message,
-  };
-}
-
 export function loadingToggleAction(status) {
   return {
     type: LOADING_TOGGLE_ACTION,
     payload: status,
+  };
+}
+
+export function logoutAction(navigate) {
+  localStorage.removeItem('userDetails');
+  navigate('/login');
+  return {
+    type: LOGOUT_ACTION,
+  };
+}
+
+export function addUserAnonymousAction(payload) {
+  return (dispatch) => {
+    addUserAnonymous(payload)
+      .then(() => {
+        // show success message
+        console.log('user added');
+      })
+      .catch((error) => {
+        console.log(error);
+        const errorMessage = error.message;
+        console.log(errorMessage);
+      });
   };
 }

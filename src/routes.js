@@ -1,4 +1,7 @@
-import { Navigate, useRoutes } from 'react-router-dom';
+import { Navigate, useNavigate, useRoutes } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+
 // layouts
 import DashboardLayout from './layouts/dashboard';
 import LogoOnlyLayout from './layouts/LogoOnlyLayout';
@@ -33,26 +36,23 @@ import TeachersList from './pages/ngo/TeachersList';
 import NgoDashboard from './pages/ngo/NgoDashboard';
 import CourseDetails from './pages/CourseDetails';
 
-
-
-
 // ----------------------------------------------------------------------
 
 export default function Router() {
   return useRoutes([
     {
       path: '/dashboard',
-      element: <TeacherDashboardLayout />,
+      element: (
+        <RequireAuth>
+          <DashboardLayout />
+        </RequireAuth>
+      ),
       children: [
-
         { path: 'teacher-overview', element: <DashboardTeacher /> },
         { path: 'teacher/schedule', element: <Schedule /> },
         { path: 'teacher/myCourses', element: <MyCourses /> },
         { path: 'teacher/reports', element: <Reports /> },
         { path: 'profile', element: <Profile /> },
-
-
-        // { path: 'app', element: <DashboardApp /> },
         { path: 'user', element: <User /> },
         { path: 'products', element: <Products /> },
         { path: 'blog', element: <Blog /> },
@@ -61,20 +61,9 @@ export default function Router() {
         { path: 'teachers-list', element: <TeachersList /> },
         { path: 'students-list', element: <StudentsList /> },
         { path: 'red-spots', element: <RedSpots /> },
-
-      ],
-    },
-
-    {
-      path: '/studentDashboard',
-      element: <StudentDashboardLayout />,
-      children: [
-        { path: '', element: <StudentDashboardApp /> },
-        { path: 'app', element: <StudentDashboardApp /> },
-        { path: 'classroom', element: <Classroom /> },
-        { path: 'products', element: <User /> },
-        { path: 'blog', element: <Blog /> },
-
+        { path: 'profile', element: <Profile /> },
+        { path: 'student-overview', element: <StudentDashboardApp /> },
+        { path: 'classrooms', element: <Classroom /> },
       ],
     },
     {
@@ -91,3 +80,15 @@ export default function Router() {
     { path: '*', element: <Navigate to="/404" replace /> },
   ]);
 }
+
+const RequireAuth = ({ children }) => {
+  const navigate = useNavigate();
+  const user = useSelector((state) => state.auth.user);
+  useEffect(() => {
+    if (!('uid' in user)) {
+      navigate('/login');
+    }
+  }, [user, navigate]);
+
+  return children;
+};
