@@ -76,7 +76,7 @@ export default function DashboardTeacher() {
         <Stack spacing={2}>
 
           {/* //Courses You are Taking// */}
-          <Box paddingTop={5} paddingLeft={2}>Ongoing Courses</Box>
+          <Typography variant='h4'paddingTop={5}>Your Courses</Typography>
 
           <Grid container height={30} paddingLeft={2} sx={{ backgroundColor: '#ABB8C3', marginLeft: "10px", opacity: "1" }}>
             <Grid item xs={3} sm={3} md={3} sx={{ alignItems: "center", justifyContent: "left", display: "flex" }}>
@@ -126,7 +126,7 @@ export default function DashboardTeacher() {
         </> */}
 
       <Stack spacing={2}>
-      <Box paddingTop={5} paddingLeft={3} spacing={3}>Completed Courses</Box>
+      <Typography variant='h4' paddingTop={5}>Completed Courses</Typography>
 
           <Grid container height={30} paddingLeft={2} sx={{ backgroundColor: '#ABB8C3', marginLeft: "10px", opacity: "1" }}>
             <Grid item xs={3} sm={3} md={3} sx={{ alignItems: "center", justifyContent: "left", display: "flex" }}>
@@ -183,31 +183,30 @@ export default function DashboardTeacher() {
 
 
 
-        <Box paddingTop={5}>Graph</Box>
         <Grid item xs={12} md={6} lg={8} paddingTop={3}>
           <AppWebsiteVisits
-            title="Time Spent"
+            title="Revenue"
             subheader="(+43%) than last year"
             chartLabels={[
-              '01/01/2003',
-              '02/01/2003',
-              '03/01/2003',
-              '04/01/2003',
-              '05/01/2003',
-              '06/01/2003',
-              '07/01/2003',
-              '08/01/2003',
-              '09/01/2003',
-              '10/01/2003',
-              '11/01/2003',
-              '12/01/2003',
+              '01/01/2020',
+              '02/01/2020',
+              '03/01/2020',
+              '04/01/2020',
+              '05/01/2020',
+              '06/01/2020',
+              '07/01/2020',
+              '08/01/2020',
+              '09/01/2020',
+              '10/01/2020',
+              '11/01/2020',
+              '12/01/2020',
             ]}
             chartData={[
               {
-                name: 'Student',
+                name: 'Revenue',
                 type: 'column',
                 fill: 'solid',
-                data: [23, 11, 22, 27, 13, 22, 37, 21, 44, 22, 30],
+                data: [23,23,23,10,23,23,5,23,20,23,23,23],
               },
             ]}
           />

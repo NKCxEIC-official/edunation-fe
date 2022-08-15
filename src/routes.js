@@ -29,6 +29,7 @@ import TeachersList from './pages/ngo/TeachersList';
 import NgoDashboard from './pages/ngo/NgoDashboard';
 import CourseDetails from './pages/CourseDetails';
 import AssignmentDetails from './pages/AssignmentDetails';
+import CheckAssignments from './pages/CheckAssignments';
 
 // ----------------------------------------------------------------------
 
@@ -63,6 +64,7 @@ export default function Router() {
         { path: 'student/classrooms', element: <Classroom /> },
         { path: 'student/classroom/:id', element: <CourseDetails /> },
         { path: 'student/classroom/:id/assingment/:assingmentId', element: <AssignmentDetails />},
+        { path: 'student/classroom/:id/assingment/:assingmentId/check', element: <CheckAssignments />},
       ],
     },
     {
