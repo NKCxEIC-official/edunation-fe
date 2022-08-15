@@ -10,6 +10,7 @@ import { fShortenNumber } from '../../../utils/formatNumber';
 import SvgIconStyle from '../../../components/SvgIconStyle';
 import Iconify from '../../../components/Iconify';
 
+
 // ----------------------------------------------------------------------
 
 const CardMediaStyle = styled('div')({
@@ -71,7 +72,7 @@ export default function CourseCard({ post, index }) {
   ];
 
   return (
-    <Grid item xs={12} sm={latestPostLarge ? 12 : 6} md={latestPostLarge ? 6 : 3}>
+    <Grid to="/dashboard/student/classroom/123456"  component={RouterLink} item xs={12} sm={latestPostLarge ? 12 : 6} md={latestPostLarge ? 6 : 3}>
       <Card sx={{ position: 'relative' }}>
         <CardMediaStyle
           sx={{

@@ -65,7 +65,7 @@ export default function StudentDashboardApp() {
             </Typography>
           </Grid>
 
-          <Grid item xs={12} md={6} lg={8}>
+          <Grid item xs={12} md={6} lg={12}>
             <AppWebsiteVisits
               title="Time Spent"
               subheader="(+43%) than last year"
@@ -130,6 +130,7 @@ export default function StudentDashboardApp() {
                 />
               </Grid>
               <Grid item xs={12} sm={6} md={4} lg={3}>
+
                 <OngoingCourses
                   title="Interaction Engineering"
                   subheader="Aritra Banerjee"
@@ -156,6 +157,7 @@ export default function StudentDashboardApp() {
                 />
               </Grid>
               <Grid item xs={12} sm={6} md={4} lg={3}>
+
                 <OngoingCourses
                   title="Interaction Engineering"
                   subheader="Aritra Banerjee"
@@ -182,6 +184,7 @@ export default function StudentDashboardApp() {
                 />
               </Grid>
               <Grid item xs={12} sm={6} md={4} lg={3}>
+
                 <OngoingCourses
                   title="Interaction Engineering"
                   subheader="Aritra Banerjee"
