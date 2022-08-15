@@ -74,7 +74,7 @@ const StudentNavConfig = [
   },
   {
     title: 'profile',
-    path: '/dashboard/student/user',
+    path: '/dashboard/student/profile',
     icon: getIcon('eva:people-fill'),
   },
   {
@@ -85,6 +85,11 @@ const StudentNavConfig = [
   {
     title: 'messages',
     path: '/login',
+    icon: getIcon('eva:lock-fill'),
+  },
+  {
+    title: 'community',
+    path: '/dashboard/student/community',
     icon: getIcon('eva:lock-fill'),
   },
   {

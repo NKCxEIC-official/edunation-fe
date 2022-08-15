@@ -31,6 +31,9 @@ import CourseDetails from './pages/CourseDetails';
 import AssignmentDetails from './pages/AssignmentDetails';
 import CheckAssignments from './pages/CheckAssignments';
 
+import Community from './pages/Community';
+import StudentProfile from './pages/student/StudentProfile'
+
 // ----------------------------------------------------------------------
 
 export default function Router() {
@@ -65,6 +68,10 @@ export default function Router() {
         { path: 'student/classroom/:id', element: <CourseDetails /> },
         { path: 'student/classroom/:id/assingment/:assingmentId', element: <AssignmentDetails />},
         { path: 'student/classroom/:id/assingment/:assingmentId/check', element: <CheckAssignments />},
+        { path: 'student/profile', element: <StudentProfile /> },
+        { path: 'student/', element: <StudentDashboardApp /> },
+        { path: 'student/classroom', element: <Classroom /> },
+        { path: 'student/community', element: <Community /> },
       ],
     },
     {
