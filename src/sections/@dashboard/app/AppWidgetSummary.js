@@ -59,10 +59,10 @@ export default function AppWidgetSummary({ title, total, icon, courseName, color
       </IconWrapperStyle>
 
 
-      <Typography variant="h3">{title}</Typography>
-
-      {total && <Typography variant="h3">{fShortenNumber(total)}</Typography>}
-      {courseName && <Typography variant="h3">{(courseName)}</Typography>}
+      <Typography variant="subtitle">{title}</Typography>
+      <br />
+      {total && <Typography variant="subtitle">{fShortenNumber(total)}</Typography>}
+      {courseName && <Typography variant="subtitle">{(courseName)}</Typography>}
 
 
       {/* <Typography variant="subtitle2" sx={{ opacity: 0.72 }}>

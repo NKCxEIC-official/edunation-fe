@@ -8,6 +8,8 @@ import { Link as RouterLink } from 'react-router-dom';
 import StudentAppWidgetSummary from 'src/sections/@student/app/AppWidgetSummary';
 import Page from 'src/components/Page';
 import Iconify from 'src/components/Iconify';
+import {posts} from '../../_mock/blog';
+
 // sections
 import {
   AppTasks,
@@ -97,7 +99,7 @@ export default function StudentDashboardApp() {
           <Grid item lg={12}>
             <Stack spacing={2} alignItems="center" justifyContent="space-between" direction="row" sx={{ mb: 3, mr: 2, mt: 2 }}>
               <Typography variant="h4" sx={{ mt: 2, mb: 2, p: 2 }}>Ongoing Courses :</Typography>
-              <Button to="/studentDashboard/classroom" component={RouterLink} size="small" color="inherit" endIcon={<Iconify icon={'eva:arrow-ios-forward-fill'} />}>
+              <Button to="/dashboard/student/classroom" component={RouterLink} size="small" color="inherit" endIcon={<Iconify icon={'eva:arrow-ios-forward-fill'} />}>
                 View all
               </Button>
             </Stack>
@@ -217,7 +219,7 @@ export default function StudentDashboardApp() {
                 View all
               </Button>
             </Stack>
-            <TopRated />
+            <TopRated posts={posts} />
           </Grid>
 
           <Grid item xs={8} md={8} lg={8} xl={8} sx={{ mt: 2 }}>

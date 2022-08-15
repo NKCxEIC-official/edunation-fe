@@ -1,6 +1,4 @@
-.profileBtn{
-    background-color: blueviolet;
-}
+
 
 .profileImg {
     border-radius: 20px;
@@ -8,7 +6,7 @@
     width: 150px;
 }
 
-.profileIntro{
+.profileIntro {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
@@ -16,35 +14,35 @@
     padding-left: 25px;
 }
 
-.contents{
+.contents {
     display: flex;
     align-items: flex-end;
 }
 
-.contents img{
+.contents img {
     margin-right: 15px;
 }
 
-.profileMainContainer{
+.profileMainContainer {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
 }
 
-.options button{
+.options button {
     margin-right: 10px;
 }
 
-.options{
+.options {
     margin-bottom: 25px;
     margin-top: 16px;
 }
 
-.profileContentContainer{
+.profileContentContainer {
     padding: 16px 16px 16px 0px;
 }
 
-.profileCard{
+.profileCard {
     display: flex;
     justify-content: center;
     margin-top: 22px;
@@ -52,33 +50,99 @@
 }
 
 
-.profileCardContentLine{
+.profileCardContentLine {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 10px;
 }
 
-.w-85{
+.w-85 {
     width: 85%;
 }
 
-.profileIntroBg{
+.profileIntroBg {
     z-index: -1;
     width: 100% !important;
 }
 
-.profile{
+.profile {
     position: relative;
 }
 
-.community-card-media img{
-    border-radius: 12px;
-    padding: 12px;
-    height: 400px;
-    width: 400px;
+.communityCard {
+    border: 5px solid rgb(147, 147, 255) !important;
+    border-radius: 25px !important;
 }
 
-.community-card{
+.communityCard_cardContent {
+    padding: 16px !important;
+}
+
+.communityCard_image {
+    position: relative;
+    width: 350px;
+}
+
+.communityCard_image img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 25px;
+}
+
+.communityCard_profile, .communityCard_actions {
+    display: flex;
+    background-color: rgba(255, 255, 255, 0.485);
+    border-radius: 25px;
+    padding: 16px;
+}
+
+.communityCard_profilePicture {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 35px;
+    width: 35px;
+}
+.communityCard_profilePicture img {
+    border-radius: 25px;
+    width: 100%;
+}
+
+.communityCard_profileDetails {
+    margin-left: 16px;
+}
+
+.communityCard_details {
+    border-radius: 25px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    /* margin-left: 16px; */
+}
+
+.communityCard_content {
+    border-radius: 25px;
+    padding: 16px;
+    margin-top: 16px;
+    height: 100%;
+    font-size:14px;
+    opacity: 0.7;
+}
+
+.communityCard_actions {
+    margin-top: 16px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.communityCard_actions_count {
+    line-height: 30px;
+    width: 30px;
+    text-align: center;
+}
+
+.communityCard_actions_span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
