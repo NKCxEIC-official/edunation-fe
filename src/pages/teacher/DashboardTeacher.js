@@ -11,7 +11,7 @@ import Page from '../../components/Page';
 import Iconify from '../../components/Iconify';
 // sections
 import CreateAClass from './CreateAClass';
-import LargeGrid from '../../components/LargeGrid';
+import CourseGrid from '../../components/CourseGrid';
 
 
 import {
@@ -56,19 +56,19 @@ export default function DashboardTeacher() {
         <Grid container spacing={3} to="class/1234" component={RouterLink} style={{ textDecoration: 'none' }}>
 
           <Grid item xs={12} sm={12} md={3}>
-            <LargeGrid title="Courses in Progress" color="primary" alighn="center" subheader="Courses" icon="logos:discourse-icon" count="10" />
+            <CourseGrid title="Courses in Progress" color="primary" alighn="center" subheader="Courses" icon="logos:discourse-icon" count="10" />
           </Grid>
 
           <Grid item xs={12} sm={12} md={3} >
-            <LargeGrid title="QNA " color="green" subheader="QNA" count="34" icon="emojione:exclamation-question-mark" />
+            <CourseGrid title="QNA " color="green" subheader="QNA" count="34" icon="emojione:exclamation-question-mark" />
           </Grid>
 
           <Grid item xs={12} sm={12} md={3} >
-            <LargeGrid title="Request" subheader="Request" count="23" icon="carbon:request-quote" />
+            <CourseGrid title="Request" subheader="Request" count="23" icon="carbon:request-quote" />
           </Grid>
 
           <Grid item xs={12} sm={12} md={3} alignItems="center">
-            <LargeGrid title="Certificate" color="primary" subheader="Certificate" count="18" icon="icon-park:certificate" />
+            <CourseGrid title="Certificate" color="primary" subheader="Certificate" count="18" icon="icon-park:certificate" />
           </Grid>
 
         </Grid>
