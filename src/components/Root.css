@@ -46,7 +46,6 @@
     display: flex;
     justify-content: center;
     margin-top: 22px;
-    height: max-content;
 }
 
 
@@ -70,7 +69,6 @@
 }
 
 .communityCard {
-    border: 5px solid rgb(147, 147, 255) !important;
     border-radius: 25px !important;
 }
 
@@ -78,23 +76,35 @@
     padding: 16px !important;
 }
 
-.communityCard_image {
+.communityCard_image
+{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.communityCard_image a{
     position: relative;
-    width: 350px;
+    max-height:100px;
+    max-width:100px;
+    height:auto;
+    width:auto;
+    
+   
 }
 
-.communityCard_image img {
+.communityCard_image a img {
     display: block;
     width: 100%;
     height: auto;
-    border-radius: 25px;
+    border-radius: 15px;
 }
 
 .communityCard_profile, .communityCard_actions {
     display: flex;
-    background-color: rgba(255, 255, 255, 0.485);
     border-radius: 25px;
-    padding: 16px;
+    padding: 10px;
 }
 
 .communityCard_profilePicture {
@@ -126,7 +136,6 @@
     margin-top: 16px;
     height: 100%;
     font-size:14px;
-    opacity: 0.7;
 }
 
 .communityCard_actions {
