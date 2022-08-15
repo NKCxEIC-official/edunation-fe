@@ -1,13 +1,16 @@
 import { Container, Grid, Typography } from '@mui/material'
 import React from 'react'
+import { useParams } from 'react-router-dom'
 import LargeGrid from '../components/LargeGrid'
 
 function CourseMaterialDetails() {
+
+    const {topic} = useParams()
     return (
         <div>
             <Container maxWidth="xl">
                 <Typography variant="h4" sx={{ mb: 3, mt: 2 }}>
-                    Course Materials :
+                    Course Materials : {topic}
                 </Typography>
 
                 <Grid container spacing={4}>

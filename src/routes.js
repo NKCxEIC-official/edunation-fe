@@ -73,7 +73,7 @@ export default function Router() {
         { path: 'student/', element: <StudentDashboardApp /> },
         { path: 'student/classroom', element: <Classroom /> },
         { path: 'student/community', element: <Community /> },
-        { path: 'student/courseMaterialDetails', element: <CourseMaterialDetails /> },
+        { path: 'student/classroom/:id/:topic/details', element: <CourseMaterialDetails /> },
       ],
     },
     {

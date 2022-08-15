@@ -1,4 +1,6 @@
-
+*, a {
+    text-decoration: none !important;
+}
 
 .profileImg {
     border-radius: 20px;
