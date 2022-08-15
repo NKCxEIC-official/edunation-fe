@@ -19,6 +19,8 @@ import {
   TableContainer,
   TablePagination,
 } from '@mui/material';
+import { useSelector } from 'react-redux';
+
 // components
 import Page from '../../components/Page';
 import Label from '../../components/Label';
@@ -27,7 +29,6 @@ import Iconify from '../../components/Iconify';
 import SearchNotFound from '../../components/SearchNotFound';
 import { UserListHead, UserListToolbar, UserMoreMenu } from '../../sections/@ngo/Student';
 // mock
-import USERLIST from '../../_mock/user';
 import CustomModal from '../../components/CustomModal';
 import { db } from '../../utils/firebaseConfig';
 import AddStudent from '../../sections/@ngo/forms/AddStudent';
@@ -72,9 +73,7 @@ function applySortFilter(array, comparator, query) {
     return filter(
       array,
       (_user) =>
-        _user.name.toLowerCase().indexOf(query.toLowerCase()) !== -1 ||
-        _user.role.toLowerCase().indexOf(query.toLowerCase()) !== -1 ||
-        _user.status.toLowerCase().indexOf(query.toLowerCase()) !== -1
+        _user.name.toLowerCase().indexOf(query.toLowerCase()) !== -1 || _user.role.includes(query.toLowerCase())
     );
   }
   return stabilizedThis.map((el) => el[0]);
@@ -83,9 +82,9 @@ function applySortFilter(array, comparator, query) {
 export default function StudentsList() {
   const [page, setPage] = useState(0);
 
-  const [Ngodata,setNgodata]=useState({})
+  const user = useSelector((state) => state.auth.user);
 
-  const [filteredUsers,setfilteredUsers]=useState([])
+  const [USERLIST, setUSERLIST] = useState([]);
 
   const [order, setOrder] = useState('asc');
 
@@ -140,13 +139,16 @@ export default function StudentsList() {
     setFilterName(event.target.value);
   };
 
+  const filteredUsers = applySortFilter(USERLIST, getComparator(order, orderBy), filterName);
+
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - USERLIST.length) : 0;
 
   const isUserNotFound = filteredUsers.length === 0;
-  useEffect (()=> {
-    const docRef=doc(db, "users/irWv9KyOTepybjcP8UU8")
-    getDoc(docRef).then((docdata)=> {setfilteredUsers(docdata.data().studentList)})
-  }, [])
+
+  useEffect(() => {
+    setUSERLIST(user.studentList);
+  }, [user]);
+
   return (
     <Page title="Student List">
       <Container>
@@ -198,11 +200,11 @@ export default function StudentsList() {
                           </Stack>
                         </TableCell>
                         <TableCell align="left">{courses}</TableCell>
-                        <TableCell align="left">{role}</TableCell>
+                        <TableCell align="left">{role.join(' , ')}</TableCell>
                         <TableCell align="left">{isVerified ? 'Yes' : 'No'}</TableCell>
                         <TableCell align="left">
-                          <Label variant="ghost" color={status === 1?"success" : "error"}>
-                            {status === 1?"active" : "banned"}
+                          <Label variant="ghost" color={status === '1' ? 'success' : 'error'}>
+                            {status === '1' ? 'active' : 'banned'}
                           </Label>
                         </TableCell>
 

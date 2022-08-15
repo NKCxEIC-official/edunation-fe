@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography, Card, CardContent, Grid, TextField, Button, useFormControl } from "@mui/material";
+import { Typography, Card, CardContent, Grid, TextField, Button, useFormControl, Stack } from "@mui/material";
 import { Form } from "react-bootstrap";
 
 
@@ -8,23 +8,18 @@ export default function CreatAClass() {
 
 
         <div className="Create a class">
-            <Typography variant="h5" sx={{ textAlign: "center" }}>Create a Class</Typography>
-            <Card sx={{ padding: "20px 5px", margin: "0px auto" }}>
-                <CardContent>
+            <Typography variant="h4" sx={{ mb: 1 }}>Create a Class</Typography>
+           
                     <Form>
-                        <Grid container spacing={1}>
-                            <Grid item>
-                                <TextField id="filled-basic" label="Class Name" variant="filled" placeholder="Enter Class Name" fullWidth required />
+                        <Stack spacing={3}>
+                               <TextField id="filled-basic" label="Class Name" variant="standard" placeholder="Enter Class Name" fullWidth required />
                                 <TextField id="filled-basic" label="Class Description" variant="standard" placeholder="Enter Class Description" fullWidth required multiline />
-                            </Grid>
-                            <Grid paddingTop={3}>
-                                <Button type="submit" variant="contained" color="primary" fullWidth>Submit</Button>
-                            </Grid>
-
-                        </Grid>
+                            
+                                <Button type="submit" variant="contained" color="primary" fullWidth>Create Class</Button>
+                                </Stack>
+                            
                     </Form>
-                </CardContent>
-            </Card>
+                
         </div >
     )
 }

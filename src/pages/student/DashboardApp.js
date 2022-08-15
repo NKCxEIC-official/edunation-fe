@@ -21,8 +21,8 @@ import {
   AppConversionRates,
 } from '../../sections/@student/app';
 import { BlogPostCard } from 'src/sections/@dashboard/blog';
-import OngoingCourses from './TopRatedCourses';
-import TopRated from 'src/components/OngoingCourses';
+import TopRated from './TopRatedCourses';
+import OngoingCourses from '../../components/OngoingCourses';
 import Summary from 'src/components/Summary';
 
 // ----------------------------------------------------------------------
@@ -104,7 +104,7 @@ export default function StudentDashboardApp() {
 
             <Stack spacing={2} alignItems="center" justifyContent="space-between" direction="row" sx={{ mb: 3, mr: 1, mt: 2 }}>
               <Grid item xs={12} sm={6} md={4} lg={3}>
-                <TopRated
+                <OngoingCourses
                   title="Interaction Engineering"
                   subheader="Aritra Banerjee"
                   avatar={'ant-design:user-outlined'}
@@ -130,7 +130,8 @@ export default function StudentDashboardApp() {
                 />
               </Grid>
               <Grid item xs={12} sm={6} md={4} lg={3}>
-                <TopRated
+
+                <OngoingCourses
                   title="Interaction Engineering"
                   subheader="Aritra Banerjee"
                   avatar={'ant-design:user-outlined'}
@@ -156,7 +157,8 @@ export default function StudentDashboardApp() {
                 />
               </Grid>
               <Grid item xs={12} sm={6} md={4} lg={3}>
-                <TopRated
+
+                <OngoingCourses
                   title="Interaction Engineering"
                   subheader="Aritra Banerjee"
                   avatar={'ant-design:user-outlined'}
@@ -182,7 +184,8 @@ export default function StudentDashboardApp() {
                 />
               </Grid>
               <Grid item xs={12} sm={6} md={4} lg={3}>
-                <TopRated
+
+                <OngoingCourses
                   title="Interaction Engineering"
                   subheader="Aritra Banerjee"
                   avatar={'ant-design:user-outlined'}
@@ -217,7 +220,7 @@ export default function StudentDashboardApp() {
                 View all
               </Button>
             </Stack>
-            <OngoingCourses />
+            <TopRated />
           </Grid>
 
           <Grid item xs={8} md={8} lg={8} xl={8} sx={{ mt: 2 }}>
