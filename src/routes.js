@@ -33,6 +33,7 @@ import CheckAssignments from './pages/CheckAssignments';
 
 import Community from './pages/Community';
 import StudentProfile from './pages/student/StudentProfile'
+import CourseMaterialDetails from './pages/CourseMaterialDetails';
 
 // ----------------------------------------------------------------------
 
@@ -72,6 +73,7 @@ export default function Router() {
         { path: 'student/', element: <StudentDashboardApp /> },
         { path: 'student/classroom', element: <Classroom /> },
         { path: 'student/community', element: <Community /> },
+        { path: 'student/courseMaterialDetails', element: <CourseMaterialDetails /> },
       ],
     },
     {

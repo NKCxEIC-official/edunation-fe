@@ -67,12 +67,12 @@ export default function CourseDetails() {
         </Typography>
 
         <Grid container spacing={4}>
-          <Grid item xs={12} sm={6} md={3} lg={4}>
-            <LargeGrid subheader="UseState" count={22} icon={'logos:tensorflow'} />
-          </Grid>
-          <Grid item xs={12} sm={6} md={3} lg={4}>
-            <LargeGrid subheader="Hooks" count={11} icon={'logos:webhooks'} />
-          </Grid>
+            <Grid item xs={12} sm={6} md={3} lg={4} to="/dashboard/student/courseMaterialDetails" component={RouterLink}>
+              <LargeGrid subheader="UseState" count={22} icon={'logos:tensorflow'} />
+            </Grid>
+            <Grid item xs={12} sm={6} md={3} lg={4} to="/dashboard/student/courseMaterialDetails" component={RouterLink}>
+              <LargeGrid subheader="Hooks" count={11} icon={'logos:webhooks'} />
+            </Grid>
         </Grid>
 
         <Grid item lg={12} sx={{ mt: 3 }}>
