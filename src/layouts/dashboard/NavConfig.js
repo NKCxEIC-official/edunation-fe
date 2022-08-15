@@ -46,12 +46,22 @@ const TeacherNavConfig = [
   },
   {
     title: 'Settings',
-    path: '/dashboard/Settings',
+    path: '/dashboard/teacher/Settings',
     icon: getIcon('eva:lock-fill'),
   },
   {
+    title: 'Messages',
+    path: '/dashboard/teacher/Messages',
+    icon: getIcon('jam:messages-f'),
+  },
+  {
+    title: 'Community',
+    path: '/dashboard/teacher/Community',
+    icon: getIcon('fluent:people-community-28-filled'),
+  },
+  {
     title: 'Profile',
-    path: 'dashboard/teacher/profile',
+    path: '/dashboard/teacher/profile',
     icon: getIcon('eva:person-add-fill'),
   },
   // {
@@ -79,7 +89,7 @@ const StudentNavConfig = [
   },
   {
     title: 'settings',
-    path: '/dashboard/blog',
+    path: '/dashboard/student/settings',
     icon: getIcon('eva:file-text-fill'),
   },
   {
@@ -90,7 +100,7 @@ const StudentNavConfig = [
   {
     title: 'community',
     path: '/dashboard/student/community',
-    icon: getIcon('eva:lock-fill'),
+    icon: getIcon('fluent:people-community-28-filled'),
   },
   {
     title: 'schedule',

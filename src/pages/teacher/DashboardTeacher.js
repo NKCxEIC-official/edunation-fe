@@ -53,7 +53,7 @@ export default function DashboardTeacher() {
         </Stack>
 
 
-        <Grid container spacing={3} to="class/1234" component={RouterLink} style={{ textDecoration: 'none' }}>
+        <Grid container spacing={3} style={{ textDecoration: 'none' }}>
 
           <Grid item xs={12} sm={12} md={3}>
             <LargeGrid title="Courses in Progress" color="primary" alighn="center" subheader="Courses" icon="logos:discourse-icon" count="10" />
