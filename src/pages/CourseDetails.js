@@ -3,7 +3,7 @@ import { faker } from '@faker-js/faker';
 import { useTheme } from '@mui/material/styles';
 import { Grid, Container, Typography, Stack, Button, CardContent, Card } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
-// components
+// components../components/LargeGrid
 import LargeGrid from '../components/LargeGrid';
 import SmallGrid from '../components/SmallGrid';
 import Page from '../components/Page';
