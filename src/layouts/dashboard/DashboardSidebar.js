@@ -44,8 +44,10 @@ DashboardSidebar.propTypes = {
 
 // eslint-disable-next-line consistent-return
 const getNavByRole = () => {
-  const role = localStorage.getItem('role');
-  const isTeacher = localStorage.getItem('viewAs');
+  let role = 0
+  let isTeacher = false;
+  role = localStorage.getItem('role');
+  isTeacher = localStorage.getItem('isTeacher');
   if (role === "0") {
     return NGONavConfig;
   }
@@ -105,7 +107,6 @@ const utilButton = (navigate) => {
           () => {
             localStorage.setItem("viewAs", 'true');
             navigate('/dashboard/teacher/app', { replace: true });
-          }
           }
         }
       >

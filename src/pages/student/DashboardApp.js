@@ -65,7 +65,7 @@ export default function StudentDashboardApp() {
             </Typography>
           </Grid>
 
-          <Grid item xs={12} md={6} lg={8}>
+          <Grid item xs={12} md={6} lg={12}>
             <AppWebsiteVisits
               title="Time Spent"
               subheader="(+43%) than last year"
