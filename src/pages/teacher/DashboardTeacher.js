@@ -11,7 +11,7 @@ import Page from '../../components/Page';
 import Iconify from '../../components/Iconify';
 // sections
 import CreateAClass from './CreateAClass';
-import LargeGrid from '../../components/LargeGrid';
+import LargeGrid from '../../components/Largegrid';
 
 
 import {

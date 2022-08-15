@@ -5,7 +5,7 @@ import Iconify from './Iconify'
 
 function LargeGrid({title, subheader, count, color, icon}) {
   return (
-    <Card sx={{px:2}}> 
+    <Card sx={{px:2}}>
        
         <Grid container>
           <Grid item xs={4} sm={4} md={4} lg={4} xl={4} sx={{borderRight:"1px dashed #ddd", py:2, alignItems:"center", justifyContent:"center", display:"flex"}}>

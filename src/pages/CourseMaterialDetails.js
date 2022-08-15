@@ -1,6 +1,6 @@
 import { Container, Grid, Typography } from '@mui/material'
 import React from 'react'
-import LargeGrid from '../components/LargeGrid'
+import LargeGrid from '../components/Largegrid'
 
 function CourseMaterialDetails() {
     return (
