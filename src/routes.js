@@ -28,6 +28,11 @@ import RedSpots from './pages/ngo/RedSpots';
 import TeachersList from './pages/ngo/TeachersList';
 import NgoDashboard from './pages/ngo/NgoDashboard';
 import CourseDetails from './pages/CourseDetails';
+import AssignmentDetails from './pages/AssignmentDetails';
+import CheckAssignments from './pages/CheckAssignments';
+
+import Community from './pages/Community';
+import StudentProfile from './pages/student/StudentProfile'
 
 // ----------------------------------------------------------------------
 
@@ -54,13 +59,19 @@ export default function Router() {
         { path: 'teacher/myCourses', element: <MyCourses /> },
         { path: 'teacher/reports', element: <Reports /> },
         { path: 'teacher/profile', element: <Profile /> },
+        
 
         // Student:
         { path: 'student/app', element: <StudentDashboardApp /> },
         { path: 'student/user', element: <User /> },
+        { path: 'student/classrooms', element: <Classroom /> },
+        { path: 'student/classroom/:id', element: <CourseDetails /> },
+        { path: 'student/classroom/:id/assingment/:assingmentId', element: <AssignmentDetails />},
+        { path: 'student/classroom/:id/assingment/:assingmentId/check', element: <CheckAssignments />},
+        { path: 'student/profile', element: <StudentProfile /> },
         { path: 'student/', element: <StudentDashboardApp /> },
         { path: 'student/classroom', element: <Classroom /> },
-        { path: 'student/classroom/:id', element: <CourseDetails /> },
+        { path: 'student/community', element: <Community /> },
       ],
     },
     {

@@ -5,7 +5,7 @@ import Iconify from '../../components/Iconify';
 
 const getIcon = (name) => <Iconify icon={name} width={22} height={22} />;
 
-const studentNavConfig = [
+const StudentNavConfig = [
   {
     title: 'dashboard',
     path: '/studentDashboard/app',
@@ -32,15 +32,15 @@ const studentNavConfig = [
     icon: getIcon('eva:lock-fill'),
   },
   {
-    title: 'schedule',
-    path: '/register',
+    title: 'community',
+    path: '/community',
     icon: getIcon('eva:person-add-fill'),
   },
-  // {
-  //   title: 'Not found',
-  //   path: '/404',
-  //   icon: getIcon('eva:alert-triangle-fill'),
-  // },
+  {
+    title: 'Not found',
+    path: '/404',
+    icon: getIcon('eva:alert-triangle-fill'),
+  },
 ];
 
-export {studentNavConfig};
+export {StudentNavConfig};

@@ -2,8 +2,9 @@ import { faker } from '@faker-js/faker';
 // @mui
 import { useTheme } from '@mui/material/styles';
 import { Grid, Container, Typography, Stack, Button, CardContent, Card } from '@mui/material';
+import { Link as RouterLink } from 'react-router-dom';
 // components
-import LargeGrid from '../components/Largegrid';
+import LargeGrid from '../components/LargeGrid';
 import SmallGrid from '../components/SmallGrid';
 import Page from '../components/Page';
 import Iconify from '../components/Iconify';
@@ -18,7 +19,7 @@ export default function CourseDetails() {
     <Page title="Dashboard">
       <Container maxWidth="xl">
         <Typography variant="h4">Welcome To,</Typography>
-        <Typography variant="p">Course Name</Typography>
+        <Typography variant="p">Class Name</Typography>
 
         <Grid container spacing={4} sx={{ mb: 2, mt: 2 }}>
           <Grid item xs={12} sm={6} md={3} lg={4}>
@@ -53,7 +54,7 @@ export default function CourseDetails() {
         </Typography>
 
         <Grid container spacing={4}>
-          <Grid item xs={12} sm={6} md={3} lg={4}>
+          <Grid to="/dashboard/student/classroom/123456/assingment/1233" component={RouterLink} item xs={12} sm={6} md={3} lg={4}>
             <LargeGrid subheader="Arrow Function" count={26} icon={'vscode-icons:file-type-reactjs'} />
           </Grid>
           <Grid item xs={12} sm={6} md={3} lg={4}>
