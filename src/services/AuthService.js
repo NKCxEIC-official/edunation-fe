@@ -1,5 +1,16 @@
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
-import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, query, setDoc, where } from 'firebase/firestore';
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+  setDoc,
+  updateDoc,
+  where,
+} from 'firebase/firestore';
 import { db } from '../utils/firebaseConfig';
 
 export function signUp(email, password) {
@@ -25,6 +36,11 @@ export function getUser(uid) {
 export function addUserAnonymous(payload) {
   const UserCollectionRef = collection(db, 'users');
   return addDoc(UserCollectionRef, payload);
+}
+
+export function updateAnonymousUserList(loggedInUID, payload) {
+  const UserDocRef = doc(db, 'users', loggedInUID);
+  return updateDoc(UserDocRef, payload);
 }
 
 export function getUserAnonymous(email) {
