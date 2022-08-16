@@ -33,6 +33,7 @@ import CheckAssignments from './pages/CheckAssignments';
 import Community from './pages/Community';
 import Profile from './pages/Profile';
 import CourseMaterialDetails from './pages/CourseMaterialDetails';
+import ChatApp from './components/ChatApp';
 
 // ----------------------------------------------------------------------
 
@@ -73,6 +74,7 @@ export default function Router() {
         { path: 'student/classroom', element: <Classroom /> },
         { path: 'student/community', element: <Community /> },
         { path: 'student/classroom/:id/:topic/details', element: <CourseMaterialDetails /> },
+        { path: 'student/messages', element: <ChatApp />}
       ],
     },
     {
