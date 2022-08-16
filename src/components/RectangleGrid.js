@@ -7,7 +7,7 @@ function RectangleGrid({ title, subheader, count, color, icon, percent, duration
     return (
         // <Card>
 
-        <Card sx={{ px: 3 }}>
+        <Card sx={{ p: 2 }}>
 
             <Grid container height={50}>
                 {/* <Grid item xs={1.5} sm={1.5} md={1.5} sx={{ alignItems: "center", justifyContent: "left", display: "flex" }}>

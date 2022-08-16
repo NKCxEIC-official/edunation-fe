@@ -1,4 +1,4 @@
-import { Box, Button, Card, CardContent, Grid, Typography } from '@mui/material';
+import { Box, Button, Card, CardContent, Grid, Stack, Typography } from '@mui/material';
 import '../components/Root.css';
 import React, { useState } from 'react';
 import ProfileBackground from '../components/SVGIcons/ProfileBackground';
@@ -44,7 +44,7 @@ function Profile() {
             </div>
           </div>
           <div>
-            <Button className="profileBtn" variant="contained" size="medium">
+            <Button color="primary" variant="contained" size="medium">
               Contact Now
             </Button>
           </div>
@@ -129,6 +129,7 @@ function Profile() {
               </Typography>
             </Box>
             <div className="profileCardContent">
+              <Stack spacing={3}>
               {cardContent.map((obj) => {
                 return (
                   <div className="profileCardContentLine">
@@ -137,6 +138,7 @@ function Profile() {
                   </div>
                 );
               })}
+              </Stack>
             </div>
           </CardContent>
         </Card>

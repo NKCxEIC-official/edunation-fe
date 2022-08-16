@@ -69,7 +69,7 @@ const StudentNavConfig = [
   },
   {
     title: 'classrooms',
-    path: '/dashboard/student/classroom',
+    path: '/dashboard/student/classrooms',
     icon: getIcon('mdi:google-classroom'),
   },
   {

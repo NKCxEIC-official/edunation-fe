@@ -2,14 +2,16 @@ import { LoadingButton } from '@mui/lab';
 import { Stack, TextField } from '@mui/material';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { addUserAnonymousAction } from '../../../store/actions/AuthActions';
+import { addUserAnonymousAction, HideModalAction } from '../../../store/actions/AuthActions';
 import { FormProvider, RHFTextField } from '../../../components/hook-form';
 import { AddTeacherSchemaDefaultValues, AddTeacherSchema } from '../../../formSchemas/AddTeacher';
 
-function AddStudent() {
+function AddStudent({ handleClose }) {
+  console.log(handleClose);
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.auth.user);
 
   const methods = useForm({
     resolver: yupResolver(AddTeacherSchema),
@@ -22,7 +24,8 @@ function AddStudent() {
   } = methods;
 
   const onSubmit = async (payload) => {
-    dispatch(addUserAnonymousAction({ ...payload, role: 1, isTeacher: false, isVerified: false }));
+    dispatch(addUserAnonymousAction({ ...payload, role: 1, isTeacher: false, isVerified: false }, user));
+    dispatch(HideModalAction(true));
   };
 
   return (

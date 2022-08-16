@@ -2,8 +2,9 @@ import { faker } from '@faker-js/faker';
 // @mui
 import { useTheme } from '@mui/material/styles';
 import { Grid, Container, Typography, Stack, Button, CardContent, Card } from '@mui/material';
-// components
-import LargeGrid from '../components/LargeGrid';
+import { Link as RouterLink } from 'react-router-dom';
+// components../components/CourseGrid
+import CourseGrid from '../components/CourseGrid';
 import SmallGrid from '../components/SmallGrid';
 import Page from '../components/Page';
 import Iconify from '../components/Iconify';
@@ -18,7 +19,7 @@ export default function CourseDetails() {
     <Page title="Dashboard">
       <Container maxWidth="xl">
         <Typography variant="h4">Welcome To,</Typography>
-        <Typography variant="p">Course Name</Typography>
+        <Typography variant="p">Class Name</Typography>
 
         <Grid container spacing={4} sx={{ mb: 2, mt: 2 }}>
           <Grid item xs={12} sm={6} md={3} lg={4}>
@@ -53,11 +54,11 @@ export default function CourseDetails() {
         </Typography>
 
         <Grid container spacing={4}>
-          <Grid item xs={12} sm={6} md={3} lg={4}>
-            <LargeGrid subheader="Arrow Function" count={26} icon={'vscode-icons:file-type-reactjs'} />
+          <Grid to="/dashboard/student/classroom/123456/assingment/1233" component={RouterLink} item xs={12} sm={6} md={3} lg={4}>
+            <CourseGrid subheader="Arrow Function" count={26} icon={'vscode-icons:file-type-reactjs'} />
           </Grid>
           <Grid item xs={12} sm={6} md={3} lg={4}>
-            <LargeGrid subheader="UseEffect" count={51} icon={'logos:flutter'} />
+            <CourseGrid subheader="UseEffect" count={51} icon={'logos:flutter'} />
           </Grid>
         </Grid>
 
@@ -66,12 +67,12 @@ export default function CourseDetails() {
         </Typography>
 
         <Grid container spacing={4}>
-          <Grid item xs={12} sm={6} md={3} lg={4}>
-            <LargeGrid subheader="UseState" count={22} icon={'logos:tensorflow'} />
-          </Grid>
-          <Grid item xs={12} sm={6} md={3} lg={4}>
-            <LargeGrid subheader="Hooks" count={11} icon={'logos:webhooks'} />
-          </Grid>
+            <Grid item xs={12} sm={6} md={3} lg={4} to="/dashboard/student/classroom/:id/god/details" component={RouterLink}>
+              <CourseGrid subheader="UseState" count={22} icon={'logos:tensorflow'} />
+            </Grid>
+            <Grid item xs={12} sm={6} md={3} lg={4} to="/dashboard/student/classroom/:id/dog/details" component={RouterLink}>
+              <CourseGrid subheader="Hooks" count={11} icon={'logos:webhooks'} />
+            </Grid>
         </Grid>
 
         <Grid item lg={12} sx={{ mt: 3 }}>
