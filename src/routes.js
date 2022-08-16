@@ -18,7 +18,6 @@ import TeacherDashboardLayout from './layouts/teacher';
 import MyCourses from './pages/teacher/MyCourses';
 import Reports from './pages/teacher/Reports';
 import Settings from './pages/teacher/Settings';
-import Profile from './pages/teacher/Profile';
 import User from './pages/User';
 import StudentDashboardApp from './pages/student/DashboardApp';
 import Classroom from './pages/student/Classroom';
@@ -32,7 +31,7 @@ import AssignmentDetails from './pages/AssignmentDetails';
 import CheckAssignments from './pages/CheckAssignments';
 
 import Community from './pages/Community';
-import StudentProfile from './pages/student/StudentProfile'
+import Profile from './pages/Profile';
 import CourseMaterialDetails from './pages/CourseMaterialDetails';
 
 // ----------------------------------------------------------------------
@@ -69,7 +68,7 @@ export default function Router() {
         { path: 'student/classroom/:id', element: <CourseDetails /> },
         { path: 'student/classroom/:id/assingment/:assingmentId', element: <AssignmentDetails />},
         { path: 'student/classroom/:id/assingment/:assingmentId/check', element: <CheckAssignments />},
-        { path: 'student/profile', element: <StudentProfile /> },
+        { path: 'student/profile', element: <Profile /> },
         { path: 'student/', element: <StudentDashboardApp /> },
         { path: 'student/classroom', element: <Classroom /> },
         { path: 'student/community', element: <Community /> },
