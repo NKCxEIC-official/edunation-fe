@@ -3,9 +3,9 @@ import React from 'react'
 import Iconify from './Iconify'
 
 
-function LargeGrid({title, subheader, count, color, icon}) {
+function LargeGrid({title, subheader, count, color, icon, smallheader}) {
   return (
-    <Card sx={{px:2}}>
+    <Card sx={{px:2,width:"100%"}}>
        
         <Grid container>
           <Grid item xs={4} sm={4} md={4} lg={4} xl={4} sx={{borderRight:"1px dashed #ddd", py:2, alignItems:"center", justifyContent:"center", display:"flex"}}>
@@ -15,7 +15,7 @@ function LargeGrid({title, subheader, count, color, icon}) {
             <Box sx={{display:"flex",alignItems:"center"}}>
               <Box>
                   <Typography variant='h6' sx={{marginLeft:"10px", opacity:"1"}}>{subheader}</Typography>
-                  <Typography paragraph />
+                  <Typography variant='subtitle2' sx={{marginLeft:"10px", opacity:"0.7"}}>{smallheader}</Typography>
                   <Typography variant='subtitle' sx={{marginLeft:"10px", opacity:"1"}}>{count}</Typography>
               </Box>
             </Box>

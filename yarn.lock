@@ -8932,6 +8932,11 @@
     "immutable" "^4.0.0"
     "source-map-js" ">=0.6.2 <2.0.0"
 
+"sassy-datepicker@^0.8.0":
+  "integrity" "sha512-OBn2Gq5IlUOkv07hZ0N6IM58PqdI5vJTuuWt54qlKxd8Fur5rd1B1/hwhtlt4rO/H9gq3SV9/3Cb/TXW15P/1w=="
+  "resolved" "https://registry.npmjs.org/sassy-datepicker/-/sassy-datepicker-0.8.0.tgz"
+  "version" "0.8.0"
+
 "saxes@^5.0.1":
   "integrity" "sha512-5LBh1Tls8c9xgGjw3QrMwETmTMVk0oFgvrFSvWx62llR2hcEInrKNZ2GZCCuuy2lvWrdl5jhbpeqc5hRYKFOcw=="
   "resolved" "https://registry.npmjs.org/saxes/-/saxes-5.0.1.tgz"

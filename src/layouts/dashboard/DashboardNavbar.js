@@ -23,6 +23,7 @@ const RootStyle = styled(AppBar)(({ theme }) => ({
   backgroundColor: alpha(theme.palette.background.default, 0.72),
   [theme.breakpoints.up('lg')]: {
     width: `calc(100% - ${DRAWER_WIDTH + 1}px)`,
+    zIndex:"9999"
   },
 }));
 
@@ -38,16 +39,16 @@ const ToolbarStyle = styled(Toolbar)(({ theme }) => ({
 
 DashboardNavbar.propTypes = {
   onOpenSidebar: PropTypes.func,
+  onOpenTimeLine: PropTypes.func,
 };
 
-export default function DashboardNavbar({ onOpenSidebar }) {
+export default function DashboardNavbar({ onOpenSidebar , onOpenTimeLine}) {
   return (
     <RootStyle>
       <ToolbarStyle>
         <IconButton onClick={onOpenSidebar} sx={{ mr: 1, color: 'text.primary', display: { lg: 'none' } }}>
           <Iconify icon="eva:menu-2-fill" />
         </IconButton>
-
         <Searchbar />
         <Box sx={{ flexGrow: 1 }} />
 
@@ -55,6 +56,9 @@ export default function DashboardNavbar({ onOpenSidebar }) {
           <NotificationsPopover />
           <AccountPopover />
         </Stack>
+        <IconButton onClick={onOpenTimeLine} sx={{ mr: 1, color: 'text.primary', display: { lg: 'none' } }}>
+          <Iconify icon="uil:calender" />
+        </IconButton>
       </ToolbarStyle>
     </RootStyle>
   );

@@ -3,13 +3,14 @@ import { LoadingButton } from '@mui/lab';
 import { Stack, TextField } from '@mui/material';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addUserAnonymousAction } from '../../../store/actions/AuthActions';
 import { FormProvider, RHFTextField } from '../../../components/hook-form';
 import { AddTeacherSchemaDefaultValues, AddTeacherSchema } from '../../../formSchemas/AddTeacher';
 
 function AddTeacher() {
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.auth.user);
 
   const methods = useForm({
     resolver: yupResolver(AddTeacherSchema),
@@ -22,7 +23,7 @@ function AddTeacher() {
   } = methods;
 
   const onSubmit = async (payload) => {
-    dispatch(addUserAnonymousAction({ ...payload, role: 1, isTeacher: true, isVerified: false }));
+    dispatch(addUserAnonymousAction({ ...payload, role: 1, isTeacher: true, isVerified: false }, user));
   };
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>

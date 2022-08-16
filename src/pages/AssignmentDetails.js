@@ -1,11 +1,14 @@
 import React from 'react';
 import { Grid, Container, Typography, Stack, Button, CardContent, Card } from '@mui/material';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useParams } from 'react-router-dom';
 import AssignmentFile from '../components/AssignmentFile';
 import Iconify from '../components/Iconify';
 
 
 function AssignmentDetails() {
+
+  const {assingmentId} = useParams()
+  console.log(assingmentId)
   return (
     <>
         <Container maxWidth="xl">

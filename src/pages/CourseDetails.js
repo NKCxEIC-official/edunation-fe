@@ -3,7 +3,7 @@ import { faker } from '@faker-js/faker';
 import { useTheme } from '@mui/material/styles';
 import { Grid, Container, Typography, Stack, Button, CardContent, Card } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
-// components
+// components../components/LargeGrid
 import LargeGrid from '../components/LargeGrid';
 import SmallGrid from '../components/SmallGrid';
 import Page from '../components/Page';
@@ -67,11 +67,44 @@ export default function CourseDetails() {
         </Typography>
 
         <Grid container spacing={4}>
+            <Grid item xs={12} sm={6} md={3} lg={4} to="/dashboard/student/classroom/:id/god/details" component={RouterLink}>
+              <LargeGrid subheader="UseState" count={22} icon={'logos:tensorflow'} />
+            </Grid>
+            <Grid item xs={12} sm={6} md={3} lg={4} to="/dashboard/student/classroom/:id/dog/details" component={RouterLink}>
+              <LargeGrid subheader="Hooks" count={11} icon={'logos:webhooks'} />
+            </Grid>
+        </Grid>
+
+        <Typography variant="h4" sx={{ mb: 3, mt: 3 }}>
+         Vidya Daan
+        </Typography>
+
+        <Grid container spacing={4}>
           <Grid item xs={12} sm={6} md={3} lg={4}>
-            <LargeGrid subheader="UseState" count={22} icon={'logos:tensorflow'} />
-          </Grid>
-          <Grid item xs={12} sm={6} md={3} lg={4}>
-            <LargeGrid subheader="Hooks" count={11} icon={'logos:webhooks'} />
+            <Button sx={{ width:"100%"}} onClick={()=>{
+              window.open('https://diksha.gov.in/ncert/play/collection/do_31339576668973465612958?contentType=TextBook', '_blank');
+            }
+            } target="_blank">
+            <LargeGrid subheader="NCERT" smallheader="Academic(Class 1)" icon={'akar-icons:link-chain'} />
+            </Button>
+            </Grid>
+
+            <Grid item xs={12} sm={6} md={3} lg={4}>
+            <Button sx={{ width:"100%"}} onClick={()=>{
+              window.open('https://diksha.gov.in/ncert/play/collection/do_31307360981920972812163?contentType=TextBook', '_blank');
+            }
+            } target="_blank">
+            <LargeGrid subheader="NCERT-English" smallheader="Marigold(Class 1)" icon={'akar-icons:link-chain'} />
+            </Button>
+            </Grid>
+
+            <Grid item xs={12} sm={6} md={3} lg={4}>
+            <Button sx={{ width:"100%"}} onClick={()=>{
+              window.open('https://diksha.gov.in/ncert/play/collection/do_31307361357388185614238?contentType=TextBook', '_blank');
+            }
+            } target="_blank">
+            <LargeGrid subheader="NCERT- Hindi" smallheader="Rimjhim (Class 1)" icon={'akar-icons:link-chain'} />
+            </Button>
           </Grid>
         </Grid>
 

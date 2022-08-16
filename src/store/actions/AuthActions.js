@@ -6,8 +6,10 @@ import {
   getUserAnonymous,
   login,
   signUp,
+  updateAnonymousUserList,
 } from '../../services/AuthService';
 import {
+  HIDE_MODAL_ACTION,
   LOADING_TOGGLE_ACTION,
   LOGIN_CONFIRMED_ACTION,
   LOGIN_FAILED_ACTION,
@@ -101,8 +103,8 @@ export function signupAction({ email, password, firstName, lastName, userData })
         }
 
         addUser(payload).then(() => {
-           localStorage.setItem('role', payload.role);
-           localStorage.setItem('isTeacher', payload.isTeacher);
+          localStorage.setItem('role', payload.role);
+          localStorage.setItem('isTeacher', payload.isTeacher);
           dispatch(confirmedSignupAction(payload));
         });
       })
@@ -201,17 +203,67 @@ export function logoutAction(navigate) {
   };
 }
 
-export function addUserAnonymousAction(payload) {
+export function addUserAnonymousAction(payload, loggedInUser) {
   return (dispatch) => {
     addUserAnonymous(payload)
       .then(() => {
         // show success message
-        console.log('user added');
+        let updateListPayload = {};
+        if (payload.isTeacher) {
+          updateListPayload = {
+            Teacherlist: [
+              ...loggedInUser.Teacherlist,
+              {
+                name: `${payload.firstName} ${payload.lastName}`,
+                isVerified: payload.isVerified,
+                status: '1',
+                courses: [],
+                dp: '',
+                id: '',
+              },
+            ],
+          };
+        } else {
+          updateListPayload = {
+            studentList: [
+              ...loggedInUser.studentList,
+              {
+                name: `${payload.firstName} ${payload.lastName}`,
+                isVerified: payload.isVerified,
+                status: '1',
+                courses: [],
+                dp: '',
+                id: '',
+                role: ['student'],
+              },
+            ],
+          };
+        }
+        updateAnonymousUserList(loggedInUser.uid, updateListPayload).then(() => {
+          dispatch(
+            getUser(loggedInUser.uid).then((docSnap) => {
+              if (docSnap.exists()) {
+                localStorage.setItem('role', docSnap.data().role);
+                localStorage.setItem('isTeacher', docSnap.data().isTeacher);
+                dispatch(loginConfirmedAction(docSnap.data()));
+                dispatch(loadingToggleAction(false));
+                dispatch(HideModalAction(true));
+              }
+            })
+          );
+        });
       })
       .catch((error) => {
         console.log(error);
         const errorMessage = error.message;
         console.log(errorMessage);
       });
+  };
+}
+
+export function HideModalAction(status) {
+  return {
+    type: HIDE_MODAL_ACTION,
+    payload: { status },
   };
 }

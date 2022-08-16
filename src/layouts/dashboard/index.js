@@ -5,6 +5,7 @@ import { styled } from '@mui/material/styles';
 //
 import DashboardNavbar from './DashboardNavbar';
 import DashboardSidebar from './DashboardSidebar';
+import TimelineSidebar from './TimelineSidebar';
 
 // ----------------------------------------------------------------------
 
@@ -33,15 +34,17 @@ const MainStyle = styled('div')(({ theme }) => ({
 // ----------------------------------------------------------------------
 
 export default function DashboardLayout() {
+  const [openTimeLine, setOpenTimeLine] = useState(false);
   const [open, setOpen] = useState(false);
 
   return (
     <RootStyle>
-      <DashboardNavbar onOpenSidebar={() => setOpen(true)} />
+      <DashboardNavbar onOpenSidebar={() => setOpen(true)} onOpenTimeLine={() => setOpenTimeLine(true)} />
       <DashboardSidebar isOpenSidebar={open} onCloseSidebar={() => setOpen(false)} />
       <MainStyle>
         <Outlet />
       </MainStyle>
+      <TimelineSidebar isOpenSidebar={openTimeLine} onCloseSidebar={() => setOpenTimeLine(false)} />
     </RootStyle>
   );
 }

@@ -28,7 +28,7 @@ import {
 import RectangleGrid from '../../components/RectangleGrid';
 import { BlogPostCard, BlogPostsSort, BlogPostsSearch } from '../../sections/@dashboard/blog';
 // mock
-import POSTS from '../../_mock/blog';
+import {posts} from '../../_mock/blog';
 
 
 
@@ -114,16 +114,6 @@ export default function DashboardTeacher() {
           </Grid>
 
         </Stack>
-
-        {/* Completed Courses */}
-
-
-        {/* <Box paddingTop={5} paddingLeft={3}>Completed Courses</Box>
-        <Grid container spacing={3} paddingTop={2}>
-          {PGridOSTS.map((post, index) => (
-            <BlogPostCard key={post.id} post={post} index={index} />
-          ))}
-        </> */}
 
       <Stack spacing={2}>
       <Typography variant='h4' paddingTop={5}>Completed Courses</Typography>
@@ -220,4 +210,3 @@ export default function DashboardTeacher() {
     </Page >
   );
 }
-

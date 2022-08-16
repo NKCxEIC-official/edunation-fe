@@ -32,7 +32,7 @@ import CheckAssignments from './pages/CheckAssignments';
 import Community from './pages/Community';
 import Profile from './pages/Profile'
 import Settings from './pages/Settings';
-
+import CourseMaterialDetails from './pages/CourseMaterialDetails';
 
 // ----------------------------------------------------------------------
 
@@ -74,6 +74,7 @@ export default function Router() {
         { path: 'student/classroom', element: <Classroom /> },
         { path: 'student/community', element: <Community /> },
         { path: 'student/settings', element: <Settings /> },
+        { path: 'student/classroom/:id/:topic/details', element: <CourseMaterialDetails /> },
       ],
     },
     {
