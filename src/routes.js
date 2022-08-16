@@ -30,6 +30,7 @@ import NgoDashboard from './pages/ngo/NgoDashboard';
 import CourseDetails from './pages/CourseDetails';
 import Community from './pages/Community';
 import StudentProfile from './pages/student/StudentProfile'
+import ChatApp from './components/ChatApp';
 
 // ----------------------------------------------------------------------
 
@@ -64,6 +65,7 @@ export default function Router() {
         { path: 'student/classroom', element: <Classroom /> },
         { path: 'student/classroom/:id', element: <CourseDetails /> },
         { path: 'student/community', element: <Community /> },
+        { path: 'student/messages', element: <ChatApp />}
       ],
     },
     {

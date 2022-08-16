@@ -13,7 +13,7 @@ import Logo from '../../components/Logo';
 import Scrollbar from '../../components/Scrollbar';
 import NavSection from '../../components/NavSection';
 //
-import {studentNavConfig} from './NavConfig';
+import { StudentNavConfig } from '../../layouts/dashboard/NavConfig';
 
 // ----------------------------------------------------------------------
 
@@ -80,7 +80,7 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
         </Link>
       </Box>
 
-      <NavSection navConfig={studentNavConfig} />
+      <NavSection navConfig={StudentNavConfig} />
 
       <Box sx={{ flexGrow: 1 }} />
 
