@@ -75,20 +75,22 @@ const ChatApp = () => {
         }
 
         if (studentsArr.length > 0) {
-          let studentContacts = [];
+          const studentContacts = [];
           studentsArr.forEach((studentId) => {
             const studentDocRef = doc(db, 'users', studentId);
             getDoc(studentDocRef)
               .then((res) => {
                 if (res.exists()) {
-                  studentContacts.push(res.data());
+                  const studentData = res.data();
+                  studentContacts.push(studentData);
                 }
               })
               .catch((err) => {
                 console.warn('Caught error: ', err);
               });
+          }, () => {
+            setContacts(studentContacts);
           });
-          setContacts(studentContacts);
         } else setContacts([]);
       })
       .catch((err) => {
@@ -115,12 +117,12 @@ const ChatApp = () => {
 
   return (
     <Grid container className="chatApp" spacing={1}>
-      <Grid item xs={12} sm={12} md={4} lg={3} xl={3} className="chatApp_contactsSection">
+      {contacts?.length > 0 && <Grid item xs={12} sm={12} md={4} lg={3} xl={3} className="chatApp_contactsSection">
         <Typography variant="h6">Chats</Typography>
         <ShowContacts contacts={contacts} selectContact={setSelectedContact} activeContact={selectedContact} />
-      </Grid>
-      <Grid item xs={12} sm={12} md={8} lg={9} xl={9} className="chatApp_chatsSection">
-        {selectedContact ? <ShowChat messages={messages} selectedContact={selectedContact} /> : <NoMessages />}
+      </Grid>}
+      <Grid item xs={12} sm={12} md={8} lg xl className="chatApp_chatsSection">
+        {selectedContact ? <ShowChat messages={messages} selectedContact={selectedContact} /> : <NoMessages isContactsAvailable={contacts?.length > 0}/>}
       </Grid>
     </Grid>
   );

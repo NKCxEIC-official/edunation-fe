@@ -54,6 +54,11 @@ const TeacherNavConfig = [
     path: 'dashboard/teacher/profile',
     icon: getIcon('eva:person-add-fill'),
   },
+  {
+    title: 'messages',
+    path: '/dashboard/teacher/messages',
+    icon: getIcon('eva:lock-fill'),
+  },
   // {
   //   title: 'Not found',
   //   path: '/404',
