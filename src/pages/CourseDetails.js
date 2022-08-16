@@ -4,7 +4,7 @@ import { useTheme } from '@mui/material/styles';
 import { Grid, Container, Typography, Stack, Button, CardContent, Card } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
 // components../components/LargeGrid
-import LargeGrid from '../components/LargeGrid';
+import VidyaDaan from '../components/VidyaDaan';
 import SmallGrid from '../components/SmallGrid';
 import Page from '../components/Page';
 import Iconify from '../components/Iconify';
@@ -55,10 +55,10 @@ export default function CourseDetails() {
 
         <Grid container spacing={4}>
           <Grid to="/dashboard/student/classroom/123456/assingment/1233" component={RouterLink} item xs={12} sm={6} md={3} lg={4}>
-            <LargeGrid subheader="Arrow Function" count={26} icon={'vscode-icons:file-type-reactjs'} />
+            <VidyaDaan subheader="Arrow Function" count={26} icon={'vscode-icons:file-type-reactjs'} />
           </Grid>
           <Grid item xs={12} sm={6} md={3} lg={4}>
-            <LargeGrid subheader="UseEffect" count={51} icon={'logos:flutter'} />
+            <VidyaDaan subheader="UseEffect" count={51} icon={'logos:flutter'} />
           </Grid>
         </Grid>
 
@@ -68,10 +68,10 @@ export default function CourseDetails() {
 
         <Grid container spacing={4}>
             <Grid item xs={12} sm={6} md={3} lg={4} to="/dashboard/student/classroom/:id/god/details" component={RouterLink}>
-              <LargeGrid subheader="UseState" count={22} icon={'logos:tensorflow'} />
+              <VidyaDaan subheader="UseState" count={22} icon={'logos:tensorflow'} />
             </Grid>
             <Grid item xs={12} sm={6} md={3} lg={4} to="/dashboard/student/classroom/:id/dog/details" component={RouterLink}>
-              <LargeGrid subheader="Hooks" count={11} icon={'logos:webhooks'} />
+              <VidyaDaan subheader="Hooks" count={11} icon={'logos:webhooks'} />
             </Grid>
         </Grid>
 
@@ -85,7 +85,7 @@ export default function CourseDetails() {
               window.open('https://diksha.gov.in/ncert/play/collection/do_31339576668973465612958?contentType=TextBook', '_blank');
             }
             } target="_blank">
-            <LargeGrid subheader="NCERT" smallheader="Academic(Class 1)" icon={'akar-icons:link-chain'} />
+            <VidyaDaan subheader="NCERT" smallheader="Academic(Class 1)" icon={'akar-icons:link-chain'} />
             </Button>
             </Grid>
 
@@ -94,7 +94,7 @@ export default function CourseDetails() {
               window.open('https://diksha.gov.in/ncert/play/collection/do_31307360981920972812163?contentType=TextBook', '_blank');
             }
             } target="_blank">
-            <LargeGrid subheader="NCERT-English" smallheader="Marigold(Class 1)" icon={'akar-icons:link-chain'} />
+            <VidyaDaan subheader="NCERT-English" smallheader="Marigold(Class 1)" icon={'akar-icons:link-chain'} />
             </Button>
             </Grid>
 
@@ -103,7 +103,7 @@ export default function CourseDetails() {
               window.open('https://diksha.gov.in/ncert/play/collection/do_31307361357388185614238?contentType=TextBook', '_blank');
             }
             } target="_blank">
-            <LargeGrid subheader="NCERT- Hindi" smallheader="Rimjhim (Class 1)" icon={'akar-icons:link-chain'} />
+            <VidyaDaan subheader="NCERT- Hindi" smallheader="Rimjhim (Class 1)" icon={'akar-icons:link-chain'} />
             </Button>
           </Grid>
         </Grid>

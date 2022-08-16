@@ -3,7 +3,7 @@ import React from 'react'
 import Iconify from './Iconify'
 
 
-function LargeGrid({title, subheader, count, color, icon, smallheader}) {
+function Vidyadaan({title, subheader, count, color, icon, smallheader}) {
   return (
     <Card sx={{px:2,width:"100%"}}>
        
@@ -25,4 +25,4 @@ function LargeGrid({title, subheader, count, color, icon, smallheader}) {
   )
 }
 
-export default LargeGrid
+export default Vidyadaan
