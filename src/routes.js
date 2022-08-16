@@ -60,6 +60,7 @@ export default function Router() {
         { path: 'teacher/myCourses', element: <MyCourses /> },
         { path: 'teacher/reports', element: <Reports /> },
         { path: 'teacher/profile', element: <Profile /> },
+        { path: 'teacher/messages', element: <ChatApp /> },
         
 
         // Student:
