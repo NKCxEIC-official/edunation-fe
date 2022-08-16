@@ -33,7 +33,7 @@ import CheckAssignments from './pages/CheckAssignments';
 import Community from './pages/Community';
 import Profile from './pages/Profile';
 import CourseMaterialDetails from './pages/CourseMaterialDetails';
-import ChatApp from '../src/components/ChatApp';
+import ChatApp from './components/ChatApp';
 
 // ----------------------------------------------------------------------
 
