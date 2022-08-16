@@ -12,7 +12,7 @@ import { AppOrderTimeline } from '../../sections/@dashboard/app';
 import useResponsive from '../../hooks/useResponsive';
 // components
 import Scrollbar from '../../components/Scrollbar';
-import events from '../../_mock/event';
+import {events} from '../../_mock/event';
 
 // ----------------------------------------------------------------------
 
@@ -50,7 +50,7 @@ export default function TimelineSidebar({ isOpenSidebar, onCloseSidebar }) {
 
   const renderContent = (
     <Scrollbar>
-      <Grid sx={{mt: 15}} item xs={12} md={6} lg={4}>
+      <Grid sx={{mt: 12}} item xs={12} md={6} lg={4}>
         <Stack spacing={3}>
           <DatePicker onChange={onChange} />
           <AppOrderTimeline title="Event Timeline" list={events} style={{marginRight:"20px"}} />
