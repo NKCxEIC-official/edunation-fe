@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useSelector } from 'react-redux';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
@@ -14,6 +15,8 @@ import CustomModal from '../components/CustomModal';
 export default function Community() {
     const theme = useTheme();
 
+    const user = useSelector(state => state.auth.user)
+
     return (
         <Container maxWidth="s">
 
@@ -21,7 +24,7 @@ export default function Community() {
                 <Typography variant="h4" sx={{ mb: 3 }}>
                     Welcome to Community!
                 </Typography>
-                <CustomModal btnText={'Post A Query'} sx={{ mb: 4 }} component={<PostAQuery />} icon="eva:plus-fill" />
+                {!user?.isTeacher && <CustomModal btnText={'Post A Query'} sx={{ mb: 4 }} component={<PostAQuery />} icon="eva:plus-fill" />}
             </Stack>
 
             <Grid spacing={3} justifyContent="center">

@@ -1,6 +1,7 @@
 /* eslint-disable */
 
 import {
+  GET_DATA_ACTION,
   HIDE_MODAL_ACTION,
   LOADING_TOGGLE_ACTION,
   LOGIN_CONFIRMED_ACTION,
@@ -16,6 +17,7 @@ const initialState = {
   successMessage: '',
   showLoading: false,
   hideModal: false,
+  data: {},
 };
 
 export function AuthReducer(state = initialState, action) {
@@ -67,6 +69,13 @@ export function AuthReducer(state = initialState, action) {
     return {
       ...state,
       hideModal: action.payload.status,
+    };
+  }
+
+  if (action.type === GET_DATA_ACTION) {
+    return {
+      ...state,
+      data: { ...state.data, [action.payload.nodeName]: action.payload.data },
     };
   }
   return state;

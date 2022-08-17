@@ -1,4 +1,5 @@
 import { faker } from '@faker-js/faker';
+import { useSelector } from 'react-redux';
 // @mui
 import { useTheme } from '@mui/material/styles';
 import { Grid, Container, Typography, Stack, Button, CardContent, Card } from '@mui/material';
@@ -15,6 +16,8 @@ import VidyaDaan from '../components/VidyaDaan';
 
 export default function CourseDetails() {
   const theme = useTheme();
+
+  const user = useSelector(state => state.auth.user)
 
   return (
     <Page title="Dashboard">
@@ -55,7 +58,7 @@ export default function CourseDetails() {
         </Typography>
 
         <Grid container spacing={4}>
-          <Grid to="/dashboard/student/classroom/123456/assingment/1233" component={RouterLink} item xs={12} sm={6} md={3} lg={4}>
+          <Grid to={`/dashboard/${user?.isTeacher ? 'teacher' : 'student'}/classroom/123456/assingment/1233`} component={RouterLink} item xs={12} sm={6} md={3} lg={4}>
             <CourseGrid subheader="Arrow Function" count={26} icon={'vscode-icons:file-type-reactjs'} />
           </Grid>
           <Grid item xs={12} sm={6} md={3} lg={4}>
@@ -68,10 +71,10 @@ export default function CourseDetails() {
         </Typography>
 
         <Grid container spacing={4}>
-            <Grid item xs={12} sm={6} md={3} lg={4} to="/dashboard/student/classroom/:id/god/details" component={RouterLink}>
+            <Grid item xs={12} sm={6} md={3} lg={4} to={`/dashboard/${user?.isTeacher ? 'teacher' : 'student'}/classroom/:id/god/details`} component={RouterLink}>
               <CourseGrid subheader="UseState" count={22} icon={'logos:tensorflow'} />
             </Grid>
-            <Grid item xs={12} sm={6} md={3} lg={4} to="/dashboard/student/classroom/:id/dog/details" component={RouterLink}>
+            <Grid item xs={12} sm={6} md={3} lg={4} to={`/dashboard/${user?.isTeacher ? 'teacher' : 'student'}/classroom/:id/dog/details`} component={RouterLink}>
               <CourseGrid subheader="Hooks" count={11} icon={'logos:webhooks'} />
             </Grid>
         </Grid>

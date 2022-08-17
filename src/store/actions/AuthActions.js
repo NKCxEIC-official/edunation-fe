@@ -2,13 +2,16 @@ import {
   addUser,
   addUserAnonymous,
   deleteDocument,
+  getDatafromDB,
   getUser,
   getUserAnonymous,
   login,
   signUp,
   updateAnonymousUserList,
+  updateDatainDB,
 } from '../../services/AuthService';
 import {
+  GET_DATA_ACTION,
   HIDE_MODAL_ACTION,
   LOADING_TOGGLE_ACTION,
   LOGIN_CONFIRMED_ACTION,
@@ -265,5 +268,37 @@ export function HideModalAction(status) {
   return {
     type: HIDE_MODAL_ACTION,
     payload: { status },
+  };
+}
+
+export function getDatafromDBAction(path, collection, nodeName) {
+  return (dispatch) => {
+    getDatafromDB(path, collection).then((data) => {
+      if (collection) {
+        let collectionsObj = {};
+        data.forEach((doc) => {
+          collectionsObj = {
+            ...collectionsObj,
+            [doc.id]: doc.data(),
+          };
+        });
+        dispatch(getDatafromDBActionConfirmed(collectionsObj, nodeName));
+      } else {
+        dispatch(getDatafromDBActionConfirmed(data.data(), nodeName));
+      }
+    });
+  };
+}
+
+export function getDatafromDBActionConfirmed(data, nodeName) {
+  return {
+    type: GET_DATA_ACTION,
+    payload: { data, nodeName },
+  };
+}
+
+export function updateDatainDBAction(path, payload) {
+  return (dispatch) => {
+    updateDatainDB(path, payload);
   };
 }
