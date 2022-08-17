@@ -9,9 +9,10 @@ import CustomModal from '../../components/CustomModal';
 import SmallGrid from '../../components/SmallGrid';
 import Page from '../../components/Page';
 import Iconify from '../../components/Iconify';
+import CourseGrid from '../../components/CourseGrid';
 // sections
 import CreateAClass from './CreateAClass';
-import CourseGrid from '../../components/CourseGrid';
+
 
 
 import {
@@ -53,7 +54,7 @@ export default function DashboardTeacher() {
         </Stack>
 
 
-        <Grid container spacing={3} to="class/1234" component={RouterLink} style={{ textDecoration: 'none' }}>
+        <Grid container spacing={3} style={{ textDecoration: 'none' }}>
 
           <Grid item xs={12} sm={12} md={3}>
             <CourseGrid title="Courses in Progress" color="primary" alighn="center" subheader="Courses" icon="logos:discourse-icon" count="10" />

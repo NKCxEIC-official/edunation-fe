@@ -17,7 +17,7 @@ import DashboardTeacher from './pages/teacher/DashboardTeacher';
 import TeacherDashboardLayout from './layouts/teacher';
 import MyCourses from './pages/teacher/MyCourses';
 import Reports from './pages/teacher/Reports';
-import Settings from './pages/teacher/Settings';
+import Settings from './pages/Settings';
 import User from './pages/User';
 import StudentDashboardApp from './pages/student/DashboardApp';
 import Classroom from './pages/student/Classroom';
@@ -31,9 +31,10 @@ import AssignmentDetails from './pages/AssignmentDetails';
 import CheckAssignments from './pages/CheckAssignments';
 
 import Community from './pages/Community';
-import Profile from './pages/Profile';
+import Profile from './pages/Profile'
 import CourseMaterialDetails from './pages/CourseMaterialDetails';
 import ChatApp from './components/ChatApp';
+import CourseGrid from './components/CourseGrid';
 
 // ----------------------------------------------------------------------
 
@@ -60,6 +61,7 @@ export default function Router() {
         { path: 'teacher/myCourses', element: <MyCourses /> },
         { path: 'teacher/reports', element: <Reports /> },
         { path: 'teacher/profile', element: <Profile /> },
+        { path: 'teacher/settings', element: <Settings /> },
         { path: 'teacher/messages', element: <ChatApp /> },
         
 
@@ -74,6 +76,7 @@ export default function Router() {
         { path: 'student/', element: <StudentDashboardApp /> },
         { path: 'student/classroom', element: <Classroom /> },
         { path: 'student/community', element: <Community /> },
+        { path: 'student/settings', element: <Settings /> },
         { path: 'student/classroom/:id/:topic/details', element: <CourseMaterialDetails /> },
         { path: 'student/messages', element: <ChatApp />}
       ],

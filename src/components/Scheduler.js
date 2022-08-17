@@ -6,7 +6,6 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Typography from '@mui/material/FormControl';
 import { styled } from '@mui/material/styles';
 import { ViewState, EditingState, IntegratedEditing } from '@devexpress/dx-react-scheduler';
-
 import {
   Scheduler,
   WeekView,

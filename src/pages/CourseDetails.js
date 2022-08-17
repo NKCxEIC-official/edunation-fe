@@ -8,6 +8,7 @@ import CourseGrid from '../components/CourseGrid';
 import SmallGrid from '../components/SmallGrid';
 import Page from '../components/Page';
 import Iconify from '../components/Iconify';
+import VidyaDaan from '../components/VidyaDaan';
 // sections
 
 // ----------------------------------------------------------------------
@@ -73,6 +74,39 @@ export default function CourseDetails() {
             <Grid item xs={12} sm={6} md={3} lg={4} to="/dashboard/student/classroom/:id/dog/details" component={RouterLink}>
               <CourseGrid subheader="Hooks" count={11} icon={'logos:webhooks'} />
             </Grid>
+        </Grid>
+
+        <Typography variant="h4" sx={{ mb: 3, mt: 3 }}>
+         Vidya Daan
+        </Typography>
+
+        <Grid container spacing={4}>
+          <Grid item xs={12} sm={6} md={3} lg={4}>
+            <Button sx={{ width:"100%"}} onClick={()=>{
+              window.open('https://diksha.gov.in/ncert/play/collection/do_31339576668973465612958?contentType=TextBook', '_blank');
+            }
+            } target="_blank">
+            <VidyaDaan subheader="NCERT" smallheader="Academic(Class 1)" icon={'akar-icons:link-chain'} />
+            </Button>
+           </Grid>
+
+            <Grid item xs={12} sm={6} md={3} lg={4}>
+            <Button sx={{ width:"100%"}} onClick={()=>{
+              window.open('https://diksha.gov.in/ncert/play/collection/do_31307360981920972812163?contentType=TextBook', '_blank');
+            }
+            } target="_blank">
+            <VidyaDaan subheader="NCERT-English" smallheader="Marigold(Class 1)" icon={'akar-icons:link-chain'} />
+            </Button>
+            </Grid>
+
+            <Grid item xs={12} sm={6} md={3} lg={4}>
+            <Button sx={{ width:"100%"}} onClick={()=>{
+              window.open('https://diksha.gov.in/ncert/play/collection/do_31307361357388185614238?contentType=TextBook', '_blank');
+            }
+            } target="_blank">
+            <VidyaDaan subheader="NCERT- Hindi" smallheader="Rimjhim (Class 1)" icon={'akar-icons:link-chain'} />
+            </Button>
+          </Grid>
         </Grid>
 
         <Grid item lg={12} sx={{ mt: 3 }}>

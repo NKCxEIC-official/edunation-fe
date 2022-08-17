@@ -44,7 +44,12 @@ function Profile() {
             </div>
           </div>
           <div>
-            <Button color="primary" variant="contained" size="medium">
+            <Button to='#' 
+            onClick={(e) => {
+                window.location.href = "mailto:no-reply@example.com";
+                e.preventDefault();
+            }}  
+            className="profileBtn" variant="contained" size="medium">
               Contact Now
             </Button>
           </div>
