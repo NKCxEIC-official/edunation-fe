@@ -60,8 +60,8 @@ export default function DashboardTeacher() {
             <CourseGrid title="Courses in Progress" color="primary" alighn="center" subheader="Courses" icon="logos:discourse-icon" count="10" />
           </Grid>
 
-          <Grid item xs={12} sm={12} md={3} >
-            <CourseGrid title="QNA " color="green" subheader="QNA" count="34" icon="emojione:exclamation-question-mark" />
+          <Grid to="/dashboard/teacher/qna" component={RouterLink} item xs={12} sm={12} md={3} >
+            <CourseGrid title="QNA" color="green" subheader="QNA" count="34" icon="emojione:exclamation-question-mark" />
           </Grid>
 
           <Grid item xs={12} sm={12} md={3} >

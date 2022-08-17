@@ -12,12 +12,12 @@ import Login from './pages/Login';
 import NotFound from './pages/Page404';
 import Register from './pages/Register';
 import Schedule from './pages/teacher/Schedule';
-import QNA from './pages/teacher/QNA';
 import DashboardTeacher from './pages/teacher/DashboardTeacher';
 import TeacherDashboardLayout from './layouts/teacher';
 import MyCourses from './pages/teacher/MyCourses';
 import Reports from './pages/teacher/Reports';
 import Settings from './pages/Settings';
+import Profile from './pages/Profile';
 import User from './pages/User';
 import StudentDashboardApp from './pages/student/DashboardApp';
 import Classroom from './pages/student/Classroom';
@@ -31,7 +31,6 @@ import AssignmentDetails from './pages/AssignmentDetails';
 import CheckAssignments from './pages/CheckAssignments';
 
 import Community from './pages/Community';
-import Profile from './pages/Profile'
 import CourseMaterialDetails from './pages/CourseMaterialDetails';
 import ChatApp from './components/ChatApp';
 import CourseGrid from './components/CourseGrid';
