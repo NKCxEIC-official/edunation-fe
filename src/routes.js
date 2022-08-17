@@ -62,6 +62,7 @@ export default function Router() {
         { path: 'teacher/reports', element: <Reports /> },
         { path: 'teacher/profile', element: <Profile /> },
         { path: 'teacher/settings', element: <Settings /> },
+        { path: 'teacher/messages', element: <ChatApp /> },
         
 
         // Student:

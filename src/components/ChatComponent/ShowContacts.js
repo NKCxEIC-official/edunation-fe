@@ -29,7 +29,7 @@ const ShowContacts = ({ contacts = [], selectContact, activeContact }) => {
   };
   return (
     <div className="chatApp_contactsSection_contacts">
-      {contacts.length > 0 ? mapContacts(contacts) : <NoContacts />}
+      {mapContacts(contacts)}
     </div>
   );
 };

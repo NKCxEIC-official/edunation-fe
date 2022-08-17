@@ -13,7 +13,7 @@ import { onValue, ref } from 'firebase/database';
 const ChatApp = () => {
   const [contacts, setContacts] = useState([]);
   const [messages, setMessages] = useState([]);
-  const [currentRole, setCurrentRole] = useState('student');
+  const [currentRole, setCurrentRole] = useState(null);
   const [selectedContact, setSelectedContact] = useState(null);
   const user = useSelector((state) => state.auth.user);
 
@@ -21,7 +21,7 @@ const ChatApp = () => {
     if (user) {
       user.role === 1 && user.isTeacher === false
         ? setCurrentRole('student')
-        : user.role === 1 && user.isTeacher
+        : user.role === 1 && user.isTeacher === true
         ? setCurrentRole('teacher')
         : setCurrentRole('ngo');
     }
@@ -38,17 +38,17 @@ const ChatApp = () => {
   useEffect(() => {
     if (selectedContact) {
       let STUDENT_UID, TEACHER_UID;
-      if (user.role === 1 && !user.isTeacher) {
+      if (currentRole === 'student') {
         STUDENT_UID = user.uid;
         TEACHER_UID = selectedContact.uid;
-      } else {
+      } else if (currentRole === 'teacher') {
         STUDENT_UID = selectedContact.uid;
         TEACHER_UID = user.uid;
       }
 
       fetchChatMessages(STUDENT_UID, TEACHER_UID);
     }
-  }, [selectedContact]);
+  }, [selectedContact, currentRole]);
 
   const fetchTeachers = () => {
     const usersRef = collection(db, 'users');
@@ -75,20 +75,23 @@ const ChatApp = () => {
         }
 
         if (studentsArr.length > 0) {
-          let studentContacts = [];
-          studentsArr.forEach((studentId) => {
+          const studentContacts = [];
+          studentsArr.forEach((studentId,idx) => {
             const studentDocRef = doc(db, 'users', studentId);
             getDoc(studentDocRef)
               .then((res) => {
                 if (res.exists()) {
-                  studentContacts.push(res.data());
+                  const studentData = res.data();
+                  studentContacts.push(studentData);
+                  if (idx === studentsArr?.length - 1) {
+                    setContacts(studentContacts)
+                  }
                 }
               })
               .catch((err) => {
                 console.warn('Caught error: ', err);
               });
           });
-          setContacts(studentContacts);
         } else setContacts([]);
       })
       .catch((err) => {
@@ -96,7 +99,6 @@ const ChatApp = () => {
       });
   };
 
-  console.log(messages);
 
   const fetchChatMessages = (studentId, teacherId) => {
     const documentId = `chatApplication/groups/${studentId}-${teacherId}`;
@@ -115,12 +117,12 @@ const ChatApp = () => {
 
   return (
     <Grid container className="chatApp" spacing={1}>
-      <Grid item xs={12} sm={12} md={4} lg={3} xl={3} className="chatApp_contactsSection">
+      {contacts?.length > 0 && <Grid item xs={12} sm={12} md={4} lg={3} xl={3} className="chatApp_contactsSection">
         <Typography variant="h6">Chats</Typography>
         <ShowContacts contacts={contacts} selectContact={setSelectedContact} activeContact={selectedContact} />
-      </Grid>
-      <Grid item xs={12} sm={12} md={8} lg={9} xl={9} className="chatApp_chatsSection">
-        {selectedContact ? <ShowChat messages={messages} selectedContact={selectedContact} /> : <NoMessages />}
+      </Grid>}
+      <Grid item xs={12} sm={12} md={8} lg xl className="chatApp_chatsSection">
+        {selectedContact ? <ShowChat messages={messages} selectedContact={selectedContact} /> : <NoMessages isContactsAvailable={contacts?.length > 0}/>}
       </Grid>
     </Grid>
   );
