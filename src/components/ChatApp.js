@@ -7,7 +7,7 @@ import ShowChat from './ChatComponent/ShowChat';
 import ShowContacts from './ChatComponent/ShowContacts';
 import './ChatComponent/ChatComponent.css';
 import { db, realtimeDb } from 'src/utils/firebaseConfig';
-import { collection, doc, getDoc, getDocs, orderBy, query, where } from 'firebase/firestore';
+import { collection, doc, getDoc, getDocs, onSnapshot, orderBy, query, where } from 'firebase/firestore';
 import { onValue, ref } from 'firebase/database';
 
 const ChatApp = () => {
@@ -64,8 +64,8 @@ const ChatApp = () => {
 
   const fetchStudents = () => {
     const currentUserRef = doc(db, 'users', user.uid);
-    getDoc(currentUserRef)
-      .then((querySnapshot) => {
+    try {
+      return onSnapshot(currentUserRef, (querySnapshot) => {
         let studentsArr = [];
         if (querySnapshot.exists()) {
           const data = querySnapshot.data();
@@ -76,7 +76,7 @@ const ChatApp = () => {
 
         if (studentsArr.length > 0) {
           const studentContacts = [];
-          studentsArr.forEach((studentId,idx) => {
+          studentsArr.forEach((studentId, idx) => {
             const studentDocRef = doc(db, 'users', studentId);
             getDoc(studentDocRef)
               .then((res) => {
@@ -84,7 +84,7 @@ const ChatApp = () => {
                   const studentData = res.data();
                   studentContacts.push(studentData);
                   if (idx === studentsArr?.length - 1) {
-                    setContacts(studentContacts)
+                    setContacts(studentContacts);
                   }
                 }
               })
@@ -93,12 +93,11 @@ const ChatApp = () => {
               });
           });
         } else setContacts([]);
-      })
-      .catch((err) => {
-        console.warn('Caught error: ', err);
       });
+    } catch (err) {
+      console.warn('Caught error: ', err);
+    }
   };
-
 
   const fetchChatMessages = (studentId, teacherId) => {
     const documentId = `chatApplication/groups/${studentId}-${teacherId}`;
@@ -117,12 +116,18 @@ const ChatApp = () => {
 
   return (
     <Grid container className="chatApp" spacing={1}>
-      {contacts?.length > 0 && <Grid item xs={12} sm={12} md={4} lg={3} xl={3} className="chatApp_contactsSection">
-        <Typography variant="h6">Chats</Typography>
-        <ShowContacts contacts={contacts} selectContact={setSelectedContact} activeContact={selectedContact} />
-      </Grid>}
+      {contacts?.length > 0 && (
+        <Grid item xs={12} sm={12} md={4} lg={3} xl={3} className="chatApp_contactsSection">
+          <Typography variant="h6">Chats</Typography>
+          <ShowContacts contacts={contacts} selectContact={setSelectedContact} activeContact={selectedContact} />
+        </Grid>
+      )}
       <Grid item xs={12} sm={12} md={8} lg xl className="chatApp_chatsSection">
-        {selectedContact ? <ShowChat messages={messages} selectedContact={selectedContact} /> : <NoMessages isContactsAvailable={contacts?.length > 0}/>}
+        {selectedContact ? (
+          <ShowChat messages={messages} selectedContact={selectedContact} />
+        ) : (
+          <NoMessages isContactsAvailable={contacts?.length > 0} />
+        )}
       </Grid>
     </Grid>
   );
