@@ -27,6 +27,15 @@ export default function Community() {
             <Grid spacing={3} justifyContent="center">
                 <Grid item xs={12} md={6} lg={8}>
                     <CommunityCard />
+                    <CommunityCard />
+                    <CommunityCard />
+                    <CommunityCard />
+                    <CommunityCard />
+                    <CommunityCard />
+                    <CommunityCard />
+                    <CommunityCard />
+                    <CommunityCard />
+                    <CommunityCard />
                 </Grid>
             </Grid>
         </Container>

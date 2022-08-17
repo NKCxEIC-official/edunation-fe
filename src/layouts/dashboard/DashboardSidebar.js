@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
-import { useEffect } from 'react';
-import { Link as RouterLink, useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link as RouterLink, useLocation, useNavigate } from 'react-router-dom';
+
 // material
 import { styled } from '@mui/material/styles';
 import { Box, Link, Button, Drawer, Typography, Avatar, Stack } from '@mui/material';
@@ -43,10 +44,10 @@ DashboardSidebar.propTypes = {
 
 // eslint-disable-next-line consistent-return
 const getNavByRole = () => {
-  // const role = 1;
-  // const isTeacher = false;
-  const role = localStorage.getItem('role');
-  const isTeacher = localStorage.getItem('isTeacher');
+  let role = 0;
+  let isTeacher = false;
+  role = localStorage.getItem('role');
+  isTeacher = localStorage.getItem('isTeacher');
   if (role === '0') {
     return NGONavConfig;
   }
@@ -58,7 +59,65 @@ const getNavByRole = () => {
   }
 };
 
+// eslint-disable-next-line consistent-return
+const utilButton = (navigate) => {
+  const role = localStorage.getItem('role');
+  const isTeacher = localStorage.getItem('isTeacher');
+  if (role === '0') {
+    return (
+      <Button
+        target="_blank"
+        variant="contained"
+        color="danger"
+        onClick={
+          // navigate to be a :
+          () => {}
+        }
+      >
+        Add Red Spots
+      </Button>
+    );
+  }
+  if (role === '1' && isTeacher === 'true') {
+    return (
+      <Button
+        target="_blank"
+        variant="contained"
+        color="primary"
+        onClick={
+          // navigate to be a :
+          () => {
+            localStorage.setItem('viewAs', 'false');
+            navigate('/dashboard/student/app', { replace: true });
+          }
+        }
+      >
+        Student Dashboard
+      </Button>
+    );
+  }
+  if (role === '1' && isTeacher === 'false') {
+    return (
+      <Button
+        target="_blank"
+        variant="contained"
+        color="warning"
+        onClick={
+          // navigate to be a :
+          () => {
+            localStorage.setItem('viewAs', 'true');
+            navigate('/dashboard/teacher/app', { replace: true });
+          }
+        }
+      >
+        Be A Teacher
+      </Button>
+    );
+  }
+};
 export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
+  const navigate = useNavigate();
+
   const { pathname } = useLocation();
 
   const isDesktop = useResponsive('up', 'lg');
@@ -117,10 +176,7 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
               It's always better to learn together
             </Typography>
           </Box>
-
-          <Button to={'/dashboard/ngo/redSpot'} component={RouterLink} variant="contained" color="danger">
-            Add Red Spots
-          </Button>
+          {utilButton(navigate)}
         </Stack>
       </Box>
     </Scrollbar>

@@ -9,9 +9,10 @@ import CustomModal from '../../components/CustomModal';
 import SmallGrid from '../../components/SmallGrid';
 import Page from '../../components/Page';
 import Iconify from '../../components/Iconify';
+import CourseGrid from '../../components/CourseGrid';
 // sections
 import CreateAClass from './CreateAClass';
-import LargeGrid from '../../components/LargeGrid';
+
 
 
 import {
@@ -28,7 +29,7 @@ import {
 import RectangleGrid from '../../components/RectangleGrid';
 import { BlogPostCard, BlogPostsSort, BlogPostsSearch } from '../../sections/@dashboard/blog';
 // mock
-import POSTS from '../../_mock/blog';
+import {posts} from '../../_mock/blog';
 
 
 
@@ -53,22 +54,22 @@ export default function DashboardTeacher() {
         </Stack>
 
 
-        <Grid container spacing={3} to="class/1234" component={RouterLink} style={{ textDecoration: 'none' }}>
+        <Grid container spacing={3} style={{ textDecoration: 'none' }}>
 
           <Grid item xs={12} sm={12} md={3}>
-            <LargeGrid title="Courses in Progress" color="primary" alighn="center" subheader="Courses" icon="logos:discourse-icon" count="10" />
+            <CourseGrid title="Courses in Progress" color="primary" alighn="center" subheader="Courses" icon="logos:discourse-icon" count="10" />
+          </Grid>
+
+          <Grid to="/dashboard/teacher/qna" component={RouterLink} item xs={12} sm={12} md={3} >
+            <CourseGrid title="QNA" color="green" subheader="QNA" count="34" icon="emojione:exclamation-question-mark" />
           </Grid>
 
           <Grid item xs={12} sm={12} md={3} >
-            <LargeGrid title="QNA " color="green" subheader="QNA" count="34" icon="emojione:exclamation-question-mark" />
-          </Grid>
-
-          <Grid item xs={12} sm={12} md={3} >
-            <LargeGrid title="Request" subheader="Request" count="23" icon="carbon:request-quote" />
+            <CourseGrid title="Request" subheader="Request" count="23" icon="carbon:request-quote" />
           </Grid>
 
           <Grid item xs={12} sm={12} md={3} alignItems="center">
-            <LargeGrid title="Certificate" color="primary" subheader="Certificate" count="18" icon="icon-park:certificate" />
+            <CourseGrid title="Certificate" color="primary" subheader="Certificate" count="18" icon="icon-park:certificate" />
           </Grid>
 
         </Grid>
@@ -114,16 +115,6 @@ export default function DashboardTeacher() {
           </Grid>
 
         </Stack>
-
-        {/* Completed Courses */}
-
-
-        {/* <Box paddingTop={5} paddingLeft={3}>Completed Courses</Box>
-        <Grid container spacing={3} paddingTop={2}>
-          {PGridOSTS.map((post, index) => (
-            <BlogPostCard key={post.id} post={post} index={index} />
-          ))}
-        </> */}
 
       <Stack spacing={2}>
       <Typography variant='h4' paddingTop={5}>Completed Courses</Typography>
@@ -220,4 +211,3 @@ export default function DashboardTeacher() {
     </Page >
   );
 }
-
