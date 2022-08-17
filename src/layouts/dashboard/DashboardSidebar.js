@@ -47,16 +47,16 @@ const getNavByRole = () => {
   // const isTeacher = false;
   const role = localStorage.getItem('role');
   const isTeacher = localStorage.getItem('isTeacher');
-  if (role === "0") {
+  if (role === '0') {
     return NGONavConfig;
   }
-  if (role === "1" && isTeacher === 'true') {
+  if (role === '1' && isTeacher === 'true') {
     return TeacherNavConfig;
   }
-  if (role === "1" && isTeacher === 'false') {
+  if (role === '1' && isTeacher === 'false') {
     return StudentNavConfig;
   }
-}
+};
 
 export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
   const { pathname } = useLocation();
@@ -97,7 +97,7 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
         </Link>
       </Box>
 
-      <NavSection navConfig={getNavByRole()}/>
+      <NavSection navConfig={getNavByRole()} />
 
       <Box sx={{ flexGrow: 1 }} />
 
@@ -118,12 +118,7 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
             </Typography>
           </Box>
 
-          <Button
-            href="https://material-ui.com/store/items/minimal-dashboard/"
-            target="_blank"
-            variant="contained"
-            color="danger"
-          >
+          <Button to={'/dashboard/ngo/redSpot'} component={RouterLink} variant="contained" color="danger">
             Add Red Spots
           </Button>
         </Stack>

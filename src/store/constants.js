@@ -11,3 +11,5 @@ export const LOGIN_FAILED_ACTION = '[login action] failed login';
 export const LOADING_TOGGLE_ACTION = '[Loading action] toggle loading';
 
 export const HIDE_MODAL_ACTION = '[HIDE_MODAL action] hide modal';
+
+export const GET_DATA_ACTION = '[GET_DATA action] confirmed get data';

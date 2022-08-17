@@ -4,6 +4,7 @@ import { useTheme } from '@mui/material/styles';
 import { Grid, Container, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { doc, getDoc } from 'firebase/firestore';
+import { useDispatch, useSelector } from 'react-redux';
 // components
 import Page from '../../components/Page';
 import Iconify from '../../components/Iconify';
@@ -14,37 +15,40 @@ import LargeActionButton from '../../sections/@ngo/LargeActionButton';
 import CustomModal from '../../components/CustomModal';
 import AddStudent from '../../sections/@ngo/forms/AddStudent';
 import AddTeacher from '../../sections/@ngo/forms/AddTeacher';
-import { db } from '../../utils/firebaseConfig';
-
+import { getDatafromDBAction, updateDatainDBAction } from '../../store/actions/AuthActions';
 
 // ----------------------------------------------------------------------
 
 export default function NgoDashboard() {
-  const theme = useTheme();
-  const [Ngodata,setNgodata]=useState({})
-  useEffect (()=> {
-    const docRef=doc(db, "users/irWv9KyOTepybjcP8UU8")
-    getDoc(docRef).then((docdata)=> {setNgodata(docdata.data())})
-  }, [])
+  const dispatch = useDispatch();
+
+  const user = useSelector((state) => state.auth.user);
+
+  useEffect(() => {
+    dispatch(getDatafromDBAction('subjects', true, 'subjects'));
+    dispatch(getDatafromDBAction('subjects/biEf7FD1ZqL3wolhG53E', false, 'subjectData'));
+    dispatch(updateDatainDBAction('subjects/biEf7FD1ZqL3wolhG53E', { name: 'Test' }));
+  }, []);
+
   return (
     <Page title="Dashboard">
       <Container maxWidth="xl">
         <Typography variant="h4" sx={{ mb: 5 }}>
-          Hi, Welcome back
+          Hi, Welcome back {user.firstName} {user.lastName}
         </Typography>
 
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6} md={3}>
-            <SmallGrid subheader="Student Count" count={Ngodata?.studentsCount} color="info" />
+            <SmallGrid subheader="Student Count" count={user.studentList.length} color="info" />
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
-            <SmallGrid subheader="Teacher Count" count={Ngodata?.teachersCount} color="success" />
+            <SmallGrid subheader="Teacher Count" count={user.Teacherlist.length} color="success" />
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
-            <SmallGrid subheader="Volunteer Count" count={Ngodata?.VolunteersCount} color="warning" />
+            <SmallGrid subheader="Volunteer Count" count={user.volunteerList.length} color="warning" />
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
-            <SmallGrid subheader="Red Spots" count={Ngodata?.redSpotsCount} color="error" />
+            <SmallGrid subheader="Red Spots" count={user.redSpotsList.length} color="error" />
           </Grid>
 
           <Grid item xs={12} sm={6} md={4}>
@@ -52,11 +56,22 @@ export default function NgoDashboard() {
           </Grid>
 
           <Grid item xs={12} sm={6} md={4}>
-            <CustomModal component={<AddTeacher />} btnText={"Create Teachers's profile"} icon="carbon:user-speaker" largeBtn />
+            <CustomModal
+              component={<AddTeacher />}
+              btnText={"Create Teachers's profile"}
+              icon="carbon:user-speaker"
+              largeBtn
+            />
           </Grid>
 
           <Grid item xs={12} sm={6} md={4}>
-            <CustomModal component={<AddStudent />} btnText="Create Student's Profile" icon="akar-icons:people-group" largeBtn color="info" />
+            <CustomModal
+              component={<AddStudent />}
+              btnText="Create Student's Profile"
+              icon="akar-icons:people-group"
+              largeBtn
+              color="info"
+            />
           </Grid>
 
           <Grid item xs={12} md={12} lg={12}>

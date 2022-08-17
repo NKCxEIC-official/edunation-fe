@@ -32,7 +32,8 @@ import AssignmentDetails from './pages/AssignmentDetails';
 import CheckAssignments from './pages/CheckAssignments';
 
 import Community from './pages/Community';
-import StudentProfile from './pages/student/StudentProfile'
+import StudentProfile from './pages/student/StudentProfile';
+import AddRedSpot from './pages/ngo/AddRedSpot';
 
 // ----------------------------------------------------------------------
 
@@ -52,6 +53,7 @@ export default function Router() {
         { path: 'ngo/students-list', element: <StudentsList /> },
         { path: 'ngo/red-spots', element: <RedSpots /> },
         { path: 'ngo/profile', element: <Profile /> },
+        { path: 'ngo/redSpot', element: <AddRedSpot /> },
 
         // Teacher:
         { path: 'teacher/app', element: <DashboardTeacher /> },
@@ -59,15 +61,14 @@ export default function Router() {
         { path: 'teacher/myCourses', element: <MyCourses /> },
         { path: 'teacher/reports', element: <Reports /> },
         { path: 'teacher/profile', element: <Profile /> },
-        
 
         // Student:
         { path: 'student/app', element: <StudentDashboardApp /> },
         { path: 'student/user', element: <User /> },
         { path: 'student/classrooms', element: <Classroom /> },
         { path: 'student/classroom/:id', element: <CourseDetails /> },
-        { path: 'student/classroom/:id/assingment/:assingmentId', element: <AssignmentDetails />},
-        { path: 'student/classroom/:id/assingment/:assingmentId/check', element: <CheckAssignments />},
+        { path: 'student/classroom/:id/assingment/:assingmentId', element: <AssignmentDetails /> },
+        { path: 'student/classroom/:id/assingment/:assingmentId/check', element: <CheckAssignments /> },
         { path: 'student/profile', element: <StudentProfile /> },
         { path: 'student/', element: <StudentDashboardApp /> },
         { path: 'student/classroom', element: <Classroom /> },
