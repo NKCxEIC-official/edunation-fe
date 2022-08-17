@@ -25,7 +25,7 @@ function CustomModal({ btnText, component, color, icon, largeBtn = false, width 
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: width ? { width } : 500,
-    bgcolor: 'background.paper',
+    bgcolor: '#fff',
     border: '2px solid #000',
     boxShadow: 24,
     p: 4,

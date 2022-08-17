@@ -23,7 +23,7 @@ const RootStyle = styled(AppBar)(({ theme }) => ({
   backgroundColor: alpha(theme.palette.background.default, 0.72),
   [theme.breakpoints.up('lg')]: {
     width: `calc(100% - ${DRAWER_WIDTH + 1}px)`,
-    zIndex:"9999"
+    zIndex: '99',
   },
 }));
 
@@ -42,7 +42,7 @@ DashboardNavbar.propTypes = {
   onOpenTimeLine: PropTypes.func,
 };
 
-export default function DashboardNavbar({ onOpenSidebar , onOpenTimeLine}) {
+export default function DashboardNavbar({ onOpenSidebar, onOpenTimeLine }) {
   return (
     <RootStyle>
       <ToolbarStyle>
