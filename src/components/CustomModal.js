@@ -1,12 +1,18 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Modal from '@mui/material/Modal';
 import { Box } from '@mui/system';
 import { Button, Typography } from '@mui/material';
+import { useDispatch, useSelector } from 'react-redux';
 import Iconify from './Iconify';
+
 import LargeActionButton from '../sections/@ngo/LargeActionButton';
+import { HideModalAction } from '../store/actions/AuthActions';
 
 function CustomModal({ btnText, component, color, icon, largeBtn = false, width = 0 }) {
   const [open, setOpen] = useState(false);
+
+  const hideModal = useSelector((state) => state.auth.hideModal);
+  const dispatch = useDispatch();
   const handleOpen = () => setOpen(true);
   const handleClose = (event, reason) => {
     if (reason && reason === 'backdropClick') return;
@@ -24,6 +30,13 @@ function CustomModal({ btnText, component, color, icon, largeBtn = false, width 
     boxShadow: 24,
     p: 4,
   };
+
+  useEffect(() => {
+    if (hideModal === true) {
+      setOpen(false);
+      dispatch(HideModalAction(false));
+    }
+  }, [hideModal]);
 
   return (
     <div>

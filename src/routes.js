@@ -1,17 +1,24 @@
-import { Navigate, useRoutes } from 'react-router-dom';
+import { Navigate, useNavigate, useRoutes } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+
 // layouts
 import DashboardLayout from './layouts/dashboard';
 import LogoOnlyLayout from './layouts/LogoOnlyLayout';
 //
-import Blog from './pages/student/TopRatedCourses';
-import User from './pages/User';
+// import Blog from './pages/Blog';
+// import User from './pages/User';
 import Login from './pages/Login';
 import NotFound from './pages/Page404';
 import Register from './pages/Register';
-import Products from './pages/Products';
-
-// import DashboardApp from './pages/DashboardApp';
-import StudentDashboardLayout from './layouts/student';
+import Schedule from './pages/teacher/Schedule';
+import QNA from './pages/teacher/QNA';
+import DashboardTeacher from './pages/teacher/DashboardTeacher';
+import TeacherDashboardLayout from './layouts/teacher';
+import MyCourses from './pages/teacher/MyCourses';
+import Reports from './pages/teacher/Reports';
+import Settings from './pages/Settings';
+import User from './pages/User';
 import StudentDashboardApp from './pages/student/DashboardApp';
 import Classroom from './pages/student/Classroom';
 
@@ -20,7 +27,14 @@ import RedSpots from './pages/ngo/RedSpots';
 import TeachersList from './pages/ngo/TeachersList';
 import NgoDashboard from './pages/ngo/NgoDashboard';
 import CourseDetails from './pages/CourseDetails';
+import AssignmentDetails from './pages/AssignmentDetails';
+import CheckAssignments from './pages/CheckAssignments';
 
+import Community from './pages/Community';
+import Profile from './pages/Profile'
+import CourseMaterialDetails from './pages/CourseMaterialDetails';
+import ChatApp from './components/ChatApp';
+import CourseGrid from './components/CourseGrid';
 
 // ----------------------------------------------------------------------
 
@@ -28,36 +42,50 @@ export default function Router() {
   return useRoutes([
     {
       path: '/dashboard',
-      element: <DashboardLayout />,
+      element: (
+        <RequireAuth>
+          <DashboardLayout />
+        </RequireAuth>
+      ),
       children: [
-        // { path: 'app', element: <DashboardApp /> },
-        { path: 'user', element: <User /> },
-        { path: 'products', element: <Products /> },
-        { path: 'blog', element: <Blog /> },
-        { path: 'classroom/:id', element: <CourseDetails /> },
-        { path: 'ngo-overview', element: <NgoDashboard /> },
-        { path: 'teachers-list', element: <TeachersList /> },
-        { path: 'students-list', element: <StudentsList /> },
-        { path: 'red-spots', element: <RedSpots /> },
-      ],
-    },
+        // NGO routs:
+        { path: 'ngo/app', element: <NgoDashboard /> },
+        { path: 'ngo/teachers-list', element: <TeachersList /> },
+        { path: 'ngo/students-list', element: <StudentsList /> },
+        { path: 'ngo/red-spots', element: <RedSpots /> },
+        { path: 'ngo/profile', element: <Profile /> },
 
-    {
-      path: '/studentDashboard',
-      element: <StudentDashboardLayout />,
-      children: [
-        { path: '', element: <StudentDashboardApp /> },
-        { path: 'app', element: <StudentDashboardApp /> },
-        { path: 'classroom', element: <Classroom /> },
-        { path: 'products', element: <User /> },
-        { path: 'blog', element: <Blog /> },
+        // Teacher:
+        { path: 'teacher/app', element: <DashboardTeacher /> },
+        { path: 'teacher/schedule', element: <Schedule /> },
+        { path: 'teacher/myCourses', element: <MyCourses /> },
+        { path: 'teacher/reports', element: <Reports /> },
+        { path: 'teacher/profile', element: <Profile /> },
+        { path: 'teacher/settings', element: <Settings /> },
+        { path: 'teacher/messages', element: <ChatApp /> },
+        
+
+        // Student:
+        { path: 'student/app', element: <StudentDashboardApp /> },
+        { path: 'student/user', element: <User /> },
+        { path: 'student/classrooms', element: <Classroom /> },
+        { path: 'student/classroom/:id', element: <CourseDetails /> },
+        { path: 'student/classroom/:id/assingment/:assingmentId', element: <AssignmentDetails />},
+        { path: 'student/classroom/:id/assingment/:assingmentId/check', element: <CheckAssignments />},
+        { path: 'student/profile', element: <Profile /> },
+        { path: 'student/', element: <StudentDashboardApp /> },
+        { path: 'student/classroom', element: <Classroom /> },
+        { path: 'student/community', element: <Community /> },
+        { path: 'student/settings', element: <Settings /> },
+        { path: 'student/classroom/:id/:topic/details', element: <CourseMaterialDetails /> },
+        { path: 'student/messages', element: <ChatApp />}
       ],
     },
     {
       path: '/',
       element: <LogoOnlyLayout />,
       children: [
-        { path: '/', element: <Navigate to="/dashboard/app" /> },
+        { path: '/', element: <Navigate to="/login" /> },
         { path: 'login', element: <Login /> },
         { path: 'register', element: <Register /> },
         { path: '404', element: <NotFound /> },
@@ -67,3 +95,15 @@ export default function Router() {
     { path: '*', element: <Navigate to="/404" replace /> },
   ]);
 }
+
+const RequireAuth = ({ children }) => {
+  const navigate = useNavigate();
+  const user = useSelector((state) => state.auth.user);
+  useEffect(() => {
+    if (!('uid' in user)) {
+      navigate('/login');
+    }
+  }, [user, navigate]);
+
+  return children;
+};

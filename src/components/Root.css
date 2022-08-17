@@ -1,0 +1,159 @@
+*, a {
+    text-decoration: none !important;
+}
+
+.profileImg {
+    border-radius: 20px;
+    height: 150px;
+    width: 150px;
+}
+
+.profileIntro {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    margin-top: -90px;
+    padding-left: 25px;
+}
+
+.contents {
+    display: flex;
+    align-items: flex-end;
+}
+
+.contents img {
+    margin-right: 15px;
+}
+
+.profileMainContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.options button {
+    margin-right: 10px;
+}
+
+.options {
+    margin-bottom: 25px;
+    margin-top: 16px;
+}
+
+.profileContentContainer {
+    padding: 16px 16px 16px 0px;
+}
+
+.profileCard {
+    display: flex;
+    justify-content: center;
+    margin-top: 22px;
+}
+
+
+.profileCardContentLine {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.w-85 {
+    width: 85%;
+}
+
+.profileIntroBg {
+    z-index: -1;
+    width: 100% !important;
+}
+
+.profile {
+    position: relative;
+}
+
+.communityCard {
+    border-radius: 25px !important;
+}
+
+.communityCard_cardContent {
+    padding: 16px !important;
+}
+
+.communityCard_image
+{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.communityCard_image a{
+    position: relative;
+    max-height:100px;
+    max-width:100px;
+    height:auto;
+    width:auto;
+    
+   
+}
+
+.communityCard_image a img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+}
+
+.communityCard_profile, .communityCard_actions {
+    display: flex;
+    border-radius: 25px;
+    padding: 10px;
+}
+
+.communityCard_profilePicture {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 35px;
+    width: 35px;
+}
+.communityCard_profilePicture img {
+    border-radius: 25px;
+    width: 100%;
+}
+
+.communityCard_profileDetails {
+    margin-left: 16px;
+}
+
+.communityCard_details {
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    /* margin-left: 16px; */
+}
+
+.communityCard_content {
+    border-radius: 25px;
+    padding: 16px;
+    margin-top: 16px;
+    height: 100%;
+    font-size:14px;
+}
+
+.communityCard_actions {
+    margin-top: 16px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.communityCard_actions_count {
+    line-height: 30px;
+    width: 30px;
+    text-align: center;
+}
+
+.communityCard_actions_span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

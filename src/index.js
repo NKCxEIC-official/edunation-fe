@@ -9,7 +9,7 @@ import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 import 'simplebar/src/simplebar.css';
 
-import store from './redux/store';
+import store from './store/store';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 

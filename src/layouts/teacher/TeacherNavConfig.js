@@ -5,35 +5,35 @@ import Iconify from '../../components/Iconify';
 
 const getIcon = (name) => <Iconify icon={name} width={22} height={22} />;
 
-const studentNavConfig = [
+const TeacherNavConfig = [
   {
     title: 'dashboard',
-    path: '/studentDashboard/app',
+    path: '/dashboard/app',
     icon: getIcon('eva:pie-chart-2-fill'),
   },
   {
-    title: 'classrooms',
-    path: '/studentDashboard/classroom',
-    icon: getIcon('mdi:google-classroom'),
+    title: 'Schedule',
+    path: '/dashboard/Schedule',
+    icon: getIcon('icon-park-outline:classroom'),
   },
   {
-    title: 'profile',
-    path: '/studentDashboard/products',
-    icon: getIcon('eva:people-fill'),
+    title: 'MyCourses',
+    path: '/dashboard/MyCourses',
+    icon: getIcon('ant-design:question-circle-outlined'),
   },
   {
-    title: 'settings',
-    path: '/studentDashboard/blog',
+    title: 'Reports',
+    path: '/dashboard/Reports',
     icon: getIcon('eva:file-text-fill'),
   },
   {
-    title: 'messages',
-    path: '/login',
+    title: 'Settings',
+    path: '/dashboard/Settings',
     icon: getIcon('eva:lock-fill'),
   },
   {
-    title: 'schedule',
-    path: '/register',
+    title: 'Profile',
+    path: 'dashboard/Profile',
     icon: getIcon('eva:person-add-fill'),
   },
   // {
@@ -43,4 +43,4 @@ const studentNavConfig = [
   // },
 ];
 
-export {studentNavConfig};
+export default TeacherNavConfig;

@@ -44,4 +44,20 @@ const posts = [...Array(4)].map((_, index) => ({
   },
 }));
 
-export default posts;
+
+const posts1 = [...Array(10)].map((_, index) => ({
+  id: faker.datatype.uuid(),
+  cover: `/static/mock-images/covers/cover_${index + 1}.jpg`,
+  title: POST_TITLES[index + 1],
+  createdAt: faker.date.past(),
+  documentCount: faker.datatype.number(),
+  userCount: faker.datatype.number(),
+  starCount: faker.datatype.number(),
+  favorite: faker.datatype.number(),
+  author: {
+    name: faker.name.findName(),
+    avatarUrl: `/static/mock-images/avatars/avatar_${index + 1}.jpg`,
+  },
+}));
+
+export  {posts,posts1};
