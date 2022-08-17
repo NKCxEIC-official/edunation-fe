@@ -3,9 +3,9 @@ import React from 'react'
 import Iconify from './Iconify'
 
 
-function Vidyadaan({title, subheader, count, color, icon, smallheader}) {
+function CourseGrid({title, subheader, count, color, icon}) {
   return (
-    <Card sx={{px:2,width:"100%"}}>
+    <Card sx={{px:2, height:"100%"}}>
        
         <Grid container>
           <Grid item xs={4} sm={4} md={4} lg={4} xl={4} sx={{borderRight:"1px dashed #ddd", py:5, alignItems:"center", justifyContent:"center", display:"flex"}}>
@@ -15,7 +15,7 @@ function Vidyadaan({title, subheader, count, color, icon, smallheader}) {
             <Box sx={{display:"flex",alignItems:"center", height:"100%"}}>
               <Box>
                   <Typography variant='h6' sx={{marginLeft:"10px", opacity:"1"}}>{subheader}</Typography>
-                  <Typography variant='subtitle2' sx={{marginLeft:"10px", opacity:"0.7"}}>{smallheader}</Typography>
+                  <Typography paragraph />
                   <Typography variant='subtitle' sx={{marginLeft:"10px", opacity:"1"}}>{count}</Typography>
               </Box>
             </Box>
@@ -25,5 +25,4 @@ function Vidyadaan({title, subheader, count, color, icon, smallheader}) {
   )
 }
 
-
-export default Vidyadaan
+export default CourseGrid

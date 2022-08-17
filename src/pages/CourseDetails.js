@@ -3,11 +3,12 @@ import { faker } from '@faker-js/faker';
 import { useTheme } from '@mui/material/styles';
 import { Grid, Container, Typography, Stack, Button, CardContent, Card } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
-// components../components/LargeGrid
-import VidyaDaan from '../components/VidyaDaan';
+// components../components/CourseGrid
+import CourseGrid from '../components/CourseGrid';
 import SmallGrid from '../components/SmallGrid';
 import Page from '../components/Page';
 import Iconify from '../components/Iconify';
+import VidyaDaan from '../components/VidyaDaan';
 // sections
 
 // ----------------------------------------------------------------------
@@ -55,10 +56,10 @@ export default function CourseDetails() {
 
         <Grid container spacing={4}>
           <Grid to="/dashboard/student/classroom/123456/assingment/1233" component={RouterLink} item xs={12} sm={6} md={3} lg={4}>
-            <VidyaDaan subheader="Arrow Function" count={26} icon={'vscode-icons:file-type-reactjs'} />
+            <CourseGrid subheader="Arrow Function" count={26} icon={'vscode-icons:file-type-reactjs'} />
           </Grid>
           <Grid item xs={12} sm={6} md={3} lg={4}>
-            <VidyaDaan subheader="UseEffect" count={51} icon={'logos:flutter'} />
+            <CourseGrid subheader="UseEffect" count={51} icon={'logos:flutter'} />
           </Grid>
         </Grid>
 
@@ -68,10 +69,10 @@ export default function CourseDetails() {
 
         <Grid container spacing={4}>
             <Grid item xs={12} sm={6} md={3} lg={4} to="/dashboard/student/classroom/:id/god/details" component={RouterLink}>
-              <VidyaDaan subheader="UseState" count={22} icon={'logos:tensorflow'} />
+              <CourseGrid subheader="UseState" count={22} icon={'logos:tensorflow'} />
             </Grid>
             <Grid item xs={12} sm={6} md={3} lg={4} to="/dashboard/student/classroom/:id/dog/details" component={RouterLink}>
-              <VidyaDaan subheader="Hooks" count={11} icon={'logos:webhooks'} />
+              <CourseGrid subheader="Hooks" count={11} icon={'logos:webhooks'} />
             </Grid>
         </Grid>
 
@@ -87,7 +88,7 @@ export default function CourseDetails() {
             } target="_blank">
             <VidyaDaan subheader="NCERT" smallheader="Academic(Class 1)" icon={'akar-icons:link-chain'} />
             </Button>
-            </Grid>
+           </Grid>
 
             <Grid item xs={12} sm={6} md={3} lg={4}>
             <Button sx={{ width:"100%"}} onClick={()=>{

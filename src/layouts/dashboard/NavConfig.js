@@ -94,7 +94,7 @@ const StudentNavConfig = [
   },
   {
     title: 'messages',
-    path: '/login',
+    path: '/dashboard/student/messages',
     icon: getIcon('eva:lock-fill'),
   },
   {
