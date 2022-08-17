@@ -1,5 +1,6 @@
 /* eslint-disable */
 import { faker } from '@faker-js/faker';
+import { useSelector } from 'react-redux';
 // @mui
 import { useTheme } from '@mui/material/styles';
 import { Grid, Container, Typography, Stack, Button, Card } from '@mui/material';
@@ -29,6 +30,7 @@ import Summary from 'src/components/Summary';
 
 // ----------------------------------------------------------------------
 
+
 const click = () => {
   console.log("click");
 }
@@ -36,19 +38,20 @@ const click = () => {
 export default function StudentDashboardApp() {
   const theme = useTheme();
 
+  const user = useSelector(state => state.auth.user)
   const summaryContent = [
     {
-      count: "20",
+      count: user?.summary.pendingAssignments,
       subheader : "Pending Assignments",
       color: "primary"
     },
     {
-      count: "5",
+      count: user?.summary.classesToday,
       subheader : "Classes Today",
       color: "error"
     },
     {
-      count: "4",
+      count: user?.summary.submittedAssignments,
       subheader : "Submitted Assignments Today",
       color: "success"
     }
@@ -60,7 +63,7 @@ export default function StudentDashboardApp() {
         <Grid container spacing={3}>
           <Grid item lg={12}>
             <Typography variant="h4">
-              Hi, Username
+              Hi, {user.firstName}
             </Typography>
             <Typography variant="p" sx={{ mb: 5 }}>
               Welcome Back -
@@ -88,9 +91,9 @@ export default function StudentDashboardApp() {
               chartData={[
                 {
                   name: 'Student',
-                  type: 'column',
-                  fill: 'solid',
-                  data: [23, 11, 22, 27, 13, 22, 37, 21, 44, 22, 30],
+                  type: 'area',
+                  fill: 'gradient',
+                  data: user.timeSpent,
                 },
               ]}
             />
@@ -104,114 +107,37 @@ export default function StudentDashboardApp() {
               </Button>
             </Stack>
 
-            <Stack spacing={2} alignItems="center" justifyContent="space-between" direction="row" sx={{ mb: 3, mr: 1, mt: 2 }}>
-              <Grid item xs={12} sm={6} md={4} lg={3}>
-                <OngoingCourses
-                  title="Interaction Engineering"
-                  subheader="Aritra Banerjee"
-                  avatar={'ant-design:user-outlined'}
-                  icon={'flat-color-icons:edit-image'}
-                  points={[
-                    {
-                      "icon": "carbon:course",
-                      "count": "50"
-                    },
-                    {
-                      "icon": "carbon:course",
-                      "count": "50"
-                    },
-                    {
-                      "icon": "carbon:course",
-                      "count": "50"
-                    },
-                    {
-                      "icon": "carbon:course",
-                      "count": "50"
-                    }
-                  ]}
-                />
-              </Grid>
-              <Grid item xs={12} sm={6} md={4} lg={3}>
-
-                <OngoingCourses
-                  title="Interaction Engineering"
-                  subheader="Aritra Banerjee"
-                  avatar={'ant-design:user-outlined'}
-                  icon={'flat-color-icons:edit-image'}
-                  points={[
-                    {
-                      "icon": "carbon:course",
-                      "count": "50"
-                    },
-                    {
-                      "icon": "carbon:course",
-                      "count": "50"
-                    },
-                    {
-                      "icon": "carbon:course",
-                      "count": "50"
-                    },
-                    {
-                      "icon": "carbon:course",
-                      "count": "50"
-                    }
-                  ]}
-                />
-              </Grid>
-              <Grid item xs={12} sm={6} md={4} lg={3}>
-
-                <OngoingCourses
-                  title="Interaction Engineering"
-                  subheader="Aritra Banerjee"
-                  avatar={'ant-design:user-outlined'}
-                  icon={'flat-color-icons:edit-image'}
-                  points={[
-                    {
-                      "icon": "carbon:course",
-                      "count": "50"
-                    },
-                    {
-                      "icon": "carbon:course",
-                      "count": "50"
-                    },
-                    {
-                      "icon": "carbon:course",
-                      "count": "50"
-                    },
-                    {
-                      "icon": "carbon:course",
-                      "count": "50"
-                    }
-                  ]}
-                />
-              </Grid>
-              <Grid item xs={12} sm={6} md={4} lg={3}>
-
-                <OngoingCourses
-                  title="Interaction Engineering"
-                  subheader="Aritra Banerjee"
-                  avatar={'ant-design:user-outlined'}
-                  icon={'flat-color-icons:edit-image'}
-                  points={[
-                    {
-                      "icon": "carbon:course",
-                      "count": "50"
-                    },
-                    {
-                      "icon": "carbon:course",
-                      "count": "50"
-                    },
-                    {
-                      "icon": "carbon:course",
-                      "count": "50"
-                    },
-                    {
-                      "icon": "carbon:course",
-                      "count": "50"
-                    }
-                  ]}
-                />
-              </Grid>
+            <Stack spacing={2} alignItems="center" justifyContent="space-between" direction="row" sx={{ mb: 2, mr: 1, mt: 2 }}>
+              
+              {user.ongoingCourses && user.ongoingCourses.length > 0 && user.ongoingCourses.map((ongoingCourse) => (
+                    <Grid item xs={12} sm={6} md={4} lg={4}>
+                    <OngoingCourses
+                      title={ongoingCourse.courseName}
+                      subheader={ongoingCourse.author}
+                      avatar={'ant-design:user-outlined'}
+                      icon={ongoingCourse.classDp}
+                      points={[
+                        {
+                          "icon": "eos-icons:product-classes-outlined",
+                          "count": ongoingCourse.courseMaterialCount
+                        },
+                        {
+                          "icon": "carbon:course",
+                          "count": ongoingCourse.assignmentCount
+                        },
+                        {
+                          "icon": "arcticons:netease-open-class",
+                          "count": ongoingCourse.liveClassCount
+                        },
+                        {
+                          "icon": "simple-line-icons:calender",
+                          "count": ongoingCourse.days
+                        }
+                      ]}
+                    />
+                  </Grid>
+              ))}
+          
             </Stack>
           </Grid>
 
