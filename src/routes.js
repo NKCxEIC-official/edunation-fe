@@ -74,12 +74,8 @@ export default function Router() {
         { path: 'student/schedule', element: <Schedule /> },
         { path: 'student/classrooms', element: <Classroom /> },
         { path: 'student/classroom/:id', element: <CourseDetails /> },
-<<<<<<< HEAD
         { path: 'student/classroom/:id/assingment/:assingmentId', element: <AssignmentDetails />},
-=======
-        { path: 'student/classroom/:id/assingment/:assingmentId', element: <AssignmentDetails /> },
         { path: 'student/classroom/:id/assingment/:assingmentId/check', element: <CheckAssignments /> },
->>>>>>> eb139560778e5742068f2153bbff53446ae82ec9
         { path: 'student/profile', element: <Profile /> },
         { path: 'student/community', element: <Community /> },
         { path: 'student/settings', element: <Settings /> },
