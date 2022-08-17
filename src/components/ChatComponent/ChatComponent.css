@@ -144,24 +144,43 @@
   width: 30px;
 }
 
+.chatApp_chatsSection_chat_messagesSection_messageOther {
+  display: flex;
+  flex-direction: column;
+  margin-right: auto;
+  align-items: flex-start;
+  margin-top: 8px;
+}
+
+.chatApp_chatsSection_chat_messagesSection_messageOther .content {
+  background-color: #e9e9f1 !important;
+  color: #2e2b81;
+  max-width: 75%;
+  padding: 4px 12px;
+  width: fit-content;
+  border-radius: 30px;
+}
+
 .chatApp_chatsSection_chat_messagesSection_messageOwner {
+  display: flex;
+  flex-direction: column;
+  margin-top: 8px;
+  margin-left: auto;
+  align-items: flex-end;
+}
+
+.chatApp_chatsSection_chat_messagesSection_messageOwner .content {
   background-color: #2e2b81;
   color: white;
   padding: 4px 12px;
   border-radius: 30px;
   max-width: 75%;
   width: fit-content;
-  margin-left: auto;
-  margin-top: 8px;
 }
 
-.chatApp_chatsSection_chat_messagesSection_messageOther {
-  background-color: #e9e9f1 !important;
-  color: #2e2b81;
-  max-width: 75%;
-  margin-right: auto;
-  padding: 4px 12px;
-  width: fit-content;
-  border-radius: 30px;
-  margin-top:8px;
+.timeMeta {
+  font-size: 12px;
+  color: rgba(128, 128, 128, 0.5);
+  margin: 4px;
+  user-select: none;
 }
