@@ -16,7 +16,7 @@ import DashboardTeacher from './pages/teacher/DashboardTeacher';
 import TeacherDashboardLayout from './layouts/teacher';
 import MyCourses from './pages/teacher/MyCourses';
 import Reports from './pages/teacher/Reports';
-import Settings from './pages/teacher/Settings';
+import Settings from './pages/Settings';
 import Profile from './pages/Profile';
 import User from './pages/User';
 import StudentDashboardApp from './pages/student/DashboardApp';
