@@ -50,11 +50,6 @@ const TeacherNavConfig = [
     icon: getIcon('eva:lock-fill'),
   },
   {
-    title: 'Messages',
-    path: '/dashboard/teacher/Messages',
-    icon: getIcon('jam:messages-f'),
-  },
-  {
     title: 'Community',
     path: '/dashboard/teacher/Community',
     icon: getIcon('fluent:people-community-28-filled'),
@@ -67,7 +62,7 @@ const TeacherNavConfig = [
   {
     title: 'messages',
     path: '/dashboard/teacher/messages',
-    icon: getIcon('eva:lock-fill'),
+    icon: getIcon('jam:messages-f'),
   },
   // {
   //   title: 'Not found',
@@ -108,9 +103,9 @@ const StudentNavConfig = [
     icon: getIcon('fluent:people-community-28-filled'),
   },
   {
-    title: 'schedule',
-    path: '/register',
-    icon: getIcon('eva:person-add-fill'),
+    title: 'Schedule',
+    path: '/dashboard/student/schedule',
+    icon: getIcon('icon-park-outline:classroom'),
   },
 ];
 

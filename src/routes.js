@@ -13,7 +13,6 @@ import NotFound from './pages/Page404';
 import Register from './pages/Register';
 import Schedule from './pages/teacher/Schedule';
 import DashboardTeacher from './pages/teacher/DashboardTeacher';
-import TeacherDashboardLayout from './layouts/teacher';
 import MyCourses from './pages/teacher/MyCourses';
 import Reports from './pages/teacher/Reports';
 import Settings from './pages/Settings';
@@ -58,6 +57,11 @@ export default function Router() {
         { path: 'teacher/app', element: <DashboardTeacher /> },
         { path: 'teacher/schedule', element: <Schedule /> },
         { path: 'teacher/myCourses', element: <MyCourses /> },
+        { path: 'teacher/community', element: <Community /> },
+        { path: 'teacher/classroom/:id', element: <CourseDetails /> },
+        { path: 'teacher/classroom/:id/assingment/:assingmentId', element: <AssignmentDetails />},
+        { path: 'teacher/classroom/:id/assingment/:assingmentId/check', element: <CheckAssignments />},
+        { path: 'teacher/classroom/:id/:topic/details', element: <CourseMaterialDetails /> },
         { path: 'teacher/reports', element: <Reports /> },
         { path: 'teacher/profile', element: <Profile /> },
         { path: 'teacher/settings', element: <Settings /> },
@@ -67,10 +71,10 @@ export default function Router() {
         // Student:
         { path: 'student/app', element: <StudentDashboardApp /> },
         { path: 'student/user', element: <User /> },
+        { path: 'student/schedule', element: <Schedule /> },
         { path: 'student/classrooms', element: <Classroom /> },
         { path: 'student/classroom/:id', element: <CourseDetails /> },
         { path: 'student/classroom/:id/assingment/:assingmentId', element: <AssignmentDetails />},
-        { path: 'student/classroom/:id/assingment/:assingmentId/check', element: <CheckAssignments />},
         { path: 'student/profile', element: <Profile /> },
         { path: 'student/', element: <StudentDashboardApp /> },
         { path: 'student/classroom', element: <Classroom /> },

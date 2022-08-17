@@ -22,11 +22,11 @@ function RectangleGrid({ title, subheader, count, color, icon, percent, duration
 
                 </Grid>
                 <Grid item xs={3} sm={3} md={3} sx={{ alignItems: "center", justifyContent: "left", display: "flex" }}>
-                    <Typography variant='subtitle' sx={{ marginLeft: "10px", opacity: "1" }}>{percent}</Typography>
+                    <Typography variant='subtitle' sx={{ marginLeft: "10px", opacity: "1" }}>{percent} %</Typography>
                 </Grid>
                 <Grid item xs={1.5} sm={1.5} md={1.5} sx={{ alignItems: "center", justifyContent: "left", display: "flex" }}>
                     <Stack>
-                        <Typography variant='subtitle' sx={{ marginLeft: "10px", opacity: "1" }}>{duration}</Typography>
+                        <Typography variant='subtitle' sx={{ marginLeft: "10px", opacity: "1" }}>{duration} months</Typography>
                         <Box
                             sx={{ width: "50px", backgroundColor: "primary.light", height: "3px", ml: 2 }} />
                     </Stack>
