@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { Link as RouterLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 // material
 import { alpha, styled } from '@mui/material/styles';
 import { Box, Link, Card, Grid, Avatar, Typography, CardContent } from '@mui/material';
@@ -71,8 +72,10 @@ export default function CourseCard({ post, index }) {
     { number: starCount, icon: 'ant-design:star-twotone' },
   ];
 
+  const user = useSelector(state => state.auth.user)
+
   return (
-    <Grid to="/dashboard/student/classroom/123456"  component={RouterLink} item xs={12} sm={latestPostLarge ? 12 : 6} md={latestPostLarge ? 6 : 3}>
+    <Grid to={`/dashboard/${user?.isTeacher ? 'teacher' : 'student'}/classroom/123456`}  component={RouterLink} item xs={12} sm={latestPostLarge ? 12 : 6} md={latestPostLarge ? 6 : 3}>
       <Card sx={{ position: 'relative' }}>
         <CardMediaStyle
           sx={{

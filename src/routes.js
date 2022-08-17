@@ -12,12 +12,11 @@ import Login from './pages/Login';
 import NotFound from './pages/Page404';
 import Register from './pages/Register';
 import Schedule from './pages/teacher/Schedule';
-import QNA from './pages/teacher/QNA';
 import DashboardTeacher from './pages/teacher/DashboardTeacher';
-import TeacherDashboardLayout from './layouts/teacher';
 import MyCourses from './pages/teacher/MyCourses';
 import Reports from './pages/teacher/Reports';
 import Settings from './pages/Settings';
+import Profile from './pages/Profile';
 import User from './pages/User';
 import StudentDashboardApp from './pages/student/DashboardApp';
 import Classroom from './pages/student/Classroom';
@@ -29,9 +28,8 @@ import NgoDashboard from './pages/ngo/NgoDashboard';
 import CourseDetails from './pages/CourseDetails';
 import AssignmentDetails from './pages/AssignmentDetails';
 import CheckAssignments from './pages/CheckAssignments';
-
 import Community from './pages/Community';
-import Profile from './pages/Profile'
+import AddRedSpot from './pages/ngo/AddRedSpot';
 import CourseMaterialDetails from './pages/CourseMaterialDetails';
 import ChatApp from './components/ChatApp';
 import CourseGrid from './components/CourseGrid';
@@ -54,31 +52,35 @@ export default function Router() {
         { path: 'ngo/students-list', element: <StudentsList /> },
         { path: 'ngo/red-spots', element: <RedSpots /> },
         { path: 'ngo/profile', element: <Profile /> },
+        { path: 'ngo/redSpot', element: <AddRedSpot /> },
 
         // Teacher:
         { path: 'teacher/app', element: <DashboardTeacher /> },
         { path: 'teacher/schedule', element: <Schedule /> },
         { path: 'teacher/myCourses', element: <MyCourses /> },
+        { path: 'teacher/community', element: <Community /> },
+        { path: 'teacher/classroom/:id', element: <CourseDetails /> },
+        { path: 'teacher/classroom/:id/assingment/:assingmentId', element: <AssignmentDetails />},
+        { path: 'teacher/classroom/:id/assingment/:assingmentId/check', element: <CheckAssignments />},
+        { path: 'teacher/classroom/:id/:topic/details', element: <CourseMaterialDetails /> },
         { path: 'teacher/reports', element: <Reports /> },
         { path: 'teacher/profile', element: <Profile /> },
         { path: 'teacher/settings', element: <Settings /> },
         { path: 'teacher/messages', element: <ChatApp /> },
-        
 
         // Student:
         { path: 'student/app', element: <StudentDashboardApp /> },
         { path: 'student/user', element: <User /> },
+        { path: 'student/schedule', element: <Schedule /> },
         { path: 'student/classrooms', element: <Classroom /> },
         { path: 'student/classroom/:id', element: <CourseDetails /> },
         { path: 'student/classroom/:id/assingment/:assingmentId', element: <AssignmentDetails />},
-        { path: 'student/classroom/:id/assingment/:assingmentId/check', element: <CheckAssignments />},
+        { path: 'student/classroom/:id/assingment/:assingmentId/check', element: <CheckAssignments /> },
         { path: 'student/profile', element: <Profile /> },
-        { path: 'student/', element: <StudentDashboardApp /> },
-        { path: 'student/classroom', element: <Classroom /> },
         { path: 'student/community', element: <Community /> },
         { path: 'student/settings', element: <Settings /> },
         { path: 'student/classroom/:id/:topic/details', element: <CourseMaterialDetails /> },
-        { path: 'student/messages', element: <ChatApp />}
+        { path: 'student/messages', element: <ChatApp /> },
       ],
     },
     {

@@ -1,4 +1,5 @@
 import { faker } from '@faker-js/faker';
+import { useSelector } from 'react-redux';
 // @mui
 import { useTheme } from '@mui/material/styles';
 import { Grid, Stack, Container, Typography, Button, Box } from '@mui/material';
@@ -29,7 +30,7 @@ import {
 import RectangleGrid from '../../components/RectangleGrid';
 import { BlogPostCard, BlogPostsSort, BlogPostsSearch } from '../../sections/@dashboard/blog';
 // mock
-import {posts} from '../../_mock/blog';
+import { posts } from '../../_mock/blog';
 
 
 
@@ -37,6 +38,8 @@ import {posts} from '../../_mock/blog';
 
 export default function DashboardTeacher() {
   const theme = useTheme();
+
+  const user = useSelector(state => state.auth.user)
 
   return (
     <Page title="Teacher">
@@ -56,20 +59,16 @@ export default function DashboardTeacher() {
 
         <Grid container spacing={3} style={{ textDecoration: 'none' }}>
 
-          <Grid item xs={12} sm={12} md={3}>
-            <CourseGrid title="Courses in Progress" color="primary" alighn="center" subheader="Courses" icon="logos:discourse-icon" count="10" />
+          <Grid item xs={12} sm={12} md={6} lg={4} >
+            <CourseGrid title="Courses in Progress" color="primary" alighn="center" subheader="Courses" icon="logos:discourse-icon" count={user.courseInProgressTeacher} />
           </Grid>
 
-          <Grid item xs={12} sm={12} md={3} >
-            <CourseGrid title="QNA " color="green" subheader="QNA" count="34" icon="emojione:exclamation-question-mark" />
+          <Grid item xs={12} sm={12} md={6} lg={4} >
+            <CourseGrid title="QNA" color="green" subheader="QNA" count={user.pendingQA} icon="emojione:exclamation-question-mark" />
           </Grid>
 
-          <Grid item xs={12} sm={12} md={3} >
-            <CourseGrid title="Request" subheader="Request" count="23" icon="carbon:request-quote" />
-          </Grid>
-
-          <Grid item xs={12} sm={12} md={3} alignItems="center">
-            <CourseGrid title="Certificate" color="primary" subheader="Certificate" count="18" icon="icon-park:certificate" />
+          <Grid item xs={12} sm={12} md={6} lg={4} >
+            <CourseGrid title="Request" subheader="Request" count={user.request} icon="carbon:request-quote" />
           </Grid>
 
         </Grid>
@@ -77,7 +76,7 @@ export default function DashboardTeacher() {
         <Stack spacing={2}>
 
           {/* //Courses You are Taking// */}
-          <Typography variant='h4'paddingTop={5}>Your Courses</Typography>
+          <Typography variant='h4' paddingTop={5}>Your Courses</Typography>
 
           <Grid container height={30} paddingLeft={2} sx={{ backgroundColor: '#ABB8C3', marginLeft: "10px", opacity: "1" }}>
             <Grid item xs={3} sm={3} md={3} sx={{ alignItems: "center", justifyContent: "left", display: "flex" }}>
@@ -101,23 +100,27 @@ export default function DashboardTeacher() {
             <RectangleGrid title="Course Name" duration="Duration" percent="Percent of Students" color="ABB8C3" alighn="center" subheader="Course Name" count="Number of Students" />
           </Grid> */}
 
+          {user?.myCourses && user?.myCourses.length > 0 && user.myCourses.map((course) =>
+          (
+            <Grid item xs={12} sm={12} md={12}>
+              <RectangleGrid subheader={course.courseName} duration={course.duration} percent={course.percentage} color="primary" alighn="center" icon="logos:discourse-icon" count={course.studentCount} />
+            </Grid>
+          )
+          )}
 
-          <Grid item xs={12} sm={12} md={12}>
-            <RectangleGrid title="Python" duration="5 Months" percent="76%" color="primary" alighn="center" subheader="Python" icon="logos:discourse-icon" count="10" />
-          </Grid>
 
-          <Grid item xs={12} sm={12} md={12} >
+          {/* <Grid item xs={12} sm={12} md={12} >
             <RectangleGrid title="ReactJs" percent="76%" duration="7 Months" count="50" color="green" subheader="ReactJs" icon="emojione:exclamation-question-mark" />
           </Grid>
 
           <Grid item xs={12} sm={12} md={12} >
             <RectangleGrid title="English" percent="86%" duration="6 Months" count="50" subheader="English" icon="carbon:request-quote" />
-          </Grid>
+          </Grid> */}
 
         </Stack>
 
-      <Stack spacing={2}>
-      <Typography variant='h4' paddingTop={5}>Completed Courses</Typography>
+        <Stack spacing={2}>
+          <Typography variant='h4' paddingTop={5}>Completed Courses</Typography>
 
           <Grid container height={30} paddingLeft={2} sx={{ backgroundColor: '#ABB8C3', marginLeft: "10px", opacity: "1" }}>
             <Grid item xs={3} sm={3} md={3} sx={{ alignItems: "center", justifyContent: "left", display: "flex" }}>
@@ -153,7 +156,7 @@ export default function DashboardTeacher() {
           <Grid item xs={12} sm={12} md={12} >
             <RectangleGrid title="Physics" percent="100%" duration="7 Months" count="34" subheader="Physics" icon="carbon:request-quote" />
           </Grid>
-          </Stack>
+        </Stack>
 
 
         {/* <Stack spacing={2}>
@@ -197,7 +200,7 @@ export default function DashboardTeacher() {
                 name: 'Revenue',
                 type: 'column',
                 fill: 'solid',
-                data: [23,23,23,10,23,23,5,23,20,23,23,23],
+                data: [23, 23, 23, 10, 23, 23, 5, 23, 20, 23, 23, 23],
               },
             ]}
           />
