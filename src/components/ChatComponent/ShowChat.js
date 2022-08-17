@@ -4,6 +4,7 @@ import { onValue, ref, update } from 'firebase/database';
 import { arrayUnion, doc, updateDoc } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { getOrdinalSuffix, shortenedMonthList } from 'src/utils/dataHelpers';
 import { db, realtimeDb } from 'src/utils/firebaseConfig';
 import Iconify from '../Iconify';
 
@@ -25,7 +26,7 @@ const ShowChat = ({ selectedContact, messages = [] }) => {
     const newMessageObj = {
       sentBy: user.uid,
       content: currentMessage,
-      sentOn: new Date().toUTCString()
+      sentOn: new Date().toUTCString(),
     };
 
     const documentId = `chatApplication/groups/${STUDENT_UID}-${TEACHER_UID}`;
@@ -46,11 +47,10 @@ const ShowChat = ({ selectedContact, messages = [] }) => {
           const updates = {};
           updates[`/${documentId}/messages/0`] = newMessageObj;
           postUpdates(updates);
-          const teacherDocumentRef = doc(db, "users", TEACHER_UID);
+          const teacherDocumentRef = doc(db, 'users', TEACHER_UID);
           updateDoc(teacherDocumentRef, {
-            studentsMessageArr: arrayUnion(STUDENT_UID)
-          })
-          
+            studentsMessageArr: arrayUnion(STUDENT_UID),
+          });
         }
       },
       { onlyOnce: true }
@@ -78,6 +78,33 @@ const ShowChat = ({ selectedContact, messages = [] }) => {
     }
   }, []);
 
+  const formatChatTime = (dateTime) => {
+    const dateTimeObj = new Date(dateTime);
+
+    const yesterdayDateTimeObj = new Date();
+    yesterdayDateTimeObj.setDate(yesterdayDateTimeObj.getDate() - 1);
+
+    const todayDateTimeObj = new Date();
+
+    let formattedChatTime = '';
+
+    if (dateTimeObj.toDateString() === todayDateTimeObj.toDateString()) {
+      formattedChatTime += 'Today';
+    } else if (dateTimeObj.toDateString() === yesterdayDateTimeObj.toDateString()) {
+      formattedChatTime += 'Yesterday';
+    } else {
+      formattedChatTime +=
+        getOrdinalSuffix(dateTimeObj.getDate()) +
+        ' ' +
+        shortenedMonthList[dateTimeObj.getMonth()] +
+        `${dateTimeObj.getFullYear() === todayDateTimeObj.getFullYear() ? '' : `, ${dateTimeObj.getFullYear()}`}`;
+    }
+
+    formattedChatTime += ', ' + dateTimeObj.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+    return formattedChatTime;
+  };
+
   return (
     <div className="chatApp_chatsSection_chat">
       <div className="chatApp_chatsSection_chat_contactDetails">
@@ -103,7 +130,8 @@ const ShowChat = ({ selectedContact, messages = [] }) => {
                   message.sentBy === user.uid ? 'Owner' : 'Other'
                 }`}
               >
-                {message.content}
+                <div className="content">{message.content}</div>
+                <div className="timeMeta">{formatChatTime(message?.sentOn)}</div>
               </div>
             );
           })}

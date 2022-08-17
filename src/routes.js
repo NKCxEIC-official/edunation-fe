@@ -28,8 +28,8 @@ import NgoDashboard from './pages/ngo/NgoDashboard';
 import CourseDetails from './pages/CourseDetails';
 import AssignmentDetails from './pages/AssignmentDetails';
 import CheckAssignments from './pages/CheckAssignments';
-
 import Community from './pages/Community';
+import AddRedSpot from './pages/ngo/AddRedSpot';
 import CourseMaterialDetails from './pages/CourseMaterialDetails';
 import ChatApp from './components/ChatApp';
 import CourseGrid from './components/CourseGrid';
@@ -52,6 +52,7 @@ export default function Router() {
         { path: 'ngo/students-list', element: <StudentsList /> },
         { path: 'ngo/red-spots', element: <RedSpots /> },
         { path: 'ngo/profile', element: <Profile /> },
+        { path: 'ngo/redSpot', element: <AddRedSpot /> },
 
         // Teacher:
         { path: 'teacher/app', element: <DashboardTeacher /> },
@@ -66,7 +67,6 @@ export default function Router() {
         { path: 'teacher/profile', element: <Profile /> },
         { path: 'teacher/settings', element: <Settings /> },
         { path: 'teacher/messages', element: <ChatApp /> },
-        
 
         // Student:
         { path: 'student/app', element: <StudentDashboardApp /> },
@@ -74,14 +74,17 @@ export default function Router() {
         { path: 'student/schedule', element: <Schedule /> },
         { path: 'student/classrooms', element: <Classroom /> },
         { path: 'student/classroom/:id', element: <CourseDetails /> },
+<<<<<<< HEAD
         { path: 'student/classroom/:id/assingment/:assingmentId', element: <AssignmentDetails />},
+=======
+        { path: 'student/classroom/:id/assingment/:assingmentId', element: <AssignmentDetails /> },
+        { path: 'student/classroom/:id/assingment/:assingmentId/check', element: <CheckAssignments /> },
+>>>>>>> eb139560778e5742068f2153bbff53446ae82ec9
         { path: 'student/profile', element: <Profile /> },
-        { path: 'student/', element: <StudentDashboardApp /> },
-        { path: 'student/classroom', element: <Classroom /> },
         { path: 'student/community', element: <Community /> },
         { path: 'student/settings', element: <Settings /> },
         { path: 'student/classroom/:id/:topic/details', element: <CourseMaterialDetails /> },
-        { path: 'student/messages', element: <ChatApp />}
+        { path: 'student/messages', element: <ChatApp /> },
       ],
     },
     {

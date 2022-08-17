@@ -44,20 +44,20 @@ DashboardSidebar.propTypes = {
 
 // eslint-disable-next-line consistent-return
 const getNavByRole = () => {
-  let role = 0
+  let role = 0;
   let isTeacher = false;
   role = localStorage.getItem('role');
   isTeacher = localStorage.getItem('isTeacher');
-  if (role === "0") {
+  if (role === '0') {
     return NGONavConfig;
   }
-  if (role === "1" && isTeacher === 'true') {
+  if (role === '1' && isTeacher === 'true') {
     return TeacherNavConfig;
   }
-  if (role === "1" && isTeacher === 'false') {
+  if (role === '1' && isTeacher === 'false') {
     return StudentNavConfig;
   }
-}
+};
 
 // eslint-disable-next-line consistent-return
 const utilButton = (navigate) => {
@@ -78,7 +78,7 @@ const utilButton = (navigate) => {
       </Button>
     );
   }
-  if (role === '1' && isTeacher === 'true' ) {
+  if (role === '1' && isTeacher === 'true') {
     return (
       <Button
         target="_blank"
@@ -87,7 +87,7 @@ const utilButton = (navigate) => {
         onClick={
           // navigate to be a :
           () => {
-            localStorage.setItem("viewAs", 'false');
+            localStorage.setItem('viewAs', 'false');
             navigate('/dashboard/student/app', { replace: true });
           }
         }
@@ -105,7 +105,7 @@ const utilButton = (navigate) => {
         onClick={
           // navigate to be a :
           () => {
-            localStorage.setItem("viewAs", 'true');
+            localStorage.setItem('viewAs', 'true');
             navigate('/dashboard/teacher/app', { replace: true });
           }
         }
@@ -116,7 +116,6 @@ const utilButton = (navigate) => {
   }
 };
 export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
-
   const navigate = useNavigate();
 
   const { pathname } = useLocation();
@@ -176,9 +175,8 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
             <Typography variant="body2" sx={{ color: 'text.secondary' }}>
               It's always better to learn together
             </Typography>
-            
           </Box>
-            {utilButton(navigate)}
+          {utilButton(navigate)}
         </Stack>
       </Box>
     </Scrollbar>

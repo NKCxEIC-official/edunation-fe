@@ -58,3 +58,17 @@ export function saveTokenInLocalStorage(tokenDetails) {
   tokenDetails.expireDate = new Date(new Date().getTime() + tokenDetails.expiresIn * 1000);
   localStorage.setItem('userDetails', JSON.stringify(tokenDetails));
 }
+
+export function getDatafromDB(path, collectionType = false) {
+  if (collectionType) {
+    const collectionRef = collection(db, path);
+    return getDocs(collectionRef);
+  }
+  const docRef = doc(db, path);
+  return getDoc(docRef);
+}
+
+export function updateDatainDB(path, payload) {
+  const docRef = doc(db, path);
+  return updateDoc(docRef, payload);
+}
