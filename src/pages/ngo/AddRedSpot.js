@@ -1,6 +1,6 @@
 import { TextField } from '@mui/material';
 import React from 'react';
-import AppMap from '../../components/AppMap';
+import AppMap from '../../components/Map/AppMap';
 
 function AddRedSpot() {
   return (

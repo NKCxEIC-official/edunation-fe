@@ -71,7 +71,9 @@ const utilButton = (navigate) => {
         color="danger"
         onClick={
           // navigate to be a :
-          () => {}
+          () => {
+            navigate('/dashboard/ngo/red-spots', { replace: true });
+          }
         }
       >
         Add Red Spots
@@ -164,7 +166,7 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
         <Stack alignItems="center" spacing={3} sx={{ pt: 5, borderRadius: 2, position: 'relative' }}>
           <Box
             component="img"
-            src="/static/illustrations/illustration_avatar.png"
+            src="/static/illustrations/building.png"
             sx={{ width: 100, position: 'absolute', top: -50 }}
           />
 

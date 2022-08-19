@@ -13,3 +13,4 @@ export const LOADING_TOGGLE_ACTION = '[Loading action] toggle loading';
 export const HIDE_MODAL_ACTION = '[HIDE_MODAL action] hide modal';
 
 export const GET_DATA_ACTION = '[GET_DATA action] confirmed get data';
+export const ADD_RED_SPOT = '[ADD_RED_SPOT action] confirmed add red spot';

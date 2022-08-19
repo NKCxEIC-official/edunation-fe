@@ -1,6 +1,7 @@
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 import {
   addDoc,
+  arrayUnion,
   collection,
   deleteDoc,
   doc,
@@ -71,4 +72,21 @@ export function getDatafromDB(path, collectionType = false) {
 export function updateDatainDB(path, payload) {
   const docRef = doc(db, path);
   return updateDoc(docRef, payload);
+}
+
+export function checkIfDocumentExists(path) {
+  const docRef = doc(db, path);
+  return getDoc(docRef);
+}
+
+export function addDocument(path, payload) {
+  const docRef = doc(db, path);
+  return setDoc(docRef, payload);
+}
+
+export function updateRedSpotInProfile(payload) {
+  const docRef = doc(db, `users/${payload.addedBy}`);
+  return updateDoc(docRef, {
+    redSpots: arrayUnion(payload),
+  });
 }

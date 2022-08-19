@@ -50,7 +50,7 @@ export default function Router() {
         { path: 'ngo/app', element: <NgoDashboard /> },
         { path: 'ngo/teachers-list', element: <TeachersList /> },
         { path: 'ngo/students-list', element: <StudentsList /> },
-        { path: 'ngo/red-spots', element: <RedSpots /> },
+        { path: 'ngo/red-spots', element: <AddRedSpot /> },
         { path: 'ngo/profile', element: <Profile /> },
         { path: 'ngo/redSpot', element: <AddRedSpot /> },
 
