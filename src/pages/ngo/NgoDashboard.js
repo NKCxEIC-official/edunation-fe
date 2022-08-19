@@ -5,6 +5,8 @@ import { Grid, Container, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { doc, getDoc } from 'firebase/firestore';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link as RouterLink } from 'react-router-dom';
+
 // components
 import Page from '../../components/Page';
 import Iconify from '../../components/Iconify';
@@ -48,11 +50,11 @@ export default function NgoDashboard() {
             <SmallGrid subheader="Volunteer Count" count={user.volunteerList.length} color="warning" />
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
-            <SmallGrid subheader="Red Spots" count={user.redSpotsList.length} color="error" />
+            <SmallGrid subheader="Red Spots" count={user.redSpots.length} color="error" />
           </Grid>
 
-          <Grid item xs={12} sm={6} md={4}>
-            <CustomModal btnText="Add Red Spots" icon="entypo:location" largeBtn color="danger" />
+          <Grid item xs={12} sm={6} md={4} to="/dashboard/ngo/red-spots" component={RouterLink}>
+            <LargeActionButton title="Add Red Spots" icon="entypo:location" color="danger" />
           </Grid>
 
           <Grid item xs={12} sm={6} md={4}>

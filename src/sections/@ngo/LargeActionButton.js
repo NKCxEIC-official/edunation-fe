@@ -56,7 +56,7 @@ export default function LargeActionButton({ title, total, icon, color = 'primary
         <Iconify icon={icon} width={24} height={24} />
       </IconWrapperStyle>
 
-      <Typography variant="h5" sx={{ opacity: 0.72 }}>
+      <Typography variant="h6" sx={{ opacity: 0.72 }}>
         {title}
       </Typography>
     </Card>

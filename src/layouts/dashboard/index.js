@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
 // material
 import { styled } from '@mui/material/styles';
 //
@@ -36,6 +38,7 @@ const MainStyle = styled('div')(({ theme }) => ({
 export default function DashboardLayout() {
   const [openTimeLine, setOpenTimeLine] = useState(false);
   const [open, setOpen] = useState(false);
+  const user = useSelector((state) => state.auth.user);
 
   return (
     <RootStyle>
@@ -44,7 +47,9 @@ export default function DashboardLayout() {
       <MainStyle>
         <Outlet />
       </MainStyle>
-      <TimelineSidebar isOpenSidebar={openTimeLine} onCloseSidebar={() => setOpenTimeLine(false)} />
+      {user.role === 1 && (
+        <TimelineSidebar isOpenSidebar={openTimeLine} onCloseSidebar={() => setOpenTimeLine(false)} />
+      )}
     </RootStyle>
   );
 }

@@ -1,6 +1,8 @@
 import {
+  addDocument,
   addUser,
   addUserAnonymous,
+  checkIfDocumentExists,
   deleteDocument,
   getDatafromDB,
   getUser,
@@ -9,8 +11,10 @@ import {
   signUp,
   updateAnonymousUserList,
   updateDatainDB,
+  updateRedSpotInProfile,
 } from '../../services/AuthService';
 import {
+  ADD_RED_SPOT,
   GET_DATA_ACTION,
   HIDE_MODAL_ACTION,
   LOADING_TOGGLE_ACTION,
@@ -23,7 +27,6 @@ import {
 
 export function signupAction({ email, password, firstName, lastName, userData }) {
   return (dispatch) => {
-    console.log(userData);
     signUp(email, password)
       .then(({ user }) => {
         // Signed in
@@ -300,5 +303,24 @@ export function getDatafromDBActionConfirmed(data, nodeName) {
 export function updateDatainDBAction(path, payload) {
   return (dispatch) => {
     updateDatainDB(path, payload);
+  };
+}
+
+export function addRedSpotAction(payload) {
+  return (dispatch) => {
+    dispatch(loadingToggleAction(true));
+    checkIfDocumentExists(`redSpots/${payload.redSPotId}`).then((response) => {
+      if (!response.exists()) {
+        addDocument(`redSpots/${payload.redSPotId}`, payload).then(() => {
+          updateRedSpotInProfile(payload).then(() => {
+            // show success message
+            dispatch(loadingToggleAction(false));
+          });
+        });
+      } else {
+        dispatch(loadingToggleAction(false));
+        // show error in snackbar
+      }
+    });
   };
 }
