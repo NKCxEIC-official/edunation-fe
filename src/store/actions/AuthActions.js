@@ -324,3 +324,22 @@ export function addRedSpotAction(payload) {
     });
   };
 }
+
+export function addQuestionTopicAction(payload) {
+  return (dispatch) => {
+    dispatch(loadingToggleAction(true));
+    checkIfDocumentExists(`questions/${payload.questionId}`).then((response) => {
+      if (!response.exists()) {
+        addDocument(`redSpots/${payload.questionId}`, payload).then(() => {
+          // updateRedSpotInProfile(payload).then(() => {
+          //   // show success message
+            dispatch(loadingToggleAction(false));
+          // });
+        });
+      } else {
+        dispatch(loadingToggleAction(false));
+        // show error in snackbar
+      }
+    });
+  };
+}

@@ -122,7 +122,7 @@ const utilButton = (navigate) => {
       onClick={
         // navigate to be a :
         () => {
-          navigate('/exam/student/raj/dashboard/', { replace: true });
+          navigate('/exam/student/examInfo', { replace: true });
         }
       }
     >

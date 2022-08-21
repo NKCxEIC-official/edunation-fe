@@ -35,6 +35,7 @@ import ChatApp from './components/ChatApp';
 import CourseGrid from './components/CourseGrid';
 import ExamDashboard from './pages/ExamDashboard';
 import ExamDashboardLayout from './layouts/examDashboard';
+import ExamInfo from './pages/ExamInfo';
 
 // ----------------------------------------------------------------------
 
@@ -92,6 +93,7 @@ export default function Router() {
       ),
       children: [
         { path: 'student/:examId/dashboard/', element: <ExamDashboard /> },
+        { path: 'student/examInfo/', element: <ExamInfo /> },
       ],
     },
     {
