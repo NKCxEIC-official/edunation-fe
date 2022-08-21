@@ -55,27 +55,21 @@ const CoverImgStyle = styled('img')({
 // ----------------------------------------------------------------------
 
 
-
-CourseCard.propTypes = {
-  post: PropTypes.object.isRequired,
-  index: PropTypes.number,
-};
-
-export default function CourseCard({ post, index }) {
-  const { cover, title, documentCount, userCount, starCount, author, createdAt } = post;
+export default function CourseCard({ post, index, classKey }) {
+  const { bannerUrl, classDescription, name, rating, creator, createdAt, studentList, courseMaterial, classCode } = post;
   const latestPostLarge = false;
   const latestPost = false;
 
   const POST_INFO = [
-    { number: userCount, icon: 'ph:users-three-bold' },
-    { number: documentCount, icon: 'carbon:document-attachment' },
-    { number: starCount, icon: 'ant-design:star-twotone' },
+    { number: studentList?.length, icon: 'ph:users-three-bold' },
+    { number: courseMaterial?.length, icon: 'carbon:document-attachment' },
+    { number: rating, icon: 'ant-design:star-twotone' },
   ];
 
   const user = useSelector(state => state.auth.user)
-
+  console.log(post, classKey)
   return (
-    <Grid to={`/dashboard/${user?.isTeacher ? 'teacher' : 'student'}/classroom/123456`}  component={RouterLink} item xs={12} sm={latestPostLarge ? 12 : 6} md={latestPostLarge ? 6 : 3}>
+    <Grid to={`/dashboard/${user?.isTeacher ? 'teacher' : 'student'}/classroom/${classKey}`}  component={RouterLink} item xs={12} sm={latestPostLarge ? 12 : 6} md={latestPostLarge ? 6 : 3}>
       <Card sx={{ position: 'relative' }}>
         <CardMediaStyle
           sx={{
@@ -112,8 +106,8 @@ export default function CourseCard({ post, index }) {
             }}
           />
           <AvatarStyle
-            alt={author.name}
-            src={author.avatarUrl}
+            alt={creator.name}
+            src={creator.photoUrl}
             sx={{
               ...((latestPostLarge || latestPost) && {
                 zIndex: 9,
@@ -125,7 +119,7 @@ export default function CourseCard({ post, index }) {
             }}
           />
 
-          <CoverImgStyle alt={title} src={cover} />
+          <CoverImgStyle alt={name} src={bannerUrl} />
         </CardMediaStyle>
 
         <CardContent
@@ -155,7 +149,7 @@ export default function CourseCard({ post, index }) {
               }),
             }}
           >
-            {title}
+            {name}
           </TitleStyle>
 
           <InfoStyle>

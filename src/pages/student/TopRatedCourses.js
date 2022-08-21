@@ -1,4 +1,5 @@
 import { Link as RouterLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 // material
 import { Grid, Button, Container, Stack, Typography } from '@mui/material';
 // components
@@ -12,11 +13,18 @@ import CourseCard from '../../sections/@student/app/CourseCard'
 
 export default function TopRated({posts}) {
   console.log(posts)
+
+  const {classes} = useSelector(state => state.auth.data)
+  console.log(classes)
+
   return (
     <>
       <Grid container spacing={4}>
-        {posts.map((post, index) => (
-          <CourseCard key={post.id} post={post} index={index} />
+        {Object.keys(classes || {}).map((classKey, index) => (
+          <>
+          {console.log(classKey, index)}
+          <CourseCard classKey={classKey} post={classes[classKey]} index={index} />
+          </>
         ))}
       </Grid>
     </>
