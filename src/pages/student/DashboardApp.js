@@ -1,6 +1,6 @@
 /* eslint-disable */
 import { faker } from '@faker-js/faker';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 // @mui
 import { useTheme } from '@mui/material/styles';
 import { Grid, Container, Typography, Stack, Button, Card } from '@mui/material';
@@ -27,6 +27,8 @@ import { BlogPostCard } from 'src/sections/@dashboard/blog';
 import TopRated from './TopRatedCourses';
 import OngoingCourses from '../../components/OngoingCourses';
 import Summary from 'src/components/Summary';
+import { getDatafromDBAction } from '../../store/actions/AuthActions'
+import { useEffect } from 'react';
 
 // ----------------------------------------------------------------------
 
@@ -55,6 +57,14 @@ export default function StudentDashboardApp() {
       color: 'success',
     },
   ];
+
+  
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(getDatafromDBAction('classes', true, 'classes'))
+  }, [])
+
+  console.log(user)
 
   return (
     <Page title="Dashboard">
@@ -96,7 +106,7 @@ export default function StudentDashboardApp() {
             />
           </Grid>
 
-          <Grid item lg={12}>
+          <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
             <Stack
               spacing={2}
               alignItems="center"
@@ -121,7 +131,6 @@ export default function StudentDashboardApp() {
             <Stack
               spacing={2}
               alignItems="center"
-              justifyContent="space-between"
               direction="row"
               sx={{ mb: 2, mr: 1, mt: 2 }}
             >
@@ -134,6 +143,7 @@ export default function StudentDashboardApp() {
                       subheader={ongoingCourse.author}
                       avatar={'ant-design:user-outlined'}
                       icon={ongoingCourse.classDp}
+                      classKey={ongoingCourse.classId}
                       points={[
                         {
                           icon: 'eos-icons:product-classes-outlined',
@@ -158,7 +168,7 @@ export default function StudentDashboardApp() {
             </Stack>
           </Grid>
 
-          <Grid item lg={12}>
+          <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
             <Stack
               spacing={2}
               alignItems="center"
