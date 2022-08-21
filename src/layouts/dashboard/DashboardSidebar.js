@@ -107,9 +107,7 @@ const utilButton = (navigate) => {
         onClick={
           // navigate to be a :
           () => {
-            localStorage.setItem('viewAs', 'true');
-            // navigate('student/12345/dashboard/', { replace: true });
-            navigate('student/12345/dashboard/', { replace: true });
+            navigate('/exam/student/raj/dashboard/', { replace: true });
           }
         }
       >
