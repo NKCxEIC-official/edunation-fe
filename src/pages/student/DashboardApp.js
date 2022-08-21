@@ -143,6 +143,7 @@ export default function StudentDashboardApp() {
                       subheader={ongoingCourse.author}
                       avatar={'ant-design:user-outlined'}
                       icon={ongoingCourse.classDp}
+                      classKey={ongoingCourse.classId}
                       points={[
                         {
                           icon: 'eos-icons:product-classes-outlined',

@@ -15,14 +15,13 @@ export default function TopRated({posts}) {
   console.log(posts)
 
   const {classes} = useSelector(state => state.auth.data)
-  console.log(classes)
+  console.log("classes", classes)
 
   return (
     <>
       <Grid container spacing={4}>
         {Object.keys(classes || {}).map((classKey, index) => (
           <>
-          {console.log(classKey, index)}
           <CourseCard classKey={classKey} post={classes[classKey]} index={index} />
           </>
         ))}
