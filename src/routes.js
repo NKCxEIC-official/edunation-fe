@@ -33,6 +33,7 @@ import AddRedSpot from './pages/ngo/AddRedSpot';
 import CourseMaterialDetails from './pages/CourseMaterialDetails';
 import ChatApp from './components/ChatApp';
 import CourseGrid from './components/CourseGrid';
+import ExamDashboard from './pages/ExamDashboard';
 
 // ----------------------------------------------------------------------
 
@@ -81,6 +82,7 @@ export default function Router() {
         { path: 'student/settings', element: <Settings /> },
         { path: 'student/classroom/:id/:topic/details', element: <CourseMaterialDetails /> },
         { path: 'student/messages', element: <ChatApp /> },
+        { path: 'student/:examId/dashboard/', element: <ExamDashboard /> },
       ],
     },
     {
