@@ -72,7 +72,7 @@ const utilButton = (navigate) => {
         onClick={
           // navigate to be a :
           () => {
-            navigate('/dashboard/ngo/red-spots', { replace: true });
+            navigate('/dashboard/ngo/redSpot', { replace: true });
           }
         }
       >
