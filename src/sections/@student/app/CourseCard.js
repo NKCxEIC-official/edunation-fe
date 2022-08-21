@@ -106,8 +106,8 @@ export default function CourseCard({ post, index, classKey }) {
             }}
           />
           <AvatarStyle
-            alt={creator.name}
-            src={creator.photoUrl}
+            alt={creator?.name}
+            src={creator?.photoUrl}
             sx={{
               ...((latestPostLarge || latestPost) && {
                 zIndex: 9,

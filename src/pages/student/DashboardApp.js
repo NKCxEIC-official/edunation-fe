@@ -131,7 +131,6 @@ export default function StudentDashboardApp() {
             <Stack
               spacing={2}
               alignItems="center"
-              justifyContent="space-between"
               direction="row"
               sx={{ mb: 2, mr: 1, mt: 2 }}
             >

@@ -51,7 +51,7 @@ export default function CourseDetails() {
           </Grid>
         </Grid>
 
-        <Grid container spacing={4}>
+        {/* <Grid container spacing={4}>
           <Grid item xs={12} sm={6} md={3} lg={4}>
             <SmallGrid
               title="React JS"
@@ -69,7 +69,7 @@ export default function CourseDetails() {
           <Grid item xs={12} sm={6} md={3} lg={4}>
             <SmallGrid title="React JS" subheader="Fees" count={26} totalCount={30} color="error" />
           </Grid>
-        </Grid>
+        </Grid> */}
 
         <Typography variant="h4" sx={{ mb: 3, mt: 3 }}>
           Assignments
