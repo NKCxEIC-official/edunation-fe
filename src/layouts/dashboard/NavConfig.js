@@ -21,6 +21,11 @@ const NGONavConfig = [
     path: '/dashboard/ngo/students-list',
     icon: getIcon('ph:users-three'),
   },
+  {
+    title: "Red Spots",
+    path: '/dashboard/ngo/redspots-list',
+    icon: getIcon('entypo:location'),
+  },
 ];
 
 const TeacherNavConfig = [
