@@ -4,7 +4,7 @@ import ExamScreen from '../sections/@exam/ExamScreen';
 
 function ExamDashboard() {
   return (
-    <Grid container sx={{ p: 5, pt: '90px' }}>
+    <Grid container sx={{ p: 5}}>
       <Grid item xs={12}>
         <Card sx={{ p: 3 }}>
           <Typography variant="h4">Interview For Rcciit</Typography>
@@ -22,24 +22,6 @@ function ExamDashboard() {
       </Grid>
       <Grid item xs={12} sx={{ mt: 2 }}>
         <Typography variant="h5">Assessments</Typography>
-        <Stack spacing={3} sx={{ mt: 2 }}>
-          <Card sx={{ p: 3 }}>
-            <Stack>
-              <Typography variant="subtitle1">
-                Aptitude <span style={{ opacity: 0.5 }}>- Descriptive</span>
-              </Typography>
-              <Typography variant="body2">10 Questions</Typography>
-            </Stack>
-          </Card>
-          <Card sx={{ p: 3 }}>
-            <Stack>
-              <Typography variant="subtitle1">
-                Aptitude <span style={{ opacity: 0.5 }}>- Descriptive</span>
-              </Typography>
-              <Typography variant="body2">10 Questions</Typography>
-            </Stack>
-          </Card>
-        </Stack>
       </Grid>
       <Grid xs={12} sx={{ mt: 2 }}>
         <ExamScreen />

@@ -147,7 +147,9 @@ function ExamScreen() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
     console.log(questions);
+    console.log(event);
   };
 
   const handleAnswer = (answer) => {
@@ -176,7 +178,7 @@ function ExamScreen() {
     <Grid container spacing={2}>
       <Grid item md={9}>
         <ShowQuestion question={currentQuestion} handleAnswer={handleAnswer} activeIndex={currentQuestionIndex} />
-        <Button onClick={handleSubmit}>Submit</Button>
+        <Button onClick={handleSubmit}>Submit Answer</Button>
       </Grid>
       <Grid item md={3}>
         <QuestionLedger
