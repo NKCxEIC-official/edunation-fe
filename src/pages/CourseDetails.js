@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 // @mui
 import { useTheme } from '@mui/material/styles';
 import { Grid, Container, Typography, Stack, Button, CardContent, Card } from '@mui/material';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useParams } from 'react-router-dom';
 // components../components/CourseGrid
 import CourseGrid from '../components/CourseGrid';
 import SmallGrid from '../components/SmallGrid';
@@ -17,31 +17,49 @@ import VidyaDaan from '../components/VidyaDaan';
 export default function CourseDetails() {
   const theme = useTheme();
 
-  const user = useSelector(state => state.auth.user)
+  const { user, data } = useSelector((state) => {
+    return {
+      user: state.auth.user,
+      data: state.auth.data,
+    };
+  });
+
+  const { classes } = data;
+  console.log(classes, user);
+  const params = useParams();
+  const { name, studentList, courseMaterial, videos } = classes[params?.id];
+  const { ongoingCourses, totalEnrolled } = user;
+  console.log(name, params);
 
   return (
     <Page title="Dashboard">
       <Container maxWidth="xl">
         <Typography variant="h4">Welcome To,</Typography>
-        <Typography variant="p">Class Name</Typography>
+        <Typography variant="p">{name}</Typography>
 
         <Grid container spacing={4} sx={{ mb: 2, mt: 2 }}>
           <Grid item xs={12} sm={6} md={3} lg={4}>
-            <SmallGrid title="React JS" subheader="Student Count" count={19} color="primary" />
+            <SmallGrid title="React JS" subheader="Student Count" count={studentList?.length} color="primary" />
           </Grid>
 
           <Grid item xs={12} sm={6} md={3} lg={4}>
-            <SmallGrid title="React JS" subheader="Course Material" count={26} color="error" />
+            <SmallGrid title="React JS" subheader="Course Material" count={courseMaterial?.length} color="error" />
           </Grid>
 
           <Grid item xs={12} sm={6} md={3} lg={4}>
-            <SmallGrid title="React JS" subheader="Video Count" count={17} color="success" />
+            <SmallGrid title="React JS" subheader="Video Count" count={videos?.length} color="success" />
           </Grid>
         </Grid>
 
-        <Grid container spacing={4}>
+        {/* <Grid container spacing={4}>
           <Grid item xs={12} sm={6} md={3} lg={4}>
-            <SmallGrid title="React JS" subheader="Class Progress" count={18} totalCount={26} color="warning" />
+            <SmallGrid
+              title="React JS"
+              subheader="Class Progress"
+              count={ongoingCourses?.length}
+              totalCount={totalEnrolled}
+              color="warning"
+            />
           </Grid>
 
           <Grid item xs={12} sm={6} md={3} lg={4}>
@@ -51,18 +69,23 @@ export default function CourseDetails() {
           <Grid item xs={12} sm={6} md={3} lg={4}>
             <SmallGrid title="React JS" subheader="Fees" count={26} totalCount={30} color="error" />
           </Grid>
-        </Grid>
+        </Grid> */}
 
         <Typography variant="h4" sx={{ mb: 3, mt: 3 }}>
           Assignments
         </Typography>
 
         <Grid container spacing={4}>
-          <Grid to={`/dashboard/${user?.isTeacher ? 'teacher' : 'student'}/classroom/123456/assingment/1233`} component={RouterLink} item xs={12} sm={6} md={3} lg={4}>
-            <CourseGrid subheader="Arrow Function" count={26} icon={'vscode-icons:file-type-reactjs'} />
-          </Grid>
-          <Grid item xs={12} sm={6} md={3} lg={4}>
-            <CourseGrid subheader="UseEffect" count={51} icon={'logos:flutter'} />
+          <Grid
+            to={`/dashboard/${user?.isTeacher ? 'teacher' : 'student'}/classroom/123456/assingment/1233`}
+            component={RouterLink}
+            item
+            xs={12}
+            sm={6}
+            md={3}
+            lg={4}
+          >
+            <CourseGrid subheader="Arrow Function" count={user?.ongoingCourses?.assignmentCount} icon={'vscode-icons:file-type-reactjs'} />
           </Grid>
         </Grid>
 
@@ -71,43 +94,66 @@ export default function CourseDetails() {
         </Typography>
 
         <Grid container spacing={4}>
-            <Grid item xs={12} sm={6} md={3} lg={4} to={`/dashboard/${user?.isTeacher ? 'teacher' : 'student'}/classroom/:id/god/details`} component={RouterLink}>
-              <CourseGrid subheader="UseState" count={22} icon={'logos:tensorflow'} />
-            </Grid>
-            <Grid item xs={12} sm={6} md={3} lg={4} to={`/dashboard/${user?.isTeacher ? 'teacher' : 'student'}/classroom/:id/dog/details`} component={RouterLink}>
-              <CourseGrid subheader="Hooks" count={11} icon={'logos:webhooks'} />
-            </Grid>
+          <Grid
+            item
+            xs={12}
+            sm={6}
+            md={3}
+            lg={4}
+            to={`/dashboard/${user?.isTeacher ? 'teacher' : 'student'}/classroom/:id/god/details`}
+            component={RouterLink}
+          >
+            <CourseGrid subheader="UseState" count={courseMaterial.length} icon={'logos:tensorflow'} />
+          </Grid>
         </Grid>
 
         <Typography variant="h4" sx={{ mb: 3, mt: 3 }}>
-         Vidya Daan
+          Vidya Daan
         </Typography>
 
         <Grid container spacing={4}>
           <Grid item xs={12} sm={6} md={3} lg={4}>
-            <Button sx={{ width:"100%"}} onClick={()=>{
-              window.open('https://diksha.gov.in/ncert/play/collection/do_31339576668973465612958?contentType=TextBook', '_blank');
-            }
-            } target="_blank">
-            <VidyaDaan subheader="NCERT" smallheader="Academic(Class 1)" icon={'akar-icons:link-chain'} />
+            <Button
+              sx={{ width: '100%' }}
+              onClick={() => {
+                window.open(
+                  'https://diksha.gov.in/ncert/play/collection/do_31339576668973465612958?contentType=TextBook',
+                  '_blank'
+                );
+              }}
+              target="_blank"
+            >
+              <VidyaDaan subheader="NCERT" smallheader="Academic(Class 1)" icon={'akar-icons:link-chain'} />
             </Button>
-           </Grid>
+          </Grid>
 
-            <Grid item xs={12} sm={6} md={3} lg={4}>
-            <Button sx={{ width:"100%"}} onClick={()=>{
-              window.open('https://diksha.gov.in/ncert/play/collection/do_31307360981920972812163?contentType=TextBook', '_blank');
-            }
-            } target="_blank">
-            <VidyaDaan subheader="NCERT-English" smallheader="Marigold(Class 1)" icon={'akar-icons:link-chain'} />
+          <Grid item xs={12} sm={6} md={3} lg={4}>
+            <Button
+              sx={{ width: '100%' }}
+              onClick={() => {
+                window.open(
+                  'https://diksha.gov.in/ncert/play/collection/do_31307360981920972812163?contentType=TextBook',
+                  '_blank'
+                );
+              }}
+              target="_blank"
+            >
+              <VidyaDaan subheader="NCERT-English" smallheader="Marigold(Class 1)" icon={'akar-icons:link-chain'} />
             </Button>
-            </Grid>
+          </Grid>
 
-            <Grid item xs={12} sm={6} md={3} lg={4}>
-            <Button sx={{ width:"100%"}} onClick={()=>{
-              window.open('https://diksha.gov.in/ncert/play/collection/do_31307361357388185614238?contentType=TextBook', '_blank');
-            }
-            } target="_blank">
-            <VidyaDaan subheader="NCERT- Hindi" smallheader="Rimjhim (Class 1)" icon={'akar-icons:link-chain'} />
+          <Grid item xs={12} sm={6} md={3} lg={4}>
+            <Button
+              sx={{ width: '100%' }}
+              onClick={() => {
+                window.open(
+                  'https://diksha.gov.in/ncert/play/collection/do_31307361357388185614238?contentType=TextBook',
+                  '_blank'
+                );
+              }}
+              target="_blank"
+            >
+              <VidyaDaan subheader="NCERT- Hindi" smallheader="Rimjhim (Class 1)" icon={'akar-icons:link-chain'} />
             </Button>
           </Grid>
         </Grid>
