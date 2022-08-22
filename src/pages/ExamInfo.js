@@ -1,6 +1,7 @@
 import { Card, Container, Grid, Stack, Typography } from '@mui/material';
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import ExamListItem from '../components/ExamListItem';
 import CustomModal from '../components/CustomModal';
 import Scheduler from '../components/Scheduler';
 import ExamScreen from '../sections/@exam/ExamScreen';
@@ -16,12 +17,12 @@ function ExamInfo() {
           <Typography variant="h4">Upcomming Screening Exam</Typography>
         <Container disableGutters="false" maxWidth='lg' >
           <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
-            <Typography variant="h4" gutterBottom>
-              Upcomming Exam
+            <Typography variant="h5" gutterBottom>
+              Exam Schedule
             </Typography>
             <CustomModal btnText={'Schedule'} component={<ExamEnrollmentModal />} icon="eva:plus-fill" />
           </Stack>
-          {/* <Scheduler /> */}
+          <ExamListItem/>
         </Container>
         </Card>
       </Grid>

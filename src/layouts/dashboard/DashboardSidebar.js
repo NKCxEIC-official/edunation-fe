@@ -100,7 +100,6 @@ const utilButton = (navigate) => {
   }
   if (role === '1' && isTeacher === 'false') {
     return (
-      <>
       <Button
         target="_blank"
         variant="contained"
@@ -108,28 +107,12 @@ const utilButton = (navigate) => {
         onClick={
           // navigate to be a :
           () => {
-            navigate('/exam/student/raj/dashboard/', { replace: true });
+            navigate('/exam/student/examInfo', { replace: true });
           }
         }
       >
         Be A Teacher
       </Button>
-
-      <Button
-      target="_blank"
-      variant="contained"
-      color="info"
-      onClick={
-        // navigate to be a :
-        () => {
-          navigate('/exam/student/examInfo', { replace: true });
-        }
-      }
-    >
-      Enrole Yoursef
-    </Button>
-      </>
-      
     );
   }
 };

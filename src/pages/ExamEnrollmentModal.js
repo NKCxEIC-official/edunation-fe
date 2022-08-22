@@ -29,7 +29,7 @@ export default function ExamEnrollmentModal() {
   return (
     <div className="Create a class">
       <Typography variant="h4" sx={{ mb: 1 }}>
-        Enrole For Exam
+        Enroll For Exam
       </Typography>
 
       <Form>
@@ -55,7 +55,7 @@ export default function ExamEnrollmentModal() {
               <TextField
                 id="filled-basic"
                 label="New Topic"
-                variant="standard"
+                variant='outlined'
                 placeholder="Enter New Topic Name"
                 fullWidth
                 required
@@ -63,7 +63,7 @@ export default function ExamEnrollmentModal() {
               <TextField
                 id="filled-basic"
                 label="Enter Topic Description "
-                variant="standard"
+                variant='outlined'
                 placeholder="Why you want to add?"
                 fullWidth
                 required
