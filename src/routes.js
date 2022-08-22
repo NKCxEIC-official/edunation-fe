@@ -33,6 +33,7 @@ import AddRedSpot from './pages/ngo/AddRedSpot';
 import CourseMaterialDetails from './pages/CourseMaterialDetails';
 import ChatApp from './components/ChatApp';
 import CourseGrid from './components/CourseGrid';
+import RedSpotList from './pages/ngo/RedSpotList';
 
 // ----------------------------------------------------------------------
 
@@ -53,6 +54,7 @@ export default function Router() {
         { path: 'ngo/red-spots', element: <AddRedSpot /> },
         { path: 'ngo/profile', element: <Profile /> },
         { path: 'ngo/redSpot', element: <AddRedSpot /> },
+        { path: 'ngo/redspots-list', element: <RedSpotList /> },
 
         // Teacher:
         { path: 'teacher/app', element: <DashboardTeacher /> },
