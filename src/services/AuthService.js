@@ -7,6 +7,7 @@ import {
   doc,
   getDoc,
   getDocs,
+  onSnapshot,
   query,
   setDoc,
   updateDoc,
@@ -29,9 +30,9 @@ export function login(email, password) {
   return signInWithEmailAndPassword(auth, email, password);
 }
 
-export function getUser(uid) {
+export function getUser(uid, callback) {
   const UserRef = doc(db, 'users', uid);
-  return getDoc(UserRef);
+  return onSnapshot(UserRef, (doc) => callback(doc));
 }
 
 export function addUserAnonymous(payload) {
@@ -88,5 +89,19 @@ export function updateRedSpotInProfile(payload) {
   const docRef = doc(db, `users/${payload.addedBy}`);
   return updateDoc(docRef, {
     redSpots: arrayUnion(payload),
+  });
+}
+
+export function updateClassSubscriptionInClassroom(path, payload) {
+  const docRef = doc(db, path);
+  return updateDoc(docRef, {
+    enrolled: arrayUnion(payload),
+  });
+}
+
+export function updateClassSubscriptionInProfile(path, payload) {
+  const docRef = doc(db, path);
+  return updateDoc(docRef, {
+    ongoingCourses: arrayUnion(payload),
   });
 }

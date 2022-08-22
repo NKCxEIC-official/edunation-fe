@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 // @mui
-import { Stack, IconButton, InputAdornment } from '@mui/material';
+import { Stack, IconButton, InputAdornment, Box } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 // components
 import Iconify from '../../../components/Iconify';
@@ -20,6 +20,7 @@ export default function RegisterForm() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
+  const auth = useSelector((state) => state.auth);
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -51,15 +52,14 @@ export default function RegisterForm() {
     dispatch(signupAction(payload));
   };
 
- useEffect(() => {
-   if ('role' in user) {
-     if (user.role === 1) {
-       if (user.isTeacher) navigate('/dashboard/teacher/app', { replace: true });
-       else navigate('/dashboard/student/app', { replace: true });
-     } else if (user.role === 0) navigate('/dashboard/ngo/app', { replace: true });
-   }
- }, [user]);
-
+  useEffect(() => {
+    if ('role' in user) {
+      if (user.role === 1) {
+        if (user.isTeacher) navigate('/dashboard/teacher/app', { replace: true });
+        else navigate('/dashboard/student/app', { replace: true });
+      } else if (user.role === 0) navigate('/dashboard/ngo/app', { replace: true });
+    }
+  }, [user]);
 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
@@ -85,8 +85,10 @@ export default function RegisterForm() {
             ),
           }}
         />
-
-        <LoadingButton fullWidth size="large" type="submit" variant="contained" loading={isSubmitting}>
+        {auth && auth.errorMessage && (
+          <Box sx={{ p: 2, backgroundColor: 'danger.light', mb: 2 }}>{auth.errorMessage}</Box>
+        )}
+        <LoadingButton fullWidth size="large" type="submit" variant="contained" loading={auth.showLoading}>
           Register
         </LoadingButton>
       </Stack>
