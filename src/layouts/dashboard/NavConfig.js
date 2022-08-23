@@ -64,11 +64,11 @@ const TeacherNavConfig = [
     path: '/dashboard/teacher/messages',
     icon: getIcon('jam:messages-f'),
   },
-  // {
-  //   title: 'Not found',
-  //   path: '/404',
-  //   icon: getIcon('eva:alert-triangle-fill'),
-  // },
+  {
+    title: 'Set Question',
+    path: '/dashboard/teacher/set-question',
+    icon: getIcon('uil:file-question-alt'),
+  },
 ];
 
 const StudentNavConfig = [

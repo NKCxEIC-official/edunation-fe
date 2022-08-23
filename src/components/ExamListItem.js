@@ -27,6 +27,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
+import { CheckBox } from '@mui/icons-material';
 
 const Transition = React.forwardRef((props, ref) => {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -42,52 +43,68 @@ function generate(element) {
 
 const demoExamList = [
   {
+    id: '89264198',
     name: 'Physics Exam',
     description: 'A MCQ Test on Heat',
     color: green[500],
     isGiven: false,
+    duration: '2Hr',
   },
   {
+    id: '89264198',
     name: 'Math Exam',
     description: 'A MCQ Test on Math Exam',
     color: orange[500],
     isGiven: false,
+    duration: '4Hr',
   },
   {
+    id: '89264198',
     name: 'React Exam',
     description: 'A MCQ Test on React',
     color: green[500],
     isGiven: false,
+    duration: '2Hr',
   },
   {
+    id: '8928239y98',
     name: 'DBMS Exam',
     description: 'A MCQ Test on DBMS',
     color: blue[600],
     isGiven: true,
+    duration: '3Hr',
   },
   {
+    id: '89264198',
     name: 'Physics Exam',
     description: 'A MCQ Test on Heat',
     color: green[500],
     isGiven: true,
+    duration: '2Hr',
   },
   {
+    id: '89264198',
     name: 'Math Exam',
     description: 'A MCQ Test on Math Exam',
     color: deepOrange[500],
     isGiven: true,
+    duration: '1Hr',
   },
   {
+    id: '89987198',
     name: 'React Exam',
     description: 'A MCQ Test on React',
     color: green[500],
     isGiven: true,
+    duration: '2Hr',
   },
   {
+    id: '898764198',
     name: 'DBMS Exam',
     description: 'A MCQ Test on DBMS',
     color: blue[600],
     isGiven: true,
+    duration: '4Hr',
   },
 ];
 
@@ -95,23 +112,36 @@ const Demo = styled('div')(({ theme }) => ({
   backgroundColor: theme.palette.background.paper,
 }));
 
-const JoinExamItem = ({ id, isGiven, navigate, avatar, color, primaryTxt, secondaryTxt, utilIcon, openDialogBox, isConfirmed, turnOffConfirmation }) => {
+const JoinExamItem = ({
+  isGiven,
+  navigate,
+  avatar,
+  exam,
+  color,
+  primaryTxt,
+  secondaryTxt,
+  utilIcon,
+  openDialogBox,
+  isConfirmed,
+  turnOffConfirmation,
+}) => {
   const navigateToExam = (primaryTxt, secondaryTxt) => {
     if (!isGiven) {
-      turnOffConfirmation()
-      navigate(`/exam/student/${id}/dashboard`, { replace: true });
-      console.log("navigationg")
+      turnOffConfirmation();
+      navigate(`/exam/student/${exam.id}/dashboard`, { replace: true });
+      console.log('navigationg');
     }
   };
   if (isConfirmed) {
-    navigateToExam()
-    return
+    navigateToExam();
+    return;
   }
-  const openConfirmationDialog = openDialogBox;
   return (
     <ListItem
       secondaryAction={
-        <IconButton edge="end" aria-label="delete" onClick={ !isGiven ? openConfirmationDialog : null}>
+        <IconButton edge="end" aria-label="delete" onClick={!isGiven ? openDialogBox : null}>
+          {/* open the contextual dialog box */}
+
           {utilIcon}
         </IconButton>
       }
@@ -132,8 +162,12 @@ export default function ExamListItem() {
   const [secondary, setSecondary] = React.useState(true);
   const [open, setOpen] = React.useState(false);
   const [confirmedGetIn, setConfirmedGetIn] = React.useState(false);
+  const [buttonActive, setButtonActive] = React.useState(false);
 
-  const handleClickOpen = () => {
+  const [examDuration, setExamDuration] = React.useState('');
+  const [examName, setExamName] = React.useState('');
+
+  const handleClickOpen = (exam) => {
     setOpen(true);
   };
 
@@ -141,11 +175,11 @@ export default function ExamListItem() {
     setOpen(false);
   };
   const turnOffConfirmation = () => {
-    setConfirmedGetIn(false)
-  }
+    setConfirmedGetIn(false);
+  };
   const turnOnConfirmation = () => {
-    setConfirmedGetIn(true)
-  }
+    setConfirmedGetIn(true);
+  };
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -157,16 +191,36 @@ export default function ExamListItem() {
           onClose={handleClose}
           aria-describedby="alert-dialog-slide-description"
         >
-          <DialogTitle>{"Use Google's location service?"}</DialogTitle>
+          <DialogTitle>{'Begin Exam'}</DialogTitle>
           <DialogContent>
             <DialogContentText id="alert-dialog-slide-description">
-              Let Google help apps determine location. This means sending anonymous location data to Google, even when
-              no apps are running.
+              Exam Name : <b>{examName}</b>
+              <br />
+              Exam Duration : <b>{examDuration}</b>
+              <br />
+              <br />
+              <b>Note: You can't stop the exam, once started.</b>
+              <br />
+              <br />
+              <FormGroup>
+                <FormControlLabel
+                  onChange={(event) => {
+                    if (event.target.checked === true) {
+                      setButtonActive(true);
+                    } else {
+                      setButtonActive(false);
+                    }
+                  }}
+                  value={buttonActive}
+                  control={<Checkbox />}
+                  label="I agree to the terms and conditions of exam."
+                />
+              </FormGroup>
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleClose}>Disagree</Button>
-            <Button onClick={turnOnConfirmation}>Agree</Button>
+            <Button onClick={handleClose}>Cancel</Button>
+            {buttonActive ? <Button onClick={turnOnConfirmation}>Agree</Button> : <Button disabled>Agree</Button>}
           </DialogActions>
         </Dialog>
         <Grid item xs={12} lg={24} xl={36} md={6}>
@@ -178,7 +232,7 @@ export default function ExamListItem() {
               {demoExamList.map((exam) => {
                 return (
                   <JoinExamItem
-                    id='37e28r'
+                    exam={exam}
                     primaryTxt={exam.name}
                     secondaryTxt={exam.description}
                     isGiven={exam.isGiven}
@@ -186,7 +240,12 @@ export default function ExamListItem() {
                     avatar={<AssignmentIcon />}
                     color={exam.color}
                     utilIcon={exam.isGiven ? <DoneAllRoundedIcon /> : <HistoryEduRoundedIcon />}
-                    openDialogBox={handleClickOpen}
+                    openDialogBox={() => {
+                      setExamDuration(exam.duration);
+                      setExamName(exam.name);
+                      console.log('exam: ', exam.name)
+                      handleClickOpen(exam);
+                    }}
                     isConfirmed={confirmedGetIn}
                     turnOffConfirmation={turnOffConfirmation}
                   />
