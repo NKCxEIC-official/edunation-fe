@@ -105,3 +105,14 @@ export function updateClassSubscriptionInProfile(path, payload) {
     ongoingCourses: arrayUnion(payload),
   });
 }
+
+export function addDocumentInDb(payload, collectionName) {
+  const UserCollectionRef = collection(db, collectionName);
+  return addDoc(UserCollectionRef, payload);
+}
+
+export function getTeachingClasses(uid) {
+  const UserCollectionRef = collection(db, 'classes');
+  const q = query(UserCollectionRef, where('creator.uid', '==', uid));
+  return getDocs(q);
+}

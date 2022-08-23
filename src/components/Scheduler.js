@@ -22,9 +22,13 @@ import {
   CurrentTimeIndicator,
   Resources,
 } from '@devexpress/dx-react-scheduler-material-ui';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { loadingToggleAction } from '../store/actions/AuthActions';
+import { addDocument, addDocumentInDb, getTeachingClasses } from '../services/AuthService';
 import { appointments, resourcesData } from '../_mock/event';
 import { owners } from '../_mock/tasks';
+
+
 
 const PREFIX = 'Demo';
 export const classes = {
@@ -43,7 +47,6 @@ const StyledDiv = styled('div')(({ theme }) => ({
     fontSize: '1rem',
   },
 }));
-
 const initialCurrentDate = '2022-06-27';
 const editingOptionsList = [
   { id: 'allowAdding', text: 'Adding' },
@@ -70,7 +73,58 @@ const EditingOptionsSelector = ({ options, onOptionsChange }) => (
   </StyledDiv>
 );
 
+const getMyCreatedClassList = (user) => {
+  console.log("🚀 ~ file: Scheduler.js ~ line 78 ~ getTeachingClasses ~ user.uid", user.uid)
+  getTeachingClasses(user.uid).then((resources) => {
+    console.log("🚀 ~ file: Scheduler.js ~ line 210 ~ getTeachingClasses ~ resources", resources)
+  })
+}
+
+const addEventToDb = (event, dispatch) => {
+  
+  const payload = {
+    allDay: event.allDay,
+    endDate: event.endDate,
+    id: event.id,
+    members: event.members.length > 0 ? event.members : [],
+    startDate: event.startDate,
+    title: event.title,
+    class: {
+      className: 'class name',
+      classId: 'class id',
+      classBanarUrl: 'url',
+    },
+  };
+
+  // allDay: false
+  // endDate: Thu Jun 30 2022 11:30:00 GMT+0530 (India Standard Time) {}
+  // id: 8
+  // members: Array(2)
+  // 0: 2
+  // 1: 3
+  // length: 2
+  // [[Prototype]]: Array(0)
+  // notes: "iukyjthrgefdsfghjmnbgfcxvbnmkjhytre"
+  // roomId: 2
+  // startDate: Thu Jun 30 2022 11:00:00 GMT+0530 (India Standard Time) {}
+  // title: "test1"
+
+  console.log('addEventToDb ~ event', payload);
+  dispatch(loadingToggleAction(true));
+  addDocumentInDb(payload, 'events').then(() => {
+    console.log('🚀 ~ file: Scheduler.js ~ line 77 ~ addDocument ~ event', payload);
+    dispatch(loadingToggleAction(false));
+  });
+};
+
+const updateEventToDb = (event) => {};
+
+const removeEventToDb = (event) => {};
+
 export default () => {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.auth.user);
+  const classList = getMyCreatedClassList(user);
   const [data, setData] = React.useState(appointments);
   const [editingOptions, setEditingOptions] = React.useState({
     allowAdding: true,
@@ -103,9 +157,14 @@ export default () => {
     ({ added, changed, deleted }) => {
       if (added) {
         const startingAddedId = data.length > 0 ? data[data.length - 1].id + 1 : 0;
-        setData([...data, { id: startingAddedId, ...added }]);
+        const addedEventObj = { id: startingAddedId, ...added };
+        setData([...data, addedEventObj]);
+        // add new evant:
+        console.log('adding event ', addedEventObj);
+        addEventToDb(addedEventObj, dispatch);
       }
       if (changed) {
+        // change event:
         setData(
           data.map((appointment) =>
             changed[appointment.id] ? { ...appointment, ...changed[appointment.id] } : appointment
@@ -113,6 +172,8 @@ export default () => {
         );
       }
       if (deleted !== undefined) {
+        // dekete eveny:
+
         setData(data.filter((appointment) => appointment.id !== deleted));
       }
       setIsAppointmentBeingCreated(false);
@@ -152,6 +213,7 @@ export default () => {
   const allowDrag = React.useCallback(() => allowDragging && allowUpdating, [allowDragging, allowUpdating]);
   const allowResize = React.useCallback(() => allowResizing && allowUpdating, [allowResizing, allowUpdating]);
 
+  
   return (
     <>
       {/* <EditingOptionsSelector options={editingOptions} onOptionsChange={handleEditingOptionsChange} /> */}
