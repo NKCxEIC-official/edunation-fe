@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 // @mui
-import { Stack, IconButton, InputAdornment } from '@mui/material';
+import { Stack, IconButton, InputAdornment, Button, FormControlLabel, FormGroup, Switch } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 // components
 import Iconify from '../../../components/Iconify';
@@ -20,7 +20,7 @@ export default function RegisterForm() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
-
+  const [OptForSubsidy, SetOptForSubsidy] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
   const RegisterSchema = Yup.object().shape({
@@ -85,7 +85,22 @@ export default function RegisterForm() {
             ),
           }}
         />
+        <FormGroup>
+              <FormControlLabel control={<Switch onChange={()=> SetOptForSubsidy(!OptForSubsidy)} />} label="Opt for Subsidy" />
+        </FormGroup>
 
+
+        {OptForSubsidy && <Button
+         variant="contained"
+          component="label"
+          >
+        Upload File
+        <input
+        type="file"
+        hidden
+        />
+        </Button>}
+        
         <LoadingButton fullWidth size="large" type="submit" variant="contained" loading={isSubmitting}>
           Register
         </LoadingButton>
