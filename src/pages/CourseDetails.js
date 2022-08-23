@@ -25,8 +25,8 @@ export default function CourseDetails() {
   });
 
   const { classes } = data;
-  console.log(classes, user);
   const params = useParams();
+
   const { name, studentList, courseMaterial, videos } = classes[params?.id];
   const { ongoingCourses, totalEnrolled } = user;
   console.log(name, params);
