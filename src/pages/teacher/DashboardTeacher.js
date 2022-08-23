@@ -60,7 +60,7 @@ export default function DashboardTeacher() {
         <Grid container spacing={3} style={{ textDecoration: 'none' }}>
 
           <Grid item xs={12} sm={12} md={6} lg={4} >
-            <CourseGrid title="Courses in Progress" color="primary" alighn="center" subheader="Courses" icon="logos:discourse-icon" count={user.courseInProgressTeacher} />
+            <CourseGrid title="Courses in Progress" color="primary" align="center" subheader="Courses" icon="logos:discourse-icon" count={user.courseInProgressTeacher} />
           </Grid>
 
           <Grid item xs={12} sm={12} md={6} lg={4} >
