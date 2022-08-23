@@ -6,7 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 // @mui
-import { Stack, IconButton, InputAdornment, Button, FormControlLabel, FormGroup, Switch } from '@mui/material';
+
+import { Stack, IconButton, InputAdornment, Button, FormControlLabel, FormGroup, Switch, Box } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 // components
 import Iconify from '../../../components/Iconify';
@@ -21,6 +22,8 @@ export default function RegisterForm() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
   const [OptForSubsidy, SetOptForSubsidy] = useState(false);
+  const auth = useSelector((state) => state.auth);
+
   const [showPassword, setShowPassword] = useState(false);
 
   const RegisterSchema = Yup.object().shape({
@@ -51,15 +54,14 @@ export default function RegisterForm() {
     dispatch(signupAction(payload));
   };
 
- useEffect(() => {
-   if ('role' in user) {
-     if (user.role === 1) {
-       if (user.isTeacher) navigate('/dashboard/teacher/app', { replace: true });
-       else navigate('/dashboard/student/app', { replace: true });
-     } else if (user.role === 0) navigate('/dashboard/ngo/app', { replace: true });
-   }
- }, [user]);
-
+  useEffect(() => {
+    if ('role' in user) {
+      if (user.role === 1) {
+        if (user.isTeacher) navigate('/dashboard/teacher/app', { replace: true });
+        else navigate('/dashboard/student/app', { replace: true });
+      } else if (user.role === 0) navigate('/dashboard/ngo/app', { replace: true });
+    }
+  }, [user]);
 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
@@ -101,7 +103,10 @@ export default function RegisterForm() {
         />
         </Button>}
         
-        <LoadingButton fullWidth size="large" type="submit" variant="contained" loading={isSubmitting}>
+        {auth && auth.errorMessage && (
+          <Box sx={{ p: 2, backgroundColor: 'danger.light', mb: 2 }}>{auth.errorMessage}</Box>
+        )}
+        <LoadingButton fullWidth size="large" type="submit" variant="contained" loading={auth.showLoading}>
           Register
         </LoadingButton>
       </Stack>
