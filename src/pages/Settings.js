@@ -31,6 +31,11 @@ function Settings() {
     updateFormData({ ...formData, [key]: e.target.value })
   }
 
+  const handleFileUpload = (key, e) => {
+    console.log(e);
+    updateFormData({ ...formData, [key]: e.target.files[0]})
+  }
+
   const onSubmit = (e) => {
     e.preventDefault();
     const userDataRef = doc(db, 'users', user?.uid)
@@ -42,7 +47,7 @@ function Settings() {
   };
 
   const user = useSelector((state) => state.auth.user);
-  const { firstName, lastName, email, phone, address, city, state, university } = user;
+  const { firstName, lastName, email, phone, address, city, state, university, about, dp } = user;
 
   return (
     <Container maxWidth="md">
@@ -61,6 +66,7 @@ function Settings() {
             <RHFTextField id="outlined-disabled" name="lastName" label="Last Name" defaultValue={lastName} required fullWidth onChange={(e)=>handleFieldValueChange('lastName', e)} />
           </Stack>
           <RHFTextField id="outlined-disabled" name="email" label="Email" defaultValue={email} required fullWidth onChange={(e)=>handleFieldValueChange('email', e)} disabled/>
+          <RHFTextField id="outlined-disabled" name="about" label="About" defaultValue={about} required fullWidth onChange={(e)=>handleFieldValueChange('about', e)} />
           <RHFTextField id="outlined-disabled" name="phone" label="Phone" defaultValue={phone} required fullWidth onChange={(e)=>handleFieldValueChange('phone', e)}/>
           <RHFTextField id="outlined-disabled" name="address" label="Address" defaultValue={address} required fullWidth onChange={(e)=>handleFieldValueChange('address', e)}/>
           <Stack direction="row" spacing={2}>
@@ -68,6 +74,10 @@ function Settings() {
             <RHFTextField id="outlined-disabled" name="state" label="State" defaultValue={state} required fullWidth onChange={(e)=>handleFieldValueChange('state', e)}/>
           </Stack>
           <RHFTextField id="outlined-disabled" name="school" label="University" defaultValue={university} required fullWidth onChange={(e)=>handleFieldValueChange('university', e)}/>
+          <Button variant="contained" component="label" color="info">
+                {formData.dp? 'Photo Uploaded' : 'Upload Photo'}
+                <input type="file" hidden accept="image/png, image/gif, image/jpeg" onChange={(e) => {handleFileUpload("dp", e)}}/>
+            </Button>
           <LoadingButton fullWidth size="large" type="submit" variant="contained" loading={false} >
             Update Profile
           </LoadingButton>
