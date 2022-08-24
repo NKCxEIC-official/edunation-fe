@@ -1,6 +1,6 @@
 /** eslint-disable */
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   Typography,
   TextField,
@@ -18,6 +18,7 @@ import {
 import { addDoc, collection } from 'firebase/firestore';
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { db, storage } from '../../utils/firebaseConfig';
+import { getDatafromDBAction } from '../../store/actions/AuthActions';
 
 const DAYS_MAPPER = [
   { name: 'Monday' },
@@ -41,6 +42,7 @@ export default function CreatAClass() {
   const [loading, setLoading] = useState(false);
 
   const user = useSelector(state => state.auth.user);
+  const dispatch = useDispatch();
 
   const handleFieldValue = (key, e) => {
     updateFormData({ ...formData, [key]: e.target.value });
@@ -77,7 +79,8 @@ export default function CreatAClass() {
                 studentCount: 0
             }).then((res) => {
                 setLoading(false);
-                if(res?.id) window.open(`/dashboard/teacher/classroom/${res.id}`);
+                dispatch(getDatafromDBAction('classes',true,'classes'))
+                if(res?.id) window.open(`/dashboard/teacher/classroom/${res.id}`, "_self");
             }).catch((err) => {
                 setLoading(false);
             })
