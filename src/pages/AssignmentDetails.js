@@ -10,8 +10,19 @@ import UploadAssignment from './student/UploadAssignment';
 
 function AssignmentDetails() {
 
-  const user = useSelector(state => state.auth.user)
+  const { user, data } = useSelector((state) => {
+    return {
+      user: state.auth.user,
+      data: state.auth.data,
+    };
+  });
 
+  const { classes } = data;
+  console.log(classes, user);
+  const params = useParams();
+  console.log(params)
+  const { name, studentList, courseMaterial, videos } = classes[params?.id];
+  const { ongoingCourses, totalEnrolled } = user;
   const { assingmentId } = useParams()
   console.log(assingmentId)
   return (
@@ -25,7 +36,7 @@ function AssignmentDetails() {
           <Grid item md={3} sx={{ display: "flex", alignItem: "center", justifyContent: "center", flexDirection: "column", pl: 4 }}>
             {!user?.isTeacher && <CustomModal btnText={'Upload Assignment'} sx={{ mb: 4 }} component={<UploadAssignment />} icon="eva:plus-fill" />}
 
-            {user?.isTeacher && <Button to="/dashboard/teacher/classroom/123456/assingment/1233/check" component={RouterLink} variant="contained" startIcon={<Iconify icon={"ant-design:check-circle-twotone"} sx={{ height: "50px" }} />} >
+            {user?.isTeacher && <Button to="/dashboard/teacher/classroom/${}/assingment/1233/check" component={RouterLink} variant="contained" startIcon={<Iconify icon={"ant-design:check-circle-twotone"} sx={{ height: "50px" }} />} >
               Check Assignments
             </Button>}
           </Grid>

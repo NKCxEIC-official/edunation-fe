@@ -77,7 +77,7 @@ export default function CourseDetails() {
 
         <Grid container spacing={4}>
           <Grid
-            to={`/dashboard/${user?.isTeacher ? 'teacher' : 'student'}/classroom/123456/assingment/1233`}
+            to={`/dashboard/${user?.isTeacher ? 'teacher' : 'student'}/classroom/${params.id}/assingment/1233`}
             component={RouterLink}
             item
             xs={12}
