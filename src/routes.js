@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { Navigate, useNavigate, useRoutes } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
@@ -19,7 +20,6 @@ import Settings from './pages/Settings';
 import Profile from './pages/Profile';
 import User from './pages/User';
 import StudentDashboardApp from './pages/student/DashboardApp';
-import Classroom from './pages/student/Classroom';
 
 import StudentsList from './pages/ngo/StudentsList';
 import RedSpots from './pages/ngo/RedSpots';
@@ -33,9 +33,12 @@ import AddRedSpot from './pages/ngo/AddRedSpot';
 import CourseMaterialDetails from './pages/CourseMaterialDetails';
 import ChatApp from './components/ChatApp';
 import RedSpotList from './pages/ngo/RedSpotList';
+
 import Dashboard from './pages/superAdmin/Dashboard';
 import AcceptApproval from './pages/superAdmin/AcceptApproval';
 
+import NewCourses from './pages/student/NewCourses';
+import OngoingClasses from './pages/student/OngoingClasses';
 
 // ----------------------------------------------------------------------
 
@@ -68,9 +71,9 @@ export default function Router() {
         { path: 'teacher/myCourses', element: <MyCourses /> },
         { path: 'teacher/community', element: <Community /> },
         { path: 'teacher/classroom/:id', element: <CourseDetails /> },
-        { path: 'teacher/classroom/:id/assingment/:assingmentId', element: <AssignmentDetails /> },
-        { path: 'teacher/classroom/:id/assingment/:assingmentId/check', element: <CheckAssignments /> },
-        { path: 'teacher/classroom/:id/:topic/details', element: <CourseMaterialDetails /> },
+        { path: 'teacher/classroom/:id/assignment/:assignmentId', element: <AssignmentDetails /> },
+        { path: 'teacher/classroom/:id/assignment/:assignmentId/check', element: <CheckAssignments /> },
+        { path: 'teacher/classroom/:id/course-materials/:fileId', element: <CourseMaterialDetails /> },
         { path: 'teacher/reports', element: <Reports /> },
         { path: 'teacher/profile', element: <Profile /> },
         { path: 'teacher/settings', element: <Settings /> },
@@ -80,14 +83,15 @@ export default function Router() {
         { path: 'student/app', element: <StudentDashboardApp /> },
         { path: 'student/user', element: <User /> },
         { path: 'student/schedule', element: <Schedule /> },
-        { path: 'student/classroom', element: <Classroom /> },
+        { path: 'student/new-courses', element: <NewCourses /> },
+        { path: 'student/ongoing-classes', element: <OngoingClasses /> },
         { path: 'student/classroom/:id', element: <CourseDetails /> },
-        { path: 'student/classroom/:id/assingment/:assingmentId', element: <AssignmentDetails /> },
-        { path: 'student/classroom/:id/assingment/:assingmentId/check', element: <CheckAssignments /> },
+        { path: 'student/classroom/:id/assignment/:assignmentId', element: <AssignmentDetails /> },
+        { path: 'student/classroom/:id/assignment/:assignmentId/check', element: <CheckAssignments /> },
         { path: 'student/profile', element: <Profile /> },
         { path: 'student/community', element: <Community /> },
         { path: 'student/settings', element: <Settings /> },
-        { path: 'student/classroom/:id/:topic/details', element: <CourseMaterialDetails /> },
+        { path: 'student/classroom/:id/course-materials/:fileId', element: <CourseMaterialDetails /> },
         { path: 'student/messages', element: <ChatApp /> },
       ],
     },

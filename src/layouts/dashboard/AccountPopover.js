@@ -1,6 +1,7 @@
+/* eslint-disable */
 import { useRef, useState } from 'react';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 // @mui
 import { alpha } from '@mui/material/styles';
 import { Box, Divider, Typography, Stack, MenuItem, Avatar, IconButton } from '@mui/material';
@@ -12,28 +13,21 @@ import { logoutAction } from '../../store/actions/AuthActions';
 
 // ----------------------------------------------------------------------
 
-const MENU_OPTIONS = [
-  {
-    label: 'Home',
-    icon: 'eva:home-fill',
-    linkTo: '/',
-  },
-  {
-    label: 'Profile',
-    icon: 'eva:person-fill',
-    linkTo: '#',
-  },
-  {
-    label: 'Settings',
-    icon: 'eva:settings-2-fill',
-    linkTo: '#',
-  },
-];
+const getRole = (user) => {
+  if(user) {
+    return user.role === 1 && user.isTeacher === false
+    ? 'student'
+    : user.role === 1 && user.isTeacher === true
+    ? 'teacher'
+    : 'ngo';
+  }
+}
 
 // ----------------------------------------------------------------------
 
 export default function AccountPopover() {
   const anchorRef = useRef(null);
+  const user = useSelector((state) => state.auth.user);
 
   const [open, setOpen] = useState(null);
   const dispatch = useDispatch();
@@ -51,6 +45,24 @@ export default function AccountPopover() {
     console.log('logouts');
     dispatch(logoutAction(navigate));
   };
+
+  const MENU_OPTIONS = [
+    {
+      label: 'Home',
+      icon: 'eva:home-fill',
+      linkTo: `/dashboard/${getRole(user)}/app`,
+    },
+    {
+      label: 'Profile',
+      icon: 'eva:person-fill',
+      linkTo: `/dashboard/${getRole(user)}/profile`,
+    },
+    {
+      label: 'Settings',
+      icon: 'eva:settings-2-fill',
+      linkTo: `/dashboard/${getRole(user)}/settings`,
+    },
+  ];
 
   return (
     <>
@@ -72,7 +84,7 @@ export default function AccountPopover() {
           }),
         }}
       >
-        <Avatar src={account.photoURL} alt="photoURL" />
+        <Avatar src={user?.dp} alt="photoURL" />
       </IconButton>
 
       <MenuPopover
@@ -91,10 +103,10 @@ export default function AccountPopover() {
       >
         <Box sx={{ my: 1.5, px: 2.5 }}>
           <Typography variant="subtitle2" noWrap>
-            {account.displayName}
+            {`${user?.firstName} ${user?.lastName}`}
           </Typography>
           <Typography variant="body2" sx={{ color: 'text.secondary' }} noWrap>
-            {account.email}
+            {user?.email}
           </Typography>
         </Box>
 

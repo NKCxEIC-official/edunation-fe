@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { faker } from '@faker-js/faker';
 import { useSelector } from 'react-redux';
 // @mui
@@ -48,10 +49,12 @@ export default function DashboardTeacher() {
         {/* <Grid item md={8}> */}
 
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
-          <Typography variant="h4" sx={{ mb: 3 }}>
-            Hi, Welcome back
-          </Typography>
-
+          <Grid item lg={12}>
+            <Typography variant="h4">Hi, {user.firstName}</Typography>
+            <Typography variant="p" sx={{ mb: 5 }}>
+              Welcome Back -
+            </Typography>
+          </Grid>
 
           <CustomModal btnText={'Create a Class'} sx={{ mb: 4 }} component={<CreateAClass />} icon="eva:plus-fill" />
         </Stack>
@@ -100,22 +103,14 @@ export default function DashboardTeacher() {
             <RectangleGrid title="Course Name" duration="Duration" percent="Percent of Students" color="ABB8C3" alighn="center" subheader="Course Name" count="Number of Students" />
           </Grid> */}
 
-          {user?.myCourses && user?.myCourses.length > 0 && user.myCourses.map((course) =>
+          {user?.myCourses && user?.myCourses.length > 0 && user.myCourses.filter(course => course.percentage !== 100).map((course) =>
           (
             <Grid item xs={12} sm={12} md={12}>
-              <RectangleGrid subheader={course.courseName} duration={course.duration} percent={course.percentage} color="primary" alighn="center" icon="logos:discourse-icon" count={course.studentCount} />
+              <RectangleGrid subheader={course.courseName} duration={course.duration} percent={course.percentage} color="primary" alighn="center" icon={course.courseIcon} count={course.studentCount} />
             </Grid>
           )
           )}
 
-
-          {/* <Grid item xs={12} sm={12} md={12} >
-            <RectangleGrid title="ReactJs" percent="76%" duration="7 Months" count="50" color="green" subheader="ReactJs" icon="emojione:exclamation-question-mark" />
-          </Grid>
-
-          <Grid item xs={12} sm={12} md={12} >
-            <RectangleGrid title="English" percent="86%" duration="6 Months" count="50" subheader="English" icon="carbon:request-quote" />
-          </Grid> */}
 
         </Stack>
 
@@ -140,9 +135,15 @@ export default function DashboardTeacher() {
             </Grid>
           </Grid>
 
-          {/* <Grid item xs={12} sm={12} md={12}>
-            <RectangleGrid title="Course Name" duration="Duration" percent="Percent of Students" color="ABB8C3" alighn="center" subheader="Course Name" count="Number of Students" />
-          </Grid> */}
+        
+          {user?.myCourses && user?.myCourses.length > 0 && user.myCourses.filter(course => course.percentage === 100).map((course) =>
+          (
+            <Grid item xs={12} sm={12} md={12}>
+              <RectangleGrid subheader={course.courseName} duration={course.duration} percent={course.percentage} color="primary" alighn="center" icon={course.courseIcon} count={course.studentCount} />
+            </Grid>
+          )
+          )}
+
 
 
           <Grid item xs={12} sm={12} md={12}>
@@ -156,27 +157,8 @@ export default function DashboardTeacher() {
           <Grid item xs={12} sm={12} md={12} >
             <RectangleGrid title="Physics" percent="100" duration="7" count="34" subheader="Physics" icon="carbon:request-quote" />
           </Grid>
+
         </Stack>
-
-
-        {/* <Stack spacing={2}>
-
-          <Box paddingTop={5} paddingLeft={3}>Completed Courses</Box>
-
-          <Grid item xs={12} sm={12} md={12}>
-            <RectangleGrid title="Bengali" color="primary" alighn="center" subheader="Python" icon="logos:discourse-icon" count="10" />
-          </Grid>
-
-          <Grid item xs={12} sm={12} md={12} >
-            <RectangleGrid title="Hindi" count="50" color="green" subheader="ReactJs" icon="emojione:exclamation-question-mark" />
-          </Grid>
-
-        </Stack> */}
-
-        {/* </Grid> */}
-
-
-
         <Grid item xs={12} md={6} lg={8} paddingTop={3}>
           <AppWebsiteVisits
             title="Revenue"
@@ -205,11 +187,6 @@ export default function DashboardTeacher() {
             ]}
           />
         </Grid>
-        {/* </Grid> */}
-        {/* <Grid item md={4}>
-            rightsidebar
-          </Grid> */}
-        {/* </Grid> */}
       </Container>
     </Page >
   );

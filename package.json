@@ -39,9 +39,10 @@
     ]
   },
   "dependencies": {
+    "@alan-ai/alan-sdk-web": "^1.8.34",
     "@devexpress/dx-react-core": "^3.0.4",
-    "@devexpress/dx-react-scheduler": "^3.0.4",
-    "@devexpress/dx-react-scheduler-material-ui": "^3.0.4",
+    "@devexpress/dx-react-scheduler": "^3.0.5",
+    "@devexpress/dx-react-scheduler-material-ui": "^3.0.5",
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
     "@faker-js/faker": "^7.3.0",

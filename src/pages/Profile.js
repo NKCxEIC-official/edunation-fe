@@ -1,12 +1,12 @@
+/* eslint-disable */
 import { useSelector } from 'react-redux';
-import { Box, Button, Card, CardContent, Grid, Stack, Typography } from '@mui/material';
+import { Avatar, Box, Button, Card, CardContent, Grid, Stack, Typography } from '@mui/material';
 import '../components/Root.css';
 import React, { useState } from 'react';
 import OngoingCourses from '../components/OngoingCourses';
 import ProfileBackground from '../components/SVGIcons/ProfileBackground';
 import Iconify from '../components/Iconify';
 import { AppWidgetSummary } from '../sections/@dashboard/app';
-
 
 
 function Profile() {
@@ -40,11 +40,7 @@ function Profile() {
       <Grid item lg={8} xl={8} className="profileIntro">
         <div className="profileMainContainer">
           <div className="contents">
-            <img
-              src={dp}
-              alt="banner"
-              className="profileImg"
-            />
+            <Avatar variant="square" className='profileImg' src={dp}/>
             <div>
               <Typography variant="h6">
                 <div>{firstName} {lastName}</div>
