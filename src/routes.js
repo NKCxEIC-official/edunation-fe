@@ -36,7 +36,7 @@ import CourseGrid from './components/CourseGrid';
 import RedSpotList from './pages/ngo/RedSpotList';
 import NewCourses from './pages/student/NewCourses';
 import OngoingClasses from './pages/student/OngoingClasses';
-import ReadSpotDashboardApp from './pages/redspot/DashboardApp';
+import ReadSpotDashboardApp from './pages/redspot/RedSpotDashboardApp';
 
 import { observeLiveClass } from './utils';
 import LoadingAnimationLayout from './layouts/LoadingAnimationLayout';
@@ -47,13 +47,17 @@ export default function Router() {
     {
       path: '/dashboard',
       element: (
-        <ObserveLiveSession>
           <RequireAuth>
             <DashboardLayout />
           </RequireAuth>
-        </ObserveLiveSession>
       ),
       children: [
+        // RED-Spot routs:
+        { path: 'ngo/app', element: <NgoDashboard /> },
+        { path: 'ngo/teachers-list', element: <TeachersList /> },
+        { path: 'ngo/students-list', element: <StudentsList /> },
+        { path: 'ngo/red-spots', element: <AddRedSpot /> },
+
         // NGO routs:
         { path: 'ngo/app', element: <NgoDashboard /> },
         { path: 'ngo/teachers-list', element: <TeachersList /> },
@@ -148,7 +152,6 @@ const ObserveLiveSession = ({ children }) => {
         }else{
           navigate('/red-spot/live');
         }
-        
       }
     },
   );

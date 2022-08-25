@@ -12,7 +12,7 @@ import { useEffect } from 'react';
 
 
 // ----------------------------------------------------------------------
-export default function ReadSpotDashboardApp() {
+export default function RedSpotDashboardApp() {
   const dispatch = useDispatch();
   useEffect(() => {
 
