@@ -530,27 +530,27 @@ const todayaAppoinments = appointments.map(({ startDate, endDate, ...restArgs })
 
 const resourcesData = [
   {
-    text: 'Room 101',
+    text: 'React.js',
     id: 1,
     color: amber,
   },
   {
-    text: 'Room 102',
+    text: 'Physics',
     id: 2,
     color: pink,
   },
   {
-    text: 'Room 103',
+    text: 'Math',
     id: 3,
     color: purple,
   },
   {
-    text: 'Meeting room',
+    text: 'Geography',
     id: 4,
     color: deepOrange,
   },
   {
-    text: 'Conference hall',
+    text: 'Django',
     id: 5,
     color: teal,
   },

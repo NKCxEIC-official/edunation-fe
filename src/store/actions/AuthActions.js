@@ -339,6 +339,25 @@ export function addRedSpotAction(payload) {
   };
 }
 
+// export function addEventAction(payload) {
+//   return (dispatch) => {
+//     dispatch(loadingToggleAction(true));
+//     checkIfDocumentExists(`events/`).then((response) => {
+//       if (!response.exists()) {
+//         addDocument(`events/${payload.redSPotId}`, payload).then(() => {
+//           updateRedSpotInProfile(payload).then(() => {
+//             // show success message
+//             dispatch(loadingToggleAction(false));
+//           });
+//         });
+//       } else {
+//         dispatch(loadingToggleAction(false));
+//         // show error in snackbar
+//       }
+//     });
+//   };
+// }
+
 export function updateClassSubscriptionInClassroomAction(classId, payload) {
   return (dispatch) => {
     updateClassSubscriptionInClassroom(`classes/${classId}`, payload).then(() => {});

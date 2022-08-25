@@ -1,5 +1,6 @@
 /** eslint-disable */
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   Typography,
@@ -39,7 +40,9 @@ export default function CreatAClass() {
     subject: '',
     bannerUrl: null
   });
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch()
 
   const user = useSelector(state => state.auth.user);
   const dispatch = useDispatch();
@@ -79,8 +82,10 @@ export default function CreatAClass() {
                 studentCount: 0
             }).then((res) => {
                 setLoading(false);
-                dispatch(getDatafromDBAction('classes',true,'classes'))
-                if(res?.id) window.open(`/dashboard/teacher/classroom/${res.id}`, "_self");
+                if(res?.id) {
+                  dispatch(getDatafromDBAction('classes', true, 'classes'));
+                  navigate(`/dashboard/teacher/classroom/${res.id}`, { replace: true });
+                }
             }).catch((err) => {
                 setLoading(false);
             })
