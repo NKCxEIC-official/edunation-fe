@@ -1,35 +1,48 @@
 import { faker } from '@faker-js/faker';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
 // @mui
 import { useTheme } from '@mui/material/styles';
 import { Grid, Container, Typography, Stack, Button, CardContent, Card } from '@mui/material';
 import { Link as RouterLink, useParams } from 'react-router-dom';
 // components../components/CourseGrid
+import CustomModal from '../components/CustomModal';
 import CourseGrid from '../components/CourseGrid';
 import SmallGrid from '../components/SmallGrid';
 import Page from '../components/Page';
 import Iconify from '../components/Iconify';
 import VidyaDaan from '../components/VidyaDaan';
+import AddAssignment from './teacher/AddAssignment';
+import { getDatafromDBAction } from '../store/actions/AuthActions';
 // sections
 
 // ----------------------------------------------------------------------
 
 export default function CourseDetails() {
-  const theme = useTheme();
-
+  const { id } = useParams();
+  const dispatch = useDispatch();
   const { user, data } = useSelector((state) => {
     return {
       user: state.auth.user,
       data: state.auth.data,
     };
   });
+  const [courseDetails, setCourseDetails] = useState({});
+  const { name, studentList, courseMaterial, videos, assignments } = courseDetails;
+  const { ongoingCourses, totalEnrolled } = user;
+  const theme = useTheme();
 
   const { classes } = data;
-  console.log(classes, user);
-  const params = useParams();
-  const { name, studentList, courseMaterial, videos } = classes[params?.id];
-  const { ongoingCourses, totalEnrolled } = user;
-  console.log(name, params);
+
+  useEffect(() => {
+    if (Object.keys(classes || {}).includes(id)) {
+      setCourseDetails(classes[id]);
+    }
+  }, [classes, id]);
+
+  useEffect(() => {
+    dispatch(getDatafromDBAction('classes', true, 'classes'));
+  }, []);
 
   return (
     <Page title="Dashboard">
@@ -71,23 +84,39 @@ export default function CourseDetails() {
           </Grid>
         </Grid> */}
 
-        <Typography variant="h4" sx={{ mb: 3, mt: 3 }}>
-          Assignments
-        </Typography>
-
-        <Grid container spacing={4}>
-          <Grid
-            to={`/dashboard/${user?.isTeacher ? 'teacher' : 'student'}/classroom/123456/assingment/1233`}
-            component={RouterLink}
-            item
-            xs={12}
-            sm={6}
-            md={3}
-            lg={4}
-          >
-            <CourseGrid subheader="Arrow Function" count={user?.ongoingCourses?.assignmentCount} icon={'vscode-icons:file-type-reactjs'} />
-          </Grid>
+        <Grid container sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <Typography variant="h4" sx={{ mb: 3, mt: 3 }}>
+            Assignments
+          </Typography>
+          <CustomModal
+            btnText={'Add new assignment'}
+            sx={{ mb: 4 }}
+            component={<AddAssignment classId={id} />}
+            icon="eva:plus-fill"
+          />
         </Grid>
+
+        {assignments?.length > 0 &&
+          assignments.map((assignment, idx) => {
+            return (
+              <Grid container spacing={4}>
+                <Grid
+                  to={`/dashboard/${user?.isTeacher ? 'teacher' : 'student'}/classroom/${id}/assignment/${idx}`}
+                  component={RouterLink}
+                  item
+                  xs={12}
+                  sm={6}
+                  md={3}
+                  lg={4}
+                >
+                  <CourseGrid
+                    subheader={assignment?.title}
+                    icon={'vscode-icons:file-type-reactjs'}
+                  />
+                </Grid>
+              </Grid>
+            );
+          })}
 
         <Typography variant="h4" sx={{ mb: 3, mt: 3 }}>
           Course Material
@@ -103,7 +132,7 @@ export default function CourseDetails() {
             to={`/dashboard/${user?.isTeacher ? 'teacher' : 'student'}/classroom/:id/god/details`}
             component={RouterLink}
           >
-            <CourseGrid subheader="UseState" count={courseMaterial.length} icon={'logos:tensorflow'} />
+            <CourseGrid subheader="UseState" count={courseMaterial?.length} icon={'logos:tensorflow'} />
           </Grid>
         </Grid>
 

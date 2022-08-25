@@ -226,9 +226,11 @@ export default function CourseCard({ post, index, classKey }) {
             ))}
           </InfoStyle>
 
-          <Button sx={{ mt: 2 }} onClick={handlePayment}>
-            Subscribe Now
-          </Button>
+          {post.creator.uid !== user.uid && (
+            <Button sx={{ mt: 2 }} onClick={handlePayment}>
+              Subscribe Now
+            </Button>
+          )}
         </CardContent>
       </Card>
     </Grid>
