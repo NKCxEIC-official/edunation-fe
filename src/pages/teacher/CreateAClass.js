@@ -17,7 +17,7 @@ import {
   CircularProgress,
 } from '@mui/material';
 import { addDoc, collection } from 'firebase/firestore';
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { db, storage } from '../../utils/firebaseConfig';
 import { getDatafromDBAction } from '../../store/actions/AuthActions';
 
@@ -38,14 +38,14 @@ export default function CreatAClass() {
     classFee: '',
     days: [],
     subject: '',
-    bannerUrl: null
+    bannerUrl: null,
   });
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
-  const dispatch = useDispatch()
-
-  const user = useSelector(state => state.auth.user);
   const dispatch = useDispatch();
+
+  const user = useSelector((state) => state.auth.user);
+  // const dispatch = useDispatch();
 
   const handleFieldValue = (key, e) => {
     updateFormData({ ...formData, [key]: e.target.value });
@@ -53,49 +53,55 @@ export default function CreatAClass() {
 
   const handleFileUpload = (key, e) => {
     console.log(e);
-    updateFormData({ ...formData, [key]: e.target.files[0]})
-  }
+    updateFormData({ ...formData, [key]: e.target.files[0] });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
     const collectionRef = collection(db, 'classes');
     const getBannerUrlRef = ref(storage, `images/${formData.bannerUrl.name}`);
-    uploadBytes(getBannerUrlRef, formData.bannerUrl).then((snapshot) => {
-        getDownloadURL(getBannerUrlRef).then(url => {
+    uploadBytes(getBannerUrlRef, formData.bannerUrl)
+      .then((snapshot) => {
+        getDownloadURL(getBannerUrlRef)
+          .then((url) => {
             addDoc(collectionRef, {
-                name: formData.name,
-                classDescription: formData.classDescription,
-                classFee: formData.classFee,
-                subject: formData.subject,
-                bannerUrl: url,
-                days: formData.days.join(','),
-                creator: {
-                    name: `${user.firstName} ${user.lastName}`,
-                    uid: user.uid
-                },
-                courseMaterial: [],
-                createdAt: new Date().toUTCString(),
-                studentList: [],
-                CourseMaterialCount: 0,
-                videos: [],
-                studentCount: 0
-            }).then((res) => {
+              name: formData.name,
+              classDescription: formData.classDescription,
+              classFee: formData.classFee,
+              subject: formData.subject,
+              bannerUrl: url,
+              days: formData.days.join(','),
+              creator: {
+                name: `${user.firstName} ${user.lastName}`,
+                uid: user.uid,
+              },
+              courseMaterial: [],
+              createdAt: new Date().toUTCString(),
+              studentList: [],
+              CourseMaterialCount: 0,
+              videos: [],
+              studentCount: 0,
+            })
+              .then((res) => {
                 setLoading(false);
-                if(res?.id) {
+                if (res?.id) {
                   dispatch(getDatafromDBAction('classes', true, 'classes'));
                   navigate(`/dashboard/teacher/classroom/${res.id}`, { replace: true });
                 }
-            }).catch((err) => {
+              })
+              .catch((err) => {
                 setLoading(false);
-            })
-        }).catch((err) => {
+              });
+          })
+          .catch((err) => {
             setLoading(false);
-        })
-    }).catch((err) => {
+          });
+      })
+      .catch((err) => {
         setLoading(false);
-    })
-  }
+      });
+  };
 
   console.log(formData);
   return (
@@ -109,28 +115,28 @@ export default function CreatAClass() {
           <TextField
             id="name"
             key="name"
-            onChange={(e) => handleFieldValue("name",e)}
+            onChange={(e) => handleFieldValue('name', e)}
             label="Class Name"
             placeholder="Enter class name"
           />
           <TextField
             id="classDescription"
             key="classDescription"
-            onChange={(e) => handleFieldValue("classDescription",e)}
+            onChange={(e) => handleFieldValue('classDescription', e)}
             label="Class Description"
             placeholder="Enter class description"
           />
           <TextField
             id="subject"
             key="subject"
-            onChange={(e) => handleFieldValue("subject",e)}
+            onChange={(e) => handleFieldValue('subject', e)}
             label="Subject"
             placeholder="Enter subject to teach"
           />
           <TextField
             id="classFee"
             key="classFee"
-            onChange={(e) => handleFieldValue("classFee", e)}
+            onChange={(e) => handleFieldValue('classFee', e)}
             label="Class Fee"
             placeholder="Enter class fee (in INR)"
             type="number"
@@ -160,11 +166,25 @@ export default function CreatAClass() {
           </FormControl>
           <FormControl variant="outlined" required>
             <Button variant="contained" component="label" color="info">
-                {formData.bannerUrl ? 'File Uploaded' : 'Upload Banner'}
-                <input type="file" hidden accept="image/png, image/gif, image/jpeg" onChange={(e) => {handleFileUpload("bannerUrl", e)}}/>
+              {formData.bannerUrl ? 'File Uploaded' : 'Upload Banner'}
+              <input
+                type="file"
+                hidden
+                accept="image/png, image/gif, image/jpeg"
+                onChange={(e) => {
+                  handleFileUpload('bannerUrl', e);
+                }}
+              />
             </Button>
           </FormControl>
-          <Button type="submit" variant="contained" color="primary" fullWidth disabled={loading} sx={{ display: 'flex' }}>
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            fullWidth
+            disabled={loading}
+            sx={{ display: 'flex' }}
+          >
             {loading ? <CircularProgress /> : 'Create Class'}
           </Button>
         </Stack>
