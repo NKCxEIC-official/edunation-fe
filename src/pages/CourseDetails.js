@@ -86,10 +86,11 @@ export default function CourseDetails() {
           </Grid>
         </Grid> */}
 
-        <Grid container sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '40px', mb: 3 }}>
-          <Typography variant="h4">
-            Assignments :
-          </Typography>
+        <Grid
+          container
+          sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '40px', mb: 3 }}
+        >
+          <Typography variant="h4">Assignments :</Typography>
           {creator?.uid === user?.uid && (
             <CustomModal
               btnText={'Add new assignment'}
@@ -120,10 +121,11 @@ export default function CourseDetails() {
             })}
         </Grid>
 
-        <Grid container sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '40px', mb: 3 }}>
-          <Typography variant="h4">
-            Course Materials :
-          </Typography>
+        <Grid
+          container
+          sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '40px', mb: 3 }}
+        >
+          <Typography variant="h4">Course Materials :</Typography>
           {creator?.uid === user?.uid && (
             <CustomModal
               btnText={'Add Course Material'}
@@ -158,10 +160,11 @@ export default function CourseDetails() {
             })}
         </Grid>
 
-        <Grid container sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '40px', mb: 3 }}>
-          <Typography variant="h4">
-            Vidya Daan/Diksha Resources :
-          </Typography>
+        <Grid
+          container
+          sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '40px', mb: 3 }}
+        >
+          <Typography variant="h4">Vidya Daan/Diksha Resources :</Typography>
           {creator?.uid === user?.uid && (
             <CustomModal
               btnText={'Add VidyaDaan/Diksha Resource'}
@@ -186,7 +189,12 @@ export default function CourseDetails() {
                   sx={{ cursor: 'pointer' }}
                   onClick={() => window.open(item?.link, '_blank')}
                 >
-                  <VidyaDaan smallheader={item.subtitle} subheader={item.title} icon={'akar-icons:link-chain'} color="#2E2B81" />
+                  <VidyaDaan
+                    smallheader={item.subtitle}
+                    subheader={item.title}
+                    icon={'akar-icons:link-chain'}
+                    color="#2E2B81"
+                  />
                 </Grid>
               );
             })}
@@ -202,41 +210,20 @@ export default function CourseDetails() {
         </Grid>
 
         <Grid container spacing={4}>
-          <Grid item xs={12} sm={6} md={3} lg={4}>
-            {
-              <iframe
-                src={'https://www.youtube.com/embed/h7MYJghRWt0'}
-                frameBorder="0"
-                allow="accelometer; autoplay; encrypted-media"
-                allowFullScreen
-                title="ArrowFunction"
-              />
-            }
-          </Grid>
-
-          <Grid item xs={12} sm={6} md={3} lg={4}>
-            {
-              <iframe
-                src={'https://www.youtube.com/embed/fKopy74weus'}
-                frameBorder="0"
-                allow="accelometer; autoplay; encrypted-media"
-                allowFullScreen
-                title="UseState"
-              />
-            }
-          </Grid>
-
-          <Grid item xs={12} sm={6} md={3} lg={4}>
-            {
-              <iframe
-                src={'https://www.youtube.com/embed/aPfkYu_qiF4'}
-                frameBorder="0"
-                allow="accelometer; autoplay; encrypted-media"
-                allowFullScreen
-                title="UseEffect"
-              />
-            }
-          </Grid>
+          {videos?.length > 0 &&
+            videos.map((video, idx) => {
+              return (
+                <Grid item xs={12} sm={4} md={4} lg={4} xl={4}>
+                  <iframe
+                    src={video}
+                    frameBorder="0"
+                    allow="accelometer; autoplay; encrypted-media"
+                    allowFullScreen
+                    title="ArrowFunction"
+                  />
+                </Grid>
+              );
+            })}
         </Grid>
       </Container>
     </Page>
