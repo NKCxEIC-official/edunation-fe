@@ -146,15 +146,15 @@ export default function DashboardTeacher() {
 
 
           <Grid item xs={12} sm={12} md={12}>
-            <RectangleGrid title="JavaScript" duration="5 Months" percent="100%" color="primary" alighn="center" subheader="JavaScript" icon="logos:discourse-icon" count="18" />
+            <RectangleGrid title="JavaScript" duration="5" percent="100" color="primary" alighn="center" subheader="JavaScript" icon="logos:discourse-icon" count="18" />
           </Grid>
 
           <Grid item xs={12} sm={12} md={12} >
-            <RectangleGrid title="Flutter" percent="100%" duration="7 Months" count="20" color="green" subheader="Flutter" icon="emojione:exclamation-question-mark" />
+            <RectangleGrid title="Flutter" percent="100" duration="7" count="20" color="green" subheader="Flutter" icon="emojione:exclamation-question-mark" />
           </Grid>
 
           <Grid item xs={12} sm={12} md={12} >
-            <RectangleGrid title="Physics" percent="100%" duration="7 Months" count="34" subheader="Physics" icon="carbon:request-quote" />
+            <RectangleGrid title="Physics" percent="100" duration="7" count="34" subheader="Physics" icon="carbon:request-quote" />
           </Grid>
         </Stack>
 

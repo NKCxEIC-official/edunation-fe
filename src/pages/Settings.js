@@ -2,7 +2,7 @@
 import { doc, updateDoc } from "firebase/firestore";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { LoadingButton } from '@mui/lab';
-import { Stack, TextField } from '@mui/material';
+import { Button, FormControl, Stack, TextField } from '@mui/material';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
@@ -15,7 +15,14 @@ import { db } from "../utils/firebaseConfig";
 
 function Settings() {
   const dispatch = useDispatch();
-  const [formData, updateFormData] = useState({});
+  const [formData, updateFormData] = useState({
+    name: '',
+    classDescription: '',
+    classFee: '',
+    days: [],
+    subject: '',
+    bannerUrl: null
+  });
 
   const methods = useForm({
     resolver: yupResolver(SettingSchema),
@@ -39,12 +46,26 @@ function Settings() {
   const onSubmit = (e) => {
     e.preventDefault();
     const userDataRef = doc(db, 'users', user?.uid)
-    userDataRef && updateDoc(userDataRef, formData).then((res) => {
-      console.log(res);
+    const getDpRef = ref(storage, `images/${formData.dp.name}`);
+    uploadBytes(getDpRef, formData.dp).then((snapshot) => {
+        getDownloadURL(getDpRef).then(url => {
+            addDoc(userDataRef, {
+                dp: url,
+                creator: {
+                },
+            }).then((res) => {
+                setLoading(false);
+                if(res?.id) window.open(`/dashboard/teacher/classroom/${res.id}`);
+            }).catch((err) => {
+                setLoading(false);
+            })
+        }).catch((err) => {
+            setLoading(false);
+        })
     }).catch((err) => {
-      console.log(err)
+        setLoading(false);
     })
-  };
+  }
 
   const user = useSelector((state) => state.auth.user);
   const { firstName, lastName, email, phone, address, city, state, university, about, dp } = user;
@@ -74,10 +95,12 @@ function Settings() {
             <RHFTextField id="outlined-disabled" name="state" label="State" defaultValue={state} required fullWidth onChange={(e)=>handleFieldValueChange('state', e)}/>
           </Stack>
           <RHFTextField id="outlined-disabled" name="school" label="University" defaultValue={university} required fullWidth onChange={(e)=>handleFieldValueChange('university', e)}/>
-          <Button variant="contained" component="label" color="info">
-                {formData.dp? 'Photo Uploaded' : 'Upload Photo'}
+          <FormControl variant="outlined" required>
+            <Button variant="contained" component="label" color="info">
+                {formData.dp ? 'Profile Photo Uploaded' : 'Upload Profile Picture'}
                 <input type="file" hidden accept="image/png, image/gif, image/jpeg" onChange={(e) => {handleFileUpload("dp", e)}}/>
             </Button>
+          </FormControl>
           <LoadingButton fullWidth size="large" type="submit" variant="contained" loading={false} >
             Update Profile
           </LoadingButton>

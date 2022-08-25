@@ -48,6 +48,8 @@ function Profile() {
             <div>
               <Typography variant="h6">
                 <div>{firstName} {lastName}</div>
+              </Typography>
+              <Typography variant="body1">
                 <div>{email}</div>
               </Typography>
             </div>
