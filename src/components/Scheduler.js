@@ -25,7 +25,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { pink, purple, teal, amber, deepOrange } from '@mui/material/colors';
 import { loadingToggleAction } from '../store/actions/AuthActions';
-import { addDocument, addDocumentInDb, getTeachingClasses } from '../services/AuthService';
+import { addDocument, addDocumentInDb, getClassEvents, getEventsForTeacher, getTeachingClasses } from '../services/AuthService';
 import { appointments, resourcesData } from '../_mock/event';
 import { owners } from '../_mock/tasks';
 
@@ -46,7 +46,14 @@ const StyledDiv = styled('div')(({ theme }) => ({
     fontSize: '1rem',
   },
 }));
-const initialCurrentDate = '2022-06-27';
+
+const today = new Date();
+const dd = String(today.getDate()).padStart(2, '0');
+const mm = String(today.getMonth() + 1).padStart(2, '0');
+const yyyy = today.getFullYear();
+
+const date = `${yyyy}-${mm}-${dd}`;
+const initialCurrentDate = date;
 const editingOptionsList = [
   { id: 'allowAdding', text: 'Adding' },
   { id: 'allowDeleting', text: 'Deleting' },
@@ -75,13 +82,13 @@ const EditingOptionsSelector = ({ options, onOptionsChange }) => (
 function getRandomInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min) + min); 
+  return Math.floor(Math.random() * (max - min) + min);
 }
 const getMyCreatedClassList = (user) => {
   const classArraylist = [];
   const classResourcelist = [];
   getTeachingClasses(user.uid).then((querySnapshot) => {
-  console.log(querySnapshot.docs)
+    console.log(querySnapshot.docs);
     querySnapshot.docs.forEach((doc, idx) => {
       const userData = doc.data();
       const formatedData = {
@@ -103,55 +110,43 @@ const getMyCreatedClassList = (user) => {
         videos: userData.videos,
       };
       const classRes = {
+        bannerUrl: userData.bannerUrl,
         text: userData.name,
         id: idx + 1,
-        color: colors[getRandomInt()]
+        classId: doc.id,
+        color: colors[getRandomInt(0, querySnapshot.docs.length)],
       };
       classArraylist.push(formatedData);
       classResourcelist.push(classRes);
     });
-    console.log("🚀 ~ file: Scheduler.js ~ line 115 ~ getTeachingClasses ~ classResourcelist", classResourcelist)
   });
   return classResourcelist;
-
 };
 
+
+
 const addEventToDb = (event, dispatch, classList) => {
-  classList.filter(checkClassId)
+  const filteredClass = classList[0].instances.filter(checkClassId);
   function checkClassId(classItem) {
-    return classItem.id == event.roomId;
+    return classItem.id === event.roomId;
   }
+
   const payload = {
     allDay: event.allDay,
     endDate: event.endDate,
     id: event.id,
-    members: event.members.length > 0 ? event.members : [],
+    members: event.members.length > 0 && event.members[0] ? event.members : [],
     startDate: event.startDate,
     title: event.title,
     class: {
-      className: 'class name',
-      classId: 'class id',
-      classBanarUrl: 'url',
+      className: filteredClass[0].text,
+      classId: filteredClass[0].classId,
+      classBanarUrl: filteredClass[0].bannerUrl,
     },
+    notes: event.notes,
   };
-
-  // allDay: false
-  // endDate: Thu Jun 30 2022 11:30:00 GMT+0530 (India Standard Time) {}
-  // id: 8
-  // members: Array(2)
-  // 0: 2
-  // 1: 3
-  // length: 2
-  // [[Prototype]]: Array(0)
-  // notes: "iukyjthrgefdsfghjmnbgfcxvbnmkjhytre"
-  // roomId: 2
-  // startDate: Thu Jun 30 2022 11:00:00 GMT+0530 (India Standard Time) {}
-  // title: "test1"
-
-  console.log('addEventToDb ~ event', payload);
   dispatch(loadingToggleAction(true));
   addDocumentInDb(payload, 'events').then(() => {
-    console.log('🚀 ~ file: Scheduler.js ~ line 77 ~ addDocument ~ event', payload);
     dispatch(loadingToggleAction(false));
   });
 };
@@ -164,7 +159,8 @@ export default () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
   const [classList, updateClassList] = React.useState([]);
-  const [data, setData] = React.useState(appointments);
+  const [eventList, setEventlist] = React.useState([]);
+  const [data, setData] = React.useState([]);
   const [editingOptions, setEditingOptions] = React.useState({
     allowAdding: true,
     allowDeleting: true,
@@ -189,16 +185,44 @@ export default () => {
       allowMultiple: true,
     },
   ]);
-  console.log("🚀 ~ file: Scheduler.js ~ line 183 ~ resourcesData", resourcesData)
 
   React.useEffect(() => {
     const classListData = getMyCreatedClassList(user);
-    const localData = [ ...resources ];
+    
+    const eventList = [];
+  
+    getTeachingClasses(user.uid).then((querySnapshot) => {
+      querySnapshot.docs.forEach((doc, idx) => {
+        const course = doc.data();
+  
+        getClassEvents(doc.id).then((queryEventSnapshot) => {
+          
+          queryEventSnapshot.docs.forEach((dock, idy) => {
+            eventList.push({
+              ...dock.data(),
+              startDate: new Date(dock.data().startDate.seconds * 1000),
+              endDate: new Date(dock.data().endDate.seconds * 1000),
+            });
+  
+            if(idy === queryEventSnapshot.docs.length -1)
+            {
+              console.log("randi",eventList)
+              setData(eventList);
+            }
+            
+          });
+        });
+      });
+    });
+    const localData = [...resources];
     localData[0].instances = classListData;
     setResources(localData);
-  }, [])
 
-  console.log(resources)
+    
+  }, []);
+
+  console.log(resources);
+  console.log('🚀 ~ file: Scheduler.js ~ line 165 ~ data', data);
 
   const { allowAdding, allowDeleting, allowUpdating, allowResizing, allowDragging } = editingOptions;
 
@@ -209,8 +233,7 @@ export default () => {
         const addedEventObj = { id: startingAddedId, ...added };
         setData([...data, addedEventObj]);
         // add new evant:
-        console.log('adding event ', addedEventObj);
-        addEventToDb(addedEventObj, dispatch);
+        addEventToDb(addedEventObj, dispatch, [...resources]);
       }
       if (changed) {
         // change event:
@@ -262,42 +285,48 @@ export default () => {
   const allowDrag = React.useCallback(() => allowDragging && allowUpdating, [allowDragging, allowUpdating]);
   const allowResize = React.useCallback(() => allowResizing && allowUpdating, [allowResizing, allowUpdating]);
 
+  React.useEffect(()=>{console.log("loggg",eventList)},[eventList])
   return (
     <>
       {/* <EditingOptionsSelector options={editingOptions} onOptionsChange={handleEditingOptionsChange} /> */}
       <Paper>
-        <Scheduler data={data} height={600}>
-          <ViewState
-            defaultCurrentDate="2018-07-25"
-            currentDate={currentDate}
-            currentViewName={currentViewName}
-            onCurrentDateChange={setCurrentDate}
-            onCurrentViewNameChange={setCurrentViewName}
-          />
-          <EditingState
-            onCommitChanges={onCommitChanges}
-            addedAppointment={addedAppointment}
-            onAddedAppointmentChange={onAddedAppointmentChange}
-          />
-          <IntegratedEditing />
-          <WeekView startDayHour={9} endDayHour={19} timeTableCellComponent={TimeTableCell} />
-          <WeekView name="work-week" displayName="Work Week" excludedDays={[0, 6]} startDayHour={9} endDayHour={19} />
-          <MonthView />
-          <DayView />
-          <Appointments />
-          <Toolbar />
-          <DateNavigator />
-          <TodayButton />
-          <ViewSwitcher />
-          <AppointmentTooltip showOpenButton showDeleteButton={allowDeleting} />
-          <AppointmentForm
-            commandButtonComponent={CommandButton}
-            readOnly={isAppointmentBeingCreated ? false : !allowUpdating}
-          />
-          <Resources data={[...resources]} mainResourceName="roomId" />
-          <DragDropProvider allowDrag={allowDrag} allowResize={allowResize} />
-          <CurrentTimeIndicator updateInterval="10000" />
-        </Scheduler>
+        {console.log("bokachoda",data)}
+        
+        {data && data.length > 0 &&
+          <Scheduler data={data} height={600}>
+            <ViewState
+              defaultCurrentDate="2022-08-24"
+              currentDate={currentDate}
+              currentViewName={currentViewName}
+              onCurrentDateChange={setCurrentDate}
+              onCurrentViewNameChange={setCurrentViewName}
+            />
+            <EditingState
+              onCommitChanges={onCommitChanges}
+              addedAppointment={addedAppointment}
+              onAddedAppointmentChange={onAddedAppointmentChange}
+            />
+            <IntegratedEditing />
+            <WeekView startDayHour={9} endDayHour={19} timeTableCellComponent={TimeTableCell} />
+            <WeekView name="work-week" displayName="Work Week" excludedDays={[0, 6]} startDayHour={9} endDayHour={19} />
+            <MonthView />
+            <DayView />
+            <Appointments />
+            <Toolbar />
+            <DateNavigator />
+            <TodayButton />
+            <ViewSwitcher />
+            <AppointmentTooltip showOpenButton showDeleteButton={allowDeleting} />
+            <AppointmentForm
+              commandButtonComponent={CommandButton}
+              readOnly={isAppointmentBeingCreated ? false : !allowUpdating}
+            />
+            <Resources data={[...resources]} mainResourceName="roomId" />
+            <DragDropProvider allowDrag={allowDrag} allowResize={allowResize} />
+            <CurrentTimeIndicator updateInterval="10000" />
+          </Scheduler>
+}
+        
       </Paper>
     </>
   );

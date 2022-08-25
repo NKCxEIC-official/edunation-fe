@@ -116,3 +116,40 @@ export function getTeachingClasses(uid) {
   const q = query(UserCollectionRef, where('creator.uid', '==', uid));
   return getDocs(q);
 }
+
+export function getClassEvents(classId) {
+  const UserCollectionRef = collection(db, 'events');
+  const q = query(UserCollectionRef, where('class.classId', '==', classId));
+  return getDocs(q);
+}
+
+export function getEventsForTeacher(uid) {
+  const eventList = [];
+  
+  getTeachingClasses(uid).then((querySnapshot) => {
+    querySnapshot.docs.forEach((doc, idx) => {
+      const course = doc.data();
+
+      getClassEvents(doc.id).then((queryEventSnapshot) => {
+        
+        queryEventSnapshot.docs.forEach((dock, idx) => {
+          eventList.push({
+            ...dock.data(),
+            startDate: new Date(dock.data().startDate.seconds * 1000),
+            endDate: new Date(dock.data().endDate.seconds * 1000),
+          });
+
+          if(idx === queryEventSnapshot.docs.length -1)
+          {
+            console.log("yoyo",eventList)
+            return eventList;
+          }
+          
+        });
+      });
+    });
+  });
+
+  return []
+  
+}
