@@ -34,7 +34,7 @@ function OngoingCourses({ title, subheader, icon, avatar, points, classKey }) {
             point.count &&
             point.count !== 0 &&
             point.count !== '0' && (
-              <Grid item sx={{ pb: 2, opacity: 0.5 }} xs={6} sm={6} md={6} lg={6} xl={6}>
+              <Grid item sx={{ opacity: 0.5 }} xs={6} sm={6} md={6} lg={6} xl={6}>
                 <Stack spacing={2} alignItems="center" direction="row" sx={{ pl: 2 }}>
                   <Iconify icon={point.icon} width={22} height={22} />
                   <Typography variant="subtitle2" sx={{ marginRight: '30px', opacity: '1' }}>
@@ -47,7 +47,7 @@ function OngoingCourses({ title, subheader, icon, avatar, points, classKey }) {
         <Button
           to={`/dashboard/${user?.isTeacher ? 'teacher' : 'student'}/classroom/${classKey}`}
           component={RouterLink}
-          sx={{ mx: 'auto', opacity: 0.7 }}
+          sx={{ mx: 'auto', my: 1, opacity: 0.7 }}
           size="large"
           color="primary"
         >
