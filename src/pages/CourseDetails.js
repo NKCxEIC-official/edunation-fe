@@ -1,19 +1,24 @@
+import React, { useEffect, useState } from 'react';
 import { faker } from '@faker-js/faker';
-import { useSelector } from 'react-redux';
-import { useState } from 'react';
 import { getDatabase, ref, set } from 'firebase/database';
 
+import { useDispatch, useSelector } from 'react-redux';
 // @mui
 import { useTheme } from '@mui/material/styles';
 import { Grid, Container, Typography, Stack, Button, CardContent, Card, Box } from '@mui/material';
 import { Link as RouterLink, useParams } from 'react-router-dom';
 // components../components/CourseGrid
+import CustomModal from '../components/CustomModal';
 import CourseGrid from '../components/CourseGrid';
 import SmallGrid from '../components/SmallGrid';
 import Page from '../components/Page';
 import Iconify from '../components/Iconify';
 import VidyaDaan from '../components/VidyaDaan';
 import VideoCall from '../components/VideoCall';
+import AddAssignment from './teacher/AddAssignment';
+import { getDatafromDBAction } from '../store/actions/AuthActions';
+import AddCourseMaterial from './teacher/AddCourseMaterial';
+import AddVidyaDaanLink from './teacher/AddVidyaDaanLink';
 // sections
 
 // ----------------------------------------------------------------------
@@ -22,29 +27,41 @@ export default function CourseDetails() {
   const theme = useTheme();
   const [showVideoCall, setShowVideoCall] = useState(false);
 
+  const { id } = useParams();
+  const dispatch = useDispatch();
+
   const { user, data } = useSelector((state) => {
     return {
       user: state.auth.user,
       data: state.auth.data,
     };
   });
+  const [courseDetails, setCourseDetails] = useState({});
+  const { name, studentList, courseMaterial, videos, assignments, creator, vidyaDaanResources } = courseDetails;
+  const { ongoingCourses, totalEnrolled } = user;
 
   const { classes } = data;
-  const params = useParams();
-
-  const { name, studentList, courseMaterial, videos } = classes[params?.id];
-  const { ongoingCourses, totalEnrolled } = user;
 
   const initiateVideoCall = () => {
     console.log('hi');
     const db = getDatabase();
-    set(ref(db, `liveClass/${params?.id}`), {
-      roomName: params?.id,
+    set(ref(db, `liveClass/${id}`), {
+      roomName: id,
       isLive: true,
     });
 
     setShowVideoCall(true);
   };
+
+  useEffect(() => {
+    if (Object.keys(classes || {}).includes(id)) {
+      setCourseDetails(classes[id]);
+    }
+  }, [classes, id]);
+
+  useEffect(() => {
+    dispatch(getDatafromDBAction('classes', true, 'classes'));
+  }, []);
 
   return (
     <Page title="Dashboard">
@@ -140,6 +157,121 @@ export default function CourseDetails() {
             <Typography variant="h4" sx={{ mb: 3, mt: 3 }}>
               Vidya Daan
             </Typography>
+            <Grid
+              container
+              sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '40px', mb: 3 }}
+            >
+              <Typography variant="h4">Assignments :</Typography>
+              {creator?.uid === user?.uid && (
+                <CustomModal
+                  btnText={'Add new assignment'}
+                  sx={{ mb: 4 }}
+                  component={<AddAssignment classId={id} />}
+                  icon="eva:plus-fill"
+                />
+              )}
+            </Grid>
+
+            <Grid container spacing={4} sx={{ display: 'flex' }}>
+              {assignments?.length > 0 &&
+                assignments.map((assignment, idx) => {
+                  return (
+                    <Grid
+                      to={`/dashboard/${user?.isTeacher ? 'teacher' : 'student'}/classroom/${id}/assignment/${idx}`}
+                      component={RouterLink}
+                      item
+                      xs={12}
+                      sm={4}
+                      md={3}
+                      lg={4}
+                      xl={4}
+                    >
+                      <CourseGrid subheader={assignment?.title} icon={'ic:baseline-assignment'} color={'#2E2B81'} />
+                    </Grid>
+                  );
+                })}
+            </Grid>
+
+            <Grid
+              container
+              sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '40px', mb: 3 }}
+            >
+              <Typography variant="h4">Course Materials :</Typography>
+              {creator?.uid === user?.uid && (
+                <CustomModal
+                  btnText={'Add Course Material'}
+                  sx={{ mb: 4 }}
+                  component={<AddCourseMaterial classId={id} />}
+                  icon="eva:plus-fill"
+                />
+              )}
+            </Grid>
+
+            <Grid container spacing={4}>
+              {courseMaterial?.length > 0 &&
+                courseMaterial.map((item, idx) => {
+                  return (
+                    <Grid
+                      item
+                      xs={12}
+                      sm={4}
+                      md={3}
+                      lg={4}
+                      xl={4}
+                      to={`/dashboard/${
+                        user?.isTeacher ? 'teacher' : 'student'
+                      }/classroom/${id}/course-materials/${idx}`}
+                      component={RouterLink}
+                    >
+                      <CourseGrid
+                        subheader={item?.title}
+                        count={courseMaterial?.length}
+                        icon={'arcticons:onlyoffice-documents'}
+                      />
+                    </Grid>
+                  );
+                })}
+            </Grid>
+
+            <Grid
+              container
+              sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '40px', mb: 3 }}
+            >
+              <Typography variant="h4">Vidya Daan/Diksha Resources :</Typography>
+              {creator?.uid === user?.uid && (
+                <CustomModal
+                  btnText={'Add VidyaDaan/Diksha Resource'}
+                  sx={{ mb: 4 }}
+                  component={<AddVidyaDaanLink classId={id} />}
+                  icon="eva:plus-fill"
+                />
+              )}
+            </Grid>
+
+            <Grid container spacing={4}>
+              {vidyaDaanResources?.length > 0 &&
+                vidyaDaanResources.map((item, idx) => {
+                  return (
+                    <Grid
+                      item
+                      xs={12}
+                      sm={4}
+                      md={3}
+                      lg={4}
+                      xl={4}
+                      sx={{ cursor: 'pointer' }}
+                      onClick={() => window.open(item?.link, '_blank')}
+                    >
+                      <VidyaDaan
+                        smallheader={item.subtitle}
+                        subheader={item.title}
+                        icon={'akar-icons:link-chain'}
+                        color="#2E2B81"
+                      />
+                    </Grid>
+                  );
+                })}
+            </Grid>
 
             <Grid container spacing={4}>
               <Grid item xs={12} sm={6} md={3} lg={4}>
@@ -244,7 +376,7 @@ export default function CourseDetails() {
         )}
       </Container>
 
-      {showVideoCall && <VideoCall roomName={params?.id} />}
+      {showVideoCall && <VideoCall roomName={id} />}
 
       {showVideoCall && (
         <Button

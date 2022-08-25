@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { faker } from '@faker-js/faker';
 import { useSelector } from 'react-redux';
 // @mui

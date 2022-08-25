@@ -225,10 +225,12 @@ export default function CourseCard({ post, index, classKey }) {
               </Box>
             ))}
           </InfoStyle>
-          {!user?.isTeacher &&
+
+          {post.creator.uid !== user.uid && (
             <Button sx={{ mt: 2 }} onClick={handlePayment}>
               Subscribe Now
-            </Button>}
+            </Button>
+          )}
         </CardContent>
       </Card>
     </Grid>

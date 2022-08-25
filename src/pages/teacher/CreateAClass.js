@@ -19,7 +19,6 @@ import {
 import { addDoc, collection } from 'firebase/firestore';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { db, storage } from '../../utils/firebaseConfig';
-import { getDatafromDBAction } from '../../store/actions/AuthActions';
 
 const DAYS_MAPPER = [
   { name: 'Monday' },
@@ -31,21 +30,21 @@ const DAYS_MAPPER = [
   { name: 'Sunday' },
 ];
 
+const INITIAL_SCHEMA = {
+  name: '',
+  classDescription: '',
+  classFee: '',
+  days: [],
+  subject: '',
+  bannerUrl: null,
+};
+
 export default function CreatAClass() {
-  const [formData, updateFormData] = useState({
-    name: '',
-    classDescription: '',
-    classFee: '',
-    days: [],
-    subject: '',
-    bannerUrl: null,
-  });
-  const navigate = useNavigate();
+  const [formData, updateFormData] = useState(INITIAL_SCHEMA);
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
 
   const user = useSelector((state) => state.auth.user);
-  // const dispatch = useDispatch();
 
   const handleFieldValue = (key, e) => {
     updateFormData({ ...formData, [key]: e.target.value });
@@ -75,6 +74,7 @@ export default function CreatAClass() {
               creator: {
                 name: `${user.firstName} ${user.lastName}`,
                 uid: user.uid,
+                photoUrl: user.dp
               },
               courseMaterial: [],
               createdAt: new Date().toUTCString(),
@@ -85,10 +85,7 @@ export default function CreatAClass() {
             })
               .then((res) => {
                 setLoading(false);
-                if (res?.id) {
-                  dispatch(getDatafromDBAction('classes', true, 'classes'));
-                  navigate(`/dashboard/teacher/classroom/${res.id}`, { replace: true });
-                }
+                updateFormData(INITIAL_SCHEMA);
               })
               .catch((err) => {
                 setLoading(false);
@@ -141,6 +138,7 @@ export default function CreatAClass() {
             placeholder="Enter class fee (in INR)"
             type="number"
             InputProps={{
+              inputProps: { min: 0 },
               startAdornment: <InputAdornment position="start">₹</InputAdornment>,
             }}
           />
@@ -183,9 +181,8 @@ export default function CreatAClass() {
             color="primary"
             fullWidth
             disabled={loading}
-            sx={{ display: 'flex' }}
           >
-            {loading ? <CircularProgress /> : 'Create Class'}
+            {loading ? <CircularProgress size='25px' /> : 'Create Class'}
           </Button>
         </Stack>
       </form>
