@@ -1,9 +1,26 @@
-import { Box, Button, Card, CardContent, CardMedia, Grid, Typography } from '@mui/material';
+import { Box, Button, Card, CardContent, CardMedia, Grid, Stack, Typography } from '@mui/material';
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { communityDownvote, communityUpvote } from '../services/AuthService';
+import AnswerCommunity from './AnswerCommunity';
+import CustomModal from './CustomModal';
 import Iconify from './Iconify';
 
 function CommunityCard({ community, key, id }) {
-  const { attachment, description, downvote, dp, firstName, isTeacher, lastName, upvote } = community;
+  const {
+    attachment,
+    description,
+    downvote,
+    dp,
+    firstName,
+    isTeacher,
+    lastName,
+    upvote,
+    upvotedBy,
+    downvotedBy,
+    answers,
+  } = community;
+  const user = useSelector((state) => state.auth.user);
 
   const copyCardLink = () => {
     const URL = `${window.location.href}#${id}`;
@@ -15,7 +32,12 @@ function CommunityCard({ community, key, id }) {
       <CardContent className="communityCard_cardContent">
         <Box className="communityCard_profile" sx={{ backgroundColor: 'danger.lighter' }}>
           <div className="communityCard_profilePicture">
-            <img width="100%" height="100%" src={dp} alt="" />
+            <img
+              width="100%"
+              height="100%"
+              src={dp || 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'}
+              alt=""
+            />
           </div>
           <div className="communityCard_profileDetails">
             <Typography variant="h6">
@@ -39,29 +61,49 @@ function CommunityCard({ community, key, id }) {
               ))}
           </div>
         </div>
-
+        {answers && answers.length > 0 && (
+          <Box sx={{ borderTop: '1px dashed #A4A8AC', pt: 2, opacity: 0.7, pl: 2 }}>
+            {answers.map((answer) => (
+              <h4>
+                {answer.answer} ~ <span style={{ fontWeight: '300', fontSize: '12px' }}>{answer.name}</span>
+              </h4>
+            ))}
+          </Box>
+        )}
         <div className="communityCard_actions">
           <span className="communityCard_actions_span">
             <span className="communityCard_actions_count">{upvote}</span>
-            <Button sx={{ height: '30px', borderRadius: '10px' }}>
+
+            <Button
+              sx={{ height: '30px', borderRadius: '10px' }}
+              onClick={() => communityUpvote(id, user.uid, downvotedBy)}
+              disabled={upvotedBy.includes(user.uid)}
+            >
               <Iconify icon={'akar-icons:arrow-up'} />
               &nbsp; Upvote
             </Button>
-            <Button sx={{ height: '30px', borderRadius: '10px' }}>
+            <Button
+              sx={{ height: '30px', borderRadius: '10px' }}
+              onClick={() => communityDownvote(id, user.uid, upvotedBy)}
+              disabled={downvotedBy.includes(user.uid)}
+            >
               <Iconify icon={'akar-icons:arrow-down'} />
               &nbsp; Downvote
             </Button>
           </span>
-          <span>
+          <Stack flexDirection=" row">
             <Button onClick={() => copyCardLink()} sx={{ height: '30px', borderRadius: '10px' }}>
               <Iconify icon={'akar-icons:copy'} />
               &nbsp; Copy Link
             </Button>
-            <Button sx={{ height: '30px', borderRadius: '10px' }}>
-              <Iconify icon={'akar-icons:share-box'} />
-              &nbsp; Share
-            </Button>
-          </span>
+
+            <CustomModal
+              component={<AnswerCommunity id={id} />}
+              btnText={'Answer'}
+              icon="ant-design:message-twotone"
+              variant="text"
+            />
+          </Stack>
         </div>
       </CardContent>
     </Card>

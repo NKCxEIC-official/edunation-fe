@@ -75,13 +75,13 @@ const EditingOptionsSelector = ({ options, onOptionsChange }) => (
 function getRandomInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min) + min); 
+  return Math.floor(Math.random() * (max - min) + min);
 }
 const getMyCreatedClassList = (user) => {
   const classArraylist = [];
   const classResourcelist = [];
   getTeachingClasses(user.uid).then((querySnapshot) => {
-  console.log(querySnapshot.docs)
+    console.log(querySnapshot.docs);
     querySnapshot.docs.forEach((doc, idx) => {
       const userData = doc.data();
       const formatedData = {
@@ -105,21 +105,20 @@ const getMyCreatedClassList = (user) => {
       const classRes = {
         text: userData.name,
         id: idx + 1,
-        color: colors[getRandomInt()]
+        color: colors[getRandomInt()],
       };
       classArraylist.push(formatedData);
       classResourcelist.push(classRes);
     });
-    console.log("🚀 ~ file: Scheduler.js ~ line 115 ~ getTeachingClasses ~ classResourcelist", classResourcelist)
+    console.log('🚀 ~ file: Scheduler.js ~ line 115 ~ getTeachingClasses ~ classResourcelist', classResourcelist);
   });
   return classResourcelist;
-
 };
 
 const addEventToDb = (event, dispatch, classList) => {
-  classList.filter(checkClassId)
+  classList.filter(checkClassId);
   function checkClassId(classItem) {
-    return classItem.id == event.roomId;
+    return classItem.id === event.roomId;
   }
   const payload = {
     allDay: event.allDay,
@@ -189,16 +188,16 @@ export default () => {
       allowMultiple: true,
     },
   ]);
-  console.log("🚀 ~ file: Scheduler.js ~ line 183 ~ resourcesData", resourcesData)
+  console.log('🚀 ~ file: Scheduler.js ~ line 183 ~ resourcesData', resourcesData);
 
   React.useEffect(() => {
     const classListData = getMyCreatedClassList(user);
-    const localData = [ ...resources ];
+    const localData = [...resources];
     localData[0].instances = classListData;
     setResources(localData);
-  }, [])
+  }, []);
 
-  console.log(resources)
+  console.log(resources);
 
   const { allowAdding, allowDeleting, allowUpdating, allowResizing, allowDragging } = editingOptions;
 
