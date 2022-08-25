@@ -63,7 +63,7 @@ export default function DashboardTeacher() {
         <Grid container spacing={3} style={{ textDecoration: 'none' }}>
 
           <Grid item xs={12} sm={12} md={6} lg={4} >
-            <CourseGrid title="Courses in Progress" color="primary" align="center" subheader="Courses" icon="logos:discourse-icon" count={user.courseInProgressTeacher} />
+            <CourseGrid title="Courses in Progress" color="primary" alighn="center" subheader="Courses" icon="logos:discourse-icon" count={user.courseInProgressTeacher} />
           </Grid>
 
           <Grid item xs={12} sm={12} md={6} lg={4} >
@@ -144,21 +144,26 @@ export default function DashboardTeacher() {
           )
           )}
 
+        </Stack>
 
+        {/* <Stack spacing={2}>
+
+          <Box paddingTop={5} paddingLeft={3}>Completed Courses</Box>
 
           <Grid item xs={12} sm={12} md={12}>
-            <RectangleGrid title="JavaScript" duration="5" percent="100" color="primary" alighn="center" subheader="JavaScript" icon="logos:discourse-icon" count="18" />
+            <RectangleGrid title="Bengali" color="primary" alighn="center" subheader="Python" icon="logos:discourse-icon" count="10" />
           </Grid>
 
           <Grid item xs={12} sm={12} md={12} >
-            <RectangleGrid title="Flutter" percent="100" duration="7" count="20" color="green" subheader="Flutter" icon="emojione:exclamation-question-mark" />
+            <RectangleGrid title="Hindi" count="50" color="green" subheader="ReactJs" icon="emojione:exclamation-question-mark" />
           </Grid>
 
-          <Grid item xs={12} sm={12} md={12} >
-            <RectangleGrid title="Physics" percent="100" duration="7" count="34" subheader="Physics" icon="carbon:request-quote" />
-          </Grid>
+        </Stack> */}
 
-        </Stack>
+        {/* </Grid> */}
+
+
+
         <Grid item xs={12} md={6} lg={8} paddingTop={3}>
           <AppWebsiteVisits
             title="Revenue"
@@ -187,6 +192,11 @@ export default function DashboardTeacher() {
             ]}
           />
         </Grid>
+        {/* </Grid> */}
+        {/* <Grid item md={4}>
+            rightsidebar
+          </Grid> */}
+        {/* </Grid> */}
       </Container>
     </Page >
   );

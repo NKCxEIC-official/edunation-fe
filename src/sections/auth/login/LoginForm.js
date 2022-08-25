@@ -49,15 +49,13 @@ export default function LoginForm() {
 
   useEffect(() => {
     if ('role' in user) {
-      if (user.role === 1 )
+      if (user.role === 1)
       {
         if (user.isTeacher)
           navigate('/dashboard/teacher/app', { replace: true });
         else
         navigate('/dashboard/student/app', { replace: true });
       }
-      else if (user.role === 2 )
-      navigate('/dashboard/super/app', { replace: true });
       else if (user.role === 0) navigate('/dashboard/ngo/app', { replace: true });
     }
   }, [user]);
