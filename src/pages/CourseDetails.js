@@ -15,6 +15,7 @@ import VidyaDaan from '../components/VidyaDaan';
 import AddAssignment from './teacher/AddAssignment';
 import { getDatafromDBAction } from '../store/actions/AuthActions';
 import AddCourseMaterial from './teacher/AddCourseMaterial';
+import AddVidyaDaanLink from './teacher/AddVidyaDaanLink';
 // sections
 
 // ----------------------------------------------------------------------
@@ -29,7 +30,7 @@ export default function CourseDetails() {
     };
   });
   const [courseDetails, setCourseDetails] = useState({});
-  const { name, studentList, courseMaterial, videos, assignments, creator } = courseDetails;
+  const { name, studentList, courseMaterial, videos, assignments, creator, vidyaDaanResources } = courseDetails;
   const { ongoingCourses, totalEnrolled } = user;
   const theme = useTheme();
 
@@ -85,8 +86,8 @@ export default function CourseDetails() {
           </Grid>
         </Grid> */}
 
-        <Grid container sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <Typography variant="h4" sx={{ mb: 3, marginTop: '40px' }}>
+        <Grid container sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '40px', mb: 3 }}>
+          <Typography variant="h4">
             Assignments :
           </Typography>
           {creator?.uid === user?.uid && (
@@ -119,8 +120,8 @@ export default function CourseDetails() {
             })}
         </Grid>
 
-        <Grid container sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <Typography variant="h4" sx={{ mb: 3, marginTop: '40px' }}>
+        <Grid container sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '40px', mb: 3 }}>
+          <Typography variant="h4">
             Course Materials :
           </Typography>
           {creator?.uid === user?.uid && (
@@ -157,55 +158,38 @@ export default function CourseDetails() {
             })}
         </Grid>
 
-        <Typography variant="h4" sx={{ mb: 3, mt: 3 }}>
-          Vidya Daan
-        </Typography>
+        <Grid container sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '40px', mb: 3 }}>
+          <Typography variant="h4">
+            Vidya Daan/Diksha Resources :
+          </Typography>
+          {creator?.uid === user?.uid && (
+            <CustomModal
+              btnText={'Add VidyaDaan/Diksha Resource'}
+              sx={{ mb: 4 }}
+              component={<AddVidyaDaanLink classId={id} />}
+              icon="eva:plus-fill"
+            />
+          )}
+        </Grid>
 
         <Grid container spacing={4}>
-          <Grid item xs={12} sm={6} md={3} lg={4}>
-            <Button
-              sx={{ width: '100%' }}
-              onClick={() => {
-                window.open(
-                  'https://diksha.gov.in/ncert/play/collection/do_31339576668973465612958?contentType=TextBook',
-                  '_blank'
-                );
-              }}
-              target="_blank"
-            >
-              <VidyaDaan subheader="NCERT" smallheader="Academic(Class 1)" icon={'akar-icons:link-chain'} />
-            </Button>
-          </Grid>
-
-          <Grid item xs={12} sm={6} md={3} lg={4}>
-            <Button
-              sx={{ width: '100%' }}
-              onClick={() => {
-                window.open(
-                  'https://diksha.gov.in/ncert/play/collection/do_31307360981920972812163?contentType=TextBook',
-                  '_blank'
-                );
-              }}
-              target="_blank"
-            >
-              <VidyaDaan subheader="NCERT-English" smallheader="Marigold(Class 1)" icon={'akar-icons:link-chain'} />
-            </Button>
-          </Grid>
-
-          <Grid item xs={12} sm={6} md={3} lg={4}>
-            <Button
-              sx={{ width: '100%' }}
-              onClick={() => {
-                window.open(
-                  'https://diksha.gov.in/ncert/play/collection/do_31307361357388185614238?contentType=TextBook',
-                  '_blank'
-                );
-              }}
-              target="_blank"
-            >
-              <VidyaDaan subheader="NCERT- Hindi" smallheader="Rimjhim (Class 1)" icon={'akar-icons:link-chain'} />
-            </Button>
-          </Grid>
+          {vidyaDaanResources?.length > 0 &&
+            vidyaDaanResources.map((item, idx) => {
+              return (
+                <Grid
+                  item
+                  xs={12}
+                  sm={4}
+                  md={3}
+                  lg={4}
+                  xl={4}
+                  sx={{ cursor: 'pointer' }}
+                  onClick={() => window.open(item?.link, '_blank')}
+                >
+                  <VidyaDaan smallheader={item.subtitle} subheader={item.title} icon={'akar-icons:link-chain'} color="#2E2B81" />
+                </Grid>
+              );
+            })}
         </Grid>
 
         <Grid item lg={12} sx={{ mt: 3 }}>

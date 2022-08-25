@@ -106,6 +106,7 @@ export default function AddCourseMaterial({ classId }) {
             label="Title"
             placeholder="Enter course material title"
             value={formData?.title}
+            required
           />
           <TextField
             id="courseMaterialDescription"
@@ -115,6 +116,7 @@ export default function AddCourseMaterial({ classId }) {
             placeholder="Enter course material description"
             multiline
             value={formData?.courseMaterialDescription}
+            required
           />
           <FormControl variant="outlined" required>
             <Button variant="contained" component="label" color="info">
@@ -131,6 +133,7 @@ export default function AddCourseMaterial({ classId }) {
                 onChange={(e) => {
                   handleFileUpload('courseMaterialFiles', e);
                 }}
+                required
               />
             </Button>
           </FormControl>

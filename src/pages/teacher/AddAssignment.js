@@ -116,6 +116,7 @@ export default function AddAssignment({ classId }) {
             label="Title"
             placeholder="Enter the assignment title"
             value={formData?.title}
+            required
           />
           <TextField
             id="assignmentDescription"
@@ -125,6 +126,7 @@ export default function AddAssignment({ classId }) {
             placeholder="Enter assignment description"
             multiline
             value={formData?.assignmentDescription}
+            required
           />
           <TextField
             id="submissionDeadline"
@@ -140,6 +142,7 @@ export default function AddAssignment({ classId }) {
             }}
             onChange={(e) => handleDateField('submissionDeadline', e)}
             value={formData?.submissionDeadline}
+            required
           />
           <FormControl variant="outlined" required>
             <Button variant="contained" component="label" color="info">
@@ -154,6 +157,7 @@ export default function AddAssignment({ classId }) {
                 onChange={(e) => {
                   handleFileUpload('assignmentFiles', e);
                 }}
+                required
               />
             </Button>
           </FormControl>
