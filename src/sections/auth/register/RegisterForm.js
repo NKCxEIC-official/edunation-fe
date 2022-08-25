@@ -6,7 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 // @mui
-import { Stack, IconButton, InputAdornment, Box } from '@mui/material';
+
+import { Stack, IconButton, InputAdornment, Button, FormControlLabel, FormGroup, Switch, Box } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 // components
 import Iconify from '../../../components/Iconify';
@@ -20,6 +21,7 @@ export default function RegisterForm() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
+  const [OptForSubsidy, SetOptForSubsidy] = useState(false);
   const auth = useSelector((state) => state.auth);
 
   const [showPassword, setShowPassword] = useState(false);
@@ -85,6 +87,22 @@ export default function RegisterForm() {
             ),
           }}
         />
+        <FormGroup>
+              <FormControlLabel control={<Switch onChange={()=> SetOptForSubsidy(!OptForSubsidy)} />} label="Opt for Subsidy" />
+        </FormGroup>
+
+
+        {OptForSubsidy && <Button
+         variant="contained"
+          component="label"
+          >
+        Upload File
+        <input
+        type="file"
+        hidden
+        />
+        </Button>}
+        
         {auth && auth.errorMessage && (
           <Box sx={{ p: 2, backgroundColor: 'danger.light', mb: 2 }}>{auth.errorMessage}</Box>
         )}

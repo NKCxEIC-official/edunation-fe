@@ -19,7 +19,6 @@ import Settings from './pages/Settings';
 import Profile from './pages/Profile';
 import User from './pages/User';
 import StudentDashboardApp from './pages/student/DashboardApp';
-import Classroom from './pages/student/Classroom';
 
 import StudentsList from './pages/ngo/StudentsList';
 import RedSpots from './pages/ngo/RedSpots';
@@ -34,6 +33,8 @@ import CourseMaterialDetails from './pages/CourseMaterialDetails';
 import ChatApp from './components/ChatApp';
 import CourseGrid from './components/CourseGrid';
 import RedSpotList from './pages/ngo/RedSpotList';
+import NewCourses from './pages/student/NewCourses';
+import OngoingClasses from './pages/student/OngoingClasses';
 
 // ----------------------------------------------------------------------
 
@@ -74,7 +75,8 @@ export default function Router() {
         { path: 'student/app', element: <StudentDashboardApp /> },
         { path: 'student/user', element: <User /> },
         { path: 'student/schedule', element: <Schedule /> },
-        { path: 'student/classroom', element: <Classroom /> },
+        { path: 'student/new-courses', element: <NewCourses /> },
+        { path: 'student/ongoing-classes', element: <OngoingClasses /> },
         { path: 'student/classroom/:id', element: <CourseDetails /> },
         { path: 'student/classroom/:id/assingment/:assingmentId', element: <AssignmentDetails /> },
         { path: 'student/classroom/:id/assingment/:assingmentId/check', element: <CheckAssignments /> },
