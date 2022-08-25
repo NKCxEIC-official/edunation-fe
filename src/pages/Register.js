@@ -99,7 +99,7 @@ export default function Register() {
             {/* <AuthSocial /> */}
 
             <RegisterForm />
-
+            
             <Typography variant="body2" align="center" sx={{ color: 'text.secondary', mt: 3 }}>
               &nbsp;
               <Link underline="always" color="text.primary" href="#">

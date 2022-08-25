@@ -3,8 +3,6 @@ import { sentenceCase } from 'change-case';
 import { useEffect, useState } from 'react';
 import { doc, getDoc } from 'firebase/firestore';
 import { Link as RouterLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-
 // material
 import {
   Card,
@@ -21,25 +19,30 @@ import {
   TableContainer,
   TablePagination,
 } from '@mui/material';
+import { useSelector } from 'react-redux';
+
 // components
 import Page from '../../components/Page';
 import Label from '../../components/Label';
 import Scrollbar from '../../components/Scrollbar';
 import Iconify from '../../components/Iconify';
 import SearchNotFound from '../../components/SearchNotFound';
-import { UserListHead, UserListToolbar, UserMoreMenu } from '../../sections/@ngo/Teacher';
+import { UserListHead, UserListToolbar, UserMoreMenu } from '../../sections/@ngo/Student';
 // mock
 import CustomModal from '../../components/CustomModal';
 import { db } from '../../utils/firebaseConfig';
-import AddTeacher from '../../sections/@ngo/forms/AddTeacher';
+import AddStudent from '../../sections/@ngo/forms/AddStudent';
+import AddRedSpot from './AddRedSpot';
 
 // ----------------------------------------------------------------------
 
 const TABLE_HEAD = [
-  { id: 'name', label: 'Name', alignRight: false },
-  { id: 'courses', label: 'Courses', alignRight: false },
-  { id: 'isVerified', label: 'Verified', alignRight: false },
-  { id: 'status', label: 'Status', alignRight: false },
+ 
+  { id: 'pocname', label: 'POC Name', alignRight: false },
+  { id: 'pocemail', label: 'POC Email', alignRight: false },
+  { id: 'pocphone', label: 'POC Phone', alignRight: false },
+  { id: 'coords', label: 'Coordinates', alignRight: false },
+  { id: 'address', label: 'Address', alignRight: false }, 
   { id: '' },
 ];
 
@@ -69,16 +72,24 @@ function applySortFilter(array, comparator, query) {
     return a[1] - b[1];
   });
   if (query) {
-    return filter(array, (_user) => _user.name.toLowerCase().indexOf(query.toLowerCase()) !== -1);
+    return filter(
+      array,
+      (_user) =>
+        _user.POCName.toLowerCase().indexOf(query.toLowerCase()) !== -1 || _user.POCEmail.includes(query.toLowerCase()) || _user.POCPhone.includes(query.toLowerCase()) || _user.address.includes(query.toLowerCase())
+        
+    );
   }
   return stabilizedThis.map((el) => el[0]);
 }
 
-export default function TeachersList() {
-  const user = useSelector((state) => state.auth.user);
+export default function RedSpotList() {
   const [page, setPage] = useState(0);
-  const [order, setOrder] = useState('asc');
+
+  const user = useSelector((state) => state.auth.user);
+
   const [USERLIST, setUSERLIST] = useState([]);
+
+  const [order, setOrder] = useState('asc');
 
   const [selected, setSelected] = useState([]);
 
@@ -130,6 +141,7 @@ export default function TeachersList() {
   const handleFilterByName = (event) => {
     setFilterName(event.target.value);
   };
+
   const filteredUsers = applySortFilter(USERLIST, getComparator(order, orderBy), filterName);
 
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - USERLIST.length) : 0;
@@ -137,18 +149,12 @@ export default function TeachersList() {
   const isUserNotFound = filteredUsers.length === 0;
 
   useEffect(() => {
-    setUSERLIST(user.Teacherlist);
+    setUSERLIST(user.redSpots);
   }, [user]);
 
   return (
-    <Page title="Teachers List">
+    <Page title="Red Spots">
       <Container>
-        <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
-          <Typography variant="h4" gutterBottom>
-            Teachers
-          </Typography>
-          <CustomModal component={<AddTeacher />} btnText={'New Teacher'} icon={'eva:plus-fill'} />
-        </Stack>
 
         <Card>
           <UserListToolbar numSelected={selected.length} filterName={filterName} onFilterName={handleFilterByName} />
@@ -166,40 +172,30 @@ export default function TeachersList() {
                   onSelectAllClick={handleSelectAllClick}
                 />
                 <TableBody>
-                  {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                    const { id, name, status, courses, dp, isVerified, uid } = row;
-                    const isItemSelected = selected.indexOf(name) !== -1;
+                  {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, Id) => {
+                    const { POCEmail, POCName, POCPhone, address, coordinates } = row;
+                    const isItemSelected = selected.indexOf(POCName) !== -1;
 
                     return (
                       <TableRow
                         hover
-                        key={id}
+                        key={Id}
                         tabIndex={-1}
                         role="checkbox"
                         selected={isItemSelected}
                         aria-checked={isItemSelected}
                       >
                         <TableCell padding="checkbox">
-                          <Checkbox checked={isItemSelected} onChange={(event) => handleClick(event, name)} />
+                          <Checkbox checked={isItemSelected} onChange={(event) => handleClick(event, POCName)} />
                         </TableCell>
-                        <TableCell component="th" scope="row" padding="none">
-                          <Stack direction="row" alignItems="center" spacing={2}>
-                            <Avatar alt={name} src={dp} />
-                            <Typography variant="subtitle2" noWrap>
-                              {name}
-                            </Typography>
-                          </Stack>
-                        </TableCell>
-                        <TableCell align="left">{courses.join(' , ')}</TableCell>
-                        <TableCell align="left">{isVerified ? 'Yes' : 'No'}</TableCell>
-                        <TableCell align="left">
-                          <Label variant="ghost" color={status === '1' ? 'success' : 'error'}>
-                            {status === '1' ? 'active' : 'banned'}
-                          </Label>
-                        </TableCell>
-
+                        
+                        <TableCell align="left">{POCName}</TableCell>
+                        <TableCell align="left">{POCEmail}</TableCell>
+                        <TableCell align="left">{POCPhone}</TableCell>
+                        <TableCell align="left">{coordinates}</TableCell>
+                        <TableCell align="left">{address}</TableCell>
                         <TableCell align="right">
-                          <UserMoreMenu document={row} />
+                          <UserMoreMenu />
                         </TableCell>
                       </TableRow>
                     );

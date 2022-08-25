@@ -1,16 +1,23 @@
 import PropTypes from 'prop-types';
 import { Link as RouterLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import useRazorpay from 'react-razorpay';
+
 // material
 import { alpha, styled } from '@mui/material/styles';
-import { Box, Link, Card, Grid, Avatar, Typography, CardContent } from '@mui/material';
+import { useCallback } from 'react';
+
+import { Box, Link, Card, Grid, Avatar, Typography, CardContent, Button } from '@mui/material';
 // utils
 import { fDate } from '../../../utils/formatTime';
 import { fShortenNumber } from '../../../utils/formatNumber';
 //
 import SvgIconStyle from '../../../components/SvgIconStyle';
 import Iconify from '../../../components/Iconify';
-
+import {
+  updateClassSubscriptionInClassroomAction,
+  updateClassSubscriptionInProfileAction,
+} from '../../../store/actions/AuthActions';
 
 // ----------------------------------------------------------------------
 
@@ -40,7 +47,6 @@ const InfoStyle = styled('div')(({ theme }) => ({
   display: 'flex',
   flexWrap: 'wrap',
   justifyContent: 'flex-end',
-  marginTop: theme.spacing(3),
   color: theme.palette.text.disabled,
 }));
 
@@ -54,28 +60,71 @@ const CoverImgStyle = styled('img')({
 
 // ----------------------------------------------------------------------
 
-
-
-CourseCard.propTypes = {
-  post: PropTypes.object.isRequired,
-  index: PropTypes.number,
-};
-
-export default function CourseCard({ post, index }) {
-  const { cover, title, documentCount, userCount, starCount, author, createdAt } = post;
+export default function CourseCard({ post, index, classKey }) {
+  const {
+    bannerUrl,
+    classDescription,
+    name,
+    rating,
+    creator,
+    createdAt,
+    studentList,
+    courseMaterial,
+    classCode,
+    classFee,
+  } = post;
   const latestPostLarge = false;
   const latestPost = false;
 
   const POST_INFO = [
-    { number: userCount, icon: 'ph:users-three-bold' },
-    { number: documentCount, icon: 'carbon:document-attachment' },
-    { number: starCount, icon: 'ant-design:star-twotone' },
+    { number: studentList?.length, icon: 'ph:users-three-bold' },
+    { number: courseMaterial?.length, icon: 'carbon:document-attachment' },
+    { number: rating, icon: 'ant-design:star-twotone' },
   ];
 
-  const user = useSelector(state => state.auth.user)
+  const user = useSelector((state) => state.auth.user);
+
+  const Razorpay = useRazorpay();
+  const dispatch = useDispatch();
+
+  const handlePayment = useCallback(async () => {
+    const options = {
+      key: 'rzp_test_FbmqBgJEjWuT7Z',
+      amount: classFee * 100,
+      currency: 'INR',
+      name,
+      description: 'Payment for 1 month',
+      image: '/static/logo.svg',
+      handler: (res) => {
+        dispatch(updateClassSubscriptionInClassroomAction(classKey, user.uid));
+        dispatch(
+          updateClassSubscriptionInProfileAction(user.uid, {
+            classDp: bannerUrl,
+            classId: classKey,
+            courseName: name,
+            author: creator.name,
+          })
+        );
+      },
+      prefill: {
+        name: `${user.firstName} ${user.lastName}`,
+        email: user.email,
+        contact: user.phone,
+      },
+      notes: {
+        address: 'Razorpay Corporate Office',
+      },
+      theme: {
+        color: '#2d2b81',
+      },
+    };
+
+    const rzpay = new Razorpay(options);
+    rzpay.open();
+  }, [Razorpay]);
 
   return (
-    <Grid to={`/dashboard/${user?.isTeacher ? 'teacher' : 'student'}/classroom/123456`}  component={RouterLink} item xs={12} sm={latestPostLarge ? 12 : 6} md={latestPostLarge ? 6 : 3}>
+    <Grid item xs={12} sm={latestPostLarge ? 12 : 6} md={latestPostLarge ? 6 : 3}>
       <Card sx={{ position: 'relative' }}>
         <CardMediaStyle
           sx={{
@@ -112,8 +161,8 @@ export default function CourseCard({ post, index }) {
             }}
           />
           <AvatarStyle
-            alt={author.name}
-            src={author.avatarUrl}
+            alt={creator?.name}
+            src={creator?.photoUrl}
             sx={{
               ...((latestPostLarge || latestPost) && {
                 zIndex: 9,
@@ -125,7 +174,7 @@ export default function CourseCard({ post, index }) {
             }}
           />
 
-          <CoverImgStyle alt={title} src={cover} />
+          <CoverImgStyle alt={name} src={bannerUrl} />
         </CardMediaStyle>
 
         <CardContent
@@ -143,7 +192,7 @@ export default function CourseCard({ post, index }) {
           </Typography>
 
           <TitleStyle
-            to="#"
+            to={`/dashboard/${user?.isTeacher ? 'teacher' : 'student'}/classroom/${classKey}`}
             color="inherit"
             variant="subtitle2"
             underline="hover"
@@ -155,7 +204,7 @@ export default function CourseCard({ post, index }) {
               }),
             }}
           >
-            {title}
+            {name}
           </TitleStyle>
 
           <InfoStyle>
@@ -176,6 +225,12 @@ export default function CourseCard({ post, index }) {
               </Box>
             ))}
           </InfoStyle>
+
+          {post.creator.uid !== user.uid && (
+            <Button sx={{ mt: 2 }} onClick={handlePayment}>
+              Subscribe Now
+            </Button>
+          )}
         </CardContent>
       </Card>
     </Grid>

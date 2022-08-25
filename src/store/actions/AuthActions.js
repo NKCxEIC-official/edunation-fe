@@ -10,6 +10,8 @@ import {
   login,
   signUp,
   updateAnonymousUserList,
+  updateClassSubscriptionInClassroom,
+  updateClassSubscriptionInProfile,
   updateDatainDB,
   updateRedSpotInProfile,
 } from '../../services/AuthService';
@@ -27,6 +29,7 @@ import {
 
 export function signupAction({ email, password, firstName, lastName, userData }) {
   return (dispatch) => {
+    dispatch(loadingToggleAction(true));
     signUp(email, password)
       .then(({ user }) => {
         // Signed in
@@ -60,6 +63,7 @@ export function signupAction({ email, password, firstName, lastName, userData })
               totalEnrolled: 0,
               university: '',
               isVerified: true,
+              timeSpent: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             };
           } else {
             payload = {
@@ -76,6 +80,7 @@ export function signupAction({ email, password, firstName, lastName, userData })
               specialisation: '',
               totalEnrolled: 0,
               isVerified: true,
+              timeSpent: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             };
           }
         } else {
@@ -105,6 +110,7 @@ export function signupAction({ email, password, firstName, lastName, userData })
             totalEnrolled: 0,
             university: '',
             isVerified: true,
+            timeSpent: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
           };
         }
 
@@ -112,12 +118,18 @@ export function signupAction({ email, password, firstName, lastName, userData })
           localStorage.setItem('role', payload.role);
           localStorage.setItem('isTeacher', payload.isTeacher);
           dispatch(confirmedSignupAction(payload));
+          dispatch(loadingToggleAction(false));
         });
       })
       .catch((error) => {
         console.log(error);
-        const errorMessage = error.message;
+        const errorCode = error.code;
+        let errorMessage = 'Signup failed';
+        if (errorCode === 'auth/email-already-in-use') errorMessage = 'User email already in use';
+        else if (errorCode === 'auth/weak-password') errorMessage = 'Password is not strong enough';
+
         dispatch(signupFailedAction(errorMessage));
+        dispatch(loadingToggleAction(false));
       });
   };
 }
@@ -146,14 +158,16 @@ export function loginAction({ email, password }) {
         if (doc.data().isVerified) {
           login(email, password)
             .then((response) => {
-              getUser(response.user.uid).then((docSnap) => {
-                if (docSnap.exists()) {
-                  localStorage.setItem('role', docSnap.data().role);
-                  localStorage.setItem('isTeacher', docSnap.data().isTeacher);
-                  dispatch(loginConfirmedAction(docSnap.data()));
-                  dispatch(loadingToggleAction(false));
-                }
-              });
+              getUser(response.user.uid, callback);
+
+              function callback(docSnap) {
+                console.log(docSnap);
+
+                localStorage.setItem('role', docSnap.data().role);
+                localStorage.setItem('isTeacher', docSnap.data().isTeacher);
+                dispatch(loginConfirmedAction(docSnap.data()));
+                dispatch(loadingToggleAction(false));
+              }
             })
             .catch((error) => {
               console.log(error);
@@ -276,10 +290,12 @@ export function HideModalAction(status) {
 
 export function getDatafromDBAction(path, collection, nodeName) {
   return (dispatch) => {
-    getDatafromDB(path, collection).then((data) => {
+    getDatafromDB(path, callback, collection);
+
+    function callback(docSnap) {
       if (collection) {
         let collectionsObj = {};
-        data.forEach((doc) => {
+        docSnap.forEach((doc) => {
           collectionsObj = {
             ...collectionsObj,
             [doc.id]: doc.data(),
@@ -287,9 +303,9 @@ export function getDatafromDBAction(path, collection, nodeName) {
         });
         dispatch(getDatafromDBActionConfirmed(collectionsObj, nodeName));
       } else {
-        dispatch(getDatafromDBActionConfirmed(data.data(), nodeName));
+        dispatch(getDatafromDBActionConfirmed(docSnap.data(), nodeName));
       }
-    });
+    }
   };
 }
 
@@ -341,5 +357,36 @@ export function addQuestionTopicAction(payload) {
         // show error in snackbar
       }
     });
+  };
+}
+
+// export function addEventAction(payload) {
+//   return (dispatch) => {
+//     dispatch(loadingToggleAction(true));
+//     checkIfDocumentExists(`events/`).then((response) => {
+//       if (!response.exists()) {
+//         addDocument(`events/${payload.redSPotId}`, payload).then(() => {
+//           updateRedSpotInProfile(payload).then(() => {
+//             // show success message
+//             dispatch(loadingToggleAction(false));
+//           });
+//         });
+//       } else {
+//         dispatch(loadingToggleAction(false));
+//         // show error in snackbar
+//       }
+//     });
+//   };
+// }
+
+export function updateClassSubscriptionInClassroomAction(classId, payload) {
+  return (dispatch) => {
+    updateClassSubscriptionInClassroom(`classes/${classId}`, payload).then(() => {});
+  };
+}
+
+export function updateClassSubscriptionInProfileAction(profileId, payload) {
+  return (dispatch) => {
+    updateClassSubscriptionInProfile(`users/${profileId}`, payload).then(() => {});
   };
 }

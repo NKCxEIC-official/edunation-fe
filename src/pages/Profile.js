@@ -1,11 +1,19 @@
-import { Box, Button, Card, CardContent, Grid, Stack, Typography } from '@mui/material';
+/* eslint-disable */
+import { useSelector } from 'react-redux';
+import { Avatar, Box, Button, Card, CardContent, Grid, Stack, Typography } from '@mui/material';
 import '../components/Root.css';
 import React, { useState } from 'react';
+import OngoingCourses from '../components/OngoingCourses';
 import ProfileBackground from '../components/SVGIcons/ProfileBackground';
 import Iconify from '../components/Iconify';
 import { AppWidgetSummary } from '../sections/@dashboard/app';
 
+
 function Profile() {
+
+  const user = useSelector(state => state.auth.user)
+  const {dp, firstName, lastName, designation, about, reviews, ongoingCourses, rating} = user
+
   const [activeSection, setActiveSection] = useState('about');
   const cardContent = [
     {
@@ -14,7 +22,7 @@ function Profile() {
     },
     {
       title: 'Ongoing Courses',
-      content: '51',
+      content: ongoingCourses?.length,
     },
     {
       title: 'Duration Spent(hrs)',
@@ -22,24 +30,21 @@ function Profile() {
     },
     {
       title: 'Student Rating',
-      content: '3.5',
+      content: rating,
     },
   ];
+
   return (
     <Grid container className="profile">
       <ProfileBackground className="profileIntroBg" />
       <Grid item lg={8} xl={8} className="profileIntro">
         <div className="profileMainContainer">
           <div className="contents">
-            <img
-              src="https://images.unsplash.com/photo-1608434536950-d7d084398bf5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=728&q=80"
-              alt="banner"
-              className="profileImg"
-            />
+            <Avatar variant="square" className='profileImg' src={dp}/>
             <div>
               <Typography variant="h6">
-                <div>John Doe</div>
-                <div>Designation</div>
+                <div>{firstName} {lastName}</div>
+                <div>{designation}</div>
               </Typography>
             </div>
           </div>
@@ -70,17 +75,12 @@ function Profile() {
             {activeSection === 'about' && (
               <Typography variant="subtitle">
                 <div>
-                  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                  industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-                  scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
-                  into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the
-                  release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
-                  software like Aldus PageMaker including versions of Lorem Ipsum.
+                  {about}
                 </div>
               </Typography>
             )}
-            {activeSection === 'courses' && <div>Courses</div>}
-            {activeSection === 'reviews' && <div>Reviews</div>}
+            {activeSection === 'courses' && <div>{ongoingCourses?.courseName}</div>}
+            {activeSection === 'reviews' && <div>{reviews}</div>}
           </div>
           <div>
             <Typography variant="h4" sx={{ mt: 3, mb: 3 }}>

@@ -1,12 +1,16 @@
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 import {
   addDoc,
+  arrayRemove,
   arrayUnion,
   collection,
   deleteDoc,
   doc,
+  FieldValue,
   getDoc,
   getDocs,
+  increment,
+  onSnapshot,
   query,
   setDoc,
   updateDoc,
@@ -29,9 +33,9 @@ export function login(email, password) {
   return signInWithEmailAndPassword(auth, email, password);
 }
 
-export function getUser(uid) {
+export function getUser(uid, callback) {
   const UserRef = doc(db, 'users', uid);
-  return getDoc(UserRef);
+  return onSnapshot(UserRef, (doc) => callback(doc));
 }
 
 export function addUserAnonymous(payload) {
@@ -60,13 +64,22 @@ export function saveTokenInLocalStorage(tokenDetails) {
   localStorage.setItem('userDetails', JSON.stringify(tokenDetails));
 }
 
-export function getDatafromDB(path, collectionType = false) {
+// export function getDatafromDB(path, collectionType = false) {
+//   if (collectionType) {
+//     const collectionRef = collection(db, path);
+//     return getDocs(collectionRef);
+//   }
+//   const docRef = doc(db, path);
+//   return getDoc(docRef);
+// }
+
+export function getDatafromDB(path, callback, collectionType = false) {
   if (collectionType) {
     const collectionRef = collection(db, path);
-    return getDocs(collectionRef);
+    return onSnapshot(collectionRef, (doc) => callback(doc));
   }
   const docRef = doc(db, path);
-  return getDoc(docRef);
+  return onSnapshot(docRef, (doc) => callback(doc));
 }
 
 export function updateDatainDB(path, payload) {
@@ -88,5 +101,71 @@ export function updateRedSpotInProfile(payload) {
   const docRef = doc(db, `users/${payload.addedBy}`);
   return updateDoc(docRef, {
     redSpots: arrayUnion(payload),
+  });
+}
+
+export function updateClassSubscriptionInClassroom(path, payload) {
+  const docRef = doc(db, path);
+  return updateDoc(docRef, {
+    enrolled: arrayUnion(payload),
+  });
+}
+
+export function updateClassSubscriptionInProfile(path, payload) {
+  const docRef = doc(db, path);
+  return updateDoc(docRef, {
+    ongoingCourses: arrayUnion(payload),
+  });
+}
+
+export function addDocumentInDb(payload, collectionName) {
+  const UserCollectionRef = collection(db, collectionName);
+  return addDoc(UserCollectionRef, payload);
+}
+
+export function getTeachingClasses(uid) {
+  const UserCollectionRef = collection(db, 'classes');
+  const q = query(UserCollectionRef, where('creator.uid', '==', uid));
+  return getDocs(q);
+}
+
+export function communityUpvote(postId, uid, downvotedBy) {
+  const communityDocRef = doc(db, 'community', postId);
+  if (downvotedBy.includes(uid)) {
+    return updateDoc(communityDocRef, {
+      upvote: increment(1),
+      upvotedBy: arrayUnion(uid),
+      downvotedBy: arrayRemove(uid),
+      downvote: increment(-1),
+    });
+  }
+
+  return updateDoc(communityDocRef, {
+    upvote: increment(1),
+    upvotedBy: arrayUnion(uid),
+  });
+}
+
+export function communityDownvote(postId, uid, upvotedBy) {
+  const communityDocRef = doc(db, 'community', postId);
+  if (upvotedBy.includes(uid)) {
+    return updateDoc(communityDocRef, {
+      upvote: increment(-1),
+      upvotedBy: arrayRemove(uid),
+      downvotedBy: arrayUnion(uid),
+      downvote: increment(1),
+    });
+  }
+
+  return updateDoc(communityDocRef, {
+    downvote: increment(1),
+    downvotedBy: arrayUnion(uid),
+  });
+}
+
+export function postCommunityAnswer(postId, payload) {
+  const communityDocRef = doc(db, 'community', postId);
+  return updateDoc(communityDocRef, {
+    answers: arrayUnion(payload),
   });
 }

@@ -21,6 +21,11 @@ const NGONavConfig = [
     path: '/dashboard/ngo/students-list',
     icon: getIcon('ph:users-three'),
   },
+  {
+    title: "Red Spots",
+    path: '/dashboard/ngo/redspots-list',
+    icon: getIcon('entypo:location'),
+  },
 ];
 
 const TeacherNavConfig = [
@@ -35,7 +40,7 @@ const TeacherNavConfig = [
     icon: getIcon('icon-park-outline:classroom'),
   },
   {
-    title: 'MyCourses',
+    title: 'My Courses',
     path: '/dashboard/teacher/myCourses',
     icon: getIcon('ant-design:question-circle-outlined'),
   },
@@ -78,9 +83,14 @@ const StudentNavConfig = [
     icon: getIcon('eva:pie-chart-2-fill'),
   },
   {
-    title: 'classrooms',
-    path: '/dashboard/student/classrooms',
+    title: 'Ongoing Classes',
+    path: '/dashboard/student/ongoing-classes',
     icon: getIcon('mdi:google-classroom'),
+  },
+  {
+    title: 'New Courses',
+    path: '/dashboard/student/new-courses',
+    icon: getIcon('eos-icons:product-classes'),
   },
   {
     title: 'profile',

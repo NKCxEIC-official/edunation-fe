@@ -1,6 +1,6 @@
 /* eslint-disable */
 import { faker } from '@faker-js/faker';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 // @mui
 import { useTheme } from '@mui/material/styles';
 import { Grid, Container, Typography, Stack, Button, Card } from '@mui/material';
@@ -9,7 +9,6 @@ import { Link as RouterLink } from 'react-router-dom';
 import StudentAppWidgetSummary from 'src/sections/@student/app/AppWidgetSummary';
 import Page from 'src/components/Page';
 import Iconify from 'src/components/Iconify';
-import { posts } from '../../_mock/blog';
 
 // sections
 import {
@@ -27,6 +26,9 @@ import { BlogPostCard } from 'src/sections/@dashboard/blog';
 import TopRated from './TopRatedCourses';
 import OngoingCourses from '../../components/OngoingCourses';
 import Summary from 'src/components/Summary';
+import { getDatafromDBAction } from '../../store/actions/AuthActions';
+import { useEffect } from 'react';
+import NTS from 'src/components/NTS';
 
 // ----------------------------------------------------------------------
 
@@ -56,6 +58,11 @@ export default function StudentDashboardApp() {
     },
   ];
 
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getDatafromDBAction('classes', true, 'classes'));
+  }, []);
+
   return (
     <Page title="Dashboard">
       <Container maxWidth="s">
@@ -63,31 +70,32 @@ export default function StudentDashboardApp() {
           <Grid item lg={12}>
             <Typography variant="h4">Hi, {user.firstName}</Typography>
             <Typography variant="p" sx={{ mb: 5 }}>
-              Welcome Back -
+              Welcome back to your dashboard
             </Typography>
           </Grid>
 
           <Grid item xs={12} md={6} lg={12}>
             <AppWebsiteVisits
               title="Time Spent"
-              subheader="(+43%) than last year"
+              typeOfData="Minutes"
+              // subheader="(+43%) than last year"
               chartLabels={[
-                '01/01/2003',
-                '02/01/2003',
-                '03/01/2003',
-                '04/01/2003',
-                '05/01/2003',
-                '06/01/2003',
-                '07/01/2003',
-                '08/01/2003',
-                '09/01/2003',
-                '10/01/2003',
-                '11/01/2003',
-                '12/01/2003',
+                '01/01/2022',
+                '02/01/2022',
+                '03/01/2022',
+                '04/01/2022',
+                '05/01/2022',
+                '06/01/2022',
+                '07/01/2022',
+                '08/01/2022',
+                '09/01/2022',
+                '10/01/2022',
+                '11/01/2022',
+                '12/01/2022',
               ]}
               chartData={[
                 {
-                  name: 'Student',
+                  name: 'Time Spent',
                   type: 'area',
                   fill: 'gradient',
                   data: user.timeSpent,
@@ -96,7 +104,7 @@ export default function StudentDashboardApp() {
             />
           </Grid>
 
-          <Grid item lg={12}>
+          <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
             <Stack
               spacing={2}
               alignItems="center"
@@ -104,8 +112,8 @@ export default function StudentDashboardApp() {
               direction="row"
               sx={{ mb: 3, mr: 2, mt: 2 }}
             >
-              <Typography variant="h4" sx={{ mt: 2, mb: 2, p: 2 }}>
-                Ongoing Courses :
+              <Typography variant="h4" sx={{ mt: 2, mb: 2, pt: 2 }}>
+                Ongoing Classes :
               </Typography>
               <Button
                 to="/dashboard/student/classroom"
@@ -118,47 +126,46 @@ export default function StudentDashboardApp() {
               </Button>
             </Stack>
 
-            <Stack
-              spacing={2}
-              alignItems="center"
-              justifyContent="space-between"
-              direction="row"
-              sx={{ mb: 2, mr: 1, mt: 2 }}
-            >
-              {user.ongoingCourses &&
-                user.ongoingCourses.length > 0 &&
-                user.ongoingCourses.map((ongoingCourse) => (
-                  <Grid item xs={12} sm={6} md={4} lg={4}>
-                    <OngoingCourses
-                      title={ongoingCourse.courseName}
-                      subheader={ongoingCourse.author}
-                      avatar={'ant-design:user-outlined'}
-                      icon={ongoingCourse.classDp}
-                      points={[
-                        {
-                          icon: 'eos-icons:product-classes-outlined',
-                          count: ongoingCourse.courseMaterialCount,
-                        },
-                        {
-                          icon: 'carbon:course',
-                          count: ongoingCourse.assignmentCount,
-                        },
-                        {
-                          icon: 'arcticons:netease-open-class',
-                          count: ongoingCourse.liveClassCount,
-                        },
-                        {
-                          icon: 'simple-line-icons:calender',
-                          count: ongoingCourse.days,
-                        },
-                      ]}
-                    />
-                  </Grid>
-                ))}
-            </Stack>
+            <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
+              <Grid container spacing={3}>
+                {user.ongoingCourses && user.ongoingCourses.length > 0 ? (
+                  user.ongoingCourses.map((ongoingCourse) => (
+                    <Grid item xs={12} sm={6} md={4} lg={4}>
+                      <OngoingCourses
+                        title={ongoingCourse.courseName}
+                        subheader={ongoingCourse.author}
+                        avatar={'ant-design:user-outlined'}
+                        icon={ongoingCourse.classDp}
+                        classKey={ongoingCourse.classId}
+                        points={[
+                          {
+                            icon: 'eos-icons:product-classes-outlined',
+                            count: ongoingCourse.courseMaterialCount,
+                          },
+                          {
+                            icon: 'carbon:course',
+                            count: ongoingCourse.assignmentCount,
+                          },
+                          {
+                            icon: 'arcticons:netease-open-class',
+                            count: ongoingCourse.liveClassCount,
+                          },
+                          {
+                            icon: 'simple-line-icons:calender',
+                            count: ongoingCourse.days,
+                          },
+                        ]}
+                      />
+                    </Grid>
+                  ))
+                ) : (
+                  <NTS />
+                )}
+              </Grid>
+            </Grid>
           </Grid>
 
-          <Grid item lg={12}>
+          <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
             <Stack
               spacing={2}
               alignItems="center"
@@ -171,7 +178,7 @@ export default function StudentDashboardApp() {
                 View all
               </Button>
             </Stack>
-            <TopRated posts={posts} />
+            <TopRated />
           </Grid>
 
           <Grid item xs={8} md={8} lg={8} xl={8} sx={{ mt: 2 }}>

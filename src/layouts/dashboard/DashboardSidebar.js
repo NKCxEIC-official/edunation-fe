@@ -1,3 +1,4 @@
+/* eslint-disable */
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import { Link as RouterLink, useLocation, useNavigate } from 'react-router-dom';
@@ -15,6 +16,7 @@ import Scrollbar from '../../components/Scrollbar';
 import NavSection from '../../components/NavSection';
 //
 import { NGONavConfig, StudentNavConfig, TeacherNavConfig } from './NavConfig';
+import { useSelector } from 'react-redux';
 
 // ----------------------------------------------------------------------
 
@@ -72,7 +74,7 @@ const utilButton = (navigate) => {
         onClick={
           // navigate to be a :
           () => {
-            navigate('/dashboard/ngo/red-spots', { replace: true });
+            navigate('/dashboard/ngo/redSpot', { replace: true });
           }
         }
       >
@@ -118,10 +120,21 @@ const utilButton = (navigate) => {
 };
 export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
   const navigate = useNavigate();
+  const user = useSelector((state) => state.auth.user);
 
   const { pathname } = useLocation();
 
   const isDesktop = useResponsive('up', 'lg');
+
+  const getRole = () => {
+    if(user) {
+      return user.role === 1 && user.isTeacher === false
+      ? 'Student'
+      : user.role === 1 && user.isTeacher === true
+      ? 'Teacher'
+      : 'NGO';
+    }
+  }
 
   useEffect(() => {
     if (isOpenSidebar) {
@@ -144,13 +157,13 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
       <Box sx={{ mb: 5, mx: 2.5 }}>
         <Link underline="none" component={RouterLink} to="#">
           <AccountStyle>
-            <Avatar src={account.photoURL} alt="photoURL" />
+            <Avatar src={user.dp} alt="photoURL" />
             <Box sx={{ ml: 2 }}>
               <Typography variant="subtitle2" sx={{ color: 'text.primary' }}>
-                {account.displayName}
+                {`${user.firstName} ${user.lastName}`}
               </Typography>
               <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                {account.role}
+                {getRole()}
               </Typography>
             </Box>
           </AccountStyle>

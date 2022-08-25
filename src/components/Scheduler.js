@@ -22,7 +22,10 @@ import {
   CurrentTimeIndicator,
   Resources,
 } from '@devexpress/dx-react-scheduler-material-ui';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { pink, purple, teal, amber, deepOrange } from '@mui/material/colors';
+import { loadingToggleAction } from '../store/actions/AuthActions';
+import { addDocument, addDocumentInDb, getTeachingClasses } from '../services/AuthService';
 import { appointments, resourcesData } from '../_mock/event';
 import { owners } from '../_mock/tasks';
 
@@ -43,7 +46,6 @@ const StyledDiv = styled('div')(({ theme }) => ({
     fontSize: '1rem',
   },
 }));
-
 const initialCurrentDate = '2022-06-27';
 const editingOptionsList = [
   { id: 'allowAdding', text: 'Adding' },
@@ -52,6 +54,7 @@ const editingOptionsList = [
   { id: 'allowResizing', text: 'Resizing' },
   { id: 'allowDragging', text: 'Dragging' },
 ];
+const colors = [pink, purple, teal, amber, deepOrange];
 
 const EditingOptionsSelector = ({ options, onOptionsChange }) => (
   <StyledDiv className={classes.container}>
@@ -69,8 +72,97 @@ const EditingOptionsSelector = ({ options, onOptionsChange }) => (
     </FormGroup>
   </StyledDiv>
 );
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min) + min);
+}
+const getMyCreatedClassList = (user) => {
+  const classArraylist = [];
+  const classResourcelist = [];
+  getTeachingClasses(user.uid).then((querySnapshot) => {
+    console.log(querySnapshot.docs);
+    querySnapshot.docs.forEach((doc, idx) => {
+      const userData = doc.data();
+      const formatedData = {
+        CourseMaterialCount: userData.CourseMaterialCount,
+        bannerUrl: userData.bannerUrl,
+        classDescription: userData.classDescription,
+        classFee: userData.classFee,
+        courseMaterial: userData.courseMaterial,
+        createdAt: userData.createdAt,
+        creator: {
+          uid: userData.creator.uid,
+          name: userData.creator.name,
+        },
+        days: userData.days,
+        name: userData.name,
+        studentCount: userData.studentCount,
+        studentList: userData.studentList,
+        subject: userData.subject,
+        videos: userData.videos,
+      };
+      const classRes = {
+        text: userData.name,
+        id: idx + 1,
+        color: colors[getRandomInt()],
+      };
+      classArraylist.push(formatedData);
+      classResourcelist.push(classRes);
+    });
+    console.log('🚀 ~ file: Scheduler.js ~ line 115 ~ getTeachingClasses ~ classResourcelist', classResourcelist);
+  });
+  return classResourcelist;
+};
+
+const addEventToDb = (event, dispatch, classList) => {
+  classList.filter(checkClassId);
+  function checkClassId(classItem) {
+    return classItem.id === event.roomId;
+  }
+  const payload = {
+    allDay: event.allDay,
+    endDate: event.endDate,
+    id: event.id,
+    members: event.members.length > 0 ? event.members : [],
+    startDate: event.startDate,
+    title: event.title,
+    class: {
+      className: 'class name',
+      classId: 'class id',
+      classBanarUrl: 'url',
+    },
+  };
+
+  // allDay: false
+  // endDate: Thu Jun 30 2022 11:30:00 GMT+0530 (India Standard Time) {}
+  // id: 8
+  // members: Array(2)
+  // 0: 2
+  // 1: 3
+  // length: 2
+  // [[Prototype]]: Array(0)
+  // notes: "iukyjthrgefdsfghjmnbgfcxvbnmkjhytre"
+  // roomId: 2
+  // startDate: Thu Jun 30 2022 11:00:00 GMT+0530 (India Standard Time) {}
+  // title: "test1"
+
+  console.log('addEventToDb ~ event', payload);
+  dispatch(loadingToggleAction(true));
+  addDocumentInDb(payload, 'events').then(() => {
+    console.log('🚀 ~ file: Scheduler.js ~ line 77 ~ addDocument ~ event', payload);
+    dispatch(loadingToggleAction(false));
+  });
+};
+
+const updateEventToDb = (event) => {};
+
+const removeEventToDb = (event) => {};
 
 export default () => {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.auth.user);
+  const [classList, updateClassList] = React.useState([]);
   const [data, setData] = React.useState(appointments);
   const [editingOptions, setEditingOptions] = React.useState({
     allowAdding: true,
@@ -87,7 +179,7 @@ export default () => {
     {
       fieldName: 'roomId',
       title: 'Room',
-      instances: resourcesData,
+      instances: classList,
     },
     {
       fieldName: 'members',
@@ -96,6 +188,16 @@ export default () => {
       allowMultiple: true,
     },
   ]);
+  console.log('🚀 ~ file: Scheduler.js ~ line 183 ~ resourcesData', resourcesData);
+
+  React.useEffect(() => {
+    const classListData = getMyCreatedClassList(user);
+    const localData = [...resources];
+    localData[0].instances = classListData;
+    setResources(localData);
+  }, []);
+
+  console.log(resources);
 
   const { allowAdding, allowDeleting, allowUpdating, allowResizing, allowDragging } = editingOptions;
 
@@ -103,9 +205,14 @@ export default () => {
     ({ added, changed, deleted }) => {
       if (added) {
         const startingAddedId = data.length > 0 ? data[data.length - 1].id + 1 : 0;
-        setData([...data, { id: startingAddedId, ...added }]);
+        const addedEventObj = { id: startingAddedId, ...added };
+        setData([...data, addedEventObj]);
+        // add new evant:
+        console.log('adding event ', addedEventObj);
+        addEventToDb(addedEventObj, dispatch);
       }
       if (changed) {
+        // change event:
         setData(
           data.map((appointment) =>
             changed[appointment.id] ? { ...appointment, ...changed[appointment.id] } : appointment
@@ -113,6 +220,8 @@ export default () => {
         );
       }
       if (deleted !== undefined) {
+        // dekete eveny:
+
         setData(data.filter((appointment) => appointment.id !== deleted));
       }
       setIsAppointmentBeingCreated(false);
@@ -184,7 +293,7 @@ export default () => {
             commandButtonComponent={CommandButton}
             readOnly={isAppointmentBeingCreated ? false : !allowUpdating}
           />
-          <Resources data={resources} mainResourceName="roomId" />
+          <Resources data={[...resources]} mainResourceName="roomId" />
           <DragDropProvider allowDrag={allowDrag} allowResize={allowResize} />
           <CurrentTimeIndicator updateInterval="10000" />
         </Scheduler>
