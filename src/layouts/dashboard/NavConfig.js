@@ -5,9 +5,22 @@ import Iconify from '../../components/Iconify';
 
 const getIcon = (name) => <Iconify icon={name} width={22} height={22} />;
 
+const SuperNavConfig = [
+  {
+    title: 'Dashboard',
+    path: '/dashboard/super/app',
+    icon: getIcon('eva:pie-chart-2-fill'),
+  },
+  {
+    title: 'Accept Approval',
+    path: '/dashboard/super/accept-approval',
+    icon: getIcon('flat-color-icons:accept-database'),
+  },
+];
+
 const NGONavConfig = [
   {
-    title: 'dashboard',
+    title: 'Dashboard',
     path: '/dashboard/ngo/app',
     icon: getIcon('eva:pie-chart-2-fill'),
   },
@@ -119,4 +132,4 @@ const StudentNavConfig = [
   },
 ];
 
-export { NGONavConfig, TeacherNavConfig, StudentNavConfig };
+export {SuperNavConfig, NGONavConfig, TeacherNavConfig, StudentNavConfig };

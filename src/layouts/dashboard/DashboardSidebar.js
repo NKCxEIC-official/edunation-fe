@@ -15,7 +15,7 @@ import Logo from '../../components/Logo';
 import Scrollbar from '../../components/Scrollbar';
 import NavSection from '../../components/NavSection';
 //
-import { NGONavConfig, StudentNavConfig, TeacherNavConfig } from './NavConfig';
+import { NGONavConfig, StudentNavConfig, SuperNavConfig, TeacherNavConfig } from './NavConfig';
 import { useSelector } from 'react-redux';
 
 // ----------------------------------------------------------------------
@@ -30,6 +30,8 @@ const RootStyle = styled('div')(({ theme }) => ({
 }));
 
 const AccountStyle = styled('div')(({ theme }) => ({
+
+
   display: 'flex',
   alignItems: 'center',
   padding: theme.spacing(2, 2.5),
@@ -48,8 +50,10 @@ DashboardSidebar.propTypes = {
 const getNavByRole = () => {
   let role = 0;
   let isTeacher = false;
+  let isAdmin = false;
   role = localStorage.getItem('role');
   isTeacher = localStorage.getItem('isTeacher');
+  isAdmin = localStorage.getItem('isAdmin');
   if (role === '0') {
     return NGONavConfig;
   }
@@ -58,6 +62,9 @@ const getNavByRole = () => {
   }
   if (role === '1' && isTeacher === 'false') {
     return StudentNavConfig;
+  }
+  if (role === '2') {
+    return SuperNavConfig;
   }
 };
 

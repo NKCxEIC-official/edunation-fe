@@ -1,0 +1,71 @@
+{
+    "title":"hello",
+    "NgoDashboard":{
+    "NgoSidebarDashboard": "டாஷ்போர்டு",   
+    "NgoTitle": "வணக்கம், மீண்டும் வருக",
+    "NgoStudentCount": "மாணவர் எண்ணிக்கை",
+    "NgoTeacherCount": "ஆசிரியர் எண்ணிக்கை",
+    "NgoVolunteerCount": "தொண்டர் எண்ணிக்கை",
+    "NgoRedSpots": "சிவப்பு புள்ளிகள்",
+    "NgoAddRedSpots": "சிவப்பு புள்ளிகளைச் சேர்க்கவும்",
+    "NgoCreateTeachersProfile": "ஆசிரியர் சுயவிவரத்தை உருவாக்கவும்",
+    "NgoCreateStudentsProfile": "மாணவர்களின் சுயவிவரத்தை உருவாக்கவும்",
+    "NgoProgressReport": "வளர்ச்சி அறிக்கை",
+    "NgoTeacherStudentRatio": "ஆசிரியர் மாணவர் விகிதம்",
+    "NgoTableTeachersCount": "ஆசிரியர் எண்ணிக்கை",
+    "NgoTableStudentsCount": "மாணவர் எண்ணிக்கை"
+    },
+
+    "NgoTeachersList":{
+    "NgoSidebarTeachersList": "ஆசிரியர் பட்டியல்",
+    "NgoTeachers": "ஆசிரியர்கள்",
+    "NgoSearchTeachers": "ஆசிரியர்களைத் தேடுங்கள்",
+    "NgoFirstName": "முதல் பெயர்",
+    "NgoLastName": "கடைசி பெயர்",
+    "NgoAge": "வயது",
+    "NgoEmailId": "மின்னஞ்சல் முகவரி",
+    "NgoPhone": "தொலைபேசி",
+    "NgoAddress": "முகவரி",
+    "NgoCity": "நகரம்",
+    "NgoState": "நிலை",
+    "NgoOccupation": "தொழில்",
+    "NgoUniversity": "பல்கலைக்கழகம்/பள்ளி",
+    "NgoAddTeacher": "ஆசிரியரைச் சேர்க்கவும்",
+    "NgoName": "பெயர்",
+    "NgoCourses": "படிப்புகள்",
+    "NgoVerified": "சரிபார்க்கப்பட்டது",
+    "NgoStatus": "நிலை",
+    "NgoNewTeacher": "புதிய ஆசிரியர்"
+    },
+
+    "NgoStudentsList":{
+    "NgoSidebarStudentsList": "மாணவர் பட்டியல்",
+    "NgoStudents": "மாணவர்கள்",
+    "NgoSearchStudents": "மாணவர்களைத் தேடுங்கள்",
+    "NgoRole": "பங்கு",
+    "NgoAddStudent": "மாணவரைச் சேர்க்கவும்",
+    "NgoNewStudent": "புதிய மாணவர்"
+    },
+    
+    "NgoRedSpots":{
+    "NgoSidebarRedSpots": "சிவப்பு புள்ளிகள்",
+    "NgoPocName": "POC பெயர்",
+    "NgoPocEmail": "POC மின்னஞ்சல்",
+    "NgoCoordinates": "ஒருங்கிணைப்புகள்",
+    "NgoAddress": "முகவரி",
+    "NgoRowsPerPage": "ஒரு பக்கத்திற்கு வரிசைகள்",
+    "NgoSelectRedSpot": "சிவப்பு புள்ளியைத் தேர்ந்தெடுக்கவும்",
+    "NgoEnterRedSpotAddress": "Red Spot முகவரியை உள்ளிடவும்",
+    "NgoSelectedLocationDetails": "தேர்ந்தெடுக்கப்பட்ட இருப்பிட விவரங்கள்",
+    "NgoLatitute": "அட்சரேகை",
+    "NgoLongitude": "தீர்க்கரேகை",
+    "NgoRedSpotName": "சிவப்பு புள்ளி பெயர்",
+    "NgoButtonAddRedSpot": "சிவப்பு புள்ளியைச் சேர்க்கவும்"
+    
+    }, 
+
+    "NgoSidebarTitle": "மற்றவர்களுக்கு உதவுவோம்!",
+    "NgoSidebarSubTitle": "ஒன்றாகக் கற்றுக்கொள்வது எப்போதும் சிறந்தது",
+    "NgoSidebarAddRedSpots": "சிவப்பு புள்ளிகளைச் சேர்க்கவும்"
+    
+ }
