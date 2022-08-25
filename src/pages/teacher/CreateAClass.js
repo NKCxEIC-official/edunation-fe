@@ -45,7 +45,6 @@ export default function CreatAClass() {
   const dispatch = useDispatch()
 
   const user = useSelector(state => state.auth.user);
-  const dispatch = useDispatch();
 
   const handleFieldValue = (key, e) => {
     updateFormData({ ...formData, [key]: e.target.value });
