@@ -1,8 +1,11 @@
+/** eslint-disable */
 import { filter } from 'lodash';
 import { sentenceCase } from 'change-case';
 import { useEffect, useState } from 'react';
+import { doc, getDoc } from 'firebase/firestore';
+import { Link as RouterLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+
 // material
 import {
   Card,
@@ -20,26 +23,34 @@ import {
   TablePagination,
 } from '@mui/material';
 // components
-import Page from '../components/Page';
-import Label from '../components/Label';
-import Scrollbar from '../components/Scrollbar';
-import Iconify from '../components/Iconify';
-import SearchNotFound from '../components/SearchNotFound';
-import { UserListHead, UserListToolbar, UserMoreMenu } from '../sections/@dashboard/user';
+import Page from '../../components/Page';
+import Label from '../../components/Label';
+import Scrollbar from '../../components/Scrollbar';
+import Iconify from '../../components/Iconify';
+import SearchNotFound from '../../components/SearchNotFound';
+import { UserListHead, UserListToolbar, UserMoreMenu } from '../../sections/@ngo/Teacher';
 // mock
-import USERLIST from '../_mock/user';
-import RemarkAssignment from './teacher/RemarkAssignment';
-import CustomModal from '../components/CustomModal';
+import CustomModal from '../../components/CustomModal';
+import { db } from '../../utils/firebaseConfig';
+import AddTeacher from '../../sections/@ngo/forms/AddTeacher';
 
 // ----------------------------------------------------------------------
 
 const TABLE_HEAD = [
   { id: 'name', label: 'Name', alignRight: false },
-  { id: 'assignments', label: 'Assignments', alignRight: false },
-  { id: 'check', label: 'Check', alignRight: false },
+  { id: 'emailId', label: 'Email Address', alignRight: false },
+  { id: 'evidenceLinks', label: 'Evidence', alignRight: false },
+  { id: 'isVerified', label: 'Verified', alignRight: false },
+  { id: 'approved', label: 'Approved', alignRight: false },
 ];
 
 // ----------------------------------------------------------------------
+
+function getComparator(order, orderBy) {
+  return order === 'desc'
+    ? (a, b) => descendingComparator(a, b, orderBy)
+    : (a, b) => -descendingComparator(a, b, orderBy);
+}
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -49,12 +60,6 @@ function descendingComparator(a, b, orderBy) {
     return 1;
   }
   return 0;
-}
-
-function getComparator(order, orderBy) {
-  return order === 'desc'
-    ? (a, b) => descendingComparator(a, b, orderBy)
-    : (a, b) => -descendingComparator(a, b, orderBy);
 }
 
 function applySortFilter(array, comparator, query) {
@@ -70,26 +75,11 @@ function applySortFilter(array, comparator, query) {
   return stabilizedThis.map((el) => el[0]);
 }
 
-export default function CheckAssignments() {
-  const { user, data } = useSelector((state) => {
-    return {
-      user: state.auth.user,
-      data: state.auth.data,
-    };
-  });
-
-  const { classes } = data;
-  console.log(classes, user);
-  const params = useParams();
-  const { name, avatarUrl, assignments } = classes[params?.id];
-  const { ongoingCourses, totalEnrolled } = user;
-  console.log(name, params);
-
-  const { CheckAssignments } = user;
+export default function AcceptApproval() {
+  const user = useSelector((state) => state.auth.user);
+  const { acceptApproval } = user;
   const [page, setPage] = useState(0);
-
   const [order, setOrder] = useState('asc');
-
   const [USERLIST, setUSERLIST] = useState([]);
 
   const [selected, setSelected] = useState([]);
@@ -101,9 +91,9 @@ export default function CheckAssignments() {
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
   useEffect(() => {
-    console.log(data);
-    setUSERLIST(data);
-  }, [data]);
+    console.log(acceptApproval);
+    setUSERLIST(acceptApproval);
+  }, [acceptApproval]);
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -147,19 +137,18 @@ export default function CheckAssignments() {
   const handleFilterByName = (event) => {
     setFilterName(event.target.value);
   };
+  const filteredUsers = applySortFilter(USERLIST, getComparator(order, orderBy), filterName);
 
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - USERLIST.length) : 0;
-
-  const filteredUsers = applySortFilter(USERLIST, getComparator(order, orderBy), filterName);
 
   const isUserNotFound = filteredUsers.length === 0;
 
   return (
-    <Page title="Check Assignments">
+    <Page title="Accept Approval">
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" gutterBottom>
-            Checked Assignments
+            Teachers
           </Typography>
         </Stack>
 
@@ -173,14 +162,14 @@ export default function CheckAssignments() {
                   order={order}
                   orderBy={orderBy}
                   headLabel={TABLE_HEAD}
-                  rowCount={USERLIST.length}
+                  rowCount={acceptApproval?.length}
                   numSelected={selected.length}
                   onRequestSort={handleRequestSort}
                   onSelectAllClick={handleSelectAllClick}
                 />
                 <TableBody>
                   {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                    const { id, name, assignments, check, avatarUrl } = row;
+                    const { id, name, approved, emailId, evidenceLinks, dp, isVerified } = row;
                     const isItemSelected = selected.indexOf(name) !== -1;
 
                     return (
@@ -197,19 +186,32 @@ export default function CheckAssignments() {
                         </TableCell>
                         <TableCell component="th" scope="row" padding="none">
                           <Stack direction="row" alignItems="center" spacing={2}>
-                            <Avatar alt={name} src={avatarUrl} />
+                            <Avatar alt={name} src={dp} />
                             <Typography variant="subtitle2" noWrap>
                               {name}
                             </Typography>
                           </Stack>
                         </TableCell>
-                        <TableCell>
-                        <a href={assignments}>View</a>
+                        <TableCell align="left">{emailId}</TableCell>
+                        <TableCell align="left" sx={{ maxWidth: '10px', flexWrap: 'wrap', wordWrap: 'break-word' }}>
+                          <a href={evidenceLinks}>{evidenceLinks}</a>
                         </TableCell>
-                        <TableCell sx>
+                        <TableCell align="left">{isVerified ? 'Yes' : 'No'}</TableCell>
+                        {/* <TableCell align="left">
+                          <Label variant="ghost" color={status === '1' ? 'success' : 'error'}>
+                            {status === '1' ? 'active' : 'banned'}
+                          </Label>
+                        </TableCell> */}
+
+                        {/* <TableCell align="right">
+                          <UserMoreMenu />
+                        </TableCell> */}
+                        <TableCell sx={{ justifyContent: 'space-evenly' }}>
                           <Button size="large">
-                            {/* <Iconify icon="teenyicons:tick-circle-solid" color="green"/> */}
-                            <CustomModal btnText={'Check Assignment'} sx={{ mb: 1 }} component={<RemarkAssignment />} icon="eva:plus-fill" />
+                            <Iconify icon="teenyicons:tick-circle-solid" color="green"/>
+                          </Button>
+                          <Button size="large">
+                            <Iconify icon="entypo:circle-with-cross" color="red"/>
                           </Button>
                         </TableCell>
                       </TableRow>

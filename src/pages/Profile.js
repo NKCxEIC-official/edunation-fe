@@ -12,7 +12,7 @@ import { AppWidgetSummary } from '../sections/@dashboard/app';
 function Profile() {
 
   const user = useSelector(state => state.auth.user)
-  const {dp, firstName, lastName, designation, about, reviews, ongoingCourses, rating} = user
+  const {dp, firstName, lastName, email, about, reviews, ongoingCourses, rating} = user
 
   const [activeSection, setActiveSection] = useState('about');
   const cardContent = [
@@ -44,12 +44,14 @@ function Profile() {
             <div>
               <Typography variant="h6">
                 <div>{firstName} {lastName}</div>
-                <div>{designation}</div>
+              </Typography>
+              <Typography variant="body1">
+                <div>{email}</div>
               </Typography>
             </div>
           </div>
           <div>
-            <Button to='#' 
+            <Button to={email} 
             onClick={(e) => {
                 window.location.href = "mailto:no-reply@example.com";
                 e.preventDefault();
@@ -79,7 +81,12 @@ function Profile() {
                 </div>
               </Typography>
             )}
-            {activeSection === 'courses' && <div>{ongoingCourses?.courseName}</div>}
+            {activeSection === 'courses' && 
+            <div>
+              <Typography variant="h4">Courses Offered :</Typography>
+              {ongoingCourses?.courseName}
+            </div>}
+            
             {activeSection === 'reviews' && <div>{reviews}</div>}
           </div>
           <div>
