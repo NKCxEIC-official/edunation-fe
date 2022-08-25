@@ -14,6 +14,7 @@ import Iconify from '../components/Iconify';
 import VidyaDaan from '../components/VidyaDaan';
 import AddAssignment from './teacher/AddAssignment';
 import { getDatafromDBAction } from '../store/actions/AuthActions';
+import AddCourseMaterial from './teacher/AddCourseMaterial';
 // sections
 
 // ----------------------------------------------------------------------
@@ -28,7 +29,7 @@ export default function CourseDetails() {
     };
   });
   const [courseDetails, setCourseDetails] = useState({});
-  const { name, studentList, courseMaterial, videos, assignments } = courseDetails;
+  const { name, studentList, courseMaterial, videos, assignments, creator } = courseDetails;
   const { ongoingCourses, totalEnrolled } = user;
   const theme = useTheme();
 
@@ -85,56 +86,75 @@ export default function CourseDetails() {
         </Grid> */}
 
         <Grid container sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <Typography variant="h4" sx={{ mb: 3, mt: 3 }}>
-            Assignments
+          <Typography variant="h4" sx={{ mb: 3, marginTop: '40px' }}>
+            Assignments :
           </Typography>
-          <CustomModal
-            btnText={'Add new assignment'}
-            sx={{ mb: 4 }}
-            component={<AddAssignment classId={id} />}
-            icon="eva:plus-fill"
-          />
+          {creator?.uid === user?.uid && (
+            <CustomModal
+              btnText={'Add new assignment'}
+              sx={{ mb: 4 }}
+              component={<AddAssignment classId={id} />}
+              icon="eva:plus-fill"
+            />
+          )}
         </Grid>
 
-        {assignments?.length > 0 &&
-          assignments.map((assignment, idx) => {
-            return (
-              <Grid container spacing={4}>
+        <Grid container spacing={4} sx={{ display: 'flex' }}>
+          {assignments?.length > 0 &&
+            assignments.map((assignment, idx) => {
+              return (
                 <Grid
                   to={`/dashboard/${user?.isTeacher ? 'teacher' : 'student'}/classroom/${id}/assignment/${idx}`}
                   component={RouterLink}
                   item
                   xs={12}
-                  sm={6}
+                  sm={4}
                   md={3}
                   lg={4}
+                  xl={4}
                 >
-                  <CourseGrid
-                    subheader={assignment?.title}
-                    icon={'ic:baseline-assignment'}
-                    color={"#2E2B81"}
-                  />
+                  <CourseGrid subheader={assignment?.title} icon={'ic:baseline-assignment'} color={'#2E2B81'} />
                 </Grid>
-              </Grid>
-            );
-          })}
+              );
+            })}
+        </Grid>
 
-        <Typography variant="h4" sx={{ mb: 3, mt: 3 }}>
-          Course Material
-        </Typography>
+        <Grid container sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <Typography variant="h4" sx={{ mb: 3, marginTop: '40px' }}>
+            Course Materials :
+          </Typography>
+          {creator?.uid === user?.uid && (
+            <CustomModal
+              btnText={'Add Course Material'}
+              sx={{ mb: 4 }}
+              component={<AddCourseMaterial classId={id} />}
+              icon="eva:plus-fill"
+            />
+          )}
+        </Grid>
 
         <Grid container spacing={4}>
-          <Grid
-            item
-            xs={12}
-            sm={6}
-            md={3}
-            lg={4}
-            to={`/dashboard/${user?.isTeacher ? 'teacher' : 'student'}/classroom/:id/god/details`}
-            component={RouterLink}
-          >
-            <CourseGrid subheader="UseState" count={courseMaterial?.length} icon={'logos:tensorflow'} />
-          </Grid>
+          {courseMaterial?.length > 0 &&
+            courseMaterial.map((item, idx) => {
+              return (
+                <Grid
+                  item
+                  xs={12}
+                  sm={4}
+                  md={3}
+                  lg={4}
+                  xl={4}
+                  to={`/dashboard/${user?.isTeacher ? 'teacher' : 'student'}/classroom/${id}/course-materials/${idx}`}
+                  component={RouterLink}
+                >
+                  <CourseGrid
+                    subheader={item?.title}
+                    count={courseMaterial?.length}
+                    icon={'arcticons:onlyoffice-documents'}
+                  />
+                </Grid>
+              );
+            })}
         </Grid>
 
         <Typography variant="h4" sx={{ mb: 3, mt: 3 }}>
