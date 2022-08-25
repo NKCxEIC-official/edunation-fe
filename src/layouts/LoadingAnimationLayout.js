@@ -1,10 +1,4 @@
-import { Outlet } from 'react-router-dom';
-// material
 import Lottie from 'react-lottie';
-
-import { styled } from '@mui/material/styles';
-// components
-import Logo from '../components/Logo';
 import animation from '../assets/load-animation.json';
 
 // ----------------------------------------------------------------------
