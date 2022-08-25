@@ -113,7 +113,7 @@ export default function StudentDashboardApp() {
               sx={{ mb: 3, mr: 2, mt: 2 }}
             >
               <Typography variant="h4" sx={{ mt: 2, mb: 2, pt: 2 }}>
-                Ongoing Courses :
+                Ongoing Classes :
               </Typography>
               <Button
                 to="/dashboard/student/classroom"

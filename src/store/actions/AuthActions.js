@@ -290,10 +290,12 @@ export function HideModalAction(status) {
 
 export function getDatafromDBAction(path, collection, nodeName) {
   return (dispatch) => {
-    getDatafromDB(path, collection).then((data) => {
+    getDatafromDB(path, callback, collection);
+
+    function callback(docSnap) {
       if (collection) {
         let collectionsObj = {};
-        data.forEach((doc) => {
+        docSnap.forEach((doc) => {
           collectionsObj = {
             ...collectionsObj,
             [doc.id]: doc.data(),
@@ -301,9 +303,9 @@ export function getDatafromDBAction(path, collection, nodeName) {
         });
         dispatch(getDatafromDBActionConfirmed(collectionsObj, nodeName));
       } else {
-        dispatch(getDatafromDBActionConfirmed(data.data(), nodeName));
+        dispatch(getDatafromDBActionConfirmed(docSnap.data(), nodeName));
       }
-    });
+    }
   };
 }
 
@@ -338,6 +340,25 @@ export function addRedSpotAction(payload) {
     });
   };
 }
+
+// export function addEventAction(payload) {
+//   return (dispatch) => {
+//     dispatch(loadingToggleAction(true));
+//     checkIfDocumentExists(`events/`).then((response) => {
+//       if (!response.exists()) {
+//         addDocument(`events/${payload.redSPotId}`, payload).then(() => {
+//           updateRedSpotInProfile(payload).then(() => {
+//             // show success message
+//             dispatch(loadingToggleAction(false));
+//           });
+//         });
+//       } else {
+//         dispatch(loadingToggleAction(false));
+//         // show error in snackbar
+//       }
+//     });
+//   };
+// }
 
 export function updateClassSubscriptionInClassroomAction(classId, payload) {
   return (dispatch) => {

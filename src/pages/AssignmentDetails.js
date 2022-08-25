@@ -57,9 +57,6 @@ function AssignmentDetails() {
             <Typography variant="h5" sx={{ mb: 3 }}>
               Deadline: {formatTime(new Date(assignmentDetails?.submissionDeadline))}
             </Typography>
-            <Typography variant="p" sx={{ opacity: 0.7 }}>
-              {assignmentDetails?.assignmentDescription}
-            </Typography>
           </Grid>
           <Grid
             item
@@ -88,7 +85,13 @@ function AssignmentDetails() {
           </Grid>
         </Grid>
         <hr style={{ marginTop: '20px', opacity: 0.7 }} />
-        <Typography variant="h4" sx={{ mb: 2, mt: 2 }}>
+        <Typography variant="h5" sx={{ mb: 2, mt: 2 }}>
+          Description
+        </Typography>
+        <Typography variant="h5" sx={{ opacity: 0.7, fontWeight: '400', mb: 5, fontSize: '16px !important' }}>
+          {assignmentDetails?.assignmentDescription}
+        </Typography>
+        <Typography variant="h5" sx={{ mb: 2, mt: 2 }}>
           Files
         </Typography>
 

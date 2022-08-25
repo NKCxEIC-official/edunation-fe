@@ -8,7 +8,7 @@ import Iconify from './Iconify';
 import LargeActionButton from '../sections/@ngo/LargeActionButton';
 import { HideModalAction } from '../store/actions/AuthActions';
 
-function CustomModal({ btnText, component, color, icon, largeBtn = false, width = 0 }) {
+function CustomModal({ btnText, component, color, icon, largeBtn = false, width = 0, variant }) {
   const [open, setOpen] = useState(false);
 
   const hideModal = useSelector((state) => state.auth.hideModal);
@@ -43,7 +43,7 @@ function CustomModal({ btnText, component, color, icon, largeBtn = false, width 
       {largeBtn ? (
         <LargeActionButton title={btnText} icon={icon} color={color} onClick={handleOpen} />
       ) : (
-        <Button variant="contained" color={color} startIcon={<Iconify icon={icon} />} onClick={handleOpen}>
+        <Button variant={variant || 'contained'} color={color} startIcon={<Iconify icon={icon} />} onClick={handleOpen}>
           {btnText}
         </Button>
       )}

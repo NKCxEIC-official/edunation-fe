@@ -111,7 +111,8 @@ export default function CourseDetails() {
                 >
                   <CourseGrid
                     subheader={assignment?.title}
-                    icon={'vscode-icons:file-type-reactjs'}
+                    icon={'ic:baseline-assignment'}
+                    color={"#2E2B81"}
                   />
                 </Grid>
               </Grid>

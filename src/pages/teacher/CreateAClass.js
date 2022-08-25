@@ -1,6 +1,7 @@
 /** eslint-disable */
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   Typography,
   TextField,
@@ -41,6 +42,7 @@ const INITIAL_SCHEMA = {
 export default function CreatAClass() {
   const [formData, updateFormData] = useState(INITIAL_SCHEMA);
   const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
 
   const user = useSelector((state) => state.auth.user);
 
