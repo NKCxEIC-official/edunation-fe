@@ -225,10 +225,10 @@ export default function CourseCard({ post, index, classKey }) {
               </Box>
             ))}
           </InfoStyle>
-
-          <Button sx={{ mt: 2 }} onClick={handlePayment}>
-            Subscribe Now
-          </Button>
+          {!user?.isTeacher &&
+            <Button sx={{ mt: 2 }} onClick={handlePayment}>
+              Subscribe Now
+            </Button>}
         </CardContent>
       </Card>
     </Grid>

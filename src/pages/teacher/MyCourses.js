@@ -1,7 +1,6 @@
 import { Container, Grid, Stack, Typography } from '@mui/material'
 import React from 'react'
-import { posts1 } from '../../_mock/blog'
-import TopRated from '../student/TopRatedCourses'
+import AddedClasses from './AddedClasses'
 
 function MyCourses() {
     return (
@@ -13,9 +12,7 @@ function MyCourses() {
                     </Stack>
                     <Stack spacing={2} alignItems="center" justifyContent="space-between" direction="column" sx={{ mb: 3, mr: 1, mt: 2 }}>
                     
-                            <TopRated
-                               posts={posts1}
-                            />
+                            <AddedClasses />
                     </Stack>
                 </Grid>
             </Grid>

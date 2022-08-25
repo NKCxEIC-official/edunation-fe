@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Container } from 'react-bootstrap';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -7,6 +8,7 @@ import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { style } from '@mui/system';
+import { getDatafromDBAction } from '../../store/actions/AuthActions';
 import Reports from '../../components/Reports'
 import CourseGrid from '../../components/CourseGrid'
 
@@ -65,11 +67,25 @@ const DUMMY_COURSES_DATA = {
   }
 }
 
-export default function TeacherReport({ coursesData = DUMMY_COURSES_DATA }) {
+export default function TeacherReport({ studentCount }) {
+  const [selectedCourseData, updateSelectedCourseData] = useState({})
+  const [selectedCourseId, updateSelectedCourseId] = useState(undefined);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getDatafromDBAction('classes', true, 'classes'));
+  }, []);
+
+  const user = useSelector(state => state.auth.user)
+  const { classes } = useSelector(state => state.auth.data)
+
+  console.log(selectedCourseData)
+
   const [selectedCourse, setSelectedCourse] = useState(null);
 
-  const handleChange = (event) => {
-    setSelectedCourse(event.target.value);
+  const handleChange = (e) => {
+    setSelectedCourse(e.target.value);
+    updateSelectedCourseData(classes[selectedCourseId]);
   };
 
   return (
@@ -81,48 +97,48 @@ export default function TeacherReport({ coursesData = DUMMY_COURSES_DATA }) {
           id="demo-simple-select-helper"
           value={selectedCourse}
           label="Courses"
-          onChange={handleChange}
+          onChange={(e)=>handleChange(e)}
         >
           {
-            Object.keys(coursesData).map((course) => {
-              return <MenuItem value={course} onSelect={handleChange}>{coursesData[course].courseName}</MenuItem>
+            Object.keys(classes || {}).map((classId) => {
+              return classes[classId].creator.uid === user.id ? <MenuItem value={classes[classId].subject} key={classId} name={classId} onClick={(e) => updateSelectedCourseId(classId)}>{classes[classId].name}</MenuItem> : null;
             })
           }
         </Select>
         {/* <FormHelperText>Select Courses Enrolled</FormHelperText> */}
       </FormControl>
-{selectedCourse &&  <><Grid container spacing={2} sx={{mt:5}}>
-          <Grid item xs={12} sm={6} md={3} lg={3}>
-            <CourseGrid subheader="Students Enrolled" count={coursesData[selectedCourse]?.studentsEnrolled} icon={'ph:student-light' } color="blueviolet" />
-          </Grid>
-          <Grid item xs={12} sm={6} md={3} lg={3}>
-            <CourseGrid subheader="Revenue Generated" count={coursesData[selectedCourse]?.revenueGenerated} icon={'clarity:wallet-line'} color="blueviolet" />
-          </Grid>
-          <Grid item xs={12} sm={6} md={3} lg={3}>
-            <CourseGrid subheader="Assignment Submitted" count={coursesData[selectedCourse]?.assignmentSubmitted} icon={'ic:outline-assignment'} color="blueviolet" />
-          </Grid>
-          <Grid item xs={12} sm={6} md={3} lg={3}>
-            <CourseGrid subheader="Test Taken" count={coursesData[selectedCourse]?.testTaken} icon={'healthicons:i-exam-multiple-choice-outline'} color="blueviolet" />
-          </Grid>
+      {selectedCourse && <><Grid container spacing={2} sx={{ mt: 5 }}>
+        <Grid item xs={12} sm={6} md={3} lg={3}>
+          <CourseGrid subheader="Students Enrolled" count={selectedCourseData?.studentCount} icon={'ph:student-light'} color="blueviolet" />
         </Grid>
+        <Grid item xs={12} sm={6} md={3} lg={3}>
+          <CourseGrid subheader="Revenue Generated" count={selectedCourseData?.revenueGenerated} icon={'clarity:wallet-line'} color="blueviolet" />
+        </Grid>
+        <Grid item xs={12} sm={6} md={3} lg={3}>
+          <CourseGrid subheader="Assignment Submitted" count={selectedCourseData?.assignmentSubmitted} icon={'ic:outline-assignment'} color="blueviolet" />
+        </Grid>
+        <Grid item xs={12} sm={6} md={3} lg={3}>
+          <CourseGrid subheader="Test Taken" count={selectedCourseData?.testTaken} icon={'healthicons:i-exam-multiple-choice-outline'} color="blueviolet" />
+        </Grid>
+      </Grid>
         <Container>
-        <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5} mt={5}>
-          <Typography variant="h4" gutterBottom>
-            Assignment Report :
-          </Typography>
-        </Stack>
-        <Reports data={coursesData[selectedCourse]?.assignmentReport} />
+          <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5} mt={5}>
+            <Typography variant="h4" gutterBottom>
+              Assignment Report :
+            </Typography>
+          </Stack>
+          <Reports data={selectedCourseData?.assignmentReport} />
         </Container>
         <Container>
-        <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5} mt={5}>
-          <Typography variant="h4" gutterBottom>
-            Test Reports :
-          </Typography>
-        </Stack>
-        <Reports data={coursesData[selectedCourse]?.testReport}/>
+          <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5} mt={5}>
+            <Typography variant="h4" gutterBottom>
+              Test Reports :
+            </Typography>
+          </Stack>
+          <Reports data={selectedCourseData?.testReport} />
         </Container>
-        </>
-}
-           </div>
+      </>
+      }
+    </div>
   );
 }
