@@ -54,30 +54,30 @@
     },
 
     "teacherMyCourses" : {
-        "teacherNavMyCourses" : "My Courses",
-        "teacherteacherCount" : "Teacher Count",
-        "teacherCourseMaterial" : "Course Material",
-        "teacherVideoCount" : "Video Count",
-        "teacherAddNewAssignment": "Add New Assignment",
-        "teacherAssignmentTitle" : "Title",
-        "teacherAssignmentDescription" : "Description",
-        "teacherAssignmentSubmissionDeadline" : "Submission Deadline",
-        "teacherAssignmentUploadFiles" : "Upload Files",
-        "teacherAddAssignment" : "Add Assignment",
-        "teacherVidyaDaan" : "Vidya Daan",
-        "teacherLiveRecordedVideos" : "Live Recorded Videos :",
-        "teacherViewAll" : "View All"
+        "teacherNavMyCourses" : "எனது படிப்புகள்",
+        "teacherteacherCount" : "ஆசிரியர் எண்ணிக்கை",
+        "teacherCourseMaterial" : "பாடப் பொருள்",
+        "teacherVideoCount" : "வீடியோ எண்ணிக்கை",
+        "teacherAddNewAssignment": "புதிய பணியைச் சேர்க்கவும்",
+        "teacherAssignmentTitle" : "தலைப்பு",
+        "teacherAssignmentDescription" : "விளக்கம்",
+        "teacherAssignmentSubmissionDeadline" : "சமர்ப்பிக்கும் காலக்கெடு",
+        "teacherAssignmentUploadFiles" : "கோப்புகளைப் பதிவேற்றவும்",
+        "teacherAddAssignment" : "பணியைச் சேர்க்கவும்",
+        "teacherVidyaDaan" : "வித்யா தான்",
+        "teacherLiveRecordedVideos" : "நேரடி பதிவு செய்யப்பட்ட வீடியோக்கள் :",
+        "teacherViewAll" : "அனைத்தையும் காட்டு"
     },
 
     "teacherReports" : {
-        "teacherteachersEnrolled" : "Teachers Enrolled",
-        "teacherRevenueGenerated" : "Revenue Generated",
-        "teacherAssignmentSubmitted" : "Assignment Submitted",
-        "teacherTestTaken" : "Test Taken",
-        "teacherAssignmentReport" : "Assignment Report :",
-        "teacherSearchUser" : "Search User...",
-        "teacherTestReports" : "Test Reports :",
-        "teacherRowsPerPage" : "Rows per page"
+        "teacherteachersEnrolled" : "ஆசிரியர்கள் பதிவு செய்தனர்",
+        "teacherRevenueGenerated" : "வருவாய் ஈட்டப்பட்டது",
+        "teacherAssignmentSubmitted" : "பணி சமர்ப்பிக்கப்பட்டது",
+        "teacherTestTaken" : "சோதனை எடுக்கப்பட்டது",
+        "teacherAssignmentReport" : "பணி அறிக்கை :",
+        "teacherSearchUser" : "தேடல் பயனர்...",
+        "teacherTestReports" : "சோதனை அறிக்கைகள் :",
+        "teacherRowsPerPage" : "ஒரு பக்கத்திற்கு வரிசைகள்"
     },
 
     "teacherSettings": {
@@ -95,10 +95,10 @@
     },
 
     "teacherCommunity" : {
-        "teacherNavCommunity" : "Welcome to Community!",
-        "teacherUpvote" : "Upvote",
-        "teacherDownvote" : "Downvote",
-        "teacherCopyLink" : "Copy Link"
+        "teacherNavCommunity" : "சமூகத்திற்கு வரவேற்கிறோம்!",
+        "teacherUpvote" : "ஆதரவளிக்கவும்",
+        "teacherDownvote" : "நிராகரிப்பு",
+        "teacherCopyLink" : "இணைப்பை நகலெடுக்கவும்"
     },
 
     "teacherProfile": {

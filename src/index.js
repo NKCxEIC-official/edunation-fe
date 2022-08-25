@@ -8,6 +8,7 @@ import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 import 'simplebar/src/simplebar.css';
+import './i18n';
 
 import store from './store/store';
 

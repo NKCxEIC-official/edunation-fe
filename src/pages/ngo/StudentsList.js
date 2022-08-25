@@ -209,7 +209,7 @@ export default function StudentsList() {
                         </TableCell>
 
                         <TableCell align="right">
-                          <UserMoreMenu />
+                          <UserMoreMenu document={row} />
                         </TableCell>
                       </TableRow>
                     );

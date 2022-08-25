@@ -37,12 +37,11 @@ import AddRedSpot from './AddRedSpot';
 // ----------------------------------------------------------------------
 
 const TABLE_HEAD = [
- 
   { id: 'pocname', label: 'POC Name', alignRight: false },
   { id: 'pocemail', label: 'POC Email', alignRight: false },
   { id: 'pocphone', label: 'POC Phone', alignRight: false },
   { id: 'coords', label: 'Coordinates', alignRight: false },
-  { id: 'address', label: 'Address', alignRight: false }, 
+  { id: 'address', label: 'Address', alignRight: false },
   { id: '' },
 ];
 
@@ -75,8 +74,10 @@ function applySortFilter(array, comparator, query) {
     return filter(
       array,
       (_user) =>
-        _user.POCName.toLowerCase().indexOf(query.toLowerCase()) !== -1 || _user.POCEmail.includes(query.toLowerCase()) || _user.POCPhone.includes(query.toLowerCase()) || _user.address.includes(query.toLowerCase())
-        
+        _user.POCName.toLowerCase().indexOf(query.toLowerCase()) !== -1 ||
+        _user.POCEmail.includes(query.toLowerCase()) ||
+        _user.POCPhone.includes(query.toLowerCase()) ||
+        _user.address.includes(query.toLowerCase())
     );
   }
   return stabilizedThis.map((el) => el[0]);
@@ -155,7 +156,6 @@ export default function RedSpotList() {
   return (
     <Page title="Red Spots">
       <Container>
-
         <Card>
           <UserListToolbar numSelected={selected.length} filterName={filterName} onFilterName={handleFilterByName} />
 
@@ -188,14 +188,14 @@ export default function RedSpotList() {
                         <TableCell padding="checkbox">
                           <Checkbox checked={isItemSelected} onChange={(event) => handleClick(event, POCName)} />
                         </TableCell>
-                        
+
                         <TableCell align="left">{POCName}</TableCell>
                         <TableCell align="left">{POCEmail}</TableCell>
                         <TableCell align="left">{POCPhone}</TableCell>
                         <TableCell align="left">{coordinates}</TableCell>
                         <TableCell align="left">{address}</TableCell>
                         <TableCell align="right">
-                          <UserMoreMenu />
+                          <UserMoreMenu document={row} />
                         </TableCell>
                       </TableRow>
                     );
