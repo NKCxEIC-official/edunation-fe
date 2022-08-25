@@ -1,16 +1,32 @@
 import { useRef, useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { arrayRemove, doc, updateDoc } from 'firebase/firestore';
+
 // material
 import { Menu, MenuItem, IconButton, ListItemIcon, ListItemText } from '@mui/material';
 // component
 import Iconify from '../../../components/Iconify';
+import { db } from '../../../utils/firebaseConfig';
 
 // ----------------------------------------------------------------------
 
-export default function UserMoreMenu() {
+export default function UserMoreMenu({ document }) {
   const ref = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
+  const user = useSelector((state) => state.auth.user);
 
+  const deleteDocument = () => {
+    const docRef = doc(db, 'users', user.uid);
+    console.log(user.uid);
+    updateDoc(docRef, {
+      Teacherlist: arrayRemove(document),
+      studentList: arrayRemove(document),
+      redSpots: arrayRemove(document),
+    })
+      .then((data) => console.log(data))
+      .catch((error) => console.error(error));
+  };
   return (
     <>
       <IconButton ref={ref} onClick={() => setIsOpen(true)}>
@@ -27,18 +43,11 @@ export default function UserMoreMenu() {
         anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
         transformOrigin={{ vertical: 'top', horizontal: 'right' }}
       >
-        <MenuItem sx={{ color: 'text.secondary' }}>
+        <MenuItem sx={{ color: 'text.secondary' }} onClick={deleteDocument}>
           <ListItemIcon>
             <Iconify icon="eva:trash-2-outline" width={24} height={24} />
           </ListItemIcon>
           <ListItemText primary="Delete" primaryTypographyProps={{ variant: 'body2' }} />
-        </MenuItem>
-
-        <MenuItem component={RouterLink} to="#" sx={{ color: 'text.secondary' }}>
-          <ListItemIcon>
-            <Iconify icon="eva:edit-fill" width={24} height={24} />
-          </ListItemIcon>
-          <ListItemText primary="Edit" primaryTypographyProps={{ variant: 'body2' }} />
         </MenuItem>
       </Menu>
     </>

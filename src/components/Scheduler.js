@@ -217,8 +217,6 @@ export default () => {
     const localData = [...resources];
     localData[0].instances = classListData;
     setResources(localData);
-
-    
   }, []);
 
   console.log(resources);

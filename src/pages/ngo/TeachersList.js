@@ -167,7 +167,7 @@ export default function TeachersList() {
                 />
                 <TableBody>
                   {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                    const { id, name, status, courses, dp, isVerified } = row;
+                    const { id, name, status, courses, dp, isVerified, uid } = row;
                     const isItemSelected = selected.indexOf(name) !== -1;
 
                     return (
@@ -199,7 +199,7 @@ export default function TeachersList() {
                         </TableCell>
 
                         <TableCell align="right">
-                          <UserMoreMenu />
+                          <UserMoreMenu document={row} />
                         </TableCell>
                       </TableRow>
                     );
