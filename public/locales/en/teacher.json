@@ -1,0 +1,119 @@
+{
+    
+    "teacherDashboard": {
+
+        "teacherNavDashboard": "Dashboard",
+        "teacherTitle": "Hi,",
+        "teacherSubtitle": "Welcome back -",
+
+        "teacherCreateAClass" : "Create A Class",
+        "teacherClassName" : "Class Name",
+        "teacherClassDescription" : "Class Description",
+        "teacherClassFee" : "Class Fee",
+        "teacherAmount" : "Enter Class Fee in INR",
+        "teacherDays" : "Days",
+            "monday" : "Monday",
+            "tuesday" : "Tuesday",
+            "wednesday" : "Wednesday",
+            "thursday" : "Thursday",
+            "friday" : "Friday",
+            "saturday" : "Saturday",
+            "sunday" : "Sunday",
+        "teacherCourses" : "Courses",
+        "teacherQNA": "QNA",
+        "teacherRequest" : "Request",
+        "teacherYourCourses": "Your Courses :",
+        "teacherCompletedCourses": "Completed Courses :",
+        "teacherCourseName": "Course Name",
+        "teacherPercentage": "Complete Percentage",
+        "teacherDuration" : "Duration",
+        "teacherRevenue" : "Revenue"
+    },
+   
+    "teacherSchedule": {
+
+        "teacherNavSchedule" : "Schedule",
+        "teacherScheduleTitle": "Schedule",
+        "teacherScheduleTodayButton": "Today",
+        "teacherScheduleWorkWeek": "WORK WEEK",
+        "teacherScheduleWeek": "Week",
+        "teacherScheduleMonth": "Month",
+        "teacherScheduleDay": "Day",
+        "teacherScheduleFormDetails": "Details",
+        "teacherScheduleAllDay": "All Day",
+        "teacherScheduleRepeat": "Repeat",
+        "teacherScheduleMoreInformation": "More Information",
+        "teacherScheduleNotes": "Notes",
+        "teacherScheduleRoom": "Room",
+        "teacherScheduleMembers": "Members"
+    },
+
+    "teacherMessage": {
+        "teacherMessagesTitles": "Chats",
+        "teacherMessagesNTS": "Nothing to show, click on a chat to fill this space!"
+    },
+
+    "teacherMyCourses" : {
+        "teacherNavMyCourses" : "My Courses",
+        "teacherteacherCount" : "Teacher Count",
+        "teacherCourseMaterial" : "Course Material",
+        "teacherVideoCount" : "Video Count",
+        "teacherAddNewAssignment": "Add New Assignment",
+        "teacherAssignmentTitle" : "Title",
+        "teacherAssignmentDescription" : "Description",
+        "teacherAssignmentSubmissionDeadline" : "Submission Deadline",
+        "teacherAssignmentUploadFiles" : "Upload Files",
+        "teacherAddAssignment" : "Add Assignment",
+        "teacherVidyaDaan" : "Vidya Daan",
+        "teacherLiveRecordedVideos" : "Live Recorded Videos :",
+        "teacherViewAll" : "View All"
+    },
+
+    "teacherReports" : {
+        "teacherteachersEnrolled" : "Teachers Enrolled",
+        "teacherRevenueGenerated" : "Revenue Generated",
+        "teacherAssignmentSubmitted" : "Assignment Submitted",
+        "teacherTestTaken" : "Test Taken",
+        "teacherAssignmentReport" : "Assignment Report :",
+        "teacherSearchUser" : "Search User...",
+        "teacherTestReports" : "Test Reports :",
+        "teacherRowsPerPage" : "Rows per page"
+    },
+
+    "teacherSettings": {
+        "teacherFirstName": "First Name",
+        "teacherLastName": "Last Name",
+        "teacherEmail": "Email",
+        "teacherPhone": "Phone",
+        "teacherAddress": "Address",
+        "teacherCity": "City",
+        "teacherState": "State",
+        "teacherUniversity": "University",
+        "teacherUploadProfilePhoto": "Upload Profile Photo",
+        "teacherProfilePhotoUploaded": "Profile Photo Upload",
+        "teacherUpdateProfileButton": "Update Profile"
+    },
+
+    "teacherCommunity" : {
+        "teacherNavCommunity" : "Welcome to Community!",
+        "teacherUpvote" : "Upvote",
+        "teacherDownvote" : "Downvote",
+        "teacherCopyLink" : "Copy Link"
+    },
+
+    "teacherProfile": {
+        "teacherAbout": "About",
+        "teacherCourses": "Courses",
+        "teacherReviews": "Reviews",
+        "teacherContactNow": "Contact Now",
+        "teacherCertification": "Certification",
+        "teacherKeyDetails": "Key Details",
+        "teacherCompletedCourses": "Completed Courses",
+        "teacherOngoingCourses": "Ongoing Courses",
+        "teacherDurationSpent": "Duration Spent(hrs)",
+        "teacherRating": "Teacher Rating"
+    },
+
+    "studentEventTimeline": "Event Timeline"
+
+}
