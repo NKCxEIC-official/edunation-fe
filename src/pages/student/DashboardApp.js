@@ -80,18 +80,18 @@ export default function StudentDashboardApp() {
               typeOfData="Minutes"
               // subheader="(+43%) than last year"
               chartLabels={[
-                '01/01/2003',
-                '02/01/2003',
-                '03/01/2003',
-                '04/01/2003',
-                '05/01/2003',
-                '06/01/2003',
-                '07/01/2003',
-                '08/01/2003',
-                '09/01/2003',
-                '10/01/2003',
-                '11/01/2003',
-                '12/01/2003',
+                '01/01/2022',
+                '02/01/2022',
+                '03/01/2022',
+                '04/01/2022',
+                '05/01/2022',
+                '06/01/2022',
+                '07/01/2022',
+                '08/01/2022',
+                '09/01/2022',
+                '10/01/2022',
+                '11/01/2022',
+                '12/01/2022',
               ]}
               chartData={[
                 {
@@ -126,41 +126,43 @@ export default function StudentDashboardApp() {
               </Button>
             </Stack>
 
-            <Stack spacing={2} alignItems="center" direction="row" sx={{ mb: 2, mr: 1, mt: 2 }}>
-              {user.ongoingCourses && user.ongoingCourses.length > 0 ? (
-                user.ongoingCourses.map((ongoingCourse) => (
-                  <Grid item xs={12} sm={6} md={4} lg={4}>
-                    <OngoingCourses
-                      title={ongoingCourse.courseName}
-                      subheader={ongoingCourse.author}
-                      avatar={'ant-design:user-outlined'}
-                      icon={ongoingCourse.classDp}
-                      classKey={ongoingCourse.classId}
-                      points={[
-                        {
-                          icon: 'eos-icons:product-classes-outlined',
-                          count: ongoingCourse.courseMaterialCount,
-                        },
-                        {
-                          icon: 'carbon:course',
-                          count: ongoingCourse.assignmentCount,
-                        },
-                        {
-                          icon: 'arcticons:netease-open-class',
-                          count: ongoingCourse.liveClassCount,
-                        },
-                        {
-                          icon: 'simple-line-icons:calender',
-                          count: ongoingCourse.days,
-                        },
-                      ]}
-                    />
-                  </Grid>
-                ))
-              ) : (
-                <NTS />
-              )}
-            </Stack>
+            <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
+              <Grid container spacing={3}>
+                {user.ongoingCourses && user.ongoingCourses.length > 0 ? (
+                  user.ongoingCourses.map((ongoingCourse) => (
+                    <Grid item xs={12} sm={6} md={4} lg={4}>
+                      <OngoingCourses
+                        title={ongoingCourse.courseName}
+                        subheader={ongoingCourse.author}
+                        avatar={'ant-design:user-outlined'}
+                        icon={ongoingCourse.classDp}
+                        classKey={ongoingCourse.classId}
+                        points={[
+                          {
+                            icon: 'eos-icons:product-classes-outlined',
+                            count: ongoingCourse.courseMaterialCount,
+                          },
+                          {
+                            icon: 'carbon:course',
+                            count: ongoingCourse.assignmentCount,
+                          },
+                          {
+                            icon: 'arcticons:netease-open-class',
+                            count: ongoingCourse.liveClassCount,
+                          },
+                          {
+                            icon: 'simple-line-icons:calender',
+                            count: ongoingCourse.days,
+                          },
+                        ]}
+                      />
+                    </Grid>
+                  ))
+                ) : (
+                  <NTS />
+                )}
+              </Grid>
+            </Grid>
           </Grid>
 
           <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
