@@ -21,14 +21,6 @@ function AssignmentDetails() {
   const { classes } = data;
   const dispatch = useDispatch();
 
-  
-  const params = useParams();
-  console.log(params)
-  const { name, studentList, courseMaterial, videos } = classes[id];
-  const { ongoingCourses, totalEnrolled } = user;
-  const { assingmentId } = useParams()
-  console.log(assingmentId)
-
   useEffect(() => {
     dispatch(getDatafromDBAction('classes', true, 'classes'));
   }, []);
@@ -53,7 +45,6 @@ function AssignmentDetails() {
       dateObj.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
     return dateTimeString;
   };
-
 
   return (
     <>
@@ -81,10 +72,6 @@ function AssignmentDetails() {
               />
             )}
 
-
-            {user?.isTeacher && <Button to="/dashboard/teacher/classroom/${}/assingment/1233/check" component={RouterLink} variant="contained" startIcon={<Iconify icon={"ant-design:check-circle-twotone"} sx={{ height: "50px" }} />} >
-              Check Assignments
-            </Button>}
             {user?.isTeacher && (
               <Button
                 to={`/dashboard/teacher/classroom/${id}/assignment/${assignmentId}/check`}
@@ -95,7 +82,6 @@ function AssignmentDetails() {
                 Check Assignments
               </Button>
             )}
-
           </Grid>
         </Grid>
         <hr style={{ marginTop: '20px', opacity: 0.7 }} />

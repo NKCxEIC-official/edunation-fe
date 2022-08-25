@@ -5,7 +5,7 @@ import React from 'react';
 import Iconify from './Iconify';
 
 function OngoingCourses({ title, subheader, icon, avatar, points, classKey }) {
-  const user = useSelector(state => state.auth.user)
+  const user = useSelector((state) => state.auth.user);
   return (
     <Card sx={{ px: 2 }}>
       <Grid container>

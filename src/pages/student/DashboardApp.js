@@ -6,14 +6,23 @@ import { useTheme } from '@mui/material/styles';
 import { Grid, Container, Typography, Stack, Button, Card } from '@mui/material';
 // components
 import { Link as RouterLink } from 'react-router-dom';
+import StudentAppWidgetSummary from 'src/sections/@student/app/AppWidgetSummary';
 import Page from 'src/components/Page';
 import Iconify from 'src/components/Iconify';
 
 // sections
 import {
   AppTasks,
+  AppNewsUpdate,
+  AppOrderTimeline,
+  AppCurrentVisits,
   AppWebsiteVisits,
+  AppTrafficBySite,
+  AppWidgetSummary,
+  AppCurrentSubject,
+  AppConversionRates,
 } from '../../sections/@student/app';
+import { BlogPostCard } from 'src/sections/@dashboard/blog';
 import TopRated from './TopRatedCourses';
 import OngoingCourses from '../../components/OngoingCourses';
 import Summary from 'src/components/Summary';

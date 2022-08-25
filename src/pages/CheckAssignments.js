@@ -1,8 +1,7 @@
 import { filter } from 'lodash';
 import { sentenceCase } from 'change-case';
-import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useState } from 'react';
+import { Link as RouterLink } from 'react-router-dom';
 // material
 import {
   Card,
@@ -28,15 +27,16 @@ import SearchNotFound from '../components/SearchNotFound';
 import { UserListHead, UserListToolbar, UserMoreMenu } from '../sections/@dashboard/user';
 // mock
 import USERLIST from '../_mock/user';
-import RemarkAssignment from './teacher/RemarkAssignment';
-import CustomModal from '../components/CustomModal';
 
 // ----------------------------------------------------------------------
 
 const TABLE_HEAD = [
   { id: 'name', label: 'Name', alignRight: false },
-  { id: 'assignments', label: 'Assignments', alignRight: false },
-  { id: 'check', label: 'Check', alignRight: false },
+  { id: 'company', label: 'Company', alignRight: false },
+  { id: 'role', label: 'Role', alignRight: false },
+  { id: 'isVerified', label: 'Verified', alignRight: false },
+  { id: 'status', label: 'Status', alignRight: false },
+  { id: '' },
 ];
 
 // ----------------------------------------------------------------------
@@ -70,27 +70,10 @@ function applySortFilter(array, comparator, query) {
   return stabilizedThis.map((el) => el[0]);
 }
 
-export default function CheckAssignments() {
-  const { user, data } = useSelector((state) => {
-    return {
-      user: state.auth.user,
-      data: state.auth.data,
-    };
-  });
-
-  const { classes } = data;
-  console.log(classes, user);
-  const params = useParams();
-  const { name, avatarUrl, assignments } = classes[params?.id];
-  const { ongoingCourses, totalEnrolled } = user;
-  console.log(name, params);
-
-  const { CheckAssignments } = user;
+export default function User() {
   const [page, setPage] = useState(0);
 
   const [order, setOrder] = useState('asc');
-
-  const [USERLIST, setUSERLIST] = useState([]);
 
   const [selected, setSelected] = useState([]);
 
@@ -99,11 +82,6 @@ export default function CheckAssignments() {
   const [filterName, setFilterName] = useState('');
 
   const [rowsPerPage, setRowsPerPage] = useState(5);
-
-  useEffect(() => {
-    console.log(data);
-    setUSERLIST(data);
-  }, [data]);
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -155,7 +133,7 @@ export default function CheckAssignments() {
   const isUserNotFound = filteredUsers.length === 0;
 
   return (
-    <Page title="Check Assignments">
+    <Page title="User">
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" gutterBottom>
@@ -180,7 +158,7 @@ export default function CheckAssignments() {
                 />
                 <TableBody>
                   {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                    const { id, name, assignments, check, avatarUrl } = row;
+                    const { id, name, role, status, company, avatarUrl, isVerified } = row;
                     const isItemSelected = selected.indexOf(name) !== -1;
 
                     return (
@@ -203,14 +181,17 @@ export default function CheckAssignments() {
                             </Typography>
                           </Stack>
                         </TableCell>
-                        <TableCell>
-                        <a href={assignments}>View</a>
+                        <TableCell align="left">{company}</TableCell>
+                        <TableCell align="left">{role}</TableCell>
+                        <TableCell align="left">{isVerified ? 'Yes' : 'No'}</TableCell>
+                        <TableCell align="left">
+                          <Label variant="ghost" color={(status === 'banned' && 'error') || 'success'}>
+                            {sentenceCase(status)}
+                          </Label>
                         </TableCell>
-                        <TableCell sx>
-                          <Button size="large">
-                            {/* <Iconify icon="teenyicons:tick-circle-solid" color="green"/> */}
-                            <CustomModal btnText={'Check Assignment'} sx={{ mb: 1 }} component={<RemarkAssignment />} icon="eva:plus-fill" />
-                          </Button>
+
+                        <TableCell align="right">
+                          <UserMoreMenu />
                         </TableCell>
                       </TableRow>
                     );
