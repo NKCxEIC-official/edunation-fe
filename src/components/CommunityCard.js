@@ -1,9 +1,10 @@
 import { Box, Button, Card, CardContent, CardMedia, Grid, Stack, Typography } from '@mui/material';
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { communityDownvote, communityUpvote } from '../services/AuthService';
 import AnswerCommunity from './AnswerCommunity';
 import CustomModal from './CustomModal';
+import { getDatafromDBAction } from '../store/actions/AuthActions';
 import Iconify from './Iconify';
 
 function CommunityCard({ community, key, id }) {
@@ -26,6 +27,13 @@ function CommunityCard({ community, key, id }) {
     const URL = `${window.location.href}#${id}`;
     navigator.clipboard.writeText(URL);
   };
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getDatafromDBAction('community', true, 'community'));
+  }, []);
+
+  // const { community } = useSelector((state) => state.auth.data);
 
   return (
     <Card id={id} className="communityCard" lg={12} xl={12} sx={{ mt: 3 }}>
