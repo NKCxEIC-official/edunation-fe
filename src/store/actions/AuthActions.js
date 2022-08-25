@@ -224,6 +224,7 @@ export function logoutAction(navigate) {
 }
 
 export function addUserAnonymousAction(payload, loggedInUser) {
+  console.log("🚀 ~ file: AuthActions.js ~ line 227 ~ addUserAnonymousAction ~ payload", payload)
   return (dispatch) => {
     addUserAnonymous(payload)
       .then(() => {
