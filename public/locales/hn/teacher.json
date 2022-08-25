@@ -1,0 +1,125 @@
+{
+    
+    "teacherDashboard": {
+
+        "teacherNavDashboard": "डैशबोर्ड",
+        "teacherTitle": "नमस्ते,",
+        "teacherSubtitle": "वापसी पर स्वागत है -",
+
+        "teacherCreateAClass" : "एक कक्षा बनाएं",
+        "teacherClassName" : "कक्षा का नाम",
+        "teacherClassDescription" : "कक्षा विवरण",
+        "teacherClassFee" : "कक्षा शुल्क",
+        "teacherAmount" : "INR में कक्षा शुल्क दर्ज करें",
+        "teacherDays" : "दिन",
+            "monday" : "सोमवार",
+            "tuesday" : "मंगलवार",
+            "wednesday" : "बुधवार",
+            "thursday" : "गुरुवार",
+            "friday" : "शुक्रवार",
+            "saturday" : "शनिवार",
+            "sunday" : "रविवार",
+        "teacherCourses" : "पाठ्यक्रम",
+        "teacherQNA": "क्यूए एन ए",
+        "teacherRequest" : "प्रार्थना",
+        "teacherYourCourses": "आपके पाठ्यक्रम:",
+        "teacherCompletedCourses": "पूर्ण पाठ्यक्रम:",
+        "teacherCourseName": "कोर्स का नाम",
+        "teacherPercentage": "पूर्ण प्रतिशत",
+        "teacherDuration" : "अवधि",
+        "teacherRevenue" : "आय"
+    },
+   
+    "teacherSchedule": {
+        "teacherNavSchedule": "अनुसूची",
+        "teacherScheduleTitle": "अनुसूची",
+        "teacherScheduleTodayButton": "आज",
+        "teacherScheduleWorkWeek": "कार्य सप्ताह",
+        "teacherScheduleWeek": "सप्ताह",
+        "teacherScheduleMonth": "महीना",
+        "teacherScheduleDay": "दिन",
+        "teacherScheduleFormDetails": "विवरण",
+        "teacherScheduleAllDay": "पूरे दिन",
+        "teacherScheduleRepeat": "दोहराना",
+        "teacherScheduleMoreInformation": "अधिक जानकारी",
+        "teacherScheduleNotes": "टिप्पणियाँ",
+        "teacherScheduleRoom": "कमरा",
+        "teacherScheduleMembers": "सदस्यों"
+        
+    },
+
+    "teacherMyCourses" : {
+        "teacherNavMyCourses" : "मेरे पाठ्यक्रम",
+        "teacherStudentCount" : "छात्र गणना",
+        "teacherCourseMaterial" : "पाठ्यक्रम सामग्री",
+        "teacherVideoCount" : "वीडियो गणना",
+        "teacherAddNewAssignment": "नया असाइनमेंट जोड़ें",
+        "teacherAssignmentTitle" : "शीर्षक",
+        "teacherAssignmentDescription" : "विवरण",
+        "teacherAssignmentSubmissionDeadline" : "समयसीमा",
+        "teacherAssignmentUploadFiles" : "फाइल अपलोड करो",
+        "teacherAddAssignment" : "असाइनमेंट जोड़ें",
+        "teacherVidyaDaan" : "विद्या दान",
+        "teacherLiveRecordedVideos" : "लाइव रिकॉर्ड किए गए वीडियो:",
+        "teacherViewAll" : "सभी को देखें"
+    },
+
+    "teacherReports" : {
+        "teacherteachersEnrolled" : "शिक्षक नामांकित",
+        "teacherRevenueGenerated" : "राजस्व उत्पन्न",
+        "teacherAssignmentSubmitted" : "असाइनमेंट सबमिट किया गया",
+        "teacherTestTaken" : "परीक्षा ली गई",
+        "teacherAssignmentReport" : "असाइनमेंट रिपोर्ट:",
+        "teacherSearchUser" : "उपयोगकर्ता खोजें...",
+        "teacherTestReports" : "परीक्षण रिपोर्ट :",
+        "teacherRowsPerPage" : "प्रति पृष्ठ पंक्तियाँ"
+    },
+
+    "teacherNavSettings": "समायोजन",
+    "teacherSettings": {
+        "teacherFirstName": "पहला नाम",
+        "teacherLastName": "उपनाम",
+        "teacherEmail": "ईमेल",
+        "teacherPhone": "फ़ोन",
+        "teacherAddress": "पता",
+        "teacherCity": "शहर",
+        "teacherState": "राज्य",
+        "teacherUniversity": "विश्वविद्यालय",
+        "teacherUploadProfilePhoto": "प्रोफाइल फोटो अपलोड करें",
+        "teacherProfilePhotoUploaded": "प्रोफ़ाइल फ़ोटो अपलोड की गई",
+        "teacherUpdateProfileButton": "प्रोफ़ाइल को नवीनतम बनाओ"
+    },
+
+    "teacherNavCommunity" : "समुदाय",
+    "teacherCommunity" : {
+        "teacherCommunityTitle": "समुदाय में आपका स्वागत है!",
+        "teacherUpvote" : "वोट दें",
+        "teacherDownvote" : "डाउनवोट",
+        "teacherCopyLink" : "प्रतिरूप जोड़ना",
+        "teacherAnswer": "उत्तर",
+        "teacherAnswerModalField": "उत्तर"
+    },
+
+    "teacherNavProfile": "प्रोफ़ाइल",
+    "teacherProfile": {
+        "teacherAbout": "आपके बारे में",
+        "teacherCourses": "पाठ्यक्रम",
+        "teacherReviews": "समीक्षा",
+        "teacherContactNow": "अभी संपर्क करें",
+        "teacherCertification": "प्रमाणीकरण",
+        "teacherKeyDetails": "मुख्य विवरण",
+        "teacherCompletedCourses": "पूर्ण पाठ्यक्रम",
+        "teacherOngoingCourses": "चल रहे पाठ्यक्रम",
+        "teacherDurationSpent": "खर्च की गई अवधि (घंटे)",
+        "teacherRating": "छात्र रेटिंग"
+    },
+   
+    "teacherNavMessages": "संदेश",
+    "teacherMessage": {
+        "teacherMessagesTitles": "चैट",
+        "teacherMessagesNTS": "दिखाने के लिए कुछ नहीं, इस स्थान को भरने के लिए चैट पर क्लिक करें!"
+    },
+
+    "teacherEventTimeline": "घटना समयरेखा"
+
+}

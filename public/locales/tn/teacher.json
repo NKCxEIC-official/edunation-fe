@@ -1,0 +1,119 @@
+{
+    
+    "teacherDashboard": {
+
+        "teacherNavDashboard": "டாஷ்போர்டு",
+        "teacherTitle": "வணக்கம்,",
+        "teacherSubtitle": "மீண்டும் வருக -",
+
+        "teacherCreateAClass" : "ஒரு வகுப்பை உருவாக்கவும்",
+        "teacherClassName" : "ஒரு வகுப்பை உருவாக்கவும்",
+        "teacherClassDescription" : "வகுப்பு விளக்கம்",
+        "teacherClassFee" : "வகுப்பு கட்டணம்",
+        "teacherAmount" : "INR இல் வகுப்புக் கட்டணத்தை உள்ளிடவும்",
+        "teacherDays" : "நாட்களில்",
+            "monday" : "திங்கட்கிழமை",
+            "tuesday" : "செவ்வாய்",
+            "wednesday" : "புதன்",
+            "thursday" : "வியாழன்",
+            "friday" : "வெள்ளி",
+            "saturday" : "சனிக்கிழமை",
+            "sunday" : "ஞாயிற்றுக்கிழமை",
+        "teacherCourses" : "படிப்புகள்",
+        "teacherQNA": "QNA",
+        "teacherRequest" : "கோரிக்கை",
+        "teacherYourCourses": "உங்கள் படிப்புகள் :",
+        "teacherCompletedCourses": "முடித்த படிப்புகள் :",
+        "teacherCourseName": "படிப்பின் பெயர்",
+        "teacherPercentage": "முழுமையான சதவீதம்",
+        "teacherDuration" : "கால அளவு",
+        "teacherRevenue" : "வருவாய்"
+    },
+   
+    "teacherSchedule": {
+
+        "teacherNavSchedule" : "அட்டவணை",
+        "teacherScheduleTitle": "அட்டவணை",
+        "teacherScheduleTodayButton": "இன்று",
+        "teacherScheduleWorkWeek": "வேலை வாரம்",
+        "teacherScheduleWeek": "வாரம்",
+        "teacherScheduleMonth": "மாதம்",
+        "teacherScheduleDay": "நாள்",
+        "teacherScheduleFormDetails": "விவரங்கள்",
+        "teacherScheduleAllDay": "நாள் முழுவதும்",
+        "teacherScheduleRepeat": "மீண்டும் செய்யவும்",
+        "teacherScheduleMoreInformation": "மேலும் தகவல்",
+        "teacherScheduleNotes": "குறிப்புகள்",
+        "teacherScheduleRoom": "அறை",
+        "teacherScheduleMembers": "உறுப்பினர்கள்"
+    },
+
+    "teacherMessage": {
+        "teacherMessagesTitles": "அரட்டைகள்",
+        "teacherMessagesNTS": "காட்ட எதுவும் இல்லை, இந்த இடத்தை நிரப்ப அரட்டையில் கிளிக் செய்யவும்!"
+    },
+
+    "teacherMyCourses" : {
+        "teacherNavMyCourses" : "My Courses",
+        "teacherteacherCount" : "Teacher Count",
+        "teacherCourseMaterial" : "Course Material",
+        "teacherVideoCount" : "Video Count",
+        "teacherAddNewAssignment": "Add New Assignment",
+        "teacherAssignmentTitle" : "Title",
+        "teacherAssignmentDescription" : "Description",
+        "teacherAssignmentSubmissionDeadline" : "Submission Deadline",
+        "teacherAssignmentUploadFiles" : "Upload Files",
+        "teacherAddAssignment" : "Add Assignment",
+        "teacherVidyaDaan" : "Vidya Daan",
+        "teacherLiveRecordedVideos" : "Live Recorded Videos :",
+        "teacherViewAll" : "View All"
+    },
+
+    "teacherReports" : {
+        "teacherteachersEnrolled" : "Teachers Enrolled",
+        "teacherRevenueGenerated" : "Revenue Generated",
+        "teacherAssignmentSubmitted" : "Assignment Submitted",
+        "teacherTestTaken" : "Test Taken",
+        "teacherAssignmentReport" : "Assignment Report :",
+        "teacherSearchUser" : "Search User...",
+        "teacherTestReports" : "Test Reports :",
+        "teacherRowsPerPage" : "Rows per page"
+    },
+
+    "teacherSettings": {
+        "teacherFirstName": "முதல் பெயர்",
+        "teacherLastName": "கடைசி பெயர்",
+        "teacherEmail": "மின்னஞ்சல்",
+        "teacherPhone": "தொலைபேசி",
+        "teacherAddress": "முகவரி",
+        "teacherCity": "நகரம்",
+        "teacherState": "நிலை",
+        "teacherUniversity": "பல்கலைக்கழகம்",
+        "teacherUploadProfilePhoto": "சுயவிவரப் புகைப்படத்தைப் பதிவேற்றவும்",
+        "teacherProfilePhotoUploaded": "சுயவிவரப் புகைப்படம் பதிவேற்றப்பட்டது",
+        "teacherUpdateProfileButton": "சுயவிவரத்தைப் புதுப்பிக்கவும்"
+    },
+
+    "teacherCommunity" : {
+        "teacherNavCommunity" : "Welcome to Community!",
+        "teacherUpvote" : "Upvote",
+        "teacherDownvote" : "Downvote",
+        "teacherCopyLink" : "Copy Link"
+    },
+
+    "teacherProfile": {
+        "teacherAbout": "பற்றி",
+        "teacherCourses": "படிப்புகள்",
+        "teacherReviews": "விமர்சனங்கள்",
+        "teacherContactNow": "இப்போது தொடர்பு கொள்ளவும்",
+        "teacherCertification": "சான்றிதழ்",
+        "teacherKeyDetails": "முக்கிய விவரங்கள்",
+        "teacherCompletedCourses": "முடித்த படிப்புகள்",
+        "teacherOngoingCourses": "நடந்துகொண்டிருக்கும் வகுப்புகள்",
+        "teacherDurationSpent": "செலவழித்த காலம்(மணி)",
+        "teacherRating": "மாணவர் மதிப்பீடு"
+    },
+
+    "teacherEventTimeline": "நிகழ்வு காலவரிசை"
+
+}
