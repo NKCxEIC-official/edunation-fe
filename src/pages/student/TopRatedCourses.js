@@ -16,11 +16,11 @@ import { useEffect } from 'react';
 export default function TopRated({ ownedOnly = false }) {
   const { classes } = useSelector((state) => state.auth.data);
   const user = useSelector((state) => state.auth.user);
-  const dispatch =  useDispatch();
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getDatafromDBAction('classes', true, 'classes'))
-  }, [])
+    dispatch(getDatafromDBAction('classes', true, 'classes'));
+  }, []);
 
   return (
     <>

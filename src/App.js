@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { doc, updateDoc } from 'firebase/firestore';
+import { db } from './utils/firebaseConfig';
 // routes
 import Router from './routes';
 // theme
@@ -23,14 +25,15 @@ export default function App() {
       const month = d.getMonth();
 
       interval = setInterval(() => {
-        const timeSpent = [...user.timeSpent];
+        const timeSpent = ('timeSpent' in user && user.timeSpent?.length === 12) ? [...user.timeSpent] : [0,0,0,0,0,0,0,0,0,0,0,0];
+
         timeSpent[month] += 10;
 
-        dispatch(
-          updateDatainDBAction(`users/${user.uid}`, {
-            timeSpent,
-          })
-        );
+        const userRef = doc(db, 'users', user.uid);
+
+        updateDoc(userRef, {
+          timeSpent
+        });
       }, 10 * 60 * 1000);
     }
 
