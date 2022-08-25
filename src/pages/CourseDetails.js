@@ -66,26 +66,23 @@ export default function CourseDetails() {
           </Grid>
         </Grid>
 
-        {/* <Grid container spacing={4}>
-          <Grid item xs={12} sm={6} md={3} lg={4}>
-            <SmallGrid
-              title="React JS"
-              subheader="Class Progress"
-              count={ongoingCourses?.length}
-              totalCount={totalEnrolled}
-              color="warning"
-            />
-          </Grid>
+        <Typography variant="h4" sx={{ mb: 3, mt: 3 }}>
+          Assignments
+        </Typography>
 
-          <Grid item xs={12} sm={6} md={3} lg={4}>
-            <SmallGrid title="React JS" subheader="QNA" count={66} totalCount={70} color="primary" />
+        <Grid container spacing={4}>
+          <Grid
+            to={`/dashboard/${user?.isTeacher ? 'teacher' : 'student'}/classroom/${id}/assingment/1233`}
+            component={RouterLink}
+            item
+            xs={12}
+            sm={6}
+            md={3}
+            lg={4}
+          >
+            <CourseGrid subheader="Arrow Function" count={user?.ongoingCourses?.assignmentCount} icon={'vscode-icons:file-type-reactjs'} />
           </Grid>
-
-          <Grid item xs={12} sm={6} md={3} lg={4}>
-            <SmallGrid title="React JS" subheader="Fees" count={26} totalCount={30} color="error" />
-          </Grid>
-        </Grid> */}
-
+</Grid>
         <Grid
           container
           sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '40px', mb: 3 }}
@@ -99,6 +96,7 @@ export default function CourseDetails() {
               icon="eva:plus-fill"
             />
           )}
+
         </Grid>
 
         <Grid container spacing={4} sx={{ display: 'flex' }}>
