@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
 import { faker } from '@faker-js/faker';
 import { getDatabase, ref, set } from 'firebase/database';
 
 import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
 // @mui
 import { useTheme } from '@mui/material/styles';
 import { Grid, Container, Typography, Stack, Button, CardContent, Card, Box } from '@mui/material';
@@ -79,7 +79,7 @@ export default function CourseDetails() {
           )}
         </Stack>
         {!showVideoCall && (
-          <>
+          <Container>
             <Grid container spacing={4} sx={{ mb: 2, mt: 2 }}>
               <Grid item xs={12} sm={6} md={3} lg={4}>
                 <SmallGrid title="React JS" subheader="Student Count" count={studentList?.length} color="primary" />
@@ -94,69 +94,6 @@ export default function CourseDetails() {
               </Grid>
             </Grid>
 
-            {/* <Grid container spacing={4}>
-          <Grid item xs={12} sm={6} md={3} lg={4}>
-            <SmallGrid
-              title="React JS"
-              subheader="Class Progress"
-              count={ongoingCourses?.length}
-              totalCount={totalEnrolled}
-              color="warning"
-            />
-          </Grid>
-
-          <Grid item xs={12} sm={6} md={3} lg={4}>
-            <SmallGrid title="React JS" subheader="QNA" count={66} totalCount={70} color="primary" />
-          </Grid>
-
-          <Grid item xs={12} sm={6} md={3} lg={4}>
-            <SmallGrid title="React JS" subheader="Fees" count={26} totalCount={30} color="error" />
-          </Grid>
-        </Grid> */}
-
-            <Typography variant="h4" sx={{ mb: 3, mt: 3 }}>
-              Assignments
-            </Typography>
-
-            <Grid container spacing={4}>
-              <Grid
-                to={`/dashboard/${user?.isTeacher ? 'teacher' : 'student'}/classroom/123456/assingment/1233`}
-                component={RouterLink}
-                item
-                xs={12}
-                sm={6}
-                md={3}
-                lg={4}
-              >
-                <CourseGrid
-                  subheader="Arrow Function"
-                  count={user?.ongoingCourses?.assignmentCount}
-                  icon={'vscode-icons:file-type-reactjs'}
-                />
-              </Grid>
-            </Grid>
-
-            <Typography variant="h4" sx={{ mb: 3, mt: 3 }}>
-              Course Material
-            </Typography>
-
-            <Grid container spacing={4}>
-              <Grid
-                item
-                xs={12}
-                sm={6}
-                md={3}
-                lg={4}
-                to={`/dashboard/${user?.isTeacher ? 'teacher' : 'student'}/classroom/:id/god/details`}
-                component={RouterLink}
-              >
-                <CourseGrid subheader="UseState" count={courseMaterial.length} icon={'logos:tensorflow'} />
-              </Grid>
-            </Grid>
-
-            <Typography variant="h4" sx={{ mb: 3, mt: 3 }}>
-              Vidya Daan
-            </Typography>
             <Grid
               container
               sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '40px', mb: 3 }}
@@ -172,7 +109,7 @@ export default function CourseDetails() {
               )}
             </Grid>
 
-            <Grid container spacing={4} sx={{ display: 'flex' }}>
+            <Grid container spacing={4} sx={{ display: 'flex', mb: 2, mt: 2 }}>
               {assignments?.length > 0 &&
                 assignments.map((assignment, idx) => {
                   return (
@@ -207,7 +144,7 @@ export default function CourseDetails() {
               )}
             </Grid>
 
-            <Grid container spacing={4}>
+            <Grid container spacing={4} sx={{ mb: 2, mt: 2 }}>
               {courseMaterial?.length > 0 &&
                 courseMaterial.map((item, idx) => {
                   return (
@@ -248,7 +185,7 @@ export default function CourseDetails() {
               )}
             </Grid>
 
-            <Grid container spacing={4}>
+            <Grid container spacing={4} sx={{ mb: 2, mt: 2 }}>
               {vidyaDaanResources?.length > 0 &&
                 vidyaDaanResources.map((item, idx) => {
                   return (
@@ -336,59 +273,38 @@ export default function CourseDetails() {
             </Grid>
 
             <Grid container spacing={4}>
-              <Grid item xs={12} sm={6} md={3} lg={4}>
-                {
-                  <iframe
-                    src={'https://www.youtube.com/embed/h7MYJghRWt0'}
-                    frameBorder="0"
-                    allow="accelometer; autoplay; encrypted-media"
-                    allowFullScreen
-                    title="ArrowFunction"
-                  />
-                }
-              </Grid>
-
-              <Grid item xs={12} sm={6} md={3} lg={4}>
-                {
-                  <iframe
-                    src={'https://www.youtube.com/embed/fKopy74weus'}
-                    frameBorder="0"
-                    allow="accelometer; autoplay; encrypted-media"
-                    allowFullScreen
-                    title="UseState"
-                  />
-                }
-              </Grid>
-
-              <Grid item xs={12} sm={6} md={3} lg={4}>
-                {
-                  <iframe
-                    src={'https://www.youtube.com/embed/aPfkYu_qiF4'}
-                    frameBorder="0"
-                    allow="accelometer; autoplay; encrypted-media"
-                    allowFullScreen
-                    title="UseEffect"
-                  />
-                }
-              </Grid>
+              {videos?.length > 0 &&
+                videos.map((video, idx) => {
+                  return (
+                    <Grid item xs={12} sm={4} md={4} lg={4} xl={4}>
+                      <iframe
+                        src={video}
+                        frameBorder="0"
+                        allow="accelometer; autoplay; encrypted-media"
+                        allowFullScreen
+                        title="ArrowFunction"
+                      />
+                    </Grid>
+                  );
+                })}
             </Grid>
-          </>
+          </Container>
+        )}
+
+        {showVideoCall && <VideoCall roomName={id} />}
+
+        {showVideoCall && (
+          <Button
+            variant="contained"
+            color="error"
+            onClick={() => setShowVideoCall(false)}
+            sx={{ mt: 2, mr: 2 }}
+            fullWidth
+          >
+            End Class
+          </Button>
         )}
       </Container>
-
-      {showVideoCall && <VideoCall roomName={id} />}
-
-      {showVideoCall && (
-        <Button
-          variant="contained"
-          color="error"
-          onClick={() => setShowVideoCall(false)}
-          sx={{ mt: 2, mr: 2 }}
-          fullWidth
-        >
-          End Class
-        </Button>
-      )}
     </Page>
   );
 }
