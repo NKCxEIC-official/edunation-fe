@@ -53,12 +53,15 @@ export default function Community() {
     const documentRef = ref(realtimeDb);
     return onValue(child(documentRef, `liveClass`), (snapshot) => {
       if (snapshot.exists()) {
+        const localArr = [];
         const data = snapshot.val();
-        const filteredSessions = Object.keys(data).forEach((obj) => {
-          console.log(data[obj])
-          return data[obj]?.isLive === true;
+        Object.keys(data).forEach((obj) => {
+          if(data[obj].isLive === true && data[obj].communitySession === true){
+            localArr.push(data[obj].roomName);
+          }
         });
-        setLiveDoubtClearingSessions(filteredSessions);
+        console.log(localArr)
+        setLiveDoubtClearingSessions(localArr);
       } else {
         setLiveDoubtClearingSessions([]);
       }
@@ -148,7 +151,7 @@ export default function Community() {
                   console.log(shouldParse, sessionId, Object.keys(userListAll));
                   const currentUser = shouldParse ? userListAll[sessionId] : {};
                   const { dp, firstName, lastName } = currentUser;
-                  console.log(userListAll[sessionId]);
+                  console.log(userListAll[sessionId], sessionId);
                   return (
                     <div
                       style={{
