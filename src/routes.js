@@ -48,16 +48,20 @@ export default function Router() {
     {
       path: '/dashboard',
       element: (
-          <RequireAuth>
-            <DashboardLayout />
-          </RequireAuth>
+        <RequireAuth>
+          <DashboardLayout />
+        </RequireAuth>
       ),
       children: [
         // RED-Spot routs:
-        { path: 'ngo/app', element: <NgoDashboard /> },
-        { path: 'ngo/teachers-list', element: <TeachersList /> },
-        { path: 'ngo/students-list', element: <StudentsList /> },
-        { path: 'ngo/red-spots', element: <AddRedSpot /> },
+        {
+          path: 'red-spot/app',
+          element: (
+            <ObserveLiveSession>
+              <LoadingAnimationLayout />
+            </ObserveLiveSession>
+          ),
+        },
 
         // NGO routs:
         { path: 'ngo/app', element: <NgoDashboard /> },
@@ -107,19 +111,9 @@ export default function Router() {
         { path: 'register', element: <Register /> },
         { path: '404', element: <NotFound /> },
         { path: '*', element: <Navigate to="/404" /> },
-        // Red Spot:
-        {
-          path: 'red-spot/live',
-          element: (
-            <ObserveLiveSession>
-              <LoadingAnimationLayout />
-            </ObserveLiveSession>
-          ),
-        },
-        { path: '*', element: <Navigate to="/404" /> },
       ],
     },
-    { path: 'red-spot/live/session', element: <ReadSpotDashboardApp/> },
+    { path: 'red-spot/live/session', element: <ReadSpotDashboardApp /> },
   ]);
 }
 
@@ -141,20 +135,17 @@ const ObserveLiveSession = ({ children }) => {
   const documentRef = ref(db, documentId);
   const navigate = useNavigate();
 
-  onValue(
-    documentRef,
-    (snapshot) => {
-      if (snapshot.exists()) {
-        const data = snapshot.val();
-        const isLive = data?.isLive;
-        console.log('🚀 ~ file: utils.js ~ line 14 ~ observeLiveClass ~ isLive', isLive);
-        if(isLive === true){
-          navigate('/red-spot/live/session');
-        }else{
-          navigate('/red-spot/live');
-        }
+  onValue(documentRef, (snapshot) => {
+    if (snapshot.exists()) {
+      const data = snapshot.val();
+      const isLive = data?.isLive;
+      console.log('🚀 ~ file: utils.js ~ line 14 ~ observeLiveClass ~ isLive', isLive);
+      if (isLive === true) {
+        navigate('dashboard/red-spot/app');
+      } else {
+        navigate('dashboard/red-spot/live');
       }
-    },
-  );
+    }
+  });
   return children;
 };

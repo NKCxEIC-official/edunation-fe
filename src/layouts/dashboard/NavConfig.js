@@ -5,6 +5,14 @@ import Iconify from '../../components/Iconify';
 
 const getIcon = (name) => <Iconify icon={name} width={22} height={22} />;
 
+const RedSpotNavConfig = [
+  {
+    title: 'dashboard',
+    path: 'red-spot/app',
+    icon: getIcon('eva:pie-chart-2-fill'),
+  },
+];
+
 const NGONavConfig = [
   {
     title: 'dashboard',
@@ -119,4 +127,5 @@ const StudentNavConfig = [
   },
 ];
 
-export { NGONavConfig, TeacherNavConfig, StudentNavConfig };
+
+export { RedSpotNavConfig, NGONavConfig, TeacherNavConfig, StudentNavConfig };

@@ -57,6 +57,7 @@ export default function LoginForm() {
         navigate('/dashboard/student/app', { replace: true });
       }
       else if (user.role === 0) navigate('/dashboard/ngo/app', { replace: true });
+      else if (user.role === 3) navigate('/dashboard/red-spot/app', { replace: true });
     }
   }, [user]);
 
