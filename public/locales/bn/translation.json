@@ -1,0 +1,304 @@
+{
+    "NgoDashboard":{
+    "NgoSidebarDashboard": "ড্যাশবোর্ড",   
+    "NgoTitle": "হাই, আবার স্বাগতম",
+    "NgoStudentCount": "ছাত্র গণনা",
+    "NgoTeacherCount": "শিক্ষক গণনা",
+    "NgoVolunteerCount": "স্বেচ্ছাসেবক গণনা",
+    "NgoRedSpots": "লাল দাগ",
+    "NgoAddRedSpots": "লাল দাগ যোগ করুন",
+    "NgoCreateTeachersProfile": "শিক্ষকের প্রোফাইল তৈরি করুন",
+    "NgoCreateStudentsProfile": "ছাত্রদের প্রোফাইল তৈরি করুন",
+    "NgoProgressReport": "অগ্রগতি প্রতিবেদন",
+    "NgoTeacherStudentRatio": "শিক্ষক ছাত্র অনুপাত",
+    "NgoTableTeachersCount": "শিক্ষক গণনা",
+    "NgoTableStudentsCount": "ছাত্র গণনা"
+    },
+
+    "NgoTeachersList":{
+    "NgoSidebarTeachersList": "শিক্ষকের তালিকা",
+    "NgoTeachers": "শিক্ষকরা",
+    "NgoSearchTeachers": "শিক্ষক অনুসন্ধান করুন",
+    "NgoFirstName": "নামের প্রথম অংশ",
+    "NgoLastName": "নামের শেষাংশ",
+    "NgoAge": "Age",
+    "NgoEmailId": "ইমেইল আইডি",
+    "NgoPhone": "ফোন",
+    "NgoAddress": "ঠিকানা",
+    "NgoCity": "শহর",
+    "NgoState": "রাষ্ট্র",
+    "NgoOccupation": "Occupation",
+    "NgoUniversity": "University/School",
+    "NgoAddTeacher": "শিক্ষক যোগ করুন",
+    "NgoName": "নাম",
+    "NgoCourses": "পাঠ্যধারাগুলি",
+    "NgoVerified": "যাচাই",
+    "NgoStatus": "স্ট্যাটাস",
+    "NgoNewTeacher": "নতুন শিক্ষক"
+    },
+
+    "NgoStudentsList":{
+    "NgoSidebarStudentsList": "ছাত্রদের তালিকা",
+    "NgoStudents": "ছাত্ররা",
+    "NgoSearchStudents": "ছাত্র খুঁজুন",
+    "NgoRole": "ভূমিকা",
+    "NgoAddStudent": "ছাত্র যোগ করুন",
+    "NgoNewStudent": "নতুন শিক্ষার্থী"
+    },
+    
+    "NgoRedSpots":{
+    "NgoSidebarRedSpots": "লাল দাগ",
+    "NgoPocName": "POC নাম",
+    "NgoPocEmail": "POC ইমেল",
+    "NgoCoordinates": "স্থানাঙ্ক",
+    "NgoAddress": "ঠিকানা",
+    "NgoRowsPerPage": "পৃষ্ঠা প্রতি সারি",
+    "NgoSelectRedSpot": "লাল দাগ নির্বাচন করুন",
+    "NgoEnterRedSpotAddress": "রেড স্পট ঠিকানা লিখুন",
+    "NgoSelectedLocationDetails": "নির্বাচিত অবস্থানের বিবরণ",
+    "NgoLatitute": "অক্ষাংশ",
+    "NgoLongitude": "দ্রাঘিমাংশ",
+    "NgoRedSpotName": "লাল দাগের নাম",
+    "NgoButtonAddRedSpot": "লাল দাগ যোগ করুন"
+    
+    }, 
+
+    "NgoSidebarTitle": "আসুন অন্যদের সাহায্য করি!",
+    "NgoSidebarSubTitle": "একসাথে শেখা সবসময় ভালো",
+    "NgoSidebarAddRedSpots": "লাল দাগ যোগ করুন",
+
+
+
+    
+    "teacherDashboard": {
+        "teacherNavDashboard": "ড্যাশবোর্ড",
+        "teacherTitle": "স্বাগত,",
+        "teacherSubtitle": "আপনার ড্যাশবোর্ডে আবার স্বাগতম -",
+
+        "teacherCreateAClass" : "একটি ক্লাস তৈরি করুন",
+        "teacherClassName" : "ক্লাস নাম",
+        "teacherClassDescription" : "ক্লাস বর্ণনা",
+        "teacherClassFee" : "ক্লাস ফি",
+        "teacherAmount" : "INR-এ ক্লাস ফি লিখুন",
+        "teacherDays" : "দিন",
+            "monday" : "সোমবার",
+            "tuesday" : "মঙ্গলবার",
+            "wednesday" : "বুধবার",
+            "thursday" : "বৃহস্পতিবার",
+            "friday" : "শুক্রবার",
+            "saturday" : "শনিবার",
+            "sunday" : "রবিবার",
+        "teacherCourses" : "পাঠ্যধারা",
+        "teacherQNA": "QNA",
+        "teacherRequest" : "অনুরোধ",
+        "months": "মাস",
+        "teacherYourCourses": "আপনার কোর্স :",
+        "teacherCompletedCourses": "কোর্স সম্পন্ন :",
+        "teacherCourseName": "কোর্সের নাম",
+        "teacherStudentCount": "ছাত্র গণনা",
+        "teacherPercentage": "সম্পূর্ণ শতাংশ",
+        "teacherDuration" : "সময়কাল",
+        "teacherRevenue" : "রাজস্ব"
+    },
+   
+    "teacherSchedule": {
+
+        "teacherNavSchedule" : "সময়সূচী",
+        "teacherScheduleTitle": "সময়সূচী",
+        "teacherScheduleTodayButton": "আজ",
+        "teacherScheduleWorkWeek": "কর্ম সপ্তাহ",
+        "teacherScheduleWeek": "সপ্তাহ",
+        "teacherScheduleMonth": "মাস",
+        "teacherScheduleDay": "দিন",
+        "teacherScheduleFormDetails": "বিস্তারিত",
+        "teacherScheduleAllDay": "সারাদিন",
+        "teacherScheduleRepeat": "পুনরাবৃত্তি করুন",
+        "teacherScheduleMoreInformation": "অধিক তথ্য",
+        "teacherScheduleNotes": "মন্তব্য",
+        "teacherScheduleRoom": "রুম",
+        "teacherScheduleMembers": "সদস্যরা"
+    },
+
+    "teacherMessage": {
+        "teacherMessagesTitles": "চ্যাট",
+        "teacherMessagesNTS": "দেখানোর মতো কিছুই নেই, এই স্থানটি পূরণ করতে একটি চ্যাটে ক্লিক করুন!"
+    },
+
+    "teacherMyCourses" : {
+        "teacherNavMyCourses" : "আমার কোর্স",
+        "teacherteacherCount" : "ছাত্র গণনা",
+        "teacherCourseMaterial" : "কোর্স উপাদান",
+        "teacherVideoCount" : "ভিডিও গণনা",
+        "teacherAddNewAssignment": "নতুন অ্যাসাইনমেন্ট যোগ করুন",
+        "teacherAssignmentTitle" : "শিরোনাম",
+        "teacherAssignmentDescription" : "বর্ণনা",
+        "teacherAssignmentSubmissionDeadline" : "জমা নির্দিষ্ট সময়সীমা",
+        "teacherAssignmentUploadFiles" : "ফাইল আপলোড কর",
+        "teacherAddAssignment" : "অ্যাসাইনমেন্ট যোগ করুন",
+        "teacherVidyaDaan" : "বিদ্যা দান",
+        "teacherLiveRecordedVideos" : "লাইভ রেকর্ড করা ভিডিও :",
+        "teacherViewAll" : "সব দেখ"
+    },
+
+    "teacherReports" : {
+        "teacherteachersEnrolled" : "শিক্ষক নথিভুক্ত",
+        "teacherRevenueGenerated" : "রাজস্ব উৎপন্ন",
+        "teacherAssignmentSubmitted" : "অ্যাসাইনমেন্ট জমা দেওয়া হয়েছে",
+        "teacherTestTaken" : "পরীক্ষা নেওয়া হয়েছে",
+        "teacherAssignmentReport" : "অ্যাসাইনমেন্ট রিপোর্ট :",
+        "teacherSearchUser" : "ব্যবহারকারী অনুসন্ধান করুন...",
+        "teacherTestReports" : "টেস্ট রিপোর্ট :",
+        "teacherRowsPerPage" : "প্রতি পৃষ্ঠায় সারি"
+    },
+
+    "teacherSettings": {
+        "teacherFirstName": "নামের প্রথম অংশ",
+        "teacherLastName": "নামের শেষাংশ",
+        "teacherEmail": "ইমেইল",
+        "teacherPhone": "ফোন",
+        "teacherAddress": "ঠিকানা",
+        "teacherCity": "শহর",
+        "teacherState": "রাজ্য",
+        "teacherUniversity": "বিশ্ববিদ্যালয়",
+        "teacherUploadProfilePhoto": "প্রোফাইল ফটো আপলোড করুন",
+        "teacherProfilePhotoUploaded": "প্রোফাইল ছবি আপলোড করা হয়েছে",
+        "teacherUpdateProfileButton": "প্রোফাইল আপডেট করুন"
+    },
+
+    "teacherCommunity" : {
+        "teacherNavCommunity" : "কমিউনিটিতে স্বাগতম!",
+        "teacherUpvote" : "আপভোট",
+        "teacherDownvote" : "ডাউনভোট",
+        "teacherCopyLink" : "লিংক কপি করুন"
+    },
+
+    "teacherProfile": {
+        "teacherAbout": "সম্পর্কিত",
+        "teacherCourses": "পাঠ্যধারাগুলি",
+        "teacherReviews": "রিভিউ",
+        "teacherContactNow": "এখনই যোগাযোগ করুন",
+        "teacherCertification": "সার্টিফিকেশন",
+        "teacherKeyDetails": "মূল বিবরণ",
+        "teacherCompletedCourses": "কোর্স সম্পন্ন",
+        "teacherOngoingCourses": "ক্লাস চলছে",
+        "teacherDurationSpent": "সময়কাল (ঘন্টা)",
+        "teacherRating": "ছাত্র রেটিং"
+    },
+
+    "teacherEventTimeline": "ইভেন্ট টাইমলাইন",
+
+    "studentDashboard": {
+        "studentNavDashboard": "ড্যাশবোর্ড",
+        "studentTitle": "স্বাগত",
+        "studentSubtitle": "আপনার ড্যাশবোর্ডে আবার স্বাগতম",
+        "studentTimeSpent": "সময় অতিবাহিত",
+        "studentOngoingClasses": "ক্লাস চলছে",
+        "studentViewAll": "সব দেখুন",
+        "studentGoToClass": "শ্রেনীকক্ষে যাও",
+        "studentTopRatedClasses": "সম্প্রতি যোগ করা ক্লাস",
+        "studentSubscribeNow": "এখন সাবস্ক্রাইব করুন",
+        "studentTodaysTasks": "আজকের টাস্ক",
+        "studentSummary": "সারসংক্ষেপ",
+        "studentPendingAssignments": "পেন্ডিং অ্যাসাইনমেন্ট",
+        "studentClassesToday": "আজ ক্লাস",
+        "studentSubmittedAssignmentsToday": "জমা দেওয়া অ্যাসাইনমেন্ট আজ"
+    },
+
+    "studentNavOngoingClasses": "ক্লাস চলছে",
+
+    "studentCourseDetails": {
+        "studentCourseDetailsTitle": "স্বাগতম",
+        "studentGridCount": "ছাত্র গণনা",
+        "studentGridCourseMaterial": "কোর্স উপাদান",
+        "studentGridVideoCount": "ভিডিও গণনা",
+        "studentAssignments": "অ্যাসাইনমেন্ট",
+        "studentAddNewAssignment": "নতুন অ্যাসাইনমেন্ট যোগ করুনt",
+        "studentCourseMaterial": "কোর্স উপাদান",
+        "studentVidyaDaan": "বিদ্যা দান",
+        "studentLiveRecordedVideos": "লাইভ রেকর্ড করা ভিডিও"
+    },
+
+    "studentUploadAssignment": {
+        "studentUploadAssignmentDeadline": "শেষ তারিখ",
+        "studentUploadAssignmentDescription": "বর্ণনা",
+        "studentUploadAssignmentFiles": "নথি পত্র",
+        "studentUploadAssignmentButton": "অ্যাসাইনমেন্ট আপলোড করুন",
+        "studentUploadAssignmentModalTitle": "অ্যাসাইনমেন্ট আপলোড করুন",
+        "studentQueryName": "প্রশ্নের নাম",
+        "studentQueryDescription": "প্রশ্নের বিবরণ",
+        "studentModalAttachFile": "ফাইল সংযুক্ত",
+        "studentUploadAssignmentModalUploadButton": "আপলোড করুন"
+    },
+
+    "studentNavNewCourses": "নতুন কোর্স",
+    "studentNewCourses": "নতুন কোর্স",
+
+    "studentNavProfile": "প্রোফাইল",
+    "studentProfile": {
+        "studentAbout": "সম্পর্কিত",
+        "studentCourses": "পাঠ্যধারাগুলি",
+        "studentReviews": "রিভিউ",
+        "studentContactNow": "এখনই যোগাযোগ করুন",
+        "studentCertification": "সার্টিফিকেশন",
+        "studentKeyDetails": "মূল বিবরণ",
+        "studentCompletedCourses": "কোর্স সম্পন্ন",
+        "studentOngoingCourses": "ক্লাস চলছে",
+        "studentDurationSpent": "সময়কাল (ঘন্টা)",
+        "studentRating": "ছাত্র রেটিং"
+    },
+   
+    "studentNavMessages": "বার্তা",
+    "studentMessage": {
+        "studentMessagesTitles": "চ্যাট",
+        "studentMessagesNTS": "দেখানোর মতো কিছুই নেই, এই স্থানটি পূরণ করতে একটি চ্যাটে ক্লিক করুন!"
+    },
+
+    "studentNavSettings": "সেটিংস",
+    "studentSettings": {
+        "studentFirstName": "নামের প্রথম অংশ",
+        "studentLastName": "নামের শেষাংশ",
+        "studentEmail": "ইমেইল",
+        "studentPhone": "ফোন",
+        "studentAddress": "ঠিকানা",
+        "studentCity": "শহর",
+        "studentState": "রাজ্য",
+        "studentUniversity": "বিশ্ববিদ্যালয়",
+        "studentUploadProfilePhoto": "প্রোফাইল ফটো আপলোড করুন",
+        "studentProfilePhotoUploaded": "প্রোফাইল ছবি আপলোড করা হয়েছে",
+        "studentUpdateProfileButton": "প্রোফাইল আপডেট করুন"
+    },
+
+    "studentNavCommunity" : "সম্প্রদায়",
+    "studentCommunity" : {
+        "studentCommunityTitle": "কমিউনিটিতে স্বাগতম!",
+        "studentUpvote" : "আপভোট",
+        "studentDownvote" : "ডাউনভোট",
+        "studentCopyLink" : "লিংক কপি করুন",
+        "studentAnswer": "উত্তর",
+        "studentAnswerModalField": "উত্তরr",
+        "studentAddAnswer": "উত্তর যোগ করুন",
+        "studentPostAQuery" : "একটি প্রশ্ন পোস্ট করুন",
+        "studentQueryDescription" : "প্রশ্ন বিবরণ",
+        "teacherAttachFile" : "ফাইল সংযুক্ত",
+        "teacherPostQuery" : "পোস্ট কোয়েরি"
+    },
+
+    "studentNavSchedule": "সময়সূচী",
+    "studentSchedule": {
+        "studentScheduleTitle": "সময়সূচী",
+        "studentScheduleTodayButton": "আজ",
+        "studentScheduleWorkWeek": "কর্ম সপ্তাহ",
+        "studentScheduleWeek": "সপ্তাহ",
+        "studentScheduleMonth": "মাস",
+        "studentScheduleDay": "দিন",
+        "studentScheduleFormDetails": "বিস্তারিত",
+        "studentScheduleAllDay": "সারাদিন",
+        "studentScheduleRepeat": "পুনরাবৃত্তি",
+        "studentScheduleMoreInformation": "অধিক তথ্য",
+        "studentScheduleNotes": "মন্তব্য",
+        "studentScheduleRoom": "কক্ষ",
+        "studentScheduleMembers": "সদস্যরা"
+    },
+
+    "studentEventTimeline": "ইভেন্ট টাইমলাইন"
+}

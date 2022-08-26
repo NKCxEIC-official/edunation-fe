@@ -82,9 +82,7 @@ function AssignmentDetails() {
             )}
 
 
-            {user?.isTeacher && <Button to="/dashboard/teacher/classroom/${}/assingment/1233/check" component={RouterLink} variant="contained" startIcon={<Iconify icon={"ant-design:check-circle-twotone"} sx={{ height: "50px" }} />} >
-              Check Assignments
-            </Button>}
+          
             {user?.isTeacher && (
               <Button
                 to={`/dashboard/teacher/classroom/${id}/assignment/${assignmentId}/check`}
@@ -111,7 +109,7 @@ function AssignmentDetails() {
 
         <Grid container spacing={4}>
           {assignmentDetails?.files?.length > 0 &&
-            assignmentDetails.files.map((file, idx) => {
+            assignmentDetails?.files?.map((file, idx) => {
               return (
                 <Grid item sx={{ width: 'max-content' }}>
                   <Card>

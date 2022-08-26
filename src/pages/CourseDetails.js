@@ -3,6 +3,7 @@ import { getDatabase, ref, set } from 'firebase/database';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
+import { useTranslation, withTranslation, Trans } from 'react-i18next';
 // @mui
 import { useTheme } from '@mui/material/styles';
 import { Grid, Container, Typography, Stack, Button, CardContent, Card, Box } from '@mui/material';
@@ -36,6 +37,16 @@ export default function CourseDetails() {
       data: state.auth.data,
     };
   });
+  const { t, i18n } = useTranslation();
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
+
+  useEffect(() => {
+    changeLanguage("en")
+  }, [])
+
   const [courseDetails, setCourseDetails] = useState({});
   const { name, studentList, courseMaterial, videos, assignments, creator, vidyaDaanResources } = courseDetails;
   const { ongoingCourses, totalEnrolled } = user;
@@ -68,7 +79,9 @@ export default function CourseDetails() {
       <Container maxWidth="xl">
         <Stack direction="rows" justifyContent="space-between">
           <Box>
-            <Typography variant="h4">Welcome To,</Typography>
+            <Typography variant="h4"><Trans i18nKey="studentDashboard.studentCourseDetailsTitle">
+                Welcome To,
+              </Trans></Typography>
             <Typography variant="p">{name}</Typography>
           </Box>
 

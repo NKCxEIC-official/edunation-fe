@@ -1,70 +1,294 @@
 {
-    "NgoDashboard":{
-    "NgoSidebarDashboard": "डैशबोर्ड",   
-    "NgoTitle": "नमस्ते, फिर से स्वागत है",
-    "NgoStudentCount": "छात्र गणना",
-    "NgoTeacherCount": "शिक्षक गणना",
-    "NgoVolunteerCount": "स्वयंसेवी गणना",
-    "NgoRedSpots": "रेड स्पॉट",
-    "NgoAddRedSpots": "रेड स्पॉट जोड़ें",
-    "NgoCreateTeachersProfile": "शिक्षक की प्रोफाइल बनाएं",
-    "NgoCreateStudentsProfile": "छात्रों की प्रोफाइल बनाएं",
-    "NgoProgressReport": "प्रगति रिपोर्ट",
-    "NgoTeacherStudentRatio": "शिक्षक छात्र अनुपात",
-    "NgoTableTeachersCount": "शिक्षक गणना",
-    "NgoTableStudentsCount": "छात्र गणना"
+    "NgoDashboard": {
+        "NgoSidebarDashboard": "डैशबोर्ड",
+        "NgoTitle": "नमस्ते, फिर से स्वागत है",
+        "NgoStudentCount": "छात्र गणना",
+        "NgoTeacherCount": "शिक्षक गणना",
+        "NgoVolunteerCount": "स्वयंसेवी गणना",
+        "NgoRedSpots": "रेड स्पॉट",
+        "NgoAddRedSpots": "रेड स्पॉट जोड़ें",
+        "NgoCreateTeachersProfile": "शिक्षक की प्रोफाइल बनाएं",
+        "NgoCreateStudentsProfile": "छात्रों की प्रोफाइल बनाएं",
+        "NgoProgressReport": "प्रगति रिपोर्ट",
+        "NgoTeacherStudentRatio": "शिक्षक छात्र अनुपात",
+        "NgoTableTeachersCount": "शिक्षक गणना",
+        "NgoTableStudentsCount": "छात्र गणना"
     },
-
-    "NgoTeachersList":{
-    "NgoSidebarTeachersList": "शिक्षकों की सूची",
-    "NgoTeachers": "शिक्षक",
-    "NgoSearchTeachers": "शिक्षक खोजें",
-    "NgoFirstName": "पहला नाम",
-    "NgoLastName": "उपनाम",
-    "NgoAge": "आयु",
-    "NgoEmailId": "ईमेल आईडी",
-    "NgoPhone": "फ़ोन",
-    "NgoAddress": "पता",
-    "NgoCity": "शहर",
-    "NgoState": "राज्य",
-    "NgoOccupation": "व्यवसाय",
-    "NgoUniversity": "विश्वविद्यालय/विद्यालय",
-    "NgoAddTeacher": "शिक्षक जोड़ें",
-    "NgoName": "नाम",
-    "NgoCourses": "पाठ्यक्रम",
-    "NgoVerified": "सत्यापित",
-    "NgoStatus": "दर्जा",
-    "NgoNewTeacher": "नया शिक्षक"
+    "NgoTeachersList": {
+        "NgoSidebarTeachersList": "शिक्षकों की सूची",
+        "NgoTeachers": "शिक्षक",
+        "NgoSearchTeachers": "शिक्षक खोजें",
+        "NgoFirstName": "पहला नाम",
+        "NgoLastName": "उपनाम",
+        "NgoAge": "आयु",
+        "NgoEmailId": "ईमेल आईडी",
+        "NgoPhone": "फ़ोन",
+        "NgoAddress": "पता",
+        "NgoCity": "शहर",
+        "NgoState": "राज्य",
+        "NgoOccupation": "व्यवसाय",
+        "NgoUniversity": "विश्वविद्यालय/विद्यालय",
+        "NgoAddTeacher": "शिक्षक जोड़ें",
+        "NgoName": "नाम",
+        "NgoCourses": "पाठ्यक्रम",
+        "NgoVerified": "सत्यापित",
+        "NgoStatus": "दर्जा",
+        "NgoNewTeacher": "नया शिक्षक"
     },
-
-    "NgoStudentsList":{
-    "NgoSidebarStudentsList": "छात्र सूची",
-    "NgoStudents": "छात्र",
-    "NgoSearchStudents": "छात्र खोजें",
-    "NgoRole": "भूमिका",
-    "NgoAddStudent": "छात्र जोड़ें",
-    "NgoNewStudent": "अगला छात्र"
+    "NgoStudentsList": {
+        "NgoSidebarStudentsList": "छात्र सूची",
+        "NgoStudents": "छात्र",
+        "NgoSearchStudents": "छात्र खोजें",
+        "NgoRole": "भूमिका",
+        "NgoAddStudent": "छात्र जोड़ें",
+        "NgoNewStudent": "अगला छात्र"
     },
-    
-    "NgoRedSpots":{
-    "NgoSidebarRedSpots": "रेड स्पॉट",
-    "NgoPocName": "पीओसी नाम",
-    "NgoPocEmail": "पीओसी ईमेल",
-    "NgoCoordinates": "समन्वय",
-    "NgoAddress": "पता",
-    "NgoRowsPerPage": "प्रति पृष्ठ पंक्तियाँ",
-    "NgoSelectRedSpot": "रेड स्पॉट चुनें",
-    "NgoEnterRedSpotAddress": "रेड स्पॉट पता दर्ज करें",
-    "NgoSelectedLocationDetails": "चयनित स्थान विवरण",
-    "NgoLatitute": "अक्षांश",
-    "NgoLongitude": "देशान्तर",
-    "NgoRedSpotName": "रेड स्पॉट नाम",
-    "NgoButtonAddRedSpot": "रेड स्पॉट जोड़ें"
-    
-    }, 
-
+    "NgoRedSpots": {
+        "NgoSidebarRedSpots": "रेड स्पॉट",
+        "NgoPocName": "पीओसी नाम",
+        "NgoPocEmail": "पीओसी ईमेल",
+        "NgoCoordinates": "समन्वय",
+        "NgoAddress": "पता",
+        "NgoRowsPerPage": "प्रति पृष्ठ पंक्तियाँ",
+        "NgoSelectRedSpot": "रेड स्पॉट चुनें",
+        "NgoEnterRedSpotAddress": "रेड स्पॉट पता दर्ज करें",
+        "NgoSelectedLocationDetails": "चयनित स्थान विवरण",
+        "NgoLatitute": "अक्षांश",
+        "NgoLongitude": "देशान्तर",
+        "NgoRedSpotName": "रेड स्पॉट नाम",
+        "NgoButtonAddRedSpot": "रेड स्पॉट जोड़ें"
+    },
     "NgoSidebarTitle": "आइए दूसरों की मदद करें!",
     "NgoSidebarSubTitle": "एक साथ सीखना हमेशा बेहतर होता है",
-    "NgoSidebarAddRedSpots": "रेड स्पॉट जोड़ें"
-    
- }
+    "NgoSidebarAddRedSpots": "रेड स्पॉट जोड़ें",
+
+
+    "teacherDashboard": {
+        "teacherNavDashboard": "डैशबोर्ड",
+        "teacherTitle": "नमस्ते,",
+        "teacherSubtitle": "वापसी पर स्वागत है -",
+        "teacherCreateAClass": "एक कक्षा बनाएं",
+        "teacherClassName": "कक्षा का नाम",
+        "teacherClassDescription": "कक्षा विवरण",
+        "teacherClassFee": "कक्षा शुल्क",
+        "teacherAmount": "INR में कक्षा शुल्क दर्ज करें",
+        "teacherDays": "दिन",
+        "monday": "सोमवार",
+        "tuesday": "मंगलवार",
+        "wednesday": "बुधवार",
+        "thursday": "गुरुवार",
+        "friday": "शुक्रवार",
+        "saturday": "शनिवार",
+        "sunday": "रविवार",
+        "teacherCourses": "पाठ्यक्रम",
+        "teacherQNA": "क्यूए एन ए",
+        "teacherRequest": "प्रार्थना",
+        "months": "महीने",
+        "teacherYourCourses": "आपके पाठ्यक्रम:",
+        "teacherCompletedCourses": "पूर्ण पाठ्यक्रम:",
+        "teacherCourseName": "कोर्स का नाम",
+        "teacherStudentCount": "छात्र गणना",
+        "teacherPercentage": "पूर्ण प्रतिशत",
+        "teacherDuration": "अवधि",
+        "teacherRevenue": "आय"
+    },
+    "teacherSchedule": {
+        "teacherNavSchedule": "अनुसूची",
+        "teacherScheduleTitle": "अनुसूची",
+        "teacherScheduleTodayButton": "आज",
+        "teacherScheduleWorkWeek": "कार्य सप्ताह",
+        "teacherScheduleWeek": "सप्ताह",
+        "teacherScheduleMonth": "महीना",
+        "teacherScheduleDay": "दिन",
+        "teacherScheduleFormDetails": "विवरण",
+        "teacherScheduleAllDay": "पूरे दिन",
+        "teacherScheduleRepeat": "दोहराना",
+        "teacherScheduleMoreInformation": "अधिक जानकारी",
+        "teacherScheduleNotes": "टिप्पणियाँ",
+        "teacherScheduleRoom": "कमरा",
+        "teacherScheduleMembers": "सदस्यों"
+    },
+    "teacherMyCourses": {
+        "teacherNavMyCourses": "मेरे पाठ्यक्रम",
+        "teacherStudentCount": "छात्र गणना",
+        "teacherCourseMaterial": "पाठ्यक्रम सामग्री",
+        "teacherVideoCount": "वीडियो गणना",
+        "teacherAddNewAssignment": "नया असाइनमेंट जोड़ें",
+        "teacherAssignmentTitle": "शीर्षक",
+        "teacherAssignmentDescription": "विवरण",
+        "teacherAssignmentSubmissionDeadline": "समयसीमा",
+        "teacherAssignmentUploadFiles": "फाइल अपलोड करो",
+        "teacherAddAssignment": "असाइनमेंट जोड़ें",
+        "teacherVidyaDaan": "विद्या दान",
+        "teacherLiveRecordedVideos": "लाइव रिकॉर्ड किए गए वीडियो:",
+        "teacherViewAll": "सभी को देखें"
+    },
+    "teacherReports": {
+        "teacherteachersEnrolled": "शिक्षक नामांकित",
+        "teacherRevenueGenerated": "राजस्व उत्पन्न",
+        "teacherAssignmentSubmitted": "असाइनमेंट सबमिट किया गया",
+        "teacherTestTaken": "परीक्षा ली गई",
+        "teacherAssignmentReport": "असाइनमेंट रिपोर्ट:",
+        "teacherSearchUser": "उपयोगकर्ता खोजें...",
+        "teacherTestReports": "परीक्षण रिपोर्ट :",
+        "teacherRowsPerPage": "प्रति पृष्ठ पंक्तियाँ"
+    },
+    "teacherNavSettings": "समायोजन",
+    "teacherSettings": {
+        "teacherFirstName": "पहला नाम",
+        "teacherLastName": "उपनाम",
+        "teacherEmail": "ईमेल",
+        "teacherPhone": "फ़ोन",
+        "teacherAddress": "पता",
+        "teacherCity": "शहर",
+        "teacherState": "राज्य",
+        "teacherUniversity": "विश्वविद्यालय",
+        "teacherUploadProfilePhoto": "प्रोफाइल फोटो अपलोड करें",
+        "teacherProfilePhotoUploaded": "प्रोफ़ाइल फ़ोटो अपलोड की गई",
+        "teacherUpdateProfileButton": "प्रोफ़ाइल को नवीनतम बनाओ"
+    },
+    "teacherNavCommunity": "समुदाय",
+    "teacherCommunity": {
+        "teacherCommunityTitle": "समुदाय में आपका स्वागत है!",
+        "teacherUpvote": "वोट दें",
+        "teacherDownvote": "डाउनवोट",
+        "teacherCopyLink": "प्रतिरूप जोड़ना",
+        "teacherAnswer": "उत्तर",
+        "teacherAnswerModalField": "उत्तर"
+    },
+    "teacherNavProfile": "प्रोफ़ाइल",
+    "teacherProfile": {
+        "teacherAbout": "आपके बारे में",
+        "teacherCourses": "पाठ्यक्रम",
+        "teacherReviews": "समीक्षा",
+        "teacherContactNow": "अभी संपर्क करें",
+        "teacherCertification": "प्रमाणीकरण",
+        "teacherKeyDetails": "मुख्य विवरण",
+        "teacherCompletedCourses": "पूर्ण पाठ्यक्रम",
+        "teacherOngoingCourses": "चल रहे पाठ्यक्रम",
+        "teacherDurationSpent": "खर्च की गई अवधि (घंटे)",
+        "teacherRating": "छात्र रेटिंग"
+    },
+    "teacherNavMessages": "संदेश",
+    "teacherMessage": {
+        "teacherMessagesTitles": "चैट",
+        "teacherMessagesNTS": "दिखाने के लिए कुछ नहीं, इस स्थान को भरने के लिए चैट पर क्लिक करें!"
+    },
+    "teacherEventTimeline": "घटना समयरेखा",
+
+
+    "studentDashboard": {
+        "studentNavDashboard": "डैशबोर्ड",
+        "studentTitle": "नमस्ते",
+        "studentSubtitle": "आपके डैशबोर्ड पर वापस स्वागत है",
+        "studentTimeSpent": "समय बिताया",
+        "studentOngoingClasses": "चल रही कक्षाएं",
+        "studentViewAll": "सभी को देखें",
+        "studentGoToClass": "कक्षा में जायें",
+        "studentTopRatedClasses": "नए पाठ्यक्रम",
+        "studentSubscribeNow": "अब सदस्यता लें",
+        "studentTodaysTasks": "आज के कार्य",
+        "studentSummary": "सारांश",
+        "studentPendingAssignments": "लंबित असाइनमेंट",
+        "studentClassesToday": "कक्षाएं आज",
+        "studentSubmittedAssignmentsToday": "सबमिट किए गए असाइनमेंट आज"
+    },
+
+    "studentNavOngoingClasses": "चल रही कक्षाएं",
+
+    "studentCourseDetails": {
+        "studentCourseDetailsTitle": "आपका स्वागत है",
+        "studentGridCount": "छात्र गणना",
+        "studentGridCourseMaterial": "पाठ्यक्रम सामग्री",
+        "studentGridVideoCount": "वीडियो गणना",
+        "studentAssignments": "कार्य",
+        "studentAddNewAssignment": "नया असाइनमेंट जोड़ें",
+        "studentCourseMaterial": "पाठ्यक्रम सामग्री",
+        "studentVidyaDaan": "विद्या दान",
+        "studentLiveRecordedVideos": "लाइव रिकॉर्डेड वीडियो"
+    },
+
+    "studentUploadAssignment": {
+        "studentUploadAssignmentDeadline": "समयसीमा",
+        "studentUploadAssignmentDescription": "विवरण",
+        "studentUploadAssignmentFiles": "Files",
+        "studentUploadAssignmentButton": "असाइनमेंट अपलोड करें",
+        "studentUploadAssignmentModalTitle": "असाइनमेंट अपलोड करें",
+        "studentQueryName": "प्रश्न का नाम",
+        "studentQueryDescription": "प्रश्न विवरण",
+        "studentModalAttachFile": "फ़ाइल जोड़ें",
+        "studentUploadAssignmentModalUploadButton": "अपलोड"
+    },
+
+    "studentNavNewCourses": "नए पाठ्यक्रम",
+    "studentNewCourses": "नए पाठ्यक्रम",
+
+    "studentNavProfile": "प्रोफ़ाइल",
+    "studentProfile": {
+        "studentAbout": "आपके बारे में",
+        "studentCourses": "पाठ्यक्रम",
+        "studentReviews": "समीक्षा",
+        "studentContactNow": "अभी संपर्क करें",
+        "studentCertification": "प्रमाणीकरण",
+        "studentKeyDetails": "मुख्य विवरण",
+        "studentCompletedCourses": "पूर्ण पाठ्यक्रम",
+        "studentOngoingCourses": "चल रहे पाठ्यक्रम",
+        "studentDurationSpent": "खर्च की गई अवधि (घंटे)",
+        "studentRating": "छात्र रेटिंग"
+    },
+   
+    "studentNavMessages": "संदेश",
+    "studentMessage": {
+        "studentMessagesTitles": "चैट",
+        "studentMessagesNTS": "दिखाने के लिए कुछ नहीं, इस स्थान को भरने के लिए चैट पर क्लिक करें!"
+    },
+
+    "studentNavSettings": "समायोजन",
+    "studentSettings": {
+        "studentFirstName": "पहला नाम",
+        "studentLastName": "उपनाम",
+        "studentEmail": "ईमेल",
+        "studentPhone": "फ़ोन",
+        "studentAddress": "पता",
+        "studentCity": "शहर",
+        "studentState": "राज्य",
+        "studentUniversity": "विश्वविद्यालय",
+        "studentUploadProfilePhoto": "प्रोफाइल फोटो अपलोड करें",
+        "studentProfilePhotoUploaded": "प्रोफ़ाइल फ़ोटो अपलोड की गई",
+        "studentUpdateProfileButton": "प्रोफ़ाइल को नवीनतम बनाओ"
+    },
+
+    "studentNavCommunity" : "समुदाय",
+    "studentCommunity" : {
+        "studentCommunityTitle": "समुदाय में आपका स्वागत है!",
+        "studentUpvote" : "वोट दें",
+        "studentDownvote" : "डाउनवोट",
+        "studentCopyLink" : "प्रतिरूप जोड़ना",
+        "studentAnswer": "उत्तर",
+        "studentAnswerModalField": "उत्तर",
+        "studentAddAnswer": "उत्तर जोड़ें",
+        "studentPostAQuery" : "प्रश्न पोस्ट करें",
+        "studentQueryDescription" : "प्रश्न विवरण",
+        "teacherAttachFile" : "फ़ाइल जोड़ें",
+        "teacherPostQuery" : "पोस्ट क्वेरी"
+    },
+
+    "studentNavSchedule": "अनुसूची",
+    "studentSchedule": {
+        "studentScheduleTitle": "अनुसूची",
+        "studentScheduleTodayButton": "आज",
+        "studentScheduleWorkWeek": "कार्य सप्ताह",
+        "studentScheduleWeek": "सप्ताह",
+        "studentScheduleMonth": "महीना",
+        "studentScheduleDay": "दिन",
+        "studentScheduleFormDetails": "विवरण",
+        "studentScheduleAllDay": "पूरे दिन",
+        "studentScheduleRepeat": "दोहराना",
+        "studentScheduleMoreInformation": "अधिक जानकारी",
+        "studentScheduleNotes": "टिप्पणियाँ",
+        "studentScheduleRoom": "कमरा",
+        "studentScheduleMembers": "सदस्यों"
+    },
+
+    "studentEventTimeline": "घटना समयरेखा"
+}

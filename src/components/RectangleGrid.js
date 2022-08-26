@@ -1,18 +1,28 @@
 import { Box, Card, CardContent, CardHeader, Typography, Grid, Stack } from '@mui/material'
-import React from 'react'
+import { Trans, useTranslation } from 'react-i18next';
+import { useEffect } from 'react';
 import Iconify from './Iconify'
 
 
 function RectangleGrid({ title, subheader, count, color, icon, percent, duration }) {
+
+    const { t, i18n } = useTranslation();
+
+    const changeLanguage = (lng) => {
+        i18n.changeLanguage(lng);
+    };
+
+    useEffect(() => {
+        changeLanguage("en")
+    }, [])
+
     return (
         // <Card>
 
         <Card sx={{ p: 2 }}>
 
             <Grid container height={50}>
-                {/* <Grid item xs={1.5} sm={1.5} md={1.5} sx={{ alignItems: "center", justifyContent: "left", display: "flex" }}>
-                    <Iconify icon={icon} width={20} height={20} />
-                </Grid> */}
+
                 <Grid item xs={3} sm={3} md={3} sx={{ alignItems: "center", justifyContent: "left", display: "flex" }}>
                     <Iconify icon={icon} width={20} height={20} />
                     <Typography variant='h6' sx={{ marginLeft: "10px", opacity: "1" }}>{subheader}</Typography>
@@ -26,7 +36,11 @@ function RectangleGrid({ title, subheader, count, color, icon, percent, duration
                 </Grid>
                 <Grid item xs={1.5} sm={1.5} md={1.5} sx={{ alignItems: "center", justifyContent: "left", display: "flex" }}>
                     <Stack>
-                        <Typography variant='subtitle' sx={{ marginLeft: "10px", opacity: "1" }}>{duration} months</Typography>
+                        <Typography variant='subtitle' sx={{ marginLeft: "10px", opacity: "1" }}>{duration}
+                            <Trans i18nKey="teacherDashboard.months">
+                                months
+                            </Trans>
+                        </Typography>
                         <Box
                             sx={{ width: "50px", backgroundColor: "primary.light", height: "3px", ml: 2 }} />
                     </Stack>

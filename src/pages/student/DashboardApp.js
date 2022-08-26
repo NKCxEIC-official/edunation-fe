@@ -1,6 +1,7 @@
 /* eslint-disable */
 import { faker } from '@faker-js/faker';
 import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation, withTranslation, Trans } from 'react-i18next';
 // @mui
 import { useTheme } from '@mui/material/styles';
 import { Grid, Container, Typography, Stack, Button, Card } from '@mui/material';
@@ -29,22 +30,31 @@ const click = () => {
 
 export default function StudentDashboardApp() {
   const theme = useTheme();
-
+  const { t, i18n } = useTranslation();
   const user = useSelector((state) => state.auth.user);
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
+
+  useEffect(() => {
+    changeLanguage("en")
+  }, [])
+
   const summaryContent = [
     {
       count: user?.summary?.pendingAssignments,
-      subheader: 'Pending Assignments',
+      subheader: t('studentDashboard.studentPendingAssignments'),
       color: 'primary',
     },
     {
       count: user?.summary?.classesToday,
-      subheader: 'Classes Today',
+      subheader: t('studentDashboard.studentClassesToday'),
       color: 'error',
     },
     {
       count: user?.summary?.submittedAssignments,
-      subheader: 'Submitted Assignments Today',
+      subheader: t('studentDashboard.studentSubmittedAssignmentsToday'),
       color: 'success',
     },
   ];
@@ -59,15 +69,22 @@ export default function StudentDashboardApp() {
       <Container maxWidth="s">
         <Grid container spacing={3}>
           <Grid item lg={12}>
-            <Typography variant="h4">Hi, {user.firstName}</Typography>
+            <Typography variant="h4">
+              <Trans i18nKey="studentDashboard.studentTitle">
+                Hi
+              </Trans>, {user.firstName}</Typography>
             <Typography variant="p" sx={{ mb: 5 }}>
-              Welcome back to your dashboard
+              <Trans i18nKey="studentDashboard.studentSubtitle">
+                Welcome back to your dashboard
+              </Trans>
             </Typography>
           </Grid>
 
           <Grid item xs={12} md={6} lg={12}>
             <AppWebsiteVisits
-              title="Time Spent"
+              title={<Trans i18nKey="studentDashboard.studentTimeSpent">
+              Time Spent
+            </Trans>}
               typeOfData="Minutes"
               // subheader="(+43%) than last year"
               chartLabels={[
@@ -86,7 +103,7 @@ export default function StudentDashboardApp() {
               ]}
               chartData={[
                 {
-                  name: 'Time Spent',
+                  name: t('studentDashboard.studentTimeSpent'),
                   type: 'area',
                   fill: 'gradient',
                   data: user.timeSpent,
@@ -104,7 +121,9 @@ export default function StudentDashboardApp() {
               sx={{ mb: 3, mr: 2, mt: 2 }}
             >
               <Typography variant="h4" sx={{ mt: 2, mb: 2, pt: 2 }}>
-                Ongoing Classes :
+                <Trans i18nKey="studentDashboard.studentOngoingClasses">
+                  Ongoing Classes :
+                </Trans>
               </Typography>
               <Button
                 to="/dashboard/student/classroom"
@@ -113,7 +132,9 @@ export default function StudentDashboardApp() {
                 color="inherit"
                 endIcon={<Iconify icon={'eva:arrow-ios-forward-fill'} />}
               >
-                View all
+                <Trans i18nKey="studentDashboard.studentViewAll">
+                  View all
+                </Trans>
               </Button>
             </Stack>
 
@@ -164,9 +185,11 @@ export default function StudentDashboardApp() {
               direction="row"
               sx={{ mb: 3, mr: 2, mt: 2 }}
             >
-              <Typography variant="h4">Top Rated Classes : </Typography>
+              <Typography variant="h4"><Trans i18nKey="studentDashboard.studentTopRatedClasses">Recently Added Classes </Trans></Typography>
               <Button size="small" color="inherit" endIcon={<Iconify icon={'eva:arrow-ios-forward-fill'} />}>
-                View all
+                <Trans i18nKey="studentDashboard.studentViewAll">
+                  View all
+                </Trans>
               </Button>
             </Stack>
             <TopRated />
@@ -174,7 +197,9 @@ export default function StudentDashboardApp() {
 
           <Grid item xs={8} md={8} lg={8} xl={8} sx={{ mt: 2 }}>
             <AppTasks
-              title="Today's Tasks"
+              title={<Trans i18nKey="studentDashboard.studentTodaysTasks">
+                Today's Tasks
+              </Trans>}
               list={[
                 {
                   id: '1',
@@ -191,7 +216,9 @@ export default function StudentDashboardApp() {
           </Grid>
 
           <Grid item xs={4} md={4} lg={4} sx={{ mt: 2 }}>
-            <Summary title="Summary" summaryContent={summaryContent} />
+            <Summary title={<Trans i18nKey="studentDashboard.studentSummary">
+              Summary
+            </Trans>} summaryContent={summaryContent} />
           </Grid>
         </Grid>
       </Container>

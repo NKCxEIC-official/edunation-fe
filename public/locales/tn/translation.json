@@ -1,71 +1,288 @@
 {
-    "title":"hello",
-    "NgoDashboard":{
-    "NgoSidebarDashboard": "டாஷ்போர்டு",   
-    "NgoTitle": "வணக்கம், மீண்டும் வருக",
-    "NgoStudentCount": "மாணவர் எண்ணிக்கை",
-    "NgoTeacherCount": "ஆசிரியர் எண்ணிக்கை",
-    "NgoVolunteerCount": "தொண்டர் எண்ணிக்கை",
-    "NgoRedSpots": "சிவப்பு புள்ளிகள்",
-    "NgoAddRedSpots": "சிவப்பு புள்ளிகளைச் சேர்க்கவும்",
-    "NgoCreateTeachersProfile": "ஆசிரியர் சுயவிவரத்தை உருவாக்கவும்",
-    "NgoCreateStudentsProfile": "மாணவர்களின் சுயவிவரத்தை உருவாக்கவும்",
-    "NgoProgressReport": "வளர்ச்சி அறிக்கை",
-    "NgoTeacherStudentRatio": "ஆசிரியர் மாணவர் விகிதம்",
-    "NgoTableTeachersCount": "ஆசிரியர் எண்ணிக்கை",
-    "NgoTableStudentsCount": "மாணவர் எண்ணிக்கை"
+    "NgoDashboard": {
+        "NgoSidebarDashboard": "டாஷ்போர்டு",
+        "NgoTitle": "வணக்கம், மீண்டும் வருக",
+        "NgoStudentCount": "மாணவர் எண்ணிக்கை",
+        "NgoTeacherCount": "ஆசிரியர் எண்ணிக்கை",
+        "NgoVolunteerCount": "தொண்டர் எண்ணிக்கை",
+        "NgoRedSpots": "சிவப்பு புள்ளிகள்",
+        "NgoAddRedSpots": "சிவப்பு புள்ளிகளைச் சேர்க்கவும்",
+        "NgoCreateTeachersProfile": "ஆசிரியர் சுயவிவரத்தை உருவாக்கவும்",
+        "NgoCreateStudentsProfile": "மாணவர்களின் சுயவிவரத்தை உருவாக்கவும்",
+        "NgoProgressReport": "வளர்ச்சி அறிக்கை",
+        "NgoTeacherStudentRatio": "ஆசிரியர் மாணவர் விகிதம்",
+        "NgoTableTeachersCount": "ஆசிரியர் எண்ணிக்கை",
+        "NgoTableStudentsCount": "மாணவர் எண்ணிக்கை"
     },
-
-    "NgoTeachersList":{
-    "NgoSidebarTeachersList": "ஆசிரியர் பட்டியல்",
-    "NgoTeachers": "ஆசிரியர்கள்",
-    "NgoSearchTeachers": "ஆசிரியர்களைத் தேடுங்கள்",
-    "NgoFirstName": "முதல் பெயர்",
-    "NgoLastName": "கடைசி பெயர்",
-    "NgoAge": "வயது",
-    "NgoEmailId": "மின்னஞ்சல் முகவரி",
-    "NgoPhone": "தொலைபேசி",
-    "NgoAddress": "முகவரி",
-    "NgoCity": "நகரம்",
-    "NgoState": "நிலை",
-    "NgoOccupation": "தொழில்",
-    "NgoUniversity": "பல்கலைக்கழகம்/பள்ளி",
-    "NgoAddTeacher": "ஆசிரியரைச் சேர்க்கவும்",
-    "NgoName": "பெயர்",
-    "NgoCourses": "படிப்புகள்",
-    "NgoVerified": "சரிபார்க்கப்பட்டது",
-    "NgoStatus": "நிலை",
-    "NgoNewTeacher": "புதிய ஆசிரியர்"
+    "NgoTeachersList": {
+        "NgoSidebarTeachersList": "ஆசிரியர் பட்டியல்",
+        "NgoTeachers": "ஆசிரியர்கள்",
+        "NgoSearchTeachers": "ஆசிரியர்களைத் தேடுங்கள்",
+        "NgoFirstName": "முதல் பெயர்",
+        "NgoLastName": "கடைசி பெயர்",
+        "NgoAge": "வயது",
+        "NgoEmailId": "மின்னஞ்சல் முகவரி",
+        "NgoPhone": "தொலைபேசி",
+        "NgoAddress": "முகவரி",
+        "NgoCity": "நகரம்",
+        "NgoState": "நிலை",
+        "NgoOccupation": "தொழில்",
+        "NgoUniversity": "பல்கலைக்கழகம்/பள்ளி",
+        "NgoAddTeacher": "ஆசிரியரைச் சேர்க்கவும்",
+        "NgoName": "பெயர்",
+        "NgoCourses": "படிப்புகள்",
+        "NgoVerified": "சரிபார்க்கப்பட்டது",
+        "NgoStatus": "நிலை",
+        "NgoNewTeacher": "புதிய ஆசிரியர்"
     },
-
-    "NgoStudentsList":{
-    "NgoSidebarStudentsList": "மாணவர் பட்டியல்",
-    "NgoStudents": "மாணவர்கள்",
-    "NgoSearchStudents": "மாணவர்களைத் தேடுங்கள்",
-    "NgoRole": "பங்கு",
-    "NgoAddStudent": "மாணவரைச் சேர்க்கவும்",
-    "NgoNewStudent": "புதிய மாணவர்"
+    "NgoStudentsList": {
+        "NgoSidebarStudentsList": "மாணவர் பட்டியல்",
+        "NgoStudents": "மாணவர்கள்",
+        "NgoSearchStudents": "மாணவர்களைத் தேடுங்கள்",
+        "NgoRole": "பங்கு",
+        "NgoAddStudent": "மாணவரைச் சேர்க்கவும்",
+        "NgoNewStudent": "புதிய மாணவர்"
     },
-    
-    "NgoRedSpots":{
-    "NgoSidebarRedSpots": "சிவப்பு புள்ளிகள்",
-    "NgoPocName": "POC பெயர்",
-    "NgoPocEmail": "POC மின்னஞ்சல்",
-    "NgoCoordinates": "ஒருங்கிணைப்புகள்",
-    "NgoAddress": "முகவரி",
-    "NgoRowsPerPage": "ஒரு பக்கத்திற்கு வரிசைகள்",
-    "NgoSelectRedSpot": "சிவப்பு புள்ளியைத் தேர்ந்தெடுக்கவும்",
-    "NgoEnterRedSpotAddress": "Red Spot முகவரியை உள்ளிடவும்",
-    "NgoSelectedLocationDetails": "தேர்ந்தெடுக்கப்பட்ட இருப்பிட விவரங்கள்",
-    "NgoLatitute": "அட்சரேகை",
-    "NgoLongitude": "தீர்க்கரேகை",
-    "NgoRedSpotName": "சிவப்பு புள்ளி பெயர்",
-    "NgoButtonAddRedSpot": "சிவப்பு புள்ளியைச் சேர்க்கவும்"
-    
-    }, 
-
+    "NgoRedSpots": {
+        "NgoSidebarRedSpots": "சிவப்பு புள்ளிகள்",
+        "NgoPocName": "POC பெயர்",
+        "NgoPocEmail": "POC மின்னஞ்சல்",
+        "NgoCoordinates": "ஒருங்கிணைப்புகள்",
+        "NgoAddress": "முகவரி",
+        "NgoRowsPerPage": "ஒரு பக்கத்திற்கு வரிசைகள்",
+        "NgoSelectRedSpot": "சிவப்பு புள்ளியைத் தேர்ந்தெடுக்கவும்",
+        "NgoEnterRedSpotAddress": "Red Spot முகவரியை உள்ளிடவும்",
+        "NgoSelectedLocationDetails": "தேர்ந்தெடுக்கப்பட்ட இருப்பிட விவரங்கள்",
+        "NgoLatitute": "அட்சரேகை",
+        "NgoLongitude": "தீர்க்கரேகை",
+        "NgoRedSpotName": "சிவப்பு புள்ளி பெயர்",
+        "NgoButtonAddRedSpot": "சிவப்பு புள்ளியைச் சேர்க்கவும்"
+    },
     "NgoSidebarTitle": "மற்றவர்களுக்கு உதவுவோம்!",
     "NgoSidebarSubTitle": "ஒன்றாகக் கற்றுக்கொள்வது எப்போதும் சிறந்தது",
-    "NgoSidebarAddRedSpots": "சிவப்பு புள்ளிகளைச் சேர்க்கவும்"
+    "NgoSidebarAddRedSpots": "சிவப்பு புள்ளிகளைச் சேர்க்கவும்",
+
     
- }
+    "teacherDashboard": {
+        "teacherNavDashboard": "டாஷ்போர்டு",
+        "teacherTitle": "வணக்கம்,",
+        "teacherSubtitle": "மீண்டும் வருக -",
+        "teacherCreateAClass": "ஒரு வகுப்பை உருவாக்கவும்",
+        "teacherClassName": "ஒரு வகுப்பை உருவாக்கவும்",
+        "teacherClassDescription": "வகுப்பு விளக்கம்",
+        "teacherClassFee": "வகுப்பு கட்டணம்",
+        "teacherAmount": "INR இல் வகுப்புக் கட்டணத்தை உள்ளிடவும்",
+        "teacherDays": "நாட்களில்",
+        "monday": "திங்கட்கிழமை",
+        "tuesday": "செவ்வாய்",
+        "wednesday": "புதன்",
+        "thursday": "வியாழன்",
+        "friday": "வெள்ளி",
+        "saturday": "சனிக்கிழமை",
+        "sunday": "ஞாயிற்றுக்கிழமை",
+        "teacherCourses": "படிப்புகள்",
+        "teacherQNA": "QNA",
+        "teacherRequest": "கோரிக்கை",
+        "months": "மாதங்கள்",
+        "teacherYourCourses": "உங்கள் படிப்புகள் :",
+        "teacherCompletedCourses": "முடித்த படிப்புகள் :",
+        "teacherCourseName": "படிப்பின் பெயர்",
+        "teacherStudentCount": "மாணவர் எண்ணிக்கை",
+        "teacherPercentage": "முழுமையான சதவீதம்",
+        "teacherDuration": "கால அளவு",
+        "teacherRevenue": "வருவாய்"
+    },
+    "teacherSchedule": {
+        "teacherNavSchedule": "அட்டவணை",
+        "teacherScheduleTitle": "அட்டவணை",
+        "teacherScheduleTodayButton": "இன்று",
+        "teacherScheduleWorkWeek": "வேலை வாரம்",
+        "teacherScheduleWeek": "வாரம்",
+        "teacherScheduleMonth": "மாதம்",
+        "teacherScheduleDay": "நாள்",
+        "teacherScheduleFormDetails": "விவரங்கள்",
+        "teacherScheduleAllDay": "நாள் முழுவதும்",
+        "teacherScheduleRepeat": "மீண்டும் செய்யவும்",
+        "teacherScheduleMoreInformation": "மேலும் தகவல்",
+        "teacherScheduleNotes": "குறிப்புகள்",
+        "teacherScheduleRoom": "அறை",
+        "teacherScheduleMembers": "உறுப்பினர்கள்"
+    },
+    "teacherMessage": {
+        "teacherMessagesTitles": "அரட்டைகள்",
+        "teacherMessagesNTS": "காட்ட எதுவும் இல்லை, இந்த இடத்தை நிரப்ப அரட்டையில் கிளிக் செய்யவும்!"
+    },
+    "teacherMyCourses": {
+        "teacherNavMyCourses": "எனது படிப்புகள்",
+        "teacherteacherCount": "ஆசிரியர் எண்ணிக்கை",
+        "teacherCourseMaterial": "பாடப் பொருள்",
+        "teacherVideoCount": "வீடியோ எண்ணிக்கை",
+        "teacherAddNewAssignment": "புதிய பணியைச் சேர்க்கவும்",
+        "teacherAssignmentTitle": "தலைப்பு",
+        "teacherAssignmentDescription": "விளக்கம்",
+        "teacherAssignmentSubmissionDeadline": "சமர்ப்பிக்கும் காலக்கெடு",
+        "teacherAssignmentUploadFiles": "கோப்புகளைப் பதிவேற்றவும்",
+        "teacherAddAssignment": "பணியைச் சேர்க்கவும்",
+        "teacherVidyaDaan": "வித்யா தான்",
+        "teacherLiveRecordedVideos": "நேரடி பதிவு செய்யப்பட்ட வீடியோக்கள் :",
+        "teacherViewAll": "அனைத்தையும் காட்டு"
+    },
+    "teacherReports": {
+        "teacherteachersEnrolled": "ஆசிரியர்கள் பதிவு செய்தனர்",
+        "teacherRevenueGenerated": "வருவாய் ஈட்டப்பட்டது",
+        "teacherAssignmentSubmitted": "பணி சமர்ப்பிக்கப்பட்டது",
+        "teacherTestTaken": "சோதனை எடுக்கப்பட்டது",
+        "teacherAssignmentReport": "பணி அறிக்கை :",
+        "teacherSearchUser": "தேடல் பயனர்...",
+        "teacherTestReports": "சோதனை அறிக்கைகள் :",
+        "teacherRowsPerPage": "ஒரு பக்கத்திற்கு வரிசைகள்"
+    },
+    "teacherSettings": {
+        "teacherFirstName": "முதல் பெயர்",
+        "teacherLastName": "கடைசி பெயர்",
+        "teacherEmail": "மின்னஞ்சல்",
+        "teacherPhone": "தொலைபேசி",
+        "teacherAddress": "முகவரி",
+        "teacherCity": "நகரம்",
+        "teacherState": "நிலை",
+        "teacherUniversity": "பல்கலைக்கழகம்",
+        "teacherUploadProfilePhoto": "சுயவிவரப் புகைப்படத்தைப் பதிவேற்றவும்",
+        "teacherProfilePhotoUploaded": "சுயவிவரப் புகைப்படம் பதிவேற்றப்பட்டது",
+        "teacherUpdateProfileButton": "சுயவிவரத்தைப் புதுப்பிக்கவும்"
+    },
+    "teacherCommunity": {
+        "teacherNavCommunity": "சமூகத்திற்கு வரவேற்கிறோம்!",
+        "teacherUpvote": "ஆதரவளிக்கவும்",
+        "teacherDownvote": "நிராகரிப்பு",
+        "teacherCopyLink": "இணைப்பை நகலெடுக்கவும்"
+    },
+    "teacherProfile": {
+        "teacherAbout": "பற்றி",
+        "teacherCourses": "படிப்புகள்",
+        "teacherReviews": "விமர்சனங்கள்",
+        "teacherContactNow": "இப்போது தொடர்பு கொள்ளவும்",
+        "teacherCertification": "சான்றிதழ்",
+        "teacherKeyDetails": "முக்கிய விவரங்கள்",
+        "teacherCompletedCourses": "முடித்த படிப்புகள்",
+        "teacherOngoingCourses": "நடந்துகொண்டிருக்கும் வகுப்புகள்",
+        "teacherDurationSpent": "செலவழித்த காலம்(மணி)",
+        "teacherRating": "மாணவர் மதிப்பீடு"
+    },
+    "teacherEventTimeline": "நிகழ்வு காலவரிசை",
+    
+
+    "studentDashboard": {
+        "studentNavDashboard": "டாஷ்போர்டு",
+        "studentTitle": "வணக்கம்",
+        "studentSubtitle": "உங்கள் டாஷ்போர்டுக்கு மீண்டும் வரவேற்கிறோம்",
+        "studentTimeSpent": "செலவிட்ட நேரம்",
+        "studentOngoingClasses": "நடந்துகொண்டிருக்கும் வகுப்புகள்",
+        "studentViewAll": "அனைத்தையும் காட்டு",
+        "studentGoToClass": "வகுப்பிற்கு செல்",
+        "studentTopRatedClasses": "சமீபத்தில் சேர்க்கப்பட்ட வகுப்புகள்",
+        "studentSubscribeNow": "இப்போது குழுசேரவும்",
+        "studentTodaysTasks": "இன்றைய பணிகள்",
+        "studentSummary": "சுருக்கம்",
+        "studentPendingAssignments": "நிலுவையில் உள்ள பணிகள்",
+        "studentClassesToday": "இன்று வகுப்புகள்",
+        "studentSubmittedAssignmentsToday": "இன்று பணிகள் சமர்ப்பிக்கப்பட்டன"
+    },
+
+    "studentNavOngoingClasses": "நடந்துகொண்டிருக்கும் வகுப்புகள்",
+
+    "studentCourseDetails": {
+        "studentCourseDetailsTitle": "வரவேற்கிறோம்",
+        "studentGridCount": "மாணவர் எண்ணிக்கை",
+        "studentGridCourseMaterial": "பாடப் பொருள்",
+        "studentGridVideoCount": "வீடியோ எண்ணிக்கை",
+        "studentAssignments": "பணிகள்",
+        "studentAddNewAssignment": "புதிய வேலையைச் சேர்க்கவும்",
+        "studentCourseMaterial": "பாடப் பொருள்",
+        "studentVidyaDaan": "வித்யா தான்",
+        "studentLiveRecordedVideos": "நேரலையில் பதிவு செய்யப்பட்ட வீடியோக்கள்"
+    },
+
+    "studentUploadAssignment": {
+        "studentUploadAssignmentDeadline": "காலக்கெடுவை",
+        "studentUploadAssignmentDescription": "விளக்கம்",
+        "studentUploadAssignmentFiles": "கோப்புகள்",
+        "studentUploadAssignmentButton": "பணியைப் பதிவேற்றவும்",
+        "studentUploadAssignmentModalTitle": "பணியைப் பதிவேற்றவும்",
+        "studentQueryName": "கேள்வி பெயர்",
+        "studentQueryDescription": "கேள்வி விளக்கம்",
+        "studentModalAttachFile": "கோப்பினை இணைக்கவும்",
+        "studentUploadAssignmentModalUploadButton": "பதிவேற்றவும்"
+    },
+
+    "studentNavNewCourses": "புதிய படிப்புகள்",
+    "studentNewCourses": "புதிய படிப்புகள்",
+
+    "studentNavProfile": "சுயவிவரம்",
+    "studentProfile": {
+        "studentAbout": "பற்றி",
+        "studentCourses": "படிப்புகள்",
+        "studentReviews": "விமர்சனங்கள்",
+        "studentContactNow": "இப்போது தொடர்பு கொள்ளவும்",
+        "studentCertification": "சான்றிதழ்",
+        "studentKeyDetails": "முக்கிய விவரங்கள்",
+        "studentCompletedCourses": "முடித்த படிப்புகள்",
+        "studentOngoingCourses": "நடந்துகொண்டிருக்கும் வகுப்புகள்",
+        "studentDurationSpent": "செலவழித்த காலம்(மணி)",
+        "studentRating": "மாணவர் மதிப்பீடு"
+    },
+   
+    "studentNavMessages": "செய்திகள்",
+    "studentMessage": {
+        "studentMessagesTitles": "அரட்டைகள்",
+        "studentMessagesNTS": "காட்ட எதுவும் இல்லை, இந்த இடத்தை நிரப்ப அரட்டையில் கிளிக் செய்யவும்!"
+    },
+
+    "studentNavSettings": "அமைப்புகள்",
+    "studentSettings": {
+        "studentFirstName": "முதல் பெயர்",
+        "studentLastName": "கடைசி பெயர்",
+        "studentEmail": "மின்னஞ்சல்",
+        "studentPhone": "தொலைபேசி",
+        "studentAddress": "முகவரி",
+        "studentCity": "நகரம்",
+        "studentState": "நிலை",
+        "studentUniversity": "பல்கலைக்கழகம்",
+        "studentUploadProfilePhoto": "சுயவிவரப் புகைப்படத்தைப் பதிவேற்றவும்",
+        "studentProfilePhotoUploaded": "சுயவிவரப் புகைப்படம் பதிவேற்றப்பட்டது",
+        "studentUpdateProfileButton": "சுயவிவரத்தைப் புதுப்பிக்கவும்"
+    },
+
+    "studentNavCommunity" : "சமூக",
+    "studentCommunity" : {
+        "studentCommunityTitle": "சமூகத்திற்கு வரவேற்கிறோம்!",
+        "studentUpvote" : "ஆதரவளிக்கவும்",
+        "studentDownvote" : "நிராகரிப்பு",
+        "studentCopyLink" : "இணைப்பை நகலெடுக்கவும்",
+        "studentAnswer": "பதில்",
+        "studentAnswerModalField": "பதில்",
+        "studentAddAnswer": "பதிலைச் சேர்க்கவும்",
+        "studentPostAQuery" : "வினவலை இடுகையிடவும்",
+        "studentQueryDescription" : "கேள்வி விளக்கம்",
+        "teacherAttachFile" : "கோப்பினை இணைக்கவும்",
+        "teacherPostQuery" : "இடுகை வினவல்"
+    },
+
+    "studentNavSchedule": "அட்டவணை",
+    "studentSchedule": {
+        "studentScheduleTitle": "அட்டவணை",
+        "studentScheduleTodayButton": "இன்று",
+        "studentScheduleWorkWeek": "வேலை வாரம்",
+        "studentScheduleWeek": "வாரம்",
+        "studentScheduleMonth": "மாதம்",
+        "studentScheduleDay": "நாள்",
+        "studentScheduleFormDetails": "விவரங்கள்",
+        "studentScheduleAllDay": "நாள் முழுவதும்",
+        "studentScheduleRepeat": "மீண்டும் செய்யவும்",
+        "studentScheduleMoreInformation": "மேலும் தகவல்",
+        "studentScheduleNotes": "குறிப்புகள்",
+        "studentScheduleRoom": "அறை",
+        "studentScheduleMembers": "உறுப்பினர்கள்"
+    },
+
+    "studentEventTimeline": "நிகழ்வு காலவரிசை"
+}

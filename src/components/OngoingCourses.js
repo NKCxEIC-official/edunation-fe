@@ -1,11 +1,22 @@
 import { Link as RouterLink } from 'react-router-dom';
+import { useTranslation, withTranslation, Trans } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { Box, Button, Card, CardContent, CardHeader, Grid, Stack, Typography } from '@mui/material';
-import React from 'react';
+import React, { useEffect } from 'react';
 import Iconify from './Iconify';
 
 function OngoingCourses({ title, subheader, icon, avatar, points, classKey }) {
+  const { t, i18n } = useTranslation();
   const user = useSelector(state => state.auth.user)
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
+
+  useEffect(()=>{
+    changeLanguage("en")
+  },[])
+
   return (
     <Card sx={{ px: 2 }}>
       <Grid container>
@@ -51,7 +62,9 @@ function OngoingCourses({ title, subheader, icon, avatar, points, classKey }) {
           size="large"
           color="primary"
         >
-          Go to Class
+          <Trans i18nKey="studentDashboard.studentGoToClass">
+            Go to Class
+          </Trans>
         </Button>
       </Grid>
     </Card>

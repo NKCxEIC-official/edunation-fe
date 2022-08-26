@@ -1,11 +1,12 @@
 import PropTypes from 'prop-types';
+import { useTranslation, withTranslation, Trans } from 'react-i18next';
 import { Link as RouterLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import useRazorpay from 'react-razorpay';
 
 // material
 import { alpha, styled } from '@mui/material/styles';
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 
 import { Box, Link, Card, Grid, Avatar, Typography, CardContent, Button } from '@mui/material';
 // utils
@@ -82,6 +83,16 @@ export default function CourseCard({ post, index, classKey }) {
     { number: rating, icon: 'ant-design:star-twotone' },
   ];
 
+  const { t, i18n } = useTranslation();
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
+
+  useEffect(() => {
+    changeLanguage("en")
+  }, [])
+  
   const user = useSelector((state) => state.auth.user);
 
   const Razorpay = useRazorpay();
@@ -228,7 +239,9 @@ export default function CourseCard({ post, index, classKey }) {
 
           {post.creator.uid !== user.uid && (
             <Button sx={{ mt: 2 }} onClick={handlePayment}>
+              <Trans i18nKey="studentDashboard.studentSubscribeNow">
               Subscribe Now
+              </Trans>
             </Button>
           )}
         </CardContent>

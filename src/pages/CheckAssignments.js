@@ -113,7 +113,7 @@ export default function CheckAssignments() {
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelecteds = USERLIST.map((n) => n.name);
+      const newSelecteds = USERLIST?.map((n) => n.name);
       setSelected(newSelecteds);
       return;
     }
@@ -179,7 +179,7 @@ export default function CheckAssignments() {
                   onSelectAllClick={handleSelectAllClick}
                 />
                 <TableBody>
-                  {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
+                  {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)?.map((row) => {
                     const { id, name, assignments, check, avatarUrl } = row;
                     const isItemSelected = selected.indexOf(name) !== -1;
 

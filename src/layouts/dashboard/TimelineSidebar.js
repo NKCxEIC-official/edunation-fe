@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
+import { useTranslation, withTranslation, Trans } from 'react-i18next';
 // material
 import { styled } from '@mui/material/styles';
 import { Drawer, Grid, Stack } from '@mui/material';
@@ -42,6 +43,15 @@ export default function TimelineSidebar({ isOpenSidebar, onCloseSidebar }) {
 
   const isDesktop = useResponsive('up', 'lg');
 
+  const { t, i18n } = useTranslation();
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
+
+  useEffect(() => {
+    changeLanguage("en")
+  }, [])
+
   useEffect(() => {
     if (isOpenSidebar) {
       onCloseSidebar();
@@ -55,7 +65,9 @@ export default function TimelineSidebar({ isOpenSidebar, onCloseSidebar }) {
         <Stack spacing={3}>
           <DatePicker onChange={onChange} style={{ marginLeft: isDesktop ? '10px' : ' 10px' }} />
           <AppOrderTimeline
-            title="Event Timeline"
+            title={<Trans i18nKey="studentDashboard.studentEventTimeline">
+              Event Timeline
+          </Trans>}
             list={events}
             style={{ marginRight: isDesktop ? '12px' : '10px', marginLeft: '10px', marginBottom: '20px' }}
           />

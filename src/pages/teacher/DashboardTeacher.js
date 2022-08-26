@@ -32,6 +32,8 @@ import RectangleGrid from '../../components/RectangleGrid';
 import { BlogPostCard, BlogPostsSort, BlogPostsSearch } from '../../sections/@dashboard/blog';
 // mock
 import { posts } from '../../_mock/blog';
+import { Trans, useTranslation } from 'react-i18next';
+import { useEffect } from 'react';
 
 
 
@@ -42,6 +44,16 @@ export default function DashboardTeacher() {
 
   const user = useSelector(state => state.auth.user)
 
+  const { t, i18n } = useTranslation();
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
+
+  useEffect(() => {
+    changeLanguage("en")
+  }, [])
+
   return (
     <Page title="Teacher">
       <Container maxWidth="xl">
@@ -50,20 +62,30 @@ export default function DashboardTeacher() {
 
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Grid item lg={12}>
-            <Typography variant="h4">Hi, {user.firstName}</Typography>
+            <Typography variant="h4">
+              <Trans i18nKey="teacherDashboard.teacherTitle">
+                Hi,
+              </Trans>
+              {user.firstName}</Typography>
             <Typography variant="p" sx={{ mb: 5 }}>
-              Welcome Back -
+              <Trans i18nKey="teacherDashboard.teacherSubtitle">
+                Welcome Back -
+              </Trans>
             </Typography>
           </Grid>
 
-          <CustomModal btnText={'Create a Class'} sx={{ mb: 4 }} component={<CreateAClass />} icon="eva:plus-fill" />
+          <CustomModal btnText={<Trans i18nKey="teacherDashboard.teacherCreateAClass">
+            Create a Class
+          </Trans>} sx={{ mb: 4 }} component={<CreateAClass />} icon="eva:plus-fill" />
         </Stack>
 
 
         <Grid container spacing={3} style={{ textDecoration: 'none' }}>
 
           <Grid item xs={12} sm={12} md={6} lg={4} >
-            <CourseGrid title="Courses in Progress" color="primary" align="center" subheader="Courses" icon="logos:discourse-icon" count={user.courseInProgressTeacher} />
+            <CourseGrid title="Courses in Progress" color="primary" align="center" subheader={<Trans i18nKey="teacherDashboard.teacherCourses">
+              Courses
+            </Trans>} icon="logos:discourse-icon" count={user.courseInProgressTeacher} />
           </Grid>
 
           <Grid item xs={12} sm={12} md={6} lg={4} >
@@ -71,7 +93,9 @@ export default function DashboardTeacher() {
           </Grid>
 
           <Grid item xs={12} sm={12} md={6} lg={4} >
-            <CourseGrid title="Request" subheader="Request" count={user.request} icon="carbon:request-quote" />
+            <CourseGrid title="Request" subheader={<Trans i18nKey="teacherDashboard.teacherRequest">
+              Request
+            </Trans>} count={user.request} icon="carbon:request-quote" />
           </Grid>
 
         </Grid>
@@ -79,23 +103,43 @@ export default function DashboardTeacher() {
         <Stack spacing={2}>
 
           {/* //Courses You are Taking// */}
-          <Typography variant='h4' paddingTop={5}>Your Courses</Typography>
+          <Typography variant='h4' paddingTop={5}>
+            <Trans i18nKey="teacherDashboard.teacherYourCourses">
+              Your Courses
+            </Trans>
+          </Typography>
 
           <Grid container height={30} paddingLeft={2} sx={{ backgroundColor: '#ABB8C3', marginLeft: "10px", opacity: "1" }}>
             <Grid item xs={3} sm={3} md={3} sx={{ alignItems: "center", justifyContent: "left", display: "flex" }}>
-              <Typography variant='h6'>Course Name</Typography>
+              <Typography variant='h6'>
+                <Trans i18nKey="teacherDashboard.teacherCourseName">
+                  Course Name
+                </Trans>
+              </Typography>
             </Grid>
 
             <Grid item xs={3} sm={3} md={3} sx={{ alignItems: "center", justifyContent: "left", display: "flex" }}>
-              <Typography variant='h6'>Student count</Typography>
+              <Typography variant='h6'>
+                <Trans i18nKey="teacherDashboard.teacherStudentCount">
+                  Student Count
+                </Trans>
+              </Typography>
             </Grid>
 
             <Grid item xs={3} sm={3} md={3} sx={{ alignItems: "center", justifyContent: "left", display: "flex" }}>
-              <Typography variant='h6'>Complete Percentage</Typography>
+              <Typography variant='h6'>
+                <Trans i18nKey="teacherDashboard.teacherPercentage">
+                  Completed Percentage
+                </Trans>
+              </Typography>
             </Grid>
 
             <Grid item xs={3} sm={3} md={3} sx={{ alignItems: "center", justifyContent: "left", display: "flex" }}>
-              <Typography variant='h6'>Duration</Typography>
+              <Typography variant='h6'>
+                <Trans i18nKey="teacherDashboard.teacherDuration">
+                  Duration
+                </Trans>
+              </Typography>
             </Grid>
           </Grid>
 
@@ -115,27 +159,47 @@ export default function DashboardTeacher() {
         </Stack>
 
         <Stack spacing={2}>
-          <Typography variant='h4' paddingTop={5}>Completed Courses</Typography>
+          <Typography variant='h4' paddingTop={5}>
+            <Trans i18nKey="teacherDashboard.teacherCompletedCourses">
+              Completed Courses
+            </Trans>
+          </Typography>
 
           <Grid container height={30} paddingLeft={2} sx={{ backgroundColor: '#ABB8C3', marginLeft: "10px", opacity: "1" }}>
             <Grid item xs={3} sm={3} md={3} sx={{ alignItems: "center", justifyContent: "left", display: "flex" }}>
-              <Typography variant='h6'>Course Name</Typography>
+              <Typography variant='h6'>
+                <Trans i18nKey="teacherDashboard.teacherCourseName">
+                  Course Name
+                </Trans>
+              </Typography>
             </Grid>
 
             <Grid item xs={3} sm={3} md={3} sx={{ alignItems: "center", justifyContent: "left", display: "flex" }}>
-              <Typography variant='h6'>Student count</Typography>
+              <Typography variant='h6'>
+                <Trans i18nKey="teacherDashboard.teacherStudentCount">
+                  Student Count
+                </Trans>
+              </Typography>
             </Grid>
 
             <Grid item xs={3} sm={3} md={3} sx={{ alignItems: "center", justifyContent: "left", display: "flex" }}>
-              <Typography variant='h6'>Complete Percentage</Typography>
+              <Typography variant='h6'>
+                <Trans i18nKey="teacherDashboard.teacherPercentage">
+                  Completed Percentage
+                </Trans>
+              </Typography>
             </Grid>
 
             <Grid item xs={3} sm={3} md={3} sx={{ alignItems: "center", justifyContent: "left", display: "flex" }}>
-              <Typography variant='h6'>Duration</Typography>
+              <Typography variant='h6'>
+                <Trans i18nKey="teacherDashboard.teacherDuration">
+                  Duration
+                </Trans>
+              </Typography>
             </Grid>
           </Grid>
 
-        
+
           {user?.myCourses && user?.myCourses.length > 0 && user.myCourses.filter(course => course.percentage === 100).map((course) =>
           (
             <Grid item xs={12} sm={12} md={12}>
@@ -144,24 +208,12 @@ export default function DashboardTeacher() {
           )
           )}
 
-
-
-          <Grid item xs={12} sm={12} md={12}>
-            <RectangleGrid title="JavaScript" duration="5" percent="100" color="primary" alighn="center" subheader="JavaScript" icon="logos:discourse-icon" count="18" />
-          </Grid>
-
-          <Grid item xs={12} sm={12} md={12} >
-            <RectangleGrid title="Flutter" percent="100" duration="7" count="20" color="green" subheader="Flutter" icon="emojione:exclamation-question-mark" />
-          </Grid>
-
-          <Grid item xs={12} sm={12} md={12} >
-            <RectangleGrid title="Physics" percent="100" duration="7" count="34" subheader="Physics" icon="carbon:request-quote" />
-          </Grid>
-
         </Stack>
         <Grid item xs={12} md={6} lg={8} paddingTop={3}>
           <AppWebsiteVisits
-            title="Revenue"
+            title={<Trans i18nKey="teacherDashboard.teacherRevenue">
+              Revenue
+            </Trans>}
             subheader="(+43%) than last year"
             chartLabels={[
               '01/01/2020',
