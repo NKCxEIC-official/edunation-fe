@@ -96,7 +96,7 @@ export default function TeacherReport({ studentCount }) {
   };
 
   useEffect(() => {
-    changeLanguage("en")
+    changeLanguage("bn")
   }, [])
 
   return (

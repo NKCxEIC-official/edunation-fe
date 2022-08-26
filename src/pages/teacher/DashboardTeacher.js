@@ -51,7 +51,7 @@ export default function DashboardTeacher() {
   };
 
   useEffect(() => {
-    changeLanguage("en")
+    changeLanguage("bn")
   }, [])
 
   return (

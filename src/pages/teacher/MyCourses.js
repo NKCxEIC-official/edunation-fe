@@ -12,7 +12,7 @@ function MyCourses() {
   };
 
   useEffect(() => {
-    changeLanguage("en")
+    changeLanguage("bn")
   }, [])
 
   return (

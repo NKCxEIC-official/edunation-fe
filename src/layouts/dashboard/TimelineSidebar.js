@@ -49,7 +49,7 @@ export default function TimelineSidebar({ isOpenSidebar, onCloseSidebar }) {
   };
 
   useEffect(() => {
-    changeLanguage("en")
+    changeLanguage("bn")
   }, [])
 
   useEffect(() => {

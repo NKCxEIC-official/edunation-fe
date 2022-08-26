@@ -14,7 +14,7 @@ function OngoingCourses({ title, subheader, icon, avatar, points, classKey }) {
   };
 
   useEffect(()=>{
-    changeLanguage("en")
+    changeLanguage("bn")
   },[])
 
   return (

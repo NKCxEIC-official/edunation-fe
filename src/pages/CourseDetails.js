@@ -44,7 +44,7 @@ export default function CourseDetails() {
   };
 
   useEffect(() => {
-    changeLanguage("en")
+    changeLanguage("bn")
   }, [])
 
   const [courseDetails, setCourseDetails] = useState({});

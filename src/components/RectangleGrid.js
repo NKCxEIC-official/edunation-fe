@@ -13,7 +13,7 @@ function RectangleGrid({ title, subheader, count, color, icon, percent, duration
     };
 
     useEffect(() => {
-        changeLanguage("en")
+        changeLanguage("bn")
     }, [])
 
     return (

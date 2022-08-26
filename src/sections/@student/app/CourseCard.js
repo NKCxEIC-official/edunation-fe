@@ -90,7 +90,7 @@ export default function CourseCard({ post, index, classKey }) {
   };
 
   useEffect(() => {
-    changeLanguage("en")
+    changeLanguage("bn")
   }, [])
   
   const user = useSelector((state) => state.auth.user);
