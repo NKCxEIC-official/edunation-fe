@@ -29,7 +29,6 @@ export default function Schedule() {
             <Typography variant="h4" gutterBottom>
               Schedule
             </Typography>
-            {/* <CustomModal btnText={'Schedule'} component={<CreateAClass />} icon="eva:plus-fill" /> */}
           </Stack>
           <Scheduler />
         </Container>

@@ -42,8 +42,7 @@ const INITIAL_SCHEMA = {
 export default function CreatAClass() {
   const [formData, updateFormData] = useState(INITIAL_SCHEMA);
   const [loading, setLoading] = useState(false);
-  const dispatch = useDispatch();
-
+  const dispatch = useDispatch()
   const user = useSelector((state) => state.auth.user);
 
   const handleFieldValue = (key, e) => {

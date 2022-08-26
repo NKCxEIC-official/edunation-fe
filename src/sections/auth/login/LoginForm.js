@@ -59,6 +59,7 @@ export default function LoginForm() {
       else if (user.role === 2 )
       navigate('/dashboard/super/app', { replace: true });
       else if (user.role === 0) navigate('/dashboard/ngo/app', { replace: true });
+      else if (user.role === 3) navigate('/dashboard/red-spot/app', { replace: true });
     }
   }, [user]);
 
