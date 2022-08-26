@@ -1,8 +1,21 @@
 import { Card, Grid, Stack, Typography } from '@mui/material';
 import React from 'react';
+import { useSelector } from 'react-redux';
 import ExamScreen from '../sections/@exam/ExamScreen';
 
-function ExamDashboard() {
+function ExamDashboard(props) {
+  const { user, data } = useSelector((state) => {
+    return {
+      user: state.auth.user,
+      data: state.auth.data
+    }
+  })
+  const { exams } = data;
+
+  const EXAM_OBJECT = {
+    duration: 40 * 60 * 1000
+  }
+
   return (
     <Grid container sx={{ p: 5}}>
       <Grid item xs={12}>

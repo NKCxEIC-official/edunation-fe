@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { Button, Grid, Typography } from '@mui/material';
+import { Avatar, Button, Grid, Typography } from '@mui/material';
 import { onValue, ref, update } from 'firebase/database';
 import { arrayUnion, doc, updateDoc } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
@@ -138,13 +138,7 @@ const ShowChat = ({ selectedContact, messages = [] }) => {
     <div className="chatApp_chatsSection_chat">
       <div className="chatApp_chatsSection_chat_contactDetails">
         <span>
-          <img
-            src={
-              selectedContact?.dp
-                ? selectedContact.dp
-                : 'https://thumbs.dreamstime.com/b/vector-illustration-avatar-dummy-logo-collection-image-icon-stock-isolated-object-set-symbol-web-137160339.jpg'
-            }
-          />
+          <Avatar sx={{ marginRight: '10px' }} src={selectedContact?.dp} />
         </span>
         <span>
           <Typography variant={'subtitle2'}>{`${selectedContact.firstName} ${selectedContact.lastName}`}</Typography>

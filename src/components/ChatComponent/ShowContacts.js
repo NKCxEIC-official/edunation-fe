@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { Typography } from '@mui/material';
+import { Avatar, Typography } from '@mui/material';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import NoContacts from './NoContacts';
@@ -18,7 +18,7 @@ const ShowContacts = ({ contacts = [], selectContact, activeContact }) => {
           onClick={() => (activeContact?.uid === contact?.uid ? selectContact(null) : selectContact(contact))}
         >
           <span>
-            <img src={CONTACT_IMAGE} />
+            <Avatar sx={{ marginRight: '10px' }} src={contact?.dp} />
           </span>
           <span>
             <Typography variant="subtitle2">{`${contact.firstName} ${contact.lastName}`}</Typography>

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import ShowQuestion from '../../components/ShowQuestion';
 import QuestionLedger from '../../components/QuestionLedger';
 
-function ExamScreen() {
+function ExamScreen(props) {
   const [questions, setQuestions] = useState([
     {
       questionTitle: 'What is len() in python ?',
@@ -126,6 +126,7 @@ function ExamScreen() {
       ],
     },
   ]);
+  console.log(props)
 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [visitedQuestions, setVisitedQuestions] = useState(new Array(questions.length).fill(false));

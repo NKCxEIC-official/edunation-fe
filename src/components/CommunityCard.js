@@ -1,11 +1,13 @@
 import { Box, Button, Card, CardContent, CardMedia, Grid, Stack, Typography } from '@mui/material';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import Tooltip from '@mui/material/Tooltip';
 import { communityDownvote, communityUpvote } from '../services/AuthService';
 import AnswerCommunity from './AnswerCommunity';
 import CustomModal from './CustomModal';
 import { getDatafromDBAction } from '../store/actions/AuthActions';
 import Iconify from './Iconify';
+import VerifiedBadge from './SVGIcons/VerifiedBadge';
 
 function CommunityCard({ community, key, id }) {
   const {
@@ -38,7 +40,7 @@ function CommunityCard({ community, key, id }) {
   return (
     <Card id={id} className="communityCard" lg={12} xl={12} sx={{ mt: 3 }}>
       <CardContent className="communityCard_cardContent">
-        <Box className="communityCard_profile" sx={{ backgroundColor: 'danger.lighter' }}>
+        <Box className="communityCard_profile" sx={{ backgroundColor: 'danger.lighter', alignItems: 'center' }}>
           <div className="communityCard_profilePicture">
             <img
               width="100%"
@@ -48,8 +50,13 @@ function CommunityCard({ community, key, id }) {
             />
           </div>
           <div className="communityCard_profileDetails">
-            <Typography variant="h6">
-              {firstName} {lastName}
+            <Typography variant="h6" sx={{ display: 'flex', alignItems: 'center' }}>
+              {firstName} {lastName}{' '}
+              {isTeacher && (
+                <Tooltip title="This badge signifies certified, and evaluated experts" disableFocusListener>
+                  <VerifiedBadge className="verifiedBadge" />
+                </Tooltip>
+              )}
             </Typography>
             <Typography variant="subtitle2">{isTeacher ? 'Teacher' : 'Student'}</Typography>
           </div>
@@ -72,8 +79,24 @@ function CommunityCard({ community, key, id }) {
         {answers && answers.length > 0 && (
           <Box sx={{ borderTop: '1px dashed #A4A8AC', pt: 2, opacity: 0.7, pl: 2 }}>
             {answers.map((answer) => (
-              <h4>
-                {answer.answer} ~ <span style={{ fontWeight: '300', fontSize: '12px' }}>{answer.name}</span>
+              <h4 style={{ display: 'flex', alignItems: 'center', fontSize: '18px', marginBottom: '5px' }}>
+                {answer.answer}{' '}
+                <span
+                  style={{
+                    fontWeight: '300',
+                    fontSize: '12px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    marginLeft: '5px ',
+                  }}
+                >
+                  ~ {answer.name}{' '}
+                  {answer?.isTeacher && (
+                    <Tooltip title="This badge signifies certified, and evaluated experts">
+                      <VerifiedBadge className="verifiedBadge" />
+                    </Tooltip>
+                  )}
+                </span>
               </h4>
             ))}
           </Box>

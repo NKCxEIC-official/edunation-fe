@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
-import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
 // material
 import { styled } from '@mui/material/styles';
@@ -12,7 +13,7 @@ import { AppOrderTimeline } from '../../sections/@dashboard/app';
 import useResponsive from '../../hooks/useResponsive';
 // components
 import Scrollbar from '../../components/Scrollbar';
-import { events } from '../../_mock/event';
+import { getDatafromDBAction } from '../../store/actions/AuthActions';
 
 // ----------------------------------------------------------------------
 
@@ -26,10 +27,6 @@ const RootStyle = styled('div')(({ theme }) => ({
     zIndex: 1,
   },
 }));
-
-const onChange = (date) => {
-  console.log(date.toString());
-};
 // ----------------------------------------------------------------------
 
 TimelineSidebar.propTypes = {
@@ -39,6 +36,35 @@ TimelineSidebar.propTypes = {
 
 export default function TimelineSidebar({ isOpenSidebar, onCloseSidebar }) {
   const { pathname } = useLocation();
+  const [selectedDate, updateSelectedDate] = useState(null);
+  const [eventsArr, setEventsArr] = useState([]);
+  const dispatch = useDispatch();
+  const { user, data } = useSelector((state) => {
+    return {
+      user: state.auth.user,
+      data: state.auth.data
+    }
+  });
+
+  const { events } = data;
+
+  const onChange = (date) => {
+    const optedDate = new Date(date).toUTCString();
+    updateSelectedDate(optedDate);
+  };
+
+  useEffect(() => {
+    dispatch(getDatafromDBAction('events', true, 'events'));
+  }, [])
+
+  useEffect(() => {
+    const eventsLocalArr = [];
+    Object.keys(events || {}).forEach((eventId) => {
+      eventsLocalArr.push(events[eventId]);
+    });
+    console.log(eventsLocalArr, events)
+    setEventsArr(eventsLocalArr);
+  }, [events])
 
   const isDesktop = useResponsive('up', 'lg');
 
@@ -56,8 +82,9 @@ export default function TimelineSidebar({ isOpenSidebar, onCloseSidebar }) {
           <DatePicker onChange={onChange} style={{ marginLeft: isDesktop ? '10px' : ' 10px' }} />
           <AppOrderTimeline
             title="Event Timeline"
-            list={events}
+            list={eventsArr}
             style={{ marginRight: isDesktop ? '12px' : '10px', marginLeft: '10px', marginBottom: '20px' }}
+            date={selectedDate}
           />
         </Stack>
       </Grid>

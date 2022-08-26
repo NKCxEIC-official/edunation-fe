@@ -1,23 +1,44 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Typography, Card, CardContent, Grid, TextField, Button, useFormControl, Stack } from '@mui/material';
 import { Form } from 'react-bootstrap';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { getDatafromDBAction } from '../store/actions/AuthActions';
 
 export default function ExamEnrollmentModal() {
   const [age, setAge] = React.useState('');
   const [newTopic, setNewTopic] = React.useState(false);
+  const [topicList, setTopicList] = useState([]);
   const dispatch = useDispatch();
+  const { user, data } = useSelector((state) => {
+    return {
+      user: state.auth.user,
+      data: state.auth.data
+    }
+  });
+  const { classes } = data;
 
-  const getTopicList = () => {
-    dispatch(getTopicList());
-  };
+  useEffect(() => {
+    dispatch(getDatafromDBAction('classes', true, 'classes'));
+  }, [])
+
+  useEffect(() => {
+    if ( classes ) {
+      const localTopicList = []
+      Object.keys(classes || {}).forEach((classId) => {
+        if('subject' in classes[classId]) {
+          localTopicList.push(classes[classId].subject);
+        }
+      })
+      setTopicList(localTopicList);
+    }
+  }, [classes])
+  
   const handleChange = (event) => {
     if (event.target.value === 'add') {
-      console.log('+ clicked');
       setNewTopic(true);
     }
     else{
@@ -42,9 +63,9 @@ export default function ExamEnrollmentModal() {
               value={age}
               onChange={handleChange}
             >
-              <MenuItem value={10}>Physics</MenuItem>
-              <MenuItem value={20}>React.js</MenuItem>
-              <MenuItem value={30}>Math</MenuItem>
+              {topicList.map((topic) => {
+                return <MenuItem value={topic}>{topic}</MenuItem>;
+              })}
               <MenuItem value="add">
                 <em>+ Apply New</em>
               </MenuItem>
@@ -73,7 +94,7 @@ export default function ExamEnrollmentModal() {
           ) : null}
 
           <Button type="submit" variant="contained" color="primary" fullWidth>
-            Submit Enrolement
+            Submit Enrollment
           </Button>
         </Stack>
       </Form>

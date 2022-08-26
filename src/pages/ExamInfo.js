@@ -14,15 +14,15 @@ function ExamInfo() {
     <Grid container sx={{ p: 5}}>
       <Grid item xs={12}>
         <Card sx={{ p: 3 }}>
-          <Typography variant="h4">Upcomming Screening Exam</Typography>
+          <Typography variant="h4" sx={{ ml: 1, mb: 3 }}>Upcoming Screening Exam</Typography>
         <Container disableGutters="false" maxWidth='lg' >
-          <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
+          <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ mb: 2, ml: 1, mt: 2 }}>
             <Typography variant="h5" gutterBottom>
               Exam Schedule
             </Typography>
             <CustomModal btnText={'Schedule'} component={<ExamEnrollmentModal />} icon="eva:plus-fill" />
           </Stack>
-          <ExamListItem/>
+          <ExamListItem />
         </Container>
         </Card>
       </Grid>
