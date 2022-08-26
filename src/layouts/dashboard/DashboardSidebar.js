@@ -6,7 +6,7 @@ import { Link as RouterLink, useLocation, useNavigate } from 'react-router-dom';
 
 // material
 import { styled } from '@mui/material/styles';
-import { Box, Link, Button, Drawer, Typography, Avatar, Stack } from '@mui/material';
+import { Box, Link, Button, Drawer, Typography, Avatar, Stack, Tooltip } from '@mui/material';
 // mock
 import account from '../../_mock/account';
 // hooks
@@ -18,6 +18,7 @@ import NavSection from '../../components/NavSection';
 //
 import { RedSpotNavConfig, NGONavConfig, StudentNavConfig, TeacherNavConfig } from './NavConfig';
 import { useSelector } from 'react-redux';
+import VerifiedBadge from '../../components/SVGIcons/VerifiedBadge';
 
 // ----------------------------------------------------------------------
 
@@ -155,8 +156,12 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
           <AccountStyle>
             <Avatar src={user.dp} alt="photoURL" />
             <Box sx={{ ml: 2 }}>
-              <Typography variant="subtitle2" sx={{ color: 'text.primary' }}>
-                {`${user.firstName} ${user.lastName}`}
+              <Typography variant="subtitle2" sx={{ color: 'text.primary', display: 'flex', alignItems: 'center' }}>
+                {`${user.firstName} ${user.lastName}`} {user?.isTeacher && (
+                    <Tooltip title="This badge signifies certified, and evaluated experts" disableFocusListener>
+                      <VerifiedBadge className="verifiedBadge" />
+                    </Tooltip>
+                  )}
               </Typography>
               <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                 {getRole()}

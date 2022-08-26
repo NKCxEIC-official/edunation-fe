@@ -40,6 +40,11 @@ import AcceptApproval from './pages/superAdmin/AcceptApproval';
 
 import NewCourses from './pages/student/NewCourses';
 import OngoingClasses from './pages/student/OngoingClasses';
+import ExamDashboard from './pages/ExamDashboard';
+import ExamDashboardLayout from './layouts/examDashboard';
+import ExamInfo from './pages/ExamInfo';
+import QuestionSet from './pages/QuestionSets';
+import AddQuestionSet from './pages/AddQuestionSet';
 import ReadSpotDashboardApp from './pages/redspot/RedSpotDashboardApp';
 
 import { observeLiveClass } from './utils';
@@ -92,6 +97,8 @@ export default function Router() {
         { path: 'teacher/profile', element: <Profile /> },
         { path: 'teacher/settings', element: <Settings /> },
         { path: 'teacher/messages', element: <ChatApp /> },
+        { path: 'teacher/set-question', element: <QuestionSet /> },
+        { path: 'teacher/set-question/add-question-set', element: <AddQuestionSet /> },
 
         // Student:
         { path: 'student/app', element: <StudentDashboardApp /> },
@@ -107,6 +114,16 @@ export default function Router() {
         { path: 'student/settings', element: <Settings /> },
         { path: 'student/classroom/:id/course-materials/:fileId', element: <CourseMaterialDetails /> },
         { path: 'student/messages', element: <ChatApp /> },
+      ],
+    },
+    {
+      path: '/exam',
+      element: (
+          <ExamDashboardLayout />
+      ),
+      children: [
+        { path: 'student/:examId/dashboard/', element: <ExamDashboard /> },
+        { path: 'student/examInfo/', element: <ExamInfo /> },
       ],
     },
     {

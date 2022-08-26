@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
 import { useTranslation, withTranslation, Trans } from 'react-i18next';
 // material
@@ -8,7 +9,6 @@ import { styled } from '@mui/material/styles';
 import { Drawer, Grid, Stack } from '@mui/material';
 import { faker } from '@faker-js/faker';
 import DatePicker from 'sassy-datepicker';
-import { useDispatch, useSelector } from 'react-redux';
 import { getClassEvents, getTeachingClasses } from '../../services/AuthService';
 
 import { AppOrderTimeline } from '../../sections/@dashboard/app';
@@ -17,7 +17,7 @@ import { AppOrderTimeline } from '../../sections/@dashboard/app';
 import useResponsive from '../../hooks/useResponsive';
 // components
 import Scrollbar from '../../components/Scrollbar';
-import { events } from '../../_mock/event';
+import { getDatafromDBAction } from '../../store/actions/AuthActions';
 
 // ----------------------------------------------------------------------
 
@@ -66,8 +66,36 @@ TimelineSidebar.propTypes = {
 export default function TimelineSidebar({ isOpenSidebar, onCloseSidebar }) {
   const [data, setData] = React.useState([]);
   const { pathname } = useLocation();
+  const [selectedDate, updateSelectedDate] = useState(null);
+  const [eventsArr, setEventsArr] = useState([]);
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.auth.user);
+  const { user, dataObj  } = useSelector((state) => {
+    return {
+      user: state.auth.user,
+      dataObj: state.auth.data
+    }
+  });
+
+  const { events } = dataObj;
+
+  const onChange = (date) => {
+    const optedDate = new Date(date).toUTCString();
+    updateSelectedDate(optedDate);
+  };
+
+  useEffect(() => {
+    dispatch(getDatafromDBAction('events', true, 'events'));
+  }, [])
+
+  useEffect(() => {
+    const eventsLocalArr = [];
+    Object.keys(events || {}).forEach((eventId) => {
+      eventsLocalArr.push(events[eventId]);
+    });
+    console.log(eventsLocalArr, events)
+    setEventsArr(eventsLocalArr);
+  }, [events])
+
   const isDesktop = useResponsive('up', 'lg');
 
   const { t, i18n } = useTranslation();
@@ -121,6 +149,7 @@ export default function TimelineSidebar({ isOpenSidebar, onCloseSidebar }) {
           </Trans>}
             list={events}
             style={{ marginRight: isDesktop ? '12px' : '10px', marginLeft: '10px', marginBottom: '20px' }}
+            date={selectedDate}
           />
         </Stack>
       </Grid>

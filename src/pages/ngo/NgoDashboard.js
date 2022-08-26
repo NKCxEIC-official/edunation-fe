@@ -51,23 +51,23 @@ export default function NgoDashboard() {
           <Grid item xs={12} sm={6} md={3}>
             <SmallGrid subheader={<Trans i18nKey="NgoDashboard.NgoStudentCount">
               Student Count
-            </Trans>} count={user.studentList.length} color="info" />
+            </Trans>} count={user?.studentList?.length} color="info" />
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
             <SmallGrid subheader={
               <Trans i18nKey="NgoDashboard.NgoTeacherCount">
                 Teacher Count
-              </Trans>} count={user.Teacherlist.length} color="success" />
+              </Trans>} count={user?.Teacherlist?.length} color="success" />
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
             <SmallGrid subheader={<Trans i18nKey="NgoDashboard.NgoVolunteerCount">
               Volunteer Count
-            </Trans>} count={user.volunteerList.length} color="warning" />
+            </Trans>} count={user?.volunteerList?.length} color="warning" />
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
             <SmallGrid subheader={<Trans i18nKey="NgoDashboard.NgoRedSpots">
               Red Spots
-            </Trans>} count={user.redSpots.length} color="error" />
+            </Trans>} count={user?.redSpots?.length} color="error" />
           </Grid>
 
           <Grid item xs={12} sm={6} md={4} to="/dashboard/ngo/red-spots" component={RouterLink}>

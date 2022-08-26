@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 
 function VideoCall({ roomName }) {
   const user = useSelector((state) => state.auth.user);
+  console.log(roomName)
   return (
     <Box sx={{ ml: 3, mt: 2 }}>
       <Jitsi

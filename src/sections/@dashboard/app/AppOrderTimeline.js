@@ -1,3 +1,4 @@
+import { useState } from 'react';
 // @mui
 import PropTypes from 'prop-types';
 import { Card, Typography, CardHeader, CardContent } from '@mui/material';
@@ -13,7 +14,19 @@ AppOrderTimeline.propTypes = {
   list: PropTypes.array.isRequired,
 };
 
-export default function AppOrderTimeline({ title, subheader, list, ...other }) {
+export default function AppOrderTimeline({ title, subheader, list = [], date = new Date().toUTCString(), ...other }) {
+  const [timelineData, setTimelineData] = useState([]);
+
+  const filterEvents = () => {
+    const filteredArr = [];
+    if (Array.isArray(list) && list.length > 0) {
+      list.map((item) => {
+        console.log(list)
+        return {};
+      })
+    }
+  };
+
   return (
     <Card {...other}>
       <CardHeader title={title} subheader={subheader} />
@@ -26,9 +39,11 @@ export default function AppOrderTimeline({ title, subheader, list, ...other }) {
         }}
       >
         <Timeline>
-          {list.map((item, index) => (
-            <OrderItem key={item.id} item={item} isLast={index === list.length - 1} />
-          ))}
+          {Array.isArray(timelineData) &&
+            timelineData.length > 0 &&
+            timelineData.map((item, index) => (
+              <OrderItem key={item.id} item={item} isLast={index === list.length - 1} />
+            ))}
         </Timeline>
       </CardContent>
     </Card>

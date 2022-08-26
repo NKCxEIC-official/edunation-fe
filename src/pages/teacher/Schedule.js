@@ -5,9 +5,6 @@ import { Grid, Button, Container, Stack, Typography } from '@mui/material';
 import Scheduler from '../../components/Scheduler';
 import Page from "../../components/Page";
 import Iconify from '../../components/Iconify';
-// import { BlogPostCard, BlogPostsSort, BlogPostsSearch } from '../../sections/@dashboard/blog';
-// mock
-// import POSTS from '../../_mock/blog';
 import CustomModal from '../../components/CustomModal';
 import CreateAClass from './CreateAClass';
 

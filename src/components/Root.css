@@ -167,3 +167,24 @@
     justify-content: center;
     align-items: center;
 }
+
+.verifiedBadge {
+    width: 15px !important;
+    height: 15px !important;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.hideScroll::-webkit-scrollbar {
+    display: none !important;
+}
+
+.greenDot {
+    width: 15px !important;
+    height: 15px !important;
+    position: absolute !important;
+    background:green;
+    top:0;
+    border-radius: 50px;
+    cursor: pointer !important;
+}

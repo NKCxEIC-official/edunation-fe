@@ -1,6 +1,6 @@
 /* eslint-disable */
 import { useSelector } from 'react-redux';
-import { Avatar, Box, Button, Card, CardContent, Grid, Stack, Typography } from '@mui/material';
+import { Avatar, Box, Button, Card, CardContent, Grid, Stack, Tooltip, Typography } from '@mui/material';
 import '../components/Root.css';
 import React, { useEffect, useState } from 'react';
 import OngoingCourses from '../components/OngoingCourses';
@@ -8,12 +8,11 @@ import ProfileBackground from '../components/SVGIcons/ProfileBackground';
 import Iconify from '../components/Iconify';
 import { AppWidgetSummary } from '../sections/@dashboard/app';
 import { Trans, useTranslation } from 'react-i18next';
-
+import VerifiedBadge from 'src/components/SVGIcons/VerifiedBadge';
 
 function Profile() {
-
-  const user = useSelector(state => state.auth.user)
-  const { dp, firstName, lastName, email, about, reviews, ongoingCourses, rating } = user
+  const user = useSelector((state) => state.auth.user);
+  const {  dp, firstName, lastName, email, about, reviews, ongoingCourses, rating, isTeacher  } = user;
   const { t, i18n } = useTranslation();
 
 
@@ -44,10 +43,17 @@ function Profile() {
       <Grid item lg={8} xl={8} className="profileIntro">
         <div className="profileMainContainer">
           <div className="contents">
-            <Avatar variant="square" className='profileImg' src={dp} />
+            <Avatar variant="square" className="profileImg" src={dp} />
             <div>
               <Typography variant="h6">
-                <div>{firstName} {lastName}</div>
+                <div>
+                  {firstName} {lastName}{' '}
+                  {isTeacher && (
+                    <Tooltip title="This badge signifies certified, and evaluated experts" disableFocusListener>
+                      <VerifiedBadge className="verifiedBadge" />
+                    </Tooltip>
+                  )}
+                </div>
               </Typography>
               <Typography variant="body1">
                 <div>{email}</div>
@@ -89,9 +95,7 @@ function Profile() {
           <div>
             {activeSection === 'about' && (
               <Typography variant="subtitle">
-                <div>
-                  {about}
-                </div>
+                <div>{about}</div>
               </Typography>
             )}
             {activeSection === 'courses' &&
