@@ -65,7 +65,7 @@ export default function TimelineSidebar({ isOpenSidebar, onCloseSidebar }) {
         <Stack spacing={3}>
           <DatePicker onChange={onChange} style={{ marginLeft: isDesktop ? '10px' : ' 10px' }} />
           <AppOrderTimeline
-            title={<Trans i18nKey="studentDashboard.studentEventTimeline">
+            title={<Trans i18nKey="studentEventTimeline">
               Event Timeline
           </Trans>}
             list={events}

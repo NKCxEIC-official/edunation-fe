@@ -33,7 +33,7 @@ export default function NgoDashboard() {
   };
 
   useEffect(()=>{
-    changeLanguage("tn")
+    changeLanguage("bn")
   },[])
 
 

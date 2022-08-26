@@ -21,14 +21,14 @@
     "NgoSearchTeachers": "শিক্ষক অনুসন্ধান করুন",
     "NgoFirstName": "নামের প্রথম অংশ",
     "NgoLastName": "নামের শেষাংশ",
-    "NgoAge": "Age",
+    "NgoAge": "বয়স",
     "NgoEmailId": "ইমেইল আইডি",
     "NgoPhone": "ফোন",
     "NgoAddress": "ঠিকানা",
     "NgoCity": "শহর",
     "NgoState": "রাষ্ট্র",
-    "NgoOccupation": "Occupation",
-    "NgoUniversity": "University/School",
+    "NgoOccupation": "পেশা",
+    "NgoUniversity": "বিশ্ববিদ্যালয়/স্কুল",
     "NgoAddTeacher": "শিক্ষক যোগ করুন",
     "NgoName": "নাম",
     "NgoCourses": "পাঠ্যধারাগুলি",
@@ -37,19 +37,37 @@
     "NgoNewTeacher": "নতুন শিক্ষক"
     },
 
+
     "NgoStudentsList":{
     "NgoSidebarStudentsList": "ছাত্রদের তালিকা",
     "NgoStudents": "ছাত্ররা",
     "NgoSearchStudents": "ছাত্র খুঁজুন",
+    "NgoName": "নাম",
+    "NgoCourses": "পাঠ্যধারাগুলি",
+    "NgoVerified": "যাচাই",
+    "NgoStatus": "স্ট্যাটাস",
     "NgoRole": "ভূমিকা",
     "NgoAddStudent": "ছাত্র যোগ করুন",
-    "NgoNewStudent": "নতুন শিক্ষার্থী"
+    "NgoNewStudent": "নতুন শিক্ষার্থী",
+    "NgoFirstName": "নামের প্রথম অংশ",
+    "NgoLastName": "নামের শেষাংশ",
+    "NgoAge": "বয়স",
+    "NgoEmailId": "ইমেইল আইডি",
+    "NgoPhone": "ফোন",
+    "NgoAddress": "ঠিকানা",
+    "NgoCity": "শহর",
+    "NgoState": "রাষ্ট্র",
+    "NgoOccupation": "পেশা",
+    "NgoUniversity": "বিশ্ববিদ্যালয়/স্কুল",
+    "NgoAddTeacher": "শিক্ষক যোগ করুন"
+    
     },
     
     "NgoRedSpots":{
     "NgoSidebarRedSpots": "লাল দাগ",
     "NgoPocName": "POC নাম",
     "NgoPocEmail": "POC ইমেল",
+    "NgoPocPhone": "POC ফোন",
     "NgoCoordinates": "স্থানাঙ্ক",
     "NgoAddress": "ঠিকানা",
     "NgoRowsPerPage": "পৃষ্ঠা প্রতি সারি",
@@ -60,7 +78,6 @@
     "NgoLongitude": "দ্রাঘিমাংশ",
     "NgoRedSpotName": "লাল দাগের নাম",
     "NgoButtonAddRedSpot": "লাল দাগ যোগ করুন"
-    
     }, 
 
     "NgoSidebarTitle": "আসুন অন্যদের সাহায্য করি!",
@@ -257,6 +274,7 @@
     "studentSettings": {
         "studentFirstName": "নামের প্রথম অংশ",
         "studentLastName": "নামের শেষাংশ",
+        "studentProfileAbout": "সম্পর্কিত",
         "studentEmail": "ইমেইল",
         "studentPhone": "ফোন",
         "studentAddress": "ঠিকানা",
@@ -279,8 +297,8 @@
         "studentAddAnswer": "উত্তর যোগ করুন",
         "studentPostAQuery" : "একটি প্রশ্ন পোস্ট করুন",
         "studentQueryDescription" : "প্রশ্ন বিবরণ",
-        "teacherAttachFile" : "ফাইল সংযুক্ত",
-        "teacherPostQuery" : "পোস্ট কোয়েরি"
+        "studentAttachFile" : "ফাইল সংযুক্ত",
+        "studentPostQuery" : "পোস্ট কোয়েরি"
     },
 
     "studentNavSchedule": "সময়সূচী",

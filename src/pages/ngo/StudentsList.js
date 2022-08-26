@@ -1,6 +1,7 @@
 import { filter } from 'lodash';
 import { sentenceCase } from 'change-case';
 import { useEffect, useState } from 'react';
+import { useTranslation, withTranslation, Trans } from 'react-i18next';
 import { doc, getDoc } from 'firebase/firestore';
 import { Link as RouterLink } from 'react-router-dom';
 // material
@@ -34,15 +35,6 @@ import { db } from '../../utils/firebaseConfig';
 import AddStudent from '../../sections/@ngo/forms/AddStudent';
 
 // ----------------------------------------------------------------------
-
-const TABLE_HEAD = [
-  { id: 'name', label: 'Name', alignRight: false },
-  { id: 'courses', label: 'Courses', alignRight: false },
-  { id: 'role', label: 'Role', alignRight: false },
-  { id: 'isVerified', label: 'Verified', alignRight: false },
-  { id: 'status', label: 'Status', alignRight: false },
-  { id: '' },
-];
 
 // ----------------------------------------------------------------------
 
@@ -149,14 +141,37 @@ export default function StudentsList() {
     setUSERLIST(user.studentList);
   }, [user]);
 
+  const { t, i18n } = useTranslation();
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
+
+  useEffect(() => {
+    changeLanguage("bn")
+  }, [])
+
+  const TABLE_HEAD = [
+    { id: 'name', label: t('NgoStudentsList.NgoName'), alignRight: false },
+    { id: 'courses', label: t('NgoStudentsList.NgoCourses'), alignRight: false },
+    { id: 'role', label: t('NgoStudentsList.NgoRole'), alignRight: false },
+    { id: 'isVerified', label: t('NgoStudentsList.NgoVerified'), alignRight: false },
+    { id: 'status', label: t('NgoStudentsList.NgoStatus'), alignRight: false },
+    { id: '' },
+  ];
+  
   return (
     <Page title="Student List">
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" gutterBottom>
+          <Trans i18nKey="NgoStudentsList.NgoStudents">
             Students
+          </Trans>
           </Typography>
-          <CustomModal component={<AddStudent />} btnText={'New Student'} icon={'eva:plus-fill'} />
+          <CustomModal component={<AddStudent />} btnText={<Trans i18nKey="NgoStudentsList.NgoNewStudent">
+            Add New Student
+          </Trans>} icon={'eva:plus-fill'} />
         </Stack>
 
         <Card>

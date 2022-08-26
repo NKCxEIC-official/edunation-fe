@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { Typography, Card, CardContent, Grid, TextField, Button, useFormControl, Stack, Input } from '@mui/material';
+import { useTranslation, withTranslation, Trans } from 'react-i18next';
 import { Form } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { addDocumentInDb } from '../../services/AuthService';
@@ -58,9 +59,22 @@ export default function PostAQuery() {
     }
   }
 
+  const { t, i18n } = useTranslation();
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
+
+  useEffect(()=>{
+    changeLanguage("hn")
+  },[])
   return (
     <div className="Create a class">
-      <Typography variant="h4">Post a Query</Typography>
+      <Typography variant="h4">
+        <Trans i18nKey="studentCommunity.studentCommunityTitle">
+          Post a Query
+        </Trans>
+      </Typography>
 
       <Form onSubmit={handleSubmit}>
         <Stack spacing={3}>
@@ -76,12 +90,16 @@ export default function PostAQuery() {
             onChange={(e) => setDescription(e.target.value)}
           />
           <Button variant="contained" component="label" color="info">
-            Attach File
+            <Trans i18nKey="studentCommunity.studentAttachFile">
+              Attach File
+            </Trans>
             <input type="file" hidden accept="image/png, image/gif, image/jpeg" onChange={handleFileSelect} />
           </Button>
           {attachments.length > 0 && attachments.map((attachment) => <h6>{attachment.name}</h6>)}
           <Button type="submit" variant="contained" color="primary" fullWidth>
-            Post Query
+            <Trans i18nKey="studentCommunity.studentPostQuery">
+              Post Query
+            </Trans>
           </Button>
         </Stack>
       </Form>

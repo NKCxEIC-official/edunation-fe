@@ -2,6 +2,7 @@
 import { Grid, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { Trans, useTranslation } from 'react-i18next';
 import NoMessages from './ChatComponent/NoMessages';
 import ShowChat from './ChatComponent/ShowChat';
 import ShowContacts from './ChatComponent/ShowContacts';
@@ -16,6 +17,16 @@ const ChatApp = () => {
   const [currentRole, setCurrentRole] = useState(null);
   const [selectedContact, setSelectedContact] = useState(null);
   const user = useSelector((state) => state.auth.user);
+
+  const { t, i18n } = useTranslation();
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
+
+  useEffect(() => {
+    changeLanguage("hn")
+  }, [])
 
   useEffect(() => {
     if (user) {
@@ -118,7 +129,7 @@ const ChatApp = () => {
     <Grid container className="chatApp" spacing={1}>
       {contacts?.length > 0 && (
         <Grid item xs={12} sm={12} md={4} lg={3} xl={3} className="chatApp_contactsSection">
-          <Typography variant="h6">Chats</Typography>
+          <Typography variant="h6"><Trans i18nKey="studentMessage.studentMessagesTitles">Recently Added Classes </Trans></Typography>
           <ShowContacts contacts={contacts} selectContact={setSelectedContact} activeContact={selectedContact} />
         </Grid>
       )}

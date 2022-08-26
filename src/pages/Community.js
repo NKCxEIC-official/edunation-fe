@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-
+import { useTranslation, withTranslation, Trans } from 'react-i18next';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
@@ -21,6 +21,15 @@ export default function Community() {
   const { community } = useSelector((state) => state.auth.data);
   const dispatch = useDispatch();
 
+  const { t, i18n } = useTranslation();
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
+
+  useEffect(()=>{
+    changeLanguage("en")
+  },[])
+
   useEffect(() => {
     dispatch(getDatafromDBAction('community', true, 'community'));
   }, []);
@@ -29,7 +38,9 @@ export default function Community() {
     <Container maxWidth="s">
       <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
         <Typography variant="h4" sx={{ mb: 3 }}>
-          Welcome to Community!
+        <Trans i18nKey="studentCommunity.studentCommunityTitle">
+        Welcome to Community!
+          </Trans>
         </Typography>
         {!user?.isTeacher && (
           <CustomModal btnText={'Post A Query'} sx={{ mb: 4 }} component={<PostAQuery />} icon="eva:plus-fill" />

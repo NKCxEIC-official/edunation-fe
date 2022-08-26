@@ -2,37 +2,48 @@
 import { useSelector } from 'react-redux';
 import { Avatar, Box, Button, Card, CardContent, Grid, Stack, Typography } from '@mui/material';
 import '../components/Root.css';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import OngoingCourses from '../components/OngoingCourses';
 import ProfileBackground from '../components/SVGIcons/ProfileBackground';
 import Iconify from '../components/Iconify';
 import { AppWidgetSummary } from '../sections/@dashboard/app';
+import { Trans, useTranslation } from 'react-i18next';
 
 
 function Profile() {
 
   const user = useSelector(state => state.auth.user)
-  const {dp, firstName, lastName, email, about, reviews, ongoingCourses, rating} = user
+  const { dp, firstName, lastName, email, about, reviews, ongoingCourses, rating } = user
+  const { t, i18n } = useTranslation();
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
+
+  useEffect(() => {
+    changeLanguage("bn")
+  }, [])
 
   const [activeSection, setActiveSection] = useState('about');
   const cardContent = [
     {
-      title: 'Completed Courses',
+      title: t('studentProfile.studentCompletedCourses'),
       content: '30',
     },
     {
-      title: 'Ongoing Courses',
+      title: t('studentProfile.studentOngoingCourses'),
       content: ongoingCourses?.length,
     },
     {
-      title: 'Duration Spent(hrs)',
+      title: t('studentProfile.studentDurationSpent'),
       content: '7',
     },
     {
-      title: 'Student Rating',
+      title: t('studentProfile.studentRating'),
       content: rating,
     },
   ];
+
 
   return (
     <Grid container className="profile">
@@ -40,7 +51,7 @@ function Profile() {
       <Grid item lg={8} xl={8} className="profileIntro">
         <div className="profileMainContainer">
           <div className="contents">
-            <Avatar variant="square" className='profileImg' src={dp}/>
+            <Avatar variant="square" className='profileImg' src={dp} />
             <div>
               <Typography variant="h6">
                 <div>{firstName} {lastName}</div>
@@ -51,26 +62,35 @@ function Profile() {
             </div>
           </div>
           <div>
-            <Button to={email} 
-            onClick={(e) => {
+            <Button to={email}
+              onClick={(e) => {
                 window.location.href = "mailto:no-reply@example.com";
                 e.preventDefault();
-            }}  
-            className="profileBtn" variant="contained" size="medium">
-              Contact Now
+              }}
+              className="profileBtn" variant="contained" size="medium">
+              <Trans i18nKey="studentProfile.studentContactNow">
+                Contact Now
+              </Trans>
+
             </Button>
           </div>
         </div>
         <div className="profileContentContainer">
           <div className="options">
             <Button variant="contained" onClick={() => setActiveSection('about')} size="medium" color="error">
-              About
+              <Trans i18nKey="studentProfile.studentAbout">
+                About
+              </Trans>
             </Button>
             <Button variant="contained" onClick={() => setActiveSection('courses')} size="medium" color="error">
-              Courses
+              <Trans i18nKey="studentProfile.studentCourses">
+                Courses
+              </Trans>
             </Button>
             <Button variant="contained" onClick={() => setActiveSection('reviews')} size="medium" color="error">
-              Reviews
+              <Trans i18nKey="studentProfile.studentReviews">
+                Reviews
+              </Trans>
             </Button>
           </div>
           <div>
@@ -81,17 +101,19 @@ function Profile() {
                 </div>
               </Typography>
             )}
-            {activeSection === 'courses' && 
-            <div>
-              <Typography variant="h4">Courses Offered :</Typography>
-              {ongoingCourses?.courseName}
-            </div>}
-            
+            {activeSection === 'courses' &&
+              <div>
+                <Typography variant="h4">Courses Offered :</Typography>
+                {ongoingCourses?.courseName}
+              </div>}
+
             {activeSection === 'reviews' && <div>{reviews}</div>}
           </div>
           <div>
             <Typography variant="h4" sx={{ mt: 3, mb: 3 }}>
-              Certification :
+              <Trans i18nKey="studentProfile.studentCertification">
+                Certification :
+              </Trans>
             </Typography>
 
             <Grid container spacing={3}>
@@ -136,20 +158,22 @@ function Profile() {
               >
                 <Box sx={{ width: '5px', backgroundColor: `#fff`, height: '5px', borderRadius: '20px' }} />
               </Box>
-              <Typography variant="h6" sx={{ marginLeft: '10px'}}>
-                Key Details
+              <Typography variant="h6" sx={{ marginLeft: '10px' }}>
+              <Trans i18nKey="studentProfile.studentKeyDetails">
+                Key Details :
+              </Trans>
               </Typography>
             </Box>
             <div className="profileCardContent">
               <Stack spacing={3}>
-              {cardContent.map((obj) => {
-                return (
-                  <div className="profileCardContentLine">
-                    <span>{obj.title}</span>
-                    <span>{obj.content}</span>
-                  </div>
-                );
-              })}
+                {cardContent.map((obj) => {
+                  return (
+                    <div className="profileCardContentLine">
+                      <span>{obj.title}</span>
+                      <span>{obj.content}</span>
+                    </div>
+                  );
+                })}
               </Stack>
             </div>
           </CardContent>

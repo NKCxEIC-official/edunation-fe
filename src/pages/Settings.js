@@ -3,10 +3,11 @@ import { doc, updateDoc } from "firebase/firestore";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { LoadingButton } from '@mui/lab';
 import { Button, FormControl, Stack, TextField } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { Container } from '@mui/system';
+import { Trans, useTranslation } from 'react-i18next';
 
 import { addUserAnonymousAction } from '../store/actions/AuthActions';
 import { FormProvider, RHFTextField } from '../components/hook-form';
@@ -69,6 +70,15 @@ function Settings() {
 
   const user = useSelector((state) => state.auth.user);
   const { firstName, lastName, email, phone, address, city, state, university, about, dp } = user;
+  const { t, i18n } = useTranslation();
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
+
+  useEffect(() => {
+    changeLanguage("hn")
+  }, [])
 
   return (
     <Container maxWidth="md">
@@ -78,23 +88,23 @@ function Settings() {
             <RHFTextField
               id="outlined-disabled"
               name="firstName"
-              label="First Name"
+              label={<Trans i18nKey="studentDashboard.studentFirstName">First Name</Trans>}
               defaultValue={firstName}
               required
               fullWidth
               onChange={(e)=>handleFieldValueChange('firstName', e)}
             />
-            <RHFTextField id="outlined-disabled" name="lastName" label="Last Name" defaultValue={lastName} required fullWidth onChange={(e)=>handleFieldValueChange('lastName', e)} />
+            <RHFTextField id="outlined-disabled" name="lastName" label={<Trans i18nKey="studentDashboard.studentLastName">Last Name</Trans>} defaultValue={lastName} required fullWidth onChange={(e)=>handleFieldValueChange('lastName', e)} />
           </Stack>
-          <RHFTextField id="outlined-disabled" name="email" label="Email" defaultValue={email} required fullWidth onChange={(e)=>handleFieldValueChange('email', e)} disabled/>
-          <RHFTextField id="outlined-disabled" name="about" label="About" defaultValue={about} required fullWidth onChange={(e)=>handleFieldValueChange('about', e)} />
-          <RHFTextField id="outlined-disabled" name="phone" label="Phone" defaultValue={phone} required fullWidth onChange={(e)=>handleFieldValueChange('phone', e)}/>
-          <RHFTextField id="outlined-disabled" name="address" label="Address" defaultValue={address} required fullWidth onChange={(e)=>handleFieldValueChange('address', e)}/>
+          <RHFTextField id="outlined-disabled" name="email" label={<Trans i18nKey="studentDashboard.studentEmail">Email</Trans>} defaultValue={email} required fullWidth onChange={(e)=>handleFieldValueChange('email', e)} disabled/>
+          <RHFTextField id="outlined-disabled" name="about" label={<Trans i18nKey="studentDashboard.studentProfileAbout">About</Trans>} defaultValue={about} required fullWidth onChange={(e)=>handleFieldValueChange('about', e)} />
+          <RHFTextField id="outlined-disabled" name="phone" label={<Trans i18nKey="studentDashboard.studentPhone">Phone</Trans>} defaultValue={phone} required fullWidth onChange={(e)=>handleFieldValueChange('phone', e)}/>
+          <RHFTextField id="outlined-disabled" name="address" label={<Trans i18nKey="studentDashboard.studentAddress">Address</Trans>} defaultValue={address} required fullWidth onChange={(e)=>handleFieldValueChange('address', e)}/>
           <Stack direction="row" spacing={2}>
-            <RHFTextField id="outlined-disabled" name="city" label="City" defaultValue={city} required fullWidth onChange={(e)=>handleFieldValueChange('city', e)}/>
-            <RHFTextField id="outlined-disabled" name="state" label="State" defaultValue={state} required fullWidth onChange={(e)=>handleFieldValueChange('state', e)}/>
+            <RHFTextField id="outlined-disabled" name="city" label={<Trans i18nKey="studentDashboard.studentCity">City</Trans>}  defaultValue={city} required fullWidth onChange={(e)=>handleFieldValueChange('city', e)}/>
+            <RHFTextField id="outlined-disabled" name="state" label={<Trans i18nKey="studentDashboard.studentState">State</Trans>} defaultValue={state} required fullWidth onChange={(e)=>handleFieldValueChange('state', e)}/>
           </Stack>
-          <RHFTextField id="outlined-disabled" name="school" label="University" defaultValue={university} required fullWidth onChange={(e)=>handleFieldValueChange('university', e)}/>
+          <RHFTextField id="outlined-disabled" name="school" label={<Trans i18nKey="studentDashboard.studentUniversity">University</Trans>} defaultValue={university} required fullWidth onChange={(e)=>handleFieldValueChange('university', e)}/>
           <FormControl variant="outlined" required>
             <Button variant="contained" component="label" color="info">
                 {formData.dp ? 'Profile Photo Uploaded' : 'Upload Profile Picture'}
@@ -102,7 +112,7 @@ function Settings() {
             </Button>
           </FormControl>
           <LoadingButton fullWidth size="large" type="submit" variant="contained" loading={false} >
-            Update Profile
+          <Trans i18nKey="studentDashboard.studentUpdateProfileButton">Update Profile</Trans>
           </LoadingButton>
         </Stack>
       </FormProvider>

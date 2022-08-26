@@ -1,6 +1,7 @@
 import { filter } from 'lodash';
 import { sentenceCase } from 'change-case';
 import { useEffect, useState } from 'react';
+import { useTranslation, withTranslation, Trans } from 'react-i18next';
 import { doc, getDoc } from 'firebase/firestore';
 import { Link as RouterLink } from 'react-router-dom';
 // material
@@ -36,14 +37,6 @@ import AddRedSpot from './AddRedSpot';
 
 // ----------------------------------------------------------------------
 
-const TABLE_HEAD = [
-  { id: 'pocname', label: 'POC Name', alignRight: false },
-  { id: 'pocemail', label: 'POC Email', alignRight: false },
-  { id: 'pocphone', label: 'POC Phone', alignRight: false },
-  { id: 'coords', label: 'Coordinates', alignRight: false },
-  { id: 'address', label: 'Address', alignRight: false },
-  { id: '' },
-];
 
 // ----------------------------------------------------------------------
 
@@ -152,6 +145,25 @@ export default function RedSpotList() {
   useEffect(() => {
     setUSERLIST(user.redSpots);
   }, [user]);
+
+  const { t, i18n } = useTranslation();
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
+
+  useEffect(()=>{
+    changeLanguage("bn")
+  },[])
+
+
+  const TABLE_HEAD = [
+    { id: 'pocname', label: t('NgoRedSpots.NgoPocName'), alignRight: false },
+    { id: 'pocemail', label: t('NgoRedSpots.NgoPocEmail'), alignRight: false },
+    { id: 'pocphone', label: t('NgoRedSpots.NgoPocPhone'), alignRight: false },
+    { id: 'coords', label: t('NgoRedSpots.NgoCoordinates'), alignRight: false },
+    { id: 'address', label: t('NgoRedSpots.NgoAddress'), alignRight: false },
+    { id: '' },
+  ];
 
   return (
     <Page title="Red Spots">

@@ -38,7 +38,7 @@ export default function StudentDashboardApp() {
   };
 
   useEffect(() => {
-    changeLanguage("en")
+    changeLanguage("bn")
   }, [])
 
   const summaryContent = [

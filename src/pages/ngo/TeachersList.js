@@ -1,6 +1,7 @@
 import { filter } from 'lodash';
 import { sentenceCase } from 'change-case';
 import { useEffect, useState } from 'react';
+import { useTranslation, withTranslation, Trans } from 'react-i18next';
 import { doc, getDoc } from 'firebase/firestore';
 import { Link as RouterLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -35,13 +36,6 @@ import AddTeacher from '../../sections/@ngo/forms/AddTeacher';
 
 // ----------------------------------------------------------------------
 
-const TABLE_HEAD = [
-  { id: 'name', label: 'Name', alignRight: false },
-  { id: 'courses', label: 'Courses', alignRight: false },
-  { id: 'isVerified', label: 'Verified', alignRight: false },
-  { id: 'status', label: 'Status', alignRight: false },
-  { id: '' },
-];
 
 // ----------------------------------------------------------------------
 
@@ -130,111 +124,134 @@ export default function TeachersList() {
   const handleFilterByName = (event) => {
     setFilterName(event.target.value);
   };
-  const filteredUsers = applySortFilter(USERLIST, getComparator(order, orderBy), filterName);
 
-  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - USERLIST.length) : 0;
+  const { t, i18n } = useTranslation();
 
-  const isUserNotFound = filteredUsers.length === 0;
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
 
   useEffect(() => {
-    setUSERLIST(user.Teacherlist);
-  }, [user]);
+    changeLanguage("bn")
+  }, [])
 
-  return (
-    <Page title="Teachers List">
-      <Container>
-        <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
-          <Typography variant="h4" gutterBottom>
+  const TABLE_HEAD = [
+    { id: 'name', label: t('NgoTeachersList.NgoName'), alignRight: false },
+    { id: 'courses', label: t('NgoTeachersList.NgoCourses'), alignRight: false },
+    { id: 'isVerified', label: t('NgoTeachersList.NgoVerified'), alignRight: false },
+    { id: 'status', label: t('NgoTeachersList.NgoStatus'), alignRight: false },
+    { id: '' },
+  ];  
+
+const filteredUsers = applySortFilter(USERLIST, getComparator(order, orderBy), filterName);
+
+const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - USERLIST.length) : 0;
+
+const isUserNotFound = filteredUsers.length === 0;
+
+useEffect(() => {
+  setUSERLIST(user.Teacherlist);
+}, [user]);
+
+return (
+  <Page title="Teachers List">
+    <Container>
+      <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
+        <Typography variant="h4" gutterBottom>
+          <Trans i18nKey="NgoTeachersList.NgoTeachers">
             Teachers
-          </Typography>
-          <CustomModal component={<AddTeacher />} btnText={'New Teacher'} icon={'eva:plus-fill'} />
-        </Stack>
+          </Trans>
+        </Typography>
+        <CustomModal component={<AddTeacher />} btnText={<Trans i18nKey="NgoTeachersList.NgoNewTeacher">
+            Teachers
+          </Trans>} icon={'eva:plus-fill'} />
+      </Stack>
 
-        <Card>
-          <UserListToolbar numSelected={selected.length} filterName={filterName} onFilterName={handleFilterByName} />
+      <Card>
+        <UserListToolbar numSelected={selected.length} filterName={filterName} onFilterName={handleFilterByName} />
 
-          <Scrollbar>
-            <TableContainer sx={{ minWidth: 800 }}>
-              <Table>
-                <UserListHead
-                  order={order}
-                  orderBy={orderBy}
-                  headLabel={TABLE_HEAD}
-                  rowCount={USERLIST.length}
-                  numSelected={selected.length}
-                  onRequestSort={handleRequestSort}
-                  onSelectAllClick={handleSelectAllClick}
-                />
-                <TableBody>
-                  {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                    const { id, name, status, courses, dp, isVerified, uid } = row;
-                    const isItemSelected = selected.indexOf(name) !== -1;
+        <Scrollbar>
+          <TableContainer sx={{ minWidth: 800 }}>
+            <Table>
+              <UserListHead
+                order={order}
+                orderBy={orderBy}
+                headLabel={TABLE_HEAD}
+                rowCount={USERLIST.length}
+                numSelected={selected.length}
+                onRequestSort={handleRequestSort}
+                onSelectAllClick={handleSelectAllClick}
+              />
+              <TableBody>
+                {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
+                  const { id, name, status, courses, dp, isVerified, uid } = row;
+                  const isItemSelected = selected.indexOf(name) !== -1;
 
-                    return (
-                      <TableRow
-                        hover
-                        key={id}
-                        tabIndex={-1}
-                        role="checkbox"
-                        selected={isItemSelected}
-                        aria-checked={isItemSelected}
-                      >
-                        <TableCell padding="checkbox">
-                          <Checkbox checked={isItemSelected} onChange={(event) => handleClick(event, name)} />
-                        </TableCell>
-                        <TableCell component="th" scope="row" padding="none">
-                          <Stack direction="row" alignItems="center" spacing={2}>
-                            <Avatar alt={name} src={dp} />
-                            <Typography variant="subtitle2" noWrap>
-                              {name}
-                            </Typography>
-                          </Stack>
-                        </TableCell>
-                        <TableCell align="left">{courses.join(' , ')}</TableCell>
-                        <TableCell align="left">{isVerified ? 'Yes' : 'No'}</TableCell>
-                        <TableCell align="left">
-                          <Label variant="ghost" color={status === '1' ? 'success' : 'error'}>
-                            {status === '1' ? 'active' : 'banned'}
-                          </Label>
-                        </TableCell>
+                  return (
+                    <TableRow
+                      hover
+                      key={id}
+                      tabIndex={-1}
+                      role="checkbox"
+                      selected={isItemSelected}
+                      aria-checked={isItemSelected}
+                    >
+                      <TableCell padding="checkbox">
+                        <Checkbox checked={isItemSelected} onChange={(event) => handleClick(event, name)} />
+                      </TableCell>
+                      <TableCell component="th" scope="row" padding="none">
+                        <Stack direction="row" alignItems="center" spacing={2}>
+                          <Avatar alt={name} src={dp} />
+                          <Typography variant="subtitle2" noWrap>
+                            {name}
+                          </Typography>
+                        </Stack>
+                      </TableCell>
+                      <TableCell align="left">{courses.join(' , ')}</TableCell>
+                      <TableCell align="left">{isVerified ? 'Yes' : 'No'}</TableCell>
+                      <TableCell align="left">
+                        <Label variant="ghost" color={status === '1' ? 'success' : 'error'}>
+                          {status === '1' ? 'active' : 'banned'}
+                        </Label>
+                      </TableCell>
 
-                        <TableCell align="right">
-                          <UserMoreMenu document={row} />
-                        </TableCell>
-                      </TableRow>
-                    );
-                  })}
-                  {emptyRows > 0 && (
-                    <TableRow style={{ height: 53 * emptyRows }}>
-                      <TableCell colSpan={6} />
-                    </TableRow>
-                  )}
-                </TableBody>
-
-                {isUserNotFound && (
-                  <TableBody>
-                    <TableRow>
-                      <TableCell align="center" colSpan={6} sx={{ py: 3 }}>
-                        <SearchNotFound searchQuery={filterName} />
+                      <TableCell align="right">
+                        <UserMoreMenu document={row} />
                       </TableCell>
                     </TableRow>
-                  </TableBody>
+                  );
+                })}
+                {emptyRows > 0 && (
+                  <TableRow style={{ height: 53 * emptyRows }}>
+                    <TableCell colSpan={6} />
+                  </TableRow>
                 )}
-              </Table>
-            </TableContainer>
-          </Scrollbar>
+              </TableBody>
 
-          <TablePagination
-            rowsPerPageOptions={[5, 10, 25]}
-            component="div"
-            count={USERLIST.length}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            onPageChange={handleChangePage}
-            onRowsPerPageChange={handleChangeRowsPerPage}
-          />
-        </Card>
-      </Container>
-    </Page>
-  );
+              {isUserNotFound && (
+                <TableBody>
+                  <TableRow>
+                    <TableCell align="center" colSpan={6} sx={{ py: 3 }}>
+                      <SearchNotFound searchQuery={filterName} />
+                    </TableCell>
+                  </TableRow>
+                </TableBody>
+              )}
+            </Table>
+          </TableContainer>
+        </Scrollbar>
+
+        <TablePagination
+          rowsPerPageOptions={[5, 10, 25]}
+          component="div"
+          count={USERLIST.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+        />
+      </Card>
+    </Container>
+  </Page>
+);
 }

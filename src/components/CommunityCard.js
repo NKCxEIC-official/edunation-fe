@@ -1,11 +1,13 @@
 import { Box, Button, Card, CardContent, CardMedia, Grid, Stack, Typography } from '@mui/material';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation, withTranslation, Trans } from 'react-i18next';
 import { communityDownvote, communityUpvote } from '../services/AuthService';
 import AnswerCommunity from './AnswerCommunity';
 import CustomModal from './CustomModal';
 import { getDatafromDBAction } from '../store/actions/AuthActions';
 import Iconify from './Iconify';
+
 
 function CommunityCard({ community, key, id }) {
   const {
@@ -33,6 +35,15 @@ function CommunityCard({ community, key, id }) {
     dispatch(getDatafromDBAction('community', true, 'community'));
   }, []);
 
+  const { t, i18n } = useTranslation();
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
+
+  useEffect(()=>{
+    changeLanguage("hn")
+  },[])
   // const { community } = useSelector((state) => state.auth.data);
 
   return (
@@ -88,7 +99,9 @@ function CommunityCard({ community, key, id }) {
               disabled={upvotedBy.includes(user.uid)}
             >
               <Iconify icon={'akar-icons:arrow-up'} />
-              &nbsp; Upvote
+              &nbsp; <Trans i18nKey="studentCommunity.studentUpvote">
+                Upvote
+              </Trans>
             </Button>
             <Button
               sx={{ height: '30px', borderRadius: '10px' }}
@@ -96,13 +109,17 @@ function CommunityCard({ community, key, id }) {
               disabled={downvotedBy.includes(user.uid)}
             >
               <Iconify icon={'akar-icons:arrow-down'} />
-              &nbsp; Downvote
+              &nbsp; <Trans i18nKey="studentCommunity.studentDownvote">
+                Downvote
+              </Trans>
             </Button>
           </span>
           <Stack flexDirection=" row">
             <Button onClick={() => copyCardLink()} sx={{ height: '30px', borderRadius: '10px' }}>
               <Iconify icon={'akar-icons:copy'} />
-              &nbsp; Copy Link
+              &nbsp; <Trans i18nKey="studentCommunity.studenCopyLink">
+                Copy Link
+              </Trans>
             </Button>
 
             <CustomModal
