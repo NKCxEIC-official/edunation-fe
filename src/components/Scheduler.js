@@ -126,6 +126,7 @@ const getMyCreatedClassList = (user) => {
 
 
 const addEventToDb = (event, dispatch, classList) => {
+  console.log("🚀 ~ file: Scheduler.js ~ line 129 ~ addEventToDb ~ event", event)
   const filteredClass = classList[0].instances.filter(checkClassId);
   function checkClassId(classItem) {
     return classItem.id === event.roomId;
@@ -144,6 +145,7 @@ const addEventToDb = (event, dispatch, classList) => {
       classBanarUrl: filteredClass[0].bannerUrl,
     },
     notes: event.notes,
+    rRules: event.rRules,
   };
   dispatch(loadingToggleAction(true));
   addDocumentInDb(payload, 'events').then(() => {

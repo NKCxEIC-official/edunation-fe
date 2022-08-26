@@ -11,17 +11,22 @@ const LANGS = [
   {
     value: 'en',
     label: 'English',
-    icon: '/static/icons/ic_flag_en.svg',
+    icon: '/static/icons/eng_lang.png',
   },
   {
-    value: 'de',
-    label: 'German',
-    icon: '/static/icons/ic_flag_de.svg',
+    value: 'bn',
+    label: 'Bengali',
+    icon: '/static/icons/bengali_lang.jpg',
   },
   {
-    value: 'fr',
-    label: 'French',
-    icon: '/static/icons/ic_flag_fr.svg',
+    value: 'hn',
+    label: 'Hindi',
+    icon: '/static/icons/hindi_lang.png',
+  },
+  {
+    value: 'tm',
+    label: 'Tamil',
+    icon: '/static/icons/tamil_lang.png',
   },
 ];
 
@@ -69,7 +74,14 @@ export default function LanguagePopover() {
       >
         <Stack spacing={0.75}>
           {LANGS.map((option) => (
-            <MenuItem key={option.value} selected={option.value === LANGS[0].value} onClick={() => handleClose()}>
+            <MenuItem
+              key={option.value}
+              selected={option.value === LANGS[0].value}
+              onClick={(option) => {
+                console.log('🚀 ~ file: LanguagePopover.js ~ line 78 ~ LanguagePopover ~ option', option.innerText);
+                handleClose();
+              }}
+            >
               <Box component="img" alt={option.label} src={option.icon} sx={{ width: 28, mr: 2 }} />
 
               {option.label}
