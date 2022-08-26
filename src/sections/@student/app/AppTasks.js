@@ -35,7 +35,7 @@ export default function AppTasks({ title, subheader, list, ...other }) {
 
           return (
             <>
-              {list.map((task) => (
+              {list?.length > 0 && list.map((task) => (
                 <TaskItem
                   key={task.id}
                   task={task}

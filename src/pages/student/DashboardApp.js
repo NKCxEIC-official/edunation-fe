@@ -31,23 +31,6 @@ export default function StudentDashboardApp() {
   const theme = useTheme();
 
   const user = useSelector((state) => state.auth.user);
-  const summaryContent = [
-    {
-      count: user?.summary?.pendingAssignments,
-      subheader: 'Pending Assignments',
-      color: 'primary',
-    },
-    {
-      count: user?.summary?.classesToday,
-      subheader: 'Classes Today',
-      color: 'error',
-    },
-    {
-      count: user?.summary?.submittedAssignments,
-      subheader: 'Submitted Assignments Today',
-      color: 'success',
-    },
-  ];
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -170,28 +153,6 @@ export default function StudentDashboardApp() {
               </Button>
             </Stack>
             <TopRated />
-          </Grid>
-
-          <Grid item xs={8} md={8} lg={8} xl={8} sx={{ mt: 2 }}>
-            <AppTasks
-              title="Today's Tasks"
-              list={[
-                {
-                  id: '1',
-                  label: 'Create FireStone Logo | 17th Nov 21 ~ AWS',
-                  dueDate: '17/11/2021',
-                  classUserName: 'AWS',
-                },
-                { id: '2', label: 'Add SCSS and JS files if required', dueDate: '7/1/2021', classUserName: 'Science' },
-                { id: '3', label: 'Stakeholder Meeting', dueDate: '22/11/2000', classUserName: 'React' },
-                { id: '4', label: 'Scoping & Estimations', dueDate: '17/09/2021', classUserName: 'EVS' },
-                { id: '5', label: 'Sprint Showcase', dueDate: '11/08/2022', classUserName: 'VS Code' },
-              ]}
-            />
-          </Grid>
-
-          <Grid item xs={4} md={4} lg={4} sx={{ mt: 2 }}>
-            <Summary title="Summary" summaryContent={summaryContent} />
           </Grid>
         </Grid>
       </Container>

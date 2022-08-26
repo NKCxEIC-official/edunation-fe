@@ -16,6 +16,7 @@ function AnswerCommunity({ id }) {
     postCommunityAnswer(id, {
       name: user.firstName + user.lastName,
       answer,
+      isTeacher: user.isTeacher
     });
     dispatch(HideModalAction(true));
   }
