@@ -8,7 +8,6 @@ import { styled } from '@mui/material/styles';
 import { Drawer, Grid, Stack } from '@mui/material';
 import { faker } from '@faker-js/faker';
 import DatePicker from 'sassy-datepicker';
-import { useDispatch, useSelector } from 'react-redux';
 import { getClassEvents, getTeachingClasses } from '../../services/AuthService';
 
 import { AppOrderTimeline } from '../../sections/@dashboard/app';
