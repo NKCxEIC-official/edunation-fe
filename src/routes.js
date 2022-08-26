@@ -33,8 +33,11 @@ import Community from './pages/Community';
 import AddRedSpot from './pages/ngo/AddRedSpot';
 import CourseMaterialDetails from './pages/CourseMaterialDetails';
 import ChatApp from './components/ChatApp';
-import CourseGrid from './components/CourseGrid';
 import RedSpotList from './pages/ngo/RedSpotList';
+
+import Dashboard from './pages/superAdmin/Dashboard';
+import AcceptApproval from './pages/superAdmin/AcceptApproval';
+
 import NewCourses from './pages/student/NewCourses';
 import OngoingClasses from './pages/student/OngoingClasses';
 import ReadSpotDashboardApp from './pages/redspot/RedSpotDashboardApp';
@@ -53,6 +56,10 @@ export default function Router() {
         </RequireAuth>
       ),
       children: [
+        // SUPER routs:
+        { path: 'super/app', element: <Dashboard /> },
+        { path: 'super/accept-approval', element: <AcceptApproval /> },
+
         // RED-Spot routs:
         {
           path: 'red-spot/app',

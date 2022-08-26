@@ -13,9 +13,22 @@ const RedSpotNavConfig = [
   },
 ];
 
+const SuperNavConfig = [
+  {
+    title: 'Dashboard',
+    path: '/dashboard/super/app',
+    icon: getIcon('eva:pie-chart-2-fill'),
+  },
+  {
+    title: 'Accept Approval',
+    path: '/dashboard/super/accept-approval',
+    icon: getIcon('flat-color-icons:accept-database'),
+  },
+];
+
 const NGONavConfig = [
   {
-    title: 'dashboard',
+    title: 'Dashboard',
     path: '/dashboard/ngo/app',
     icon: getIcon('eva:pie-chart-2-fill'),
   },
@@ -128,4 +141,4 @@ const StudentNavConfig = [
 ];
 
 
-export { RedSpotNavConfig, NGONavConfig, TeacherNavConfig, StudentNavConfig };
+export {SuperNavConfig, RedSpotNavConfig, NGONavConfig, TeacherNavConfig, StudentNavConfig };

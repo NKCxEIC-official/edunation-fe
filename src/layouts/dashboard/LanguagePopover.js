@@ -1,4 +1,6 @@
 import { useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+
 // material
 import { alpha } from '@mui/material/styles';
 import { Box, MenuItem, Stack, IconButton } from '@mui/material';
@@ -24,7 +26,7 @@ const LANGS = [
     icon: '/static/icons/hindi_lang.png',
   },
   {
-    value: 'tm',
+    value: 'tn',
     label: 'Tamil',
     icon: '/static/icons/tamil_lang.png',
   },
@@ -33,8 +35,10 @@ const LANGS = [
 // ----------------------------------------------------------------------
 
 export default function LanguagePopover() {
+  const [selectedLanguage, setSelectedlanguage] = useState(0);
   const anchorRef = useRef(null);
   const [open, setOpen] = useState(false);
+  const { t, i18n } = useTranslation();
 
   const handleOpen = () => {
     setOpen(true);
@@ -42,6 +46,15 @@ export default function LanguagePopover() {
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const changeLang = (lang) => {
+   
+    
+    const index = LANGS.findIndex(x => x.value ===lang);
+
+    setSelectedlanguage(index)
+    i18n.changeLanguage(lang);
   };
 
   return (
@@ -58,7 +71,7 @@ export default function LanguagePopover() {
           }),
         }}
       >
-        <img src={LANGS[0].icon} alt={LANGS[0].label} />
+        <img src={LANGS[selectedLanguage].icon} alt={LANGS[selectedLanguage].label} />
       </IconButton>
 
       <MenuPopover
@@ -76,9 +89,12 @@ export default function LanguagePopover() {
           {LANGS.map((option) => (
             <MenuItem
               key={option.value}
-              selected={option.value === LANGS[0].value}
+              selected={option.value === LANGS[selectedLanguage].value}
               onClick={(option) => {
-                console.log('🚀 ~ file: LanguagePopover.js ~ line 78 ~ LanguagePopover ~ option', option.innerText);
+                const selectedLang = LANGS.filter((lang, index) => {
+                  return lang.label === option.target.innerText;
+                });
+                changeLang(selectedLang[0].value);
                 handleClose();
               }}
             >

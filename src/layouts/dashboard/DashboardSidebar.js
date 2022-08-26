@@ -30,6 +30,8 @@ const RootStyle = styled('div')(({ theme }) => ({
 }));
 
 const AccountStyle = styled('div')(({ theme }) => ({
+
+
   display: 'flex',
   alignItems: 'center',
   padding: theme.spacing(2, 2.5),
@@ -48,6 +50,7 @@ DashboardSidebar.propTypes = {
 const getNavByRole = () => {
   let role = 0;
   let isTeacher = false;
+  let isAdmin = false;
   role = localStorage.getItem('role');
   isTeacher = localStorage.getItem('isTeacher');
   if (role === '2') {
