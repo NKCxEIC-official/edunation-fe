@@ -91,13 +91,6 @@ export default function TeacherReport({ studentCount }) {
 
   const { t, i18n } = useTranslation();
 
-  const changeLanguage = (lng) => {
-    i18n.changeLanguage(lng);
-  };
-
-  useEffect(() => {
-    changeLanguage("en")
-  }, [])
 
   return (
     <div>

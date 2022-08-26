@@ -33,13 +33,6 @@ export default function StudentDashboardApp() {
   const { t, i18n } = useTranslation();
   const user = useSelector((state) => state.auth.user);
 
-  const changeLanguage = (lng) => {
-    i18n.changeLanguage(lng);
-  };
-
-  useEffect(() => {
-    changeLanguage("bn")
-  }, [])
 
   const summaryContent = [
     {

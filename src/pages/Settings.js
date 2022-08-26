@@ -72,13 +72,6 @@ function Settings() {
   const { firstName, lastName, email, phone, address, city, state, university, about, dp } = user;
   const { t, i18n } = useTranslation();
 
-  const changeLanguage = (lng) => {
-    i18n.changeLanguage(lng);
-  };
-
-  useEffect(() => {
-    changeLanguage("hn")
-  }, [])
 
   return (
     <Container maxWidth="md">

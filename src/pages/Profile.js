@@ -16,13 +16,6 @@ function Profile() {
   const { dp, firstName, lastName, email, about, reviews, ongoingCourses, rating } = user
   const { t, i18n } = useTranslation();
 
-  const changeLanguage = (lng) => {
-    i18n.changeLanguage(lng);
-  };
-
-  useEffect(() => {
-    changeLanguage("bn")
-  }, [])
 
   const [activeSection, setActiveSection] = useState('about');
   const cardContent = [

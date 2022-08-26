@@ -30,14 +30,6 @@ function AddTeacher() {
 
   const { t, i18n } = useTranslation();
 
-  const changeLanguage = (lng) => {
-    i18n.changeLanguage(lng);
-  };
-
-  useEffect(() => {
-    changeLanguage("bn")
-  }, [])
-
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Stack spacing={2}>

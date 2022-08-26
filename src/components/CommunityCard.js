@@ -37,13 +37,6 @@ function CommunityCard({ community, key, id }) {
 
   const { t, i18n } = useTranslation();
 
-  const changeLanguage = (lng) => {
-    i18n.changeLanguage(lng);
-  };
-
-  useEffect(()=>{
-    changeLanguage("hn")
-  },[])
   // const { community } = useSelector((state) => state.auth.data);
 
   return (

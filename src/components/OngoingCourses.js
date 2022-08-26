@@ -9,14 +9,6 @@ function OngoingCourses({ title, subheader, icon, avatar, points, classKey }) {
   const { t, i18n } = useTranslation();
   const user = useSelector(state => state.auth.user)
 
-  const changeLanguage = (lng) => {
-    i18n.changeLanguage(lng);
-  };
-
-  useEffect(()=>{
-    changeLanguage("en")
-  },[])
-
   return (
     <Card sx={{ px: 2 }}>
       <Grid container>

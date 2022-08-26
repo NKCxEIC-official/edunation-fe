@@ -143,14 +143,6 @@ export default function StudentsList() {
 
   const { t, i18n } = useTranslation();
 
-  const changeLanguage = (lng) => {
-    i18n.changeLanguage(lng);
-  };
-
-  useEffect(() => {
-    changeLanguage("bn")
-  }, [])
-
   const TABLE_HEAD = [
     { id: 'name', label: t('NgoStudentsList.NgoName'), alignRight: false },
     { id: 'courses', label: t('NgoStudentsList.NgoCourses'), alignRight: false },

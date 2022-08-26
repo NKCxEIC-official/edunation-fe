@@ -71,13 +71,7 @@ export default function TimelineSidebar({ isOpenSidebar, onCloseSidebar }) {
   const isDesktop = useResponsive('up', 'lg');
 
   const { t, i18n } = useTranslation();
-  const changeLanguage = (lng) => {
-    i18n.changeLanguage(lng);
-  };
 
-  useEffect(() => {
-    changeLanguage("en")
-  }, [])
 
   useEffect(() => {
     if (isOpenSidebar) {

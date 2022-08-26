@@ -49,8 +49,6 @@ export default function LanguagePopover() {
   };
 
   const changeLang = (lang) => {
-   
-    
     const index = LANGS.findIndex(x => x.value ===lang);
 
     setSelectedlanguage(index)

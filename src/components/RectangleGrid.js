@@ -8,14 +8,6 @@ function RectangleGrid({ title, subheader, count, color, icon, percent, duration
 
     const { t, i18n } = useTranslation();
 
-    const changeLanguage = (lng) => {
-        i18n.changeLanguage(lng);
-    };
-
-    useEffect(() => {
-        changeLanguage("en")
-    }, [])
-
     return (
         // <Card>
 

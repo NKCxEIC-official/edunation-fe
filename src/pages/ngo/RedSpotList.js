@@ -147,13 +147,6 @@ export default function RedSpotList() {
   }, [user]);
 
   const { t, i18n } = useTranslation();
-  const changeLanguage = (lng) => {
-    i18n.changeLanguage(lng);
-  };
-
-  useEffect(()=>{
-    changeLanguage("bn")
-  },[])
 
 
   const TABLE_HEAD = [

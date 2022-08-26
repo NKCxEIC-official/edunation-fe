@@ -61,13 +61,6 @@ export default function PostAQuery() {
 
   const { t, i18n } = useTranslation();
 
-  const changeLanguage = (lng) => {
-    i18n.changeLanguage(lng);
-  };
-
-  useEffect(()=>{
-    changeLanguage("hn")
-  },[])
   return (
     <div className="Create a class">
       <Typography variant="h4">

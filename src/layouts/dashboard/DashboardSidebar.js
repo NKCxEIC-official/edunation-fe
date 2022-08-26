@@ -1,6 +1,7 @@
 /* eslint-disable */
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
+import { useTranslation, withTranslation, Trans } from 'react-i18next';
 import { Link as RouterLink, useLocation, useNavigate } from 'react-router-dom';
 
 // material
@@ -67,8 +68,13 @@ const getNavByRole = () => {
   }
 };
 
+
+ 
+
 // eslint-disable-next-line consistent-return
 const utilButton = (navigate) => {
+  const { t, i18n } = useTranslation();
+
   const role = localStorage.getItem('role');
   const isTeacher = localStorage.getItem('isTeacher');
   if (role === '0') {
@@ -84,7 +90,9 @@ const utilButton = (navigate) => {
           }
         }
       >
-        Add Red Spots
+        <Trans i18nKey="NgoStudentsList.NgoStudents">
+            Add Red Spots
+        </Trans>
       </Button>
     );
   }
@@ -102,42 +110,6 @@ const utilButton = (navigate) => {
         }
       >
         Add Red Spots
-      </Button>
-    );
-  }
-  if (role === '1' && isTeacher === 'true') {
-    return (
-      <Button
-        target="_blank"
-        variant="contained"
-        color="primary"
-        onClick={
-          // navigate to be a :
-          () => {
-            localStorage.setItem('viewAs', 'false');
-            navigate('/dashboard/student/app', { replace: true });
-          }
-        }
-      >
-        Student Dashboard
-      </Button>
-    );
-  }
-  if (role === '1' && isTeacher === 'false') {
-    return (
-      <Button
-        target="_blank"
-        variant="contained"
-        color="warning"
-        onClick={
-          // navigate to be a :
-          () => {
-            localStorage.setItem('viewAs', 'true');
-            navigate('/dashboard/teacher/app', { replace: true });
-          }
-        }
-      >
-        Be A Teacher
       </Button>
     );
   }

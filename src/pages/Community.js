@@ -22,13 +22,6 @@ export default function Community() {
   const dispatch = useDispatch();
 
   const { t, i18n } = useTranslation();
-  const changeLanguage = (lng) => {
-    i18n.changeLanguage(lng);
-  };
-
-  useEffect(()=>{
-    changeLanguage("en")
-  },[])
 
   useEffect(() => {
     dispatch(getDatafromDBAction('community', true, 'community'));

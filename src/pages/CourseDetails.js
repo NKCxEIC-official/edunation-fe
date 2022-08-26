@@ -39,14 +39,6 @@ export default function CourseDetails() {
   });
   const { t, i18n } = useTranslation();
 
-  const changeLanguage = (lng) => {
-    i18n.changeLanguage(lng);
-  };
-
-  useEffect(() => {
-    changeLanguage("en")
-  }, [])
-
   const [courseDetails, setCourseDetails] = useState({});
   const { name, studentList, courseMaterial, videos, assignments, creator, vidyaDaanResources } = courseDetails;
   const { ongoingCourses, totalEnrolled } = user;

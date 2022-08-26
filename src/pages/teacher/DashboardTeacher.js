@@ -46,13 +46,6 @@ export default function DashboardTeacher() {
 
   const { t, i18n } = useTranslation();
 
-  const changeLanguage = (lng) => {
-    i18n.changeLanguage(lng);
-  };
-
-  useEffect(() => {
-    changeLanguage("en")
-  }, [])
 
   return (
     <Page title="Teacher">
