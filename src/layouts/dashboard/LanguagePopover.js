@@ -1,4 +1,6 @@
 import { useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+
 // material
 import { alpha } from '@mui/material/styles';
 import { Box, MenuItem, Stack, IconButton } from '@mui/material';
@@ -11,25 +13,32 @@ const LANGS = [
   {
     value: 'en',
     label: 'English',
-    icon: '/static/icons/ic_flag_en.svg',
+    icon: '/static/icons/eng_lang.png',
   },
   {
-    value: 'de',
-    label: 'German',
-    icon: '/static/icons/ic_flag_de.svg',
+    value: 'bn',
+    label: 'Bengali',
+    icon: '/static/icons/bengali_lang.jpg',
   },
   {
-    value: 'fr',
-    label: 'French',
-    icon: '/static/icons/ic_flag_fr.svg',
+    value: 'hn',
+    label: 'Hindi',
+    icon: '/static/icons/hindi_lang.png',
+  },
+  {
+    value: 'tn',
+    label: 'Tamil',
+    icon: '/static/icons/tamil_lang.png',
   },
 ];
 
 // ----------------------------------------------------------------------
 
 export default function LanguagePopover() {
+  const [selectedLanguage, setSelectedlanguage] = useState(0);
   const anchorRef = useRef(null);
   const [open, setOpen] = useState(false);
+  const { t, i18n } = useTranslation();
 
   const handleOpen = () => {
     setOpen(true);
@@ -37,6 +46,15 @@ export default function LanguagePopover() {
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const changeLang = (lang) => {
+   
+    
+    const index = LANGS.findIndex(x => x.value ===lang);
+
+    setSelectedlanguage(index)
+    i18n.changeLanguage(lang);
   };
 
   return (
@@ -53,7 +71,7 @@ export default function LanguagePopover() {
           }),
         }}
       >
-        <img src={LANGS[0].icon} alt={LANGS[0].label} />
+        <img src={LANGS[selectedLanguage].icon} alt={LANGS[selectedLanguage].label} />
       </IconButton>
 
       <MenuPopover
@@ -69,7 +87,17 @@ export default function LanguagePopover() {
       >
         <Stack spacing={0.75}>
           {LANGS.map((option) => (
-            <MenuItem key={option.value} selected={option.value === LANGS[0].value} onClick={() => handleClose()}>
+            <MenuItem
+              key={option.value}
+              selected={option.value === LANGS[selectedLanguage].value}
+              onClick={(option) => {
+                const selectedLang = LANGS.filter((lang, index) => {
+                  return lang.label === option.target.innerText;
+                });
+                changeLang(selectedLang[0].value);
+                handleClose();
+              }}
+            >
               <Box component="img" alt={option.label} src={option.icon} sx={{ width: 28, mr: 2 }} />
 
               {option.label}

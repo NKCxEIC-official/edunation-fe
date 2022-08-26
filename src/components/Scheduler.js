@@ -25,13 +25,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { pink, purple, teal, amber, deepOrange } from '@mui/material/colors';
 import { loadingToggleAction } from '../store/actions/AuthActions';
-import {
-  addDocument,
-  addDocumentInDb,
-  getClassEvents,
-  getEventsForTeacher,
-  getTeachingClasses,
-} from '../services/AuthService';
+import { addDocument, addDocumentInDb, getClassEvents, getEventsForTeacher, getTeachingClasses } from '../services/AuthService';
 import { appointments, resourcesData } from '../_mock/event';
 import { owners } from '../_mock/tasks';
 
@@ -129,8 +123,10 @@ const getMyCreatedClassList = (user) => {
   return classResourcelist;
 };
 
+
+
 const addEventToDb = (event, dispatch, classList) => {
-  console.log('banchod', classList);
+  console.log("🚀 ~ file: Scheduler.js ~ line 129 ~ addEventToDb ~ event", event)
   const filteredClass = classList[0].instances.filter(checkClassId);
   function checkClassId(classItem) {
     return classItem.id === event.roomId;
@@ -149,6 +145,7 @@ const addEventToDb = (event, dispatch, classList) => {
       classBanarUrl: filteredClass[0].bannerUrl,
     },
     notes: event.notes,
+    rRules: event.rRules,
   };
   dispatch(loadingToggleAction(true));
   addDocumentInDb(payload, 'events').then(() => {
@@ -193,24 +190,28 @@ export default () => {
 
   React.useEffect(() => {
     const classListData = getMyCreatedClassList(user);
-
+    
     const eventList = [];
-
+  
     getTeachingClasses(user.uid).then((querySnapshot) => {
       querySnapshot.docs.forEach((doc, idx) => {
         const course = doc.data();
+  
         getClassEvents(doc.id).then((queryEventSnapshot) => {
+          
           queryEventSnapshot.docs.forEach((dock, idy) => {
             eventList.push({
               ...dock.data(),
               startDate: new Date(dock.data().startDate.seconds * 1000),
               endDate: new Date(dock.data().endDate.seconds * 1000),
             });
-
-            if (idy === queryEventSnapshot.docs.length - 1) {
-              console.log('randi', eventList);
+  
+            if(idy === queryEventSnapshot.docs.length -1)
+            {
+              console.log("randi",eventList)
               setData(eventList);
             }
+            
           });
         });
       });
@@ -284,47 +285,48 @@ export default () => {
   const allowDrag = React.useCallback(() => allowDragging && allowUpdating, [allowDragging, allowUpdating]);
   const allowResize = React.useCallback(() => allowResizing && allowUpdating, [allowResizing, allowUpdating]);
 
-  React.useEffect(() => {
-    console.log('loggg', eventList);
-  }, [eventList]);
+  React.useEffect(()=>{console.log("loggg",eventList)},[eventList])
   return (
     <>
       {/* <EditingOptionsSelector options={editingOptions} onOptionsChange={handleEditingOptionsChange} /> */}
       <Paper>
-        {console.log('bokachoda', data)}
-
-        <Scheduler data={data} height={600}>
-          <ViewState
-            defaultCurrentDate="2022-08-24"
-            currentDate={currentDate}
-            currentViewName={currentViewName}
-            onCurrentDateChange={setCurrentDate}
-            onCurrentViewNameChange={setCurrentViewName}
-          />
-          <EditingState
-            onCommitChanges={onCommitChanges}
-            addedAppointment={addedAppointment}
-            onAddedAppointmentChange={onAddedAppointmentChange}
-          />
-          <IntegratedEditing />
-          <WeekView startDayHour={9} endDayHour={19} timeTableCellComponent={TimeTableCell} />
-          <WeekView name="work-week" displayName="Work Week" excludedDays={[0, 6]} startDayHour={9} endDayHour={19} />
-          <MonthView />
-          <DayView />
-          <Appointments />
-          <Toolbar />
-          <DateNavigator />
-          <TodayButton />
-          <ViewSwitcher />
-          <AppointmentTooltip showOpenButton showDeleteButton={allowDeleting} />
-          <AppointmentForm
-            commandButtonComponent={CommandButton}
-            readOnly={isAppointmentBeingCreated ? false : !allowUpdating}
-          />
-          <Resources data={[...resources]} mainResourceName="roomId" />
-          <DragDropProvider allowDrag={allowDrag} allowResize={allowResize} />
-          <CurrentTimeIndicator updateInterval="10000" />
-        </Scheduler>
+        {console.log("bokachoda",data)}
+        
+        {data && data.length > 0 &&
+          <Scheduler data={data} height={600}>
+            <ViewState
+              defaultCurrentDate="2022-08-24"
+              currentDate={currentDate}
+              currentViewName={currentViewName}
+              onCurrentDateChange={setCurrentDate}
+              onCurrentViewNameChange={setCurrentViewName}
+            />
+            <EditingState
+              onCommitChanges={onCommitChanges}
+              addedAppointment={addedAppointment}
+              onAddedAppointmentChange={onAddedAppointmentChange}
+            />
+            <IntegratedEditing />
+            <WeekView startDayHour={9} endDayHour={19} timeTableCellComponent={TimeTableCell} />
+            <WeekView name="work-week" displayName="Work Week" excludedDays={[0, 6]} startDayHour={9} endDayHour={19} />
+            <MonthView />
+            <DayView />
+            <Appointments />
+            <Toolbar />
+            <DateNavigator />
+            <TodayButton />
+            <ViewSwitcher />
+            <AppointmentTooltip showOpenButton showDeleteButton={allowDeleting} />
+            <AppointmentForm
+              commandButtonComponent={CommandButton}
+              readOnly={isAppointmentBeingCreated ? false : !allowUpdating}
+            />
+            <Resources data={[...resources]} mainResourceName="roomId" />
+            <DragDropProvider allowDrag={allowDrag} allowResize={allowResize} />
+            <CurrentTimeIndicator updateInterval="10000" />
+          </Scheduler>
+}
+        
       </Paper>
     </>
   );

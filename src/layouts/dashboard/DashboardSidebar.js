@@ -15,7 +15,7 @@ import Logo from '../../components/Logo';
 import Scrollbar from '../../components/Scrollbar';
 import NavSection from '../../components/NavSection';
 //
-import { NGONavConfig, StudentNavConfig, SuperNavConfig, TeacherNavConfig } from './NavConfig';
+import { RedSpotNavConfig, NGONavConfig, StudentNavConfig, TeacherNavConfig } from './NavConfig';
 import { useSelector } from 'react-redux';
 import VerifiedBadge from '../../components/SVGIcons/VerifiedBadge';
 
@@ -54,9 +54,8 @@ const getNavByRole = () => {
   let isAdmin = false;
   role = localStorage.getItem('role');
   isTeacher = localStorage.getItem('isTeacher');
-  isAdmin = localStorage.getItem('isAdmin');
-  if (role === '0') {
-    return NGONavConfig;
+  if (role === '2') {
+    return RedSpotNavConfig;
   }
   if (role === '1' && isTeacher === 'true') {
     return TeacherNavConfig;
@@ -64,8 +63,8 @@ const getNavByRole = () => {
   if (role === '1' && isTeacher === 'false') {
     return StudentNavConfig;
   }
-  if (role === '2') {
-    return SuperNavConfig;
+  if (role === '0') {
+    return NGONavConfig;
   }
 };
 
@@ -74,6 +73,23 @@ const utilButton = (navigate) => {
   const role = localStorage.getItem('role');
   const isTeacher = localStorage.getItem('isTeacher');
   if (role === '0') {
+    return (
+      <Button
+        target="_blank"
+        variant="contained"
+        color="danger"
+        onClick={
+          // navigate to be a :
+          () => {
+            navigate('/dashboard/ngo/redSpot', { replace: true });
+          }
+        }
+      >
+        Add Red Spots
+      </Button>
+    );
+  }
+  if(role === '2') {
     return (
       <Button
         target="_blank"

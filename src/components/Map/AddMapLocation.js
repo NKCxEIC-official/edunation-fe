@@ -4,7 +4,7 @@ import { LoadingButton } from '@mui/lab';
 import { Stack } from '@mui/material';
 import React, { useEffect } from 'react';
 import { useFieldArray, useForm } from 'react-hook-form';
-import { addRedSpotAction } from '../../store/actions/AuthActions';
+import { addRedSpotAction, addUserAnonymousAction } from '../../store/actions/AuthActions';
 import { AddRedSpotSchema, AddRedSpotSchemaDefaultValues } from '../../formSchemas/AddRedSpotSchema';
 import { FormProvider, RHFTextField } from '../hook-form';
 
@@ -36,8 +36,25 @@ function AddMapLocation({ selectedLocation, coords }) {
       redSPotId: payload.redSPotName.replace(/ +/g, '-').toLowerCase(),
       addedBy: user.uid,
     };
+    console.log("🚀 ~ file: AddMapLocation.js ~ line 34 ~ onSubmit ~ newPayload", newPayload)
+    dispatch(addUserAnonymousAction({ 
+      // ...payload, role: 1, isTeacher: false, isVerified: false 
 
+      address : payload.address,
+      email: payload.POCEmail,
+      firstName: payload.POCName,
+      isPoc: true,
+      lastName: payload.POCName,
+      phone: payload.POCPhone,
+      role: 3,
+      isVerified: false,
+      // city:
+      // state: payload?.name?.split(" ")[1],
+      // "WEST BENGAL"
+
+    }, user));
     dispatch(addRedSpotAction(newPayload));
+    
   };
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
